@@ -25,12 +25,6 @@ El drama de la jornada lo protagonizó Sergio 'Checo' Pérez. El mexicano tuvo u
 <span>Tiempo / Dif</span>
 </div>
 
-<h3 style="margin-top: 30px; font-family: 'Orbitron', sans-serif;">Tabla de Tiempos Oficiales - PL2</h3>
-
-<h3 style="margin-top: 30px; font-family: 'Orbitron', sans-serif;">Tabla de Tiempos Oficiales - PL2</h3>
-
-<div class="tabla-tiempos-pl1" style="margin-bottom: 30px;">
-
 <!-- CONTENEDOR PRINCIPAL (TOP 4 VISIBLE) -->
 <div class="filas-tabla-live">
     <div class="fila-tabla top-1"><span>1</span><span>🇬🇧 Lando Norris (McLaren Mercedes)</span><span>1:15.426</span></div>
