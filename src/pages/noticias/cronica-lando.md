@@ -51,3 +51,76 @@ El drama de la jornada lo protagonizó Sergio 'Checo' Pérez. El mexicano tenido
 <div class="fila-tabla"><span>22</span><span>🇨🇦 Lance Stroll (Aston Martin Aramco Honda)</span><span>+4.033s</span></div>
 </div>
 </div>
+          <!-- FIN DE LA TABLA INFERIOR -->
+                    
+                    <br>
+                    <a href="index.html" class="boton-leer">Volver al Inicio</a>
+                </div>
+            </article>
+        </section>
+
+        <!-- Barra lateral -->
+        <aside class="barra-lateral-derecha">
+            <div class="seccion-proxima">
+                <h3>Próxima Carrera</h3>
+                <div class="evento">
+                    <p><strong>Gran Premio de España</strong></p>
+                    <p>Circuito de Barcelona-Cataluña</p>
+                </div>
+            </div>
+            <div class="seccion-horarios">
+                <h4>Horarios del Fin de Semana</h4>
+                <div class="tabla-horarios">
+                    <div class="fila-paises">
+                        <span class="paises">🇦🇷 🇧🇷 🇵🇾 🇺🇾</span>
+                        <div class="horarios">
+                        <p><span>Práctica 1:</span> Viernes 12 – 08:30</p>
+                        <p><span>Práctica 2:</span> Viernes 12 – 12:00</p>
+                        <p><span>Práctica 3:</span> Sábado 13 – 07:30</p>
+                        <p><span>Clasificación:</span> Sábado 13 – 11:00</p>
+                        <p class="carrera"><span>Gran Premio:</span> Domingo 14 – 10:00</p>
+                    </div>
+                </div>
+
+                <div class="fila-paises">
+                    <span class="paises">🇧🇴 🇨🇱 🇩🇴 🇵🇷 🇻🇪</span>
+                    <div class="horarios">
+                    <p><span>Práctica 1:</span> Viernes 12 – 07:30</p>
+                    <p><span>Práctica 2:</span> Viernes 12 – 11:00</p>
+                    <p><span>Práctica 3:</span> Sábado 13 – 06:30</p>
+                     <p><span>Clasificación:</span> Sábado 13 – 10:00</p>
+                        <p class="carrera"><span>GP:</span> Domingo 14 – 09:00</p>
+                    </div>
+                </div>
+
+                <div class="fila-paises">
+                    <span class="paises">🇨🇴 🇪🇨 🇵🇦 🇵🇪</span>
+                    <div class="horarios">
+                    <p><span>Práctica 1:</span> Viernes 12 – 06:30</p>
+                    <p><span>Práctica 2:</span> Viernes 12 – 10:00</p>
+                    <p><span>Práctica 3:</span> Sábado 13 – 05:30</p>
+                        <p><span>Clasificación:</span> Sábado 13 – 09:00</p>
+                        </p>class="carrera"><span>GP:</span> Domingo 14 – 08:00</p>
+                    </div>
+                </div>
+
+                <div class="fila-paises">
+                    <span class="paises">🇨🇷 🇸🇻 🇭🇳 🇲🇽</span>
+                    <div class="horarios">
+                        <p><span>Práctica 1:</span> Viernes 12 – 05:30</p>
+                        <p><span>Práctica 2:</span> Viernes 12 – 09:00</p>
+                        <p><span>Práctica 3:</span> Sábado 13 – 04:30</p>
+                        <p><span>Clasificación:</span> Sábado 13 – 08:00</p>
+                        <p class="carrera"><span>GP:</span> Domingo 14 – 07:00</p>
+                        </div>
+                    </div>
+        </aside>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Dagger Racing. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>
