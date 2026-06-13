@@ -18,7 +18,7 @@ Los errores de pilotaje no se hicieron esperar debido a las complejas rachas de 
 El drama de la jornada lo protagonizó Sergio 'Checo' Pérez. El mexicano tuvo un serio incidente de tráfico con Isack Hadjar en la curva 4 que fue anotado de inmediato por los comisarios de la FIA. Minutos más tarde, Pérez recibió una bandera blanca y negra (advertencia técnica) por una maniobra peligrosa al echar deliberadamente a otro piloto fuera de los límites de la pista. Todo esto cerró una práctica complicada para Red Bull, mientras que en las tandas largas generales, Mercedes (con Antonelli) dio la sorpresa al mostrar un ritmo de carrera con gomas blandas superior al de los propios McLaren.
 
 <h3 style="margin-top: 30px; font-family: 'Orbitron', sans-serif;">Tabla de Tiempos Oficiales - PL2</h3>
-<div class="tabla-tiempos-pl1" style="margin-bottom: 30px;">
+<div class="tabla-tiempos-pl2" style="margin-bottom: 30px;">
 <div class="encabezado-tabla">
 <span>Pos</span>
 <span>Piloto / Escudería</span>
