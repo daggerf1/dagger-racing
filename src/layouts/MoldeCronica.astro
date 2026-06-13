@@ -31,6 +31,13 @@ const { frontmatter } = Astro.props;
                 <div class="contenedor-imagen-live" style="height: 400px; margin-bottom: 20px;">
                     <img src={`/${frontmatter.imagen}`} alt="Monoplaza en pista" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
+                 {frontmatter.credito && (
+    <div style="text-align: right; width: 100%; margin-top: 5px; margin-bottom: 15px;">
+        <span style="font-size: 11px; color: #b3b3b3; font-style: italic; font-family: Arial, sans-serif;">
+            Foto: {frontmatter.credito}
+        </span>
+    </div>
+)}
                 <div class="contenido">
                     <span class="fecha">{frontmatter.fechaEtiqueta}</span>
                     
