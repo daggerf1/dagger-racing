@@ -2,7 +2,7 @@
 layout: ../../layouts/MoldeCronica.astro
 titulo: "Mercedes golpea primero: George Russell lidera una Práctica 1 caótica y repleta de debutantes"
 fechaEtiqueta: "⏱️ 12 de juniio, 2026"
-imagen: "russell barcelona.jpg"
+imagen: "russell p1-barcelona-2026.jpg"
 ---
 
 **RESUMEN RÁPIDO:** La primera sesión de entrenamientos libres en el Circuit de Barcelona-Cataluña se convirtió en un laboratorio de pruebas de alta tensión. George Russell comandó las acciones con un tiempo demoledor de 1:16.363, en una tanda marcada por la masiva presencia de siete pilotos novatos en pista y problemas eléctricos que dejaron a algunos equipos con las manos vacías.
