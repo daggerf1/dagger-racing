@@ -3,6 +3,7 @@ layout: ../../layouts/MoldeCronica.astro
 titulo: "Golpe de autoridad: Lando Norris vuela en Barcelona y McLaren destroza el cronómetro"
 fechaEtiqueta: "⏱️ 12 de junio, 2026"
 imagen: "lando norris p2-barcelona-2026.jpg"
+credito: "McLaren Automotive Limited / Media Press"
 ---
 
 **RESUMEN RÁPIDO:** Una sesión de Práctica 2 caótica en el Circuit de Barcelona-Cataluña terminó con Lando Norris en lo más alto tras detener el reloj en 1:15.426. La tanda estuvo marcada por banderas amarillas, incidentes bajo investigación de la FIA y un juego estratégico de neumáticos donde McLaren dmostró tener el ritmo más sólido a una sola vuelta, aunque sufriendo más de lo esperado en simulaciones de carrera.
