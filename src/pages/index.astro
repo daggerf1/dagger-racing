@@ -1,0 +1,75 @@
+---
+const notasCargadas = import.meta.glob('./noticias/*.md', { eager: true });
+const todasLasCronicas = Object.values(notasCargadas);
+---
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dagger Racing - Noticias de Fórmula 1</title>
+    <link rel="stylesheet" href="/css/styless.css">
+</head>
+<body>
+
+    <header>
+        <h1>DAGGER RACING</h1>
+        <p>noticias de la máxima categoría</p>
+    </header>
+
+    <nav>
+        <a href="/">Inicio</a>
+        <a href="#">Noticias</a>
+        <a href="#">Calendario</a>
+        <a href="#">Posiciones</a>
+    </nav>
+
+    <main class="container">
+        
+        <section class="noticias">
+            
+            {todasLasCronicas.map((nota) => (
+                <article class="tarjeta-noticia">
+                    <div class="contenedor-imagen-live">
+                       <img src={`/${nota.frontmatter.imagen}`} alt="Imagen de noticia">
+                    </div>
+                    <div class="contenido">
+                        <span class="fecha">{nota.frontmatter.fechaEtiqueta}</span>
+                        <h2>{nota.frontmatter.titulo}</h2>
+                        <p>{nota.frontmatter.resumenRapido}</p>
+                        <a href={nota.url} class="boton-leer">Leer Crónica</a>
+                    </div>
+                </article>
+            ))}
+
+        </section>
+
+        <aside class="barra-lateral-derecha">
+            <h3>Próxima Carrera</h3>
+            <div class="evento">
+                <p><strong>Gran Premio de España</strong></p>
+                <p>Circuito de Barcelona-Cataluña</p>
+            </div>
+
+            <h4>Horarios del Fin de Semana</h4>
+            <div class="tabla-horarios">
+                <div class="fila-paises">
+                    <span class="paises">🇲🇽 🇨🇷 🇸🇻</span>
+                    <div class="horarios">
+                        <p><span>Práctica 1:</span> Viernes 12 – 05:30</p>
+                        <p><span>Práctica 2:</span> Viernes 12 – 09:00</p>
+                        <p><span>Clasificación:</span> Sábado 13 – 08:00</p>
+                        <p class="carrera"><span>GP:</span> Domingo 14 – 07:00</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Dagger Racing. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>

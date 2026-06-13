@@ -1,0 +1,151 @@
+---
+const { frontmatter } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dagger Racing - {frontmatter.titulo}</title>
+    <link rel="stylesheet" href="/css/styless.css">
+</head>
+<body>
+
+    <header>
+        <h1>DAGGER RACING</h1>
+        <p>noticias de la máxima categoría</p>
+    </header>
+
+    <nav>
+        <a href="/">Inicio</a>
+        <a href="#">Noticias</a>
+        <a href="#">Calendario</a>
+        <a href="#">Posiciones</a>
+    </nav>
+
+    <main class="container">
+        
+        <!-- COLUMNA IZQUIERDA: LA NOTICIA COMPLETA -->
+        <section class="noticias">
+            <article class="tarjeta-noticia" style="border-left: 4px solid #e10600; padding-left: 15px;">
+                <div class="contenedor-imagen-live" style="height: 400px; margin-bottom: 20px;">
+                    <img src={`/${frontmatter.imagen}`} alt="Monoplaza en pista" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="contenido">
+                    <span class="fecha">{frontmatter.fechaEtiqueta}</span>
+                    
+                    <!-- Titular compacto -->
+                    <h2 class="titular-cronica" style="font-size: 1.8rem; margin: 15px 0; line-height: 1.3;">{frontmatter.titulo}</h2>
+                    
+                    <!-- Aquí Astro inyectará automáticamente los párrafos y tablas de tus archivos .md -->
+                    <slot />
+
+                    <!-- TU BOTÓN AZUL OSCURO REAL INTEGRADO -->
+                    <button id="btn-desplegar-tabla" class="boton-desplegar" style="display: block; width: 100%; background-color: #1e293b; color: white; border: none; padding: 12px; font-family: 'Orbitron', sans-serif; cursor: pointer; text-align: center; font-size: 0.9rem; margin-top: 20px; margin-bottom: 20px; font-weight: bold;">
+                        Ver resto de posiciones ↓
+                    </button>
+                    
+                    <br>
+                    <a href="/" class="boton-leer">VOLVER AL INICIO</a>
+                </div>
+            </article>
+        </section>
+
+        <!-- COLUMNA DERECHA: BARRA DE HORARIOS COMPLETA CON TU FORMATO -->
+        <aside class="barra-lateral-derecha">
+            <div class="seccion-proxima">
+                <h3>Próxima Carrera</h3>
+                <div class="evento">
+                    <p><strong>Gran Premio de España</strong></p>
+                    <p>Circuito de Barcelona-Cataluña</p>
+                </div>
+            </div>
+
+            <div class="seccion-horarios">
+                <h4>Horarios del Fin de Semana</h4>
+                <div class="tabla-horarios">
+                    
+                    <!-- Tarjeta 1: Argentina, Brasil, Paraguay, Uruguay -->
+                    <div class="fila-paises">
+                        <span class="paises">🇦🇷 🇧🇷 🇵🇾 🇺🇾</span>
+                        <div class="horarios">
+                            <p><span>Práctica 1:</span> Viernes 12 – 08:30</p>
+                            <p><span>Práctica 2:</span> Viernes 12 – 12:00</p>
+                            <p><span>Práctica 3:</span> Sábado 13 – 07:30</p>
+                            <p><span>Clasificación:</span> Sábado 13 – 11:00</p>
+                            <p class="carrera"><span>GP:</span> Domingo 14 – 10:00</p>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 2: Bolivia, Chile, Rep. Dominicana, Puerto Rico, Venezuela -->
+                    <div class="fila-paises">
+                        <span class="paises">🇧🇴 🇨🇱 🇩🇴 🇵🇷 🇻🇪</span>
+                        <div class="horarios">
+                            <p><span>Práctica 1:</span> Viernes 12 – 07:30</p>
+                            <p><span>Práctica 2:</span> Viernes 12 – 11:00</p>
+                            <p><span>Práctica 3:</span> Sábado 13 – 06:30</p>
+                            <p><span>Clasificación:</span> Sábado 13 – 10:00</p>
+                            <p class="carrera"><span>GP:</span> Domingo 14 – 09:00</p>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 3: Colombia, Ecuador, Panamá, Perú -->
+                    <div class="fila-paises">
+                        <span class="paises">🇨🇴 🇪🇨 🇵🇦 🇵🇪</span>
+                        <div class="horarios">
+                            <p><span>Práctica 1:</span> Viernes 12 – 06:30</p>
+                            <p><span>Práctica 2:</span> Viernes 12 – 10:00</p>
+                            <p><span>Práctica 3:</span> Sábado 13 – 05:30</p>
+                            <p><span>Clasificación:</span> Sábado 13 – 09:00</p>
+                            <p class="carrera"><span>GP:</span> Domingo 14 – 08:00</p>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 4: Costa Rica, El Salvador, Honduras, México -->
+                    <div class="fila-paises">
+                        <span class="paises">🇨🇷 🇸🇻 🇭🇳 🇲🇽</span>
+                        <div class="horarios">
+                            <p><span>Práctica 1:</span> Viernes 12 – 05:30</p>
+                            <p><span>Práctica 2:</span> Viernes 12 – 09:00</p>
+                            <p><span>Práctica 3:</span> Sábado 13 – 04:30</p>
+                            <p><span>Clasificación:</span> Sábado 13 – 08:00</p>
+                            <p class="carrera"><span>GP:</span> Domingo 14 – 07:00</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </aside>
+        
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Dagger Racing. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- INTERACTIVIDAD DE DESPLEGUE SANEADA -->
+    <script is:inline>
+        document.addEventListener("DOMContentLoaded", () => {
+            const boton = document.getElementById("btn-desplegar-tabla");
+            const tablaOculta = document.querySelector(".filas-tabla-ocultas");
+
+            if (tablaOculta && boton) {
+                tablaOculta.style.display = "none";
+                
+                boton.addEventListener("click", () => {
+                    if (tablaOculta.style.display === "none") {
+                        tablaOculta.style.display = "block";
+                        boton.textContent = "Ocultar posiciones ↑";
+                    } else {
+                        tablaOculta.style.display = "none";
+                        boton.textContent = "Ver resto de posiciones ↓";
+                    }
+                });
+            } else {
+                if (boton) boton.style.display = "none";
+            }
+        });
+    </script>
+
+</body>
+</html>
