@@ -33,24 +33,67 @@ El drama de la jornada lo protagonizó Sergio 'Checo' Pérez. El mexicano tuvo u
     <div class="fila-tabla"><span>4</span><span>🇲🇨 Charles Leclerc (Ferrari)</span><span>+0.373s</span></div>
 </div>
 
-<!-- CONTENEDOR OCULTO (PILOTOS DEL 5 AL 22) -->
-<div class="filas-tabla-ocultas">
-    <div class="fila-tabla"><span>5</span><span>🇮🇹 Kimi Antonelli (Mercedes)</span><span>+0.589s</span></div>
-    <div class="fila-tabla"><span>6</span><span>🇳🇱 Max Verstappen (Red Bull Racing)</span><span>+0.895s</span></div>
-    <div class="fila-tabla"><span>7</span><span>🇬🇧 Arvid Lindblad (Racing Bulls Red Bull Ford)</span><span>+0.985s</span></div>
-    <div class="fila-tabla"><span>8</span><span>🇧🇷 Gabriel Bortoleto (Audi)</span><span>+1.185s</span></div>
-    <div class="fila-tabla"><span>9</span><span>🇬🇧 Lewis Hamilton (Ferrari)</span><span>+1.205s</span></div>
-    <div class="fila-tabla"><span>10</span><span>🇫🇷 Isack Hadjar (Red Bull Racing)</span><span>+1.248s</span></div>
-    <div class="fila-tabla"><span>11</span><span>🇩🇪 Nico Hulkenberg (Audi)</span><span>+1.508s</span></div>
-    <div class="fila-tabla"><span>12</span><span>🇬🇧 Oliver Bearman (Haas Ferrari)</span><span>+1.519s</span></div>
-    <div class="fila-tabla"><span>13</span><span>🇳🇿 Liam Lawson (Racing Bulls Red Bull Ford)</span><span>+1.541s</span></div>
-    <div class="fila-tabla"><span>14</span><span>🇪🇸 Carlos Sainz (Atlassian Williams Mercedes)</span><span>+1.594s</span></div>
-    <div class="fila-tabla"><span>15</span><span>🇦🇷 Franco Colapinto (Alpine Mercedes)</span><span>+1.625s</span></div>
-    <div class="fila-tabla"><span>16</span><span>🇫🇷 Pierre Gasly (Alpine Mercedes)</span><span>+1.834s</span></div>
-    <div class="fila-tabla"><span>17</span><span>🇫🇷 Esteban Ocon (Haas Ferrari)</span><span>+2.112s</span></div>
-    <div class="fila-tabla"><span>18</span><span>🇫🇮 Valtteri Bottas (Cadillac Ferrari)</span><span>+2.799s</span></div>
-    <div class="fila-tabla"><span>19</span><span>🇺🇸 Alexander Albon (Atlassian Williams Mercedes)</span><span>+3.364s</span></div>
-    <div class="fila-tabla"><span>20</span><span>🇲🇽 Sergio Pérez (Cadillac Ferrari)</span><span>+3.835s</span></div>
-    <div class="fila-tabla"><span>21</span><span>🇪🇸 Fernando Alonso (Aston Martin Aramco Honda)</span><span>+3.860s</span></div>
-    <div class="fila-tabla"><span>22</span><span>🇨🇦 Lance Stroll (Aston Martin Aramco Honda)</span><span>+4.033s</span></div>
+!-- CONTENEDOR PRINCIPAL DE LA NOTA -->
+<div class="nota-prensa-f1" style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 15px; background-color: #1a1a1a; color: #ffffff; border-radius: 8px;">
+
+    <!-- FOTOGRAFÍA CON SU CRÉDITO LEGAL DE PRENSA -->
+    <figure style="margin: 0 0 20px 0; padding: 0;">
+        <img src="URL_DE_TU_IMAGEN.jpg" alt="George Russell celebra la pole position en Barcelona" style="width: 100%; height: auto; border-radius: 4px; display: block;">
+        <figcaption style="font-size: 11px; color: #b3b3b3; margin-top: 6px; text-align: left; font-style: italic;">
+            Foto: Mercedes-AMG PETRONAS F1 Team / media.mercedesamgf1.com
+        </figcaption>
+    </figure>
+
+    <!-- ESTILOS INLINE BÁSICOS PARA LA TABLA -->
+    <style>
+        .fila-tabla {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 12px;
+            border-bottom: 1px solid #333;
+            font-size: 14px;
+        }
+        .top-1 {
+            background-color: #00a19c;
+            color: #000;
+            font-weight: bold;
+            border-radius: 4px 4px 0 0;
+        }
+        .fila-tabla span:first-child { width: 30px; }
+        .fila-tabla span:nth-child(2) { flex-grow: 1; }
+        .fila-tabla span:last-child { text-align: right; font-family: monospace; }
+        .filas-tabla-ocultas { background-color: #262626; border-radius: 0 0 4px 4px; }
+    </style>
+
+    <!-- CONTENEDOR PRINCIPAL (TOP 4 VISIBLE) -->
+    <div class="filas-tabla-live">
+        <div class="fila-tabla top-1"><span>1</span><span>🇬🇧 George Russell (Mercedes)</span><span>1:15.679</span></div>
+        <div class="fila-tabla"><span>2</span><span>🇦🇺 Oscar Piastri (McLaren)</span><span>+0.214s</span></div>
+        <div class="fila-tabla"><span>3</span><span>🇲🇨 Charles Leclerc (Ferrari)</span><span>+0.243s</span></div>
+        <div class="tabla"></div>
+        <div class="fila-tabla"><span>4</span><span>🇬🇧 Lando Norris (McLaren)</span><span>+0.246s</span></div>
+    </div>
+
+    <!-- CONTENEDOR OCULTO (PILOTOS DEL 5 AL 22) -->
+    <div class="filas-tabla-ocultas">
+        <div class="fila-tabla"><span>5</span><span>🇮🇹 Kimi Antonelli (Mercedes)</span><span>+0.589s</span></div>
+        <div class="fila-tabla"><span>6</span><span>🇳🇱 Max Verstappen (Red Bull Racing)</span><span>+0.895s</span></div>
+        <div class="fila-tabla"><span>7</span><span>🇬🇧 Arvid Lindblad (Racing Bulls Red Bull Ford)</span><span>+0.985s</span></div>
+        <div class="fila-tabla"><span>8</span><span>🇧🇷 Gabriel Bortoleto (Audi)</span><span>+1.185s</span></div>
+        <div class="fila-tabla"><span>9</span><span>🇬🇧 Lewis Hamilton (Ferrari)</span><span>+1.205s</span></div>
+        <div class="fila-tabla"><span>10</span><span>🇫🇷 Isack Hadjar (Red Bull Racing)</span><span>+1.248s</span></div>
+        <div class="fila-tabla"><span>11</span><span>🇩🇪 Nico Hulkenberg (Audi)</span><span>+1.508s</span></div>
+        <div class="fila-tabla"><span>12</span><span>🇬🇧 Oliver Bearman (Haas Ferrari)</span><span>+1.519s</span></div>
+        <div class="fila-tabla"><span>13</span><span>🇳🇿 Liam Lawson (Racing Bulls Red Bull Ford)</span><span>+1.541s</span></div>
+        <div class="fila-tabla"><span>14</span><span>🇪🇸 Carlos Sainz (Atlassian Williams Mercedes)</span><span>+1.594s</span></div>
+        <div class="fila-tabla"><span>15</span><span>🇦🇷 Franco Colapinto (Alpine Mercedes)</span><span>+1.625s</span></div>
+        <div class="fila-tabla"><span>16</span><span>🇫🇷 Pierre Gasly (Alpine Mercedes)</span><span>+1.834s</span></div>
+        <div class="fila-tabla"><span>17</span><span>🇫🇷 Esteban Ocon (Haas Ferrari)</span><span>+2.112s</span></div>
+        <div class="fila-tabla"><span>18</span><span>🇫🇮 Valtteri Bottas (Cadillac Ferrari)</span><span>+2.799s</span></div>
+        <div class="fila-tabla"><span>19</span><span>🇺🇸 Alexander Albon (Atlassian Williams Mercedes)</span><span>+3.364s</span></div>
+        <div class="fila-tabla"><span>20</span><span>🇲🇽 Sergio Pérez (Cadillac Ferrari)</span><span>+3.835s</span></div>
+        <div class="fila-tabla"><span>21</span><span>🇪🇸 Fernando Alonso (Aston Martin Aramco Honda)</span><span>+3.860s</span></div>
+        <div class="fila-tabla"><span>22</span><span>🇨🇦 Lance Stroll (Aston Martin Aramco Honda)</span><span>+4.033s</span></div>
+    </div>
+
 </div>
