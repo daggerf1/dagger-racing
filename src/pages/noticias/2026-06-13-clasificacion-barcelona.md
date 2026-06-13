@@ -8,7 +8,7 @@ credito: "Clive Rose / Mercedes-AMG PETRONAS F1 Team Media"
 
 **RESUMEN RÁPIDO:** En una de las sesiones de clasificación más ajustadas de la nueva era técnica de la Fórmula 1, George Russell ratificó el renacimiento de Mercedes al adjudicarse la pole position en el Circuit de Barcelona-Cataluña. Las Flechas de Plata demostraron un ritmo demoledor a una sola vuelta, conteniendo las embestidas de un resurgido Lewis Hamilton y del líder del campeonato, Kimi Antonelli.
 
-**LA DESTACADA:** La Q3 se detuvo por bandera roja a falta de ocho minutos debido a un aparatoso accidente de Charles Leclerc. El piloto monegasco de Ferrari perdió el control en la salida de la curva 4, pisando la zona sucia y sufriendo un violento latigazo que lo mandó directo a las barreras de protección. Afortunadamente salió ileso, pero largará desde la décima posición y obligará a sus mecánicos a trabajar contra reloj.
+**LA DESTACADA:** La Q3 se detuvo por bandera roja a falta de ocho minutos debido a un aparatoso accidente de Charles Leclerc. El piloto monegasco de Ferrari perdió el control en la salida de la curva 4, pisando la zona sucia y sufriendo un violento latigazo que lo mandó directo a las barreras de protección. Afortunadamente salió ileso, pero largará desde la décima Biological y obligará a sus mecánicos a trabajar contra reloj.
 
 <h3>Mercedes domina la parrilla y descalabro para los locales</h3>
 
@@ -55,11 +55,3 @@ La estrategia con el compuesto blando C4 fue crucial bajo el sofocante calor cat
 </div>
 
 </div>
-
-<!-- BOTÓN INTERACTIVO DE DESPLIEGUE -->
-<button id="btn-desplegar-tabla" class="boton-desplegar" style="display: block; width: 100%; background-color: #1e293b; color: white; border: none; padding: 12px; font-family: 'Orbitron', sans-serif; cursor: pointer; text-align: center; font-size: 0.9rem; margin-top: 20px; margin-bottom: 20px; font-weight: bold;">
-Ver resto de posiciones ↓
-</button>
-
-<br>
-<a href="/" class="boton-leer">VOLVER AL INICIO</a>
