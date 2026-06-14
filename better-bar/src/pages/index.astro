@@ -2,7 +2,7 @@
 const notasCargadas = import.meta.glob('./noticias/*.md', { eager: true });
 
 // ORDENAMIENTO CRONOLÓGICO INVERSO PERFECTO (MÁS NUEVA ARRIBA)
-const todasLasCronicas = Object.values(notasCargadas).sort((a, b) => {
+const todasLasCronicas = Object.values(notasCargadas).sort((a: any, b: any) => {
     const fileA = a.file.split('/').pop().toLowerCase();
     const fileB = b.file.split('/').pop().toLowerCase();
     
@@ -21,15 +21,16 @@ const todasLasCronicas = Object.values(notasCargadas).sort((a, b) => {
     return 0;
 });
 
-const noticiaPrincipal = todasLasCronicas[0];
-const notasSecundarias = todasLasCronicas.slice(1);
+const todasLasCronicasAny = todasLasCronicas as any;
+const noticiaPrincipal = todasLasCronicasAny[0];
+const notasSecundarias = todasLasCronicasAny.slice(1);
 ---
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dagger Racing News- Noticias de Fórmula 1</title>
+<title>Dagger Racing News - Noticias de Fórmula 1</title>
 <link rel="stylesheet" href="/css/styless.css">
 <link rel="icon" type="image/png" href="/daggerracingnews-logotipo.png">
 </head>
@@ -100,7 +101,7 @@ const notasSecundarias = todasLasCronicas.slice(1);
         
         <div id="contenedor-carrusel" style="display: flex; gap: 20px; overflow-x: auto; padding-bottom: 15px; scrollbar-color: #555 #222; scrollbar-width: thin; scroll-behavior: smooth; width: 100%;">
             
-            {notasSecundarias.map((nota) => (
+            {notasSecundarias.map((nota: any) => { return (
                 <article class="tarjeta-chica" data-credito={nota.frontmatter.credito} style="flex: 0 0 260px; min-width: 260px; background: #111; border-radius: 6px; overflow: hidden; border: 1px solid #222; display: flex; flex-direction: column;">
                     <div style="height: 140px; width: 100%; position: relative;">
                         <img src={`/${nota.frontmatter.imagen}`} alt="Imagen noticia" style="width: 100%; height: 100%; object-fit: cover;">
@@ -118,7 +119,7 @@ const notasSecundarias = todasLasCronicas.slice(1);
                         <a href={nota.url} style="margin-top: auto; color: #aaa; text-decoration: none; font-weight: bold; font-size: 0.85rem;">Leer Más →</a>
                     </div>
                 </article>
-            ))}
+            )})}
 
         </div>
     </section>
@@ -129,8 +130,7 @@ const notasSecundarias = todasLasCronicas.slice(1);
 <aside class="barra-lateral" style="background: #141414; padding: 15px; border-radius: 8px; border: 1px solid #333; height: fit-content; min-width: 320px; box-sizing: border-box;">
 <h3 style="font-family: 'Orbitron', sans-serif; font-size: 1.1rem; color: white; margin-top: 0;">Próxima Carrera</h3>
 <p style="margin: 0 0 5px 0;"><strong style="color: #ffffff;">Gran Premio de España</strong></p>
-    <p style="margin: 0; font-size: 0.85rem; color: #aaa;">Circuito de Barcelona-Cataluña</p>
-</div>
+<p style="margin: 0; font-size: 0.85rem; color: #aaa;">Circuito de Barcelona-Cataluña</p>
 
 <h4 style="font-family: 'Orbitron', sans-serif; font-size: 1rem; color: white; margin-bottom: 10px;">Horarios del Fin de Semana</h4>
 <div class="tabla-horarios" style="display: flex; flex-direction: column; gap: 12px;">
@@ -174,100 +174,101 @@ const notasSecundarias = todasLasCronicas.slice(1);
             <p><span>Práctica 1:</span> Viernes 12 – 05:30</p>
             <p><span>Práctica 2:</span> Viernes 12 – 09:00</p>
             <p><span>Práctica 3:</span> Sábado 13 – 04:30</p>
-			<p><span>Clasificación:</span> Sábado 13 – 08:00</p>
-                        <p class="carrera"><span>GP:</span> Domingo 14 – 07:00</p>
-                    </div>
-                </div>
-            </div>
-        </aside>
+            <p><span>Clasificación:</span> Sábado 13 – 08:00</p>
+            <p class="carrera"><span>GP:</span> Domingo 14 – 07:00</p>
+        </div>
+    </div>
+</div>
+</aside>
 
-    </main>
+</main>
 
-    <footer>
-        <p>&copy; 2026 Dagger Racing News. Todos los derechos reservados.</p>
-    </footer>
+<footer>
+    <p>&copy; 2026 Dagger Racing News. Todos los derechos reservados.</p>
+</footer>
 
-    <!-- SCRIPT DE INTERACTIVIDAD COMPLETO SIN DEDAZOS -->
-    <script is:inline>
-        document.addEventListener("DOMContentLoaded", () => {
-            const carrusel = document.getElementById("contenedor-carrusel");
-            if (carrusel) {
-                // Control automático de desborde del carrusel inferior
-            }
+<!-- SCRIPT DE INTERACTIVIDAD COMPLETO SIN DEDAZOS -->
+<script is:inline>
+    document.addEventListener("DOMContentLoaded", () => {
+        const carrusel = document.getElementById("contenedor-carrusel");
+        if (carrusel) {
+            // Control automático de desborde del carrusel inferior
+        }
 
-            let indiceActual = 0;
-            const imgPrincipal = document.getElementById("img-principal");
-            const tituloPrincipal = document.getElementById("titulo-principal");
-            const fechaPrincipal = document.getElementById("fecha-principal");
-            const enlacePrincipal = document.getElementById("enlace-principal");
-            const creditoPrincipal = document.getElementById("credito-principal");
+        let indiceActual = 0;
+        const imgPrincipal = document.getElementById("img-principal");
+        const tituloPrincipal = document.getElementById("titulo-principal");
+        const fechaPrincipal = document.getElementById("fecha-principal");
+        const enlacePrincipal = document.getElementById("enlace-principal");
+        const creditoPrincipal = document.getElementById("credito-principal");
+        
+        const btnMainAtras = document.getElementById("main-atras");
+        const btnMainAdelante = document.getElementById("main-adelante");
+
+        const tarjetas = Array.from(document.querySelectorAll(".tarjeta-chica"));
+        
+        const notaInicial = {
+            imagen: imgPrincipal?.src,
+            titulo: tituloPrincipal?.querySelector("a")?.textContent?.trim() || tituloPrincipal?.textContent || "",
+            fecha: fechaPrincipal?.textContent || "",
+            url: enlacePrincipal?.href || "",
+            credito: creditoPrincipal?.textContent?.replace("Foto: ", "") || ""
+        };
+
+        const diapositivas = [
+            notaInicial,
+            ...tarjetas.map(tarjeta => ({
+                imagen: tarjeta.querySelector("img")?.src || "",
+                titulo: tarjeta.querySelector("h4 a")?.textContent?.trim() || tarjeta.querySelector("h4")?.textContent?.trim() || "",
+                fecha: tarjeta.querySelector("span")?.textContent || "",
+                url: tarjeta.querySelector("a")?.href || "",
+                credito: tarjeta.getAttribute("data-credito") || ""
+            }))
+        ];
+
+        function cambiarDiapositiva(idx) {
+            if (!diapositivas[idx] || !imgPrincipal) return;
             
-            const btnMainAtras = document.getElementById("main-atras");
-            const btnMainAdelante = document.getElementById("main-adelante");
-
-            const tarjetas = Array.from(document.querySelectorAll(".tarjeta-chica"));
+            imgPrincipal.style.opacity = "0.3";
             
-            const notaInicial = {
-                imagen: imgPrincipal?.src,
-                titulo: tituloPrincipal?.querySelector("a")?.textContent?.trim() || tituloPrincipal?.textContent || "",
-                fecha: fechaPrincipal?.textContent || "",
-                url: enlacePrincipal?.href || "",
-                credito: creditoPrincipal?.textContent?.replace("Foto: ", "") || ""
-            };
-
-            const diapositivas = [
-                notaInicial,
-                ...tarjetas.map(tarjeta => ({
-                    imagen: tarjeta.querySelector("img")?.src || "",
-                    titulo: tarjeta.querySelector("h4 a")?.textContent?.trim() || tarjeta.querySelector("h4")?.textContent?.trim() || "",
-                    fecha: tarjeta.querySelector("span")?.textContent || "",
-                    url: tarjeta.querySelector("a")?.href || "",
-                    credito: tarjeta.getAttribute("data-credito") || ""
-                }))
-            ];
-
-            function cambiarDiapositiva(idx) {
-                if (!diapositivas[idx] || !imgPrincipal) return;
+            setTimeout(() => {
+                imgPrincipal.src = diapositivas[idx].imagen;
+                if (fechaPrincipal) fechaPrincipal.textContent = diapositivas[idx].fecha;
+                if (enlacePrincipal) enlacePrincipal.href = diapositivas[idx].url;
                 
-                imgPrincipal.style.opacity = "0.3";
+                if (tituloPrincipal) {
+                    const linkInside = tituloPrincipal.querySelector("a");
+                    if (linkInside) {
+                        linkInside.textContent = diapositivas[idx].titulo;
+                        linkInside.href = diapositivas[idx].url;
+                    } else {
+                        tituloPrincipal.textContent = diapositivas[idx].titulo;
+                    }
+                }
                 
-                setTimeout(() => {
-                    imgPrincipal.src = diapositivas[idx].imagen;
-                    if (fechaPrincipal) fechaPrincipal.textContent = diapositivas[idx].fecha;
-                    if (enlacePrincipal) enlacePrincipal.href = diapositivas[idx].url;
-                    
-                    if (tituloPrincipal) {
-                        const linkInside = tituloPrincipal.querySelector("a");
-                        if (linkInside) {
-                            linkInside.textContent = diapositivas[idx].titulo;
-                            linkInside.href = diapositivas[idx].url;
-                        } else {
-                            tituloPrincipal.textContent = diapositivas[idx].titulo;
-                        }
-                    }
-                    
-                    if (creditoPrincipal) {
-                        creditoPrincipal.textContent = diapositivas[idx].credito ? "Foto: " + diapositivas[idx].credito : "";
-                    }
-                    
-                    imgPrincipal.style.opacity = "1";
-                }, 150);
-            }
+                if (creditoPrincipal) {
+                    creditoPrincipal.textContent = diapositivas[idx].credito ? "Foto: " + diapositivas[idx].credito : "";
+                }
+                
+                imgPrincipal.style.opacity = "1";
+            }, 150);
+        }
 
-            if (btnMainAdelante && btnMainAtras) {
-                imgPrincipal.style.transition = "opacity 0.2s ease";
-                btnMainAdelante.addEventListener("click", () => {
-                    indiceActual = (indiceActual + 1) % diapositivas.length;
-                    cambiarDiapositiva(indiceActual);
-                });
+        if (btnMainAdelante && btnMainAtras) {
+            imgPrincipal.style.transition = "opacity 0.2s ease";
+            btnMainAdelante.addEventListener("click", () => {
+                indiceActual = (indiceActual + 1) % diapositivas.length;
+                cambiarDiapositiva(indiceActual);
+            });
 
-                btnMainAtras.addEventListener("click", () => {
-                    indiceActual = (indiceActual - 1 + diapositivas.length) % diapositivas.length;
-                    cambiarDiapositiva(indiceActual);
-                });
-            }
-        });
-    </script>
+            btnMainAtras.addEventListener("click", () => {
+                indiceActual = (indiceActual - 1 + diapositivas.length) % diapositivas.length;
+                cambiarDiapositiva(indiceActual);
+            });
+        }
+    });
+</script>
+
 <style>
 /* 1. ESTILO POR DEFECTO PARA CELULARES (TODO EN VERTICAL) */
 .container-flexible {
@@ -292,4 +293,3 @@ const notasSecundarias = todasLasCronicas.slice(1);
 </style>
 </body>
 </html>
- 
