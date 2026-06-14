@@ -33,64 +33,56 @@ const notasSecundarias = todasLasCronicas.slice(1);
 <a href="#">Posiciones</a>
 </nav>
 
-<!-- CONTENEDOR SEGURO QUE CALIBRA LA BARRA LATERAL PARA QUE NO SE DESAPAREZCA -->
 <main class="container" style="display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 25px; max-width: 1200px; margin: 0 auto; padding: 20px; box-sizing: border-box; width: 100%;">
 
 <!-- COLUMNA IZQUIERDA: NOTICIAS -->
 <div class="bloque-izquierdo" style="display: flex; flex-direction: column; gap: 40px; overflow: hidden; width: 100%;">
     
-    <!-- 1. NOTICIA PRINCIPAL (GRANDE ARRIBA) -->
+    <!-- 1. NOTICIA PRINCIPAL (CON CARRUSEL INTERACTIVO ADENTRO DE LA IMAGEN) -->
     {noticiaPrincipal && (
         <section class="noticia-destacada" style="background: #1a1a1a; border-radius: 8px; overflow: hidden; border: 1px solid #333; width: 100%;">
+            
+            <!-- CONTENEDOR DE LA IMAGEN CON FLECHAS ROJAS Y CRÉDITO ADENTRO -->
             <div class="contenedor-imagen-live" style="position: relative; height: 420px; width: 100%; background: #000;">
-    <img id="img-principal" src={`/${todasLasCronicas[0]?.frontmatter.imagen}`} alt="Noticia Principal" style="width: 100%; height: 100%; object-fit: cover;">
-    
-    <button id="main-atras" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); background: #e10600; color: white; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer; font-weight: bold; border: none; z-index: 10; font-family: monospace;">&lt;</button>
-    <button id="main-adelante" style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); background: #e10600; color: white; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer; font-weight: bold; border: none; z-index: 10; font-family: monospace;">&gt;</button>
-</div>
+                <img id="img-principal" src={`/${noticiaPrincipal.frontmatter.imagen}`} alt="Noticia Principal" style="width: 100%; height: 100%; object-fit: cover; transition: opacity 0.2s ease; display: block;">
                 
-                {noticiaPrincipal.frontmatter.credito && (
-                    <div style="text-align: right; width: 100%; position: absolute; bottom: 5px; right: 10px; z-index: 5;">
-                        <span style="font-size: 11px; color: #b3b3b3; font-style: italic; font-family: Arial, sans-serif;">
-                            Foto: {noticiaPrincipal.frontmatter.credito}
-                        </span>
-                    </div>
-                )}
+                <!-- FLECHA IZQUIERDA (REGRESAR) EN COLOR ROJO -->
+                <button id="main-atras" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); background: #e10600; color: white; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer; font-weight: bold; border: none; z-index: 10; box-shadow: 0 4px 10px rgba(0,0,0,0.5); font-family: monospace;">
+                    &lt;
+                </button>
+
+                <!-- FLECHA DERECHA (AVANZAR) EN COLOR ROJO -->
+                <button id="main-adelante" style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); background: #e10600; color: white; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer; font-weight: bold; border: none; z-index: 10; box-shadow: 0 4px 10px rgba(0,0,0,0.5); font-family: monospace;">
+                    &gt;
+                </button>
+
+                <!-- CRÉDITO CLARITO ADENTRO EN LA ESQUINA DERECHA -->
+                <div style="position: absolute; bottom: 8px; right: 12px; z-index: 5; text-align: right; width: auto; pointer-events: none;">
+                    <span id="credito-principal" style="font-size: 11px; color: #b3b3b3; font-style: italic; font-family: Arial, sans-serif; display: inline-block; text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">
+                        {noticiaPrincipal.frontmatter.credito ? `Foto: ${noticiaPrincipal.frontmatter.credito}` : ''}
+                    </span>
+                </div>
             </div>
+
+            <!-- CONTENIDO DE LA NOTA -->
             <div class="contenido" style="padding: 25px;">
-               <span id="fecha-principal" class="fecha" style="color: #e10600; font-weight: bold; font-family: 'Orbitron', sans-serif; display: inline-block; margin-bottom: 10px;">{noticiaPrincipal.frontmatter.fechaEtiqueta}</span>
-               <h2 id="titulo-principal" style="font-size: 2rem; margin: 0 0 15px 0; font-family: 'Orbitron', sans-serif; color: white; line-height: 1.2;">{noticiaPrincipal.frontmatter.titulo}</h2>
+                <span id="fecha-principal" style="color: #e10600; font-weight: bold; font-family: 'Orbitron', sans-serif; display: inline-block; margin-bottom: 10px;">{noticiaPrincipal.frontmatter.fechaEtiqueta}</span>
+                <h2 id="titulo-principal" style="font-size: 2rem; margin: 0 0 15px 0; font-family: 'Orbitron', sans-serif; color: white; line-height: 1.2;">{noticiaPrincipal.frontmatter.titulo}</h2>
                 <a id="enlace-principal" href={noticiaPrincipal.url} class="boton-leer" style="display: inline-block; background: #e10600; color: white; padding: 12px 24px; text-decoration: none; font-weight: bold; border-radius: 4px; font-family: 'Orbitron', sans-serif;">LEER CRÓNICA COMPLETA</a>
             </div>
         </section>
     )}
 
-    <!-- 2. NOTICIAS SECUNDARIAS CON BOTONES INTERACTIVOS DE CONTROL -->
-    <section class="noticias-secundarias-contenedor" style="width: 100%; position: relative;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 2px solid #333; padding-bottom: 10px;">
-            <h3 style="font-family: 'Orbitron', sans-serif; color: white; margin: 0;">Crónicas Anteriores</h3>
-            
-            <!-- CONTROLES MANUALES FLOTANTES PARA MOVER LAS NOTAS -->
-            <div style="display: flex; gap: 8px;">
-                <button id="slide-atras" style="background: #222; color: white; border: 1px solid #444; width: 35px; height: 35px; border-radius: 4px; cursor: pointer; font-weight: bold; font-family: monospace;">&lt;</button>
-                <button id="slide-adelante" style="background: #222; color: white; border: 1px solid #444; width: 35px; height: 35px; border-radius: 4px; cursor: pointer; font-weight: bold; font-family: monospace;">&gt;</button>
-            </div>
-        </div>
+    <!-- 2. NOTICIAS SECUNDARIAS (CARRUSEL INFERIOR LIMPIO SIN CRÉDITOS ABAJO) -->
+    <section class="noticias-secundarias-contenedor" style="width: 100%;">
+        <h3 style="font-family: 'Orbitron', sans-serif; color: white; margin-bottom: 20px; border-bottom: 2px solid #333; padding-bottom: 10px;">Crónicas Anteriores</h3>
         
-        <!-- CARRUSEL HORIZONTAL CON LA BARRA GRIS ABAJO -->
         <div id="contenedor-carrusel" style="display: flex; gap: 20px; overflow-x: auto; padding-bottom: 15px; scrollbar-color: #555 #222; scrollbar-width: thin; scroll-behavior: smooth; width: 100%;">
             
             {notasSecundarias.map((nota) => (
-                <article class="tarjeta-chica" style="flex: 0 0 240px; background: #111; border-radius: 6px; overflow: hidden; border: 1px solid #222; display: flex; flex-direction: column;">
+                <article class="tarjeta-chica" data-credito={nota.frontmatter.credito} style="flex: 0 0 240px; background: #111; border-radius: 6px; overflow: hidden; border: 1px solid #222; display: flex; flex-direction: column;">
                     <div style="height: 140px; width: 100%; position: relative;">
                         <img src={`/${nota.frontmatter.imagen}`} alt="Imagen noticia" style="width: 100%; height: 100%; object-fit: cover;">
-                        {nota.frontmatter.credito && (
-                            <div style="text-align: right; width: 100%; position: absolute; bottom: 4px; right: 8px; z-index: 5;">
-                                <span style="font-size: 9px; color: #b3b3b3; font-style: italic; font-family: Arial, sans-serif;">
-                                    Foto: {nota.frontmatter.credito}
-                                </span>
-                            </div>
-                        )}
                     </div>
                     <div style="padding: 12px; display: flex; flex-direction: column; flex-grow: 1;">
                         <span style="font-size: 0.75rem; color: #e10600; font-weight: bold; margin-bottom: 5px; display: inline-block;">{nota.frontmatter.fechaEtiqueta}</span>
@@ -105,7 +97,7 @@ const notasSecundarias = todasLasCronicas.slice(1);
 
 </div>
 
-<!-- COLUMNA DERECHA: LA BARRA LATERAL AJUSTADA -->
+<!-- COLUMNA DERECHA: LA BARRA LATERAL FIJA -->
 <aside class="barra-lateral" style="background: #141414; padding: 15px; border-radius: 8px; border: 1px solid #333; height: fit-content; min-width: 320px; box-sizing: border-box;">
 <h3 style="font-family: 'Orbitron', sans-serif; font-size: 1.1rem; color: white; margin-top: 0;">Próxima Carrera</h3>
 <div class="evento" style="background: #222; padding: 10px; border-radius: 4px; margin-bottom: 15px; border-left: 3px solid #e10600;">
@@ -167,59 +159,54 @@ const notasSecundarias = todasLasCronicas.slice(1);
 <footer>
 <p>&copy; 2026 Dagger Racing. Todos los derechos reservados.</p>
 </footer>
-
-<!-- SCRIPT MAESTRO DE INTERACTIVIDAD UNIFICADO -->
+<!-- SCRIPT DE INTERACTIVIDAD COMPLETO -->
 <script is:inline>
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. CONTROL DEL CARRUSEL INFERIOR (BARRA GRIS)
+    // 1. CONTROL DEL CARRUSEL INFERIOR
     const carrusel = document.getElementById("contenedor-carrusel");
     const btnAtras = document.getElementById("slide-atras");
     const btnAdelante = document.getElementById("slide-adelante");
 
     if (carrusel && btnAtras && btnAdelante) {
-        btnAdelante.addEventListener("click", () => {
-            carrusel.scrollLeft += 260;
-        });
-        btnAtras.addEventListener("click", () => {
-            carrusel.scrollLeft -= 260;
-        });
+        btnAdelante.addEventListener("click", () => { carrusel.scrollLeft += 260; });
+        btnAtras.addEventListener("click", () => { carrusel.scrollLeft -= 260; });
     }
 
-    // 2. CONTROL DEL CARRUSEL DE ARRIBA (FLECHAS ROJAS EN LA FOTO GRANDE)
+    // 2. CONTROL DEL CARRUSEL SUPERIOR INTERACTIVO
     let indiceActual = 0;
     const imgPrincipal = document.getElementById("img-principal");
     const tituloPrincipal = document.getElementById("titulo-principal");
     const fechaPrincipal = document.getElementById("fecha-principal");
     const enlacePrincipal = document.getElementById("enlace-principal");
+    const creditoPrincipal = document.getElementById("credito-principal");
+    
     const btnMainAtras = document.getElementById("main-atras");
     const btnMainAdelante = document.getElementById("main-adelante");
 
-    // Recopilamos los datos de las tarjetas de abajo para poder pasarlas arriba
     const tarjetas = Array.from(document.querySelectorAll(".tarjeta-chica"));
     
-    // Guardamos la información de la noticia que arranca por defecto
     const notaInicial = {
         imagen: imgPrincipal?.src,
         titulo: tituloPrincipal?.textContent,
         fecha: fechaPrincipal?.textContent,
-        url: enlacePrincipal?.href
+        url: enlacePrincipal?.href,
+        credito: creditoPrincipal?.textContent?.replace("Foto: ", "") || ""
     };
 
-    // Creamos la lista de diapositivas combinando la principal con las de abajo
     const diapositivas = [
         notaInicial,
         ...tarjetas.map(tarjeta => ({
             imagen: tarjeta.querySelector("img")?.src,
             titulo: tarjeta.querySelector("h4")?.textContent,
             fecha: tarjeta.querySelector("span")?.textContent,
-            url: tarjeta.querySelector("a")?.href
+            url: tarjeta.querySelector("a")?.href,
+            credito: tarjeta.getAttribute("data-credito") || ""
         }))
     ];
 
     function cambiarDiapositiva(idx) {
         if (!diapositivas[idx] || !imgPrincipal) return;
         
-        // Transición suave de desvanecimiento
         imgPrincipal.style.opacity = "0.3";
         
         setTimeout(() => {
@@ -227,13 +214,16 @@ document.addEventListener("DOMContentLoaded", () => {
             if (tituloPrincipal) tituloPrincipal.textContent = diapositivas[idx].titulo;
             if (fechaPrincipal) fechaPrincipal.textContent = diapositivas[idx].fecha;
             if (enlacePrincipal) enlacePrincipal.href = diapositivas[idx].url;
+            
+            if (creditoPrincipal) {
+                creditoPrincipal.textContent = diapositivas[idx].credito ? "Foto: " + diapositivas[idx].credito : "";
+            }
+            
             imgPrincipal.style.opacity = "1";
         }, 150);
     }
 
     if (btnMainAdelante && btnMainAtras) {
-        imgPrincipal.style.transition = "opacity 0.2s ease";
-        
         btnMainAdelante.addEventListener("click", () => {
             indiceActual = (indiceActual + 1) % diapositivas.length;
             cambiarDiapositiva(indiceActual);
