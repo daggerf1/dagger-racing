@@ -5,6 +5,15 @@ fechaEtiqueta: "⏱️ 13 de junio, 2026"
 imagen: "russell-p3-bar2026.jpg"
 credito: "Jiri Krenek / Mercedes-AMG PETRONAS F1 Team Media"
 ---
+**RESUMEN RÁPIDO:** El británico George Russell reafirmó el gran momento de Mercedes al liderar los terceros entrenamientos libres del Gran Premio de España con un tiempo de 1:15.679. La sesión estuvo marcada por un calor sofocante en pista que rozó los 50°C, destruyendo el rendimiento de los neumáticos blandos tras una sola vuelta rápida y complicando los planes de los favoritos.
+
+**LA DESTACADA:** La igualdad en la parte alta es máxima. Aunque Russell fue el único capaz de bajar al rango de 1:15, la diferencia entre su escolta Oscar Piastri, Charles Leclerc y Lando Norris fue de apenas 32 milésimas de segundo, anticipando una batalla encarnizada por la pole position. Por el contrario, los pilotos locales sufrieron con el balance térmico, dejando a Carlos Sainz 15º y a Fernando Alonso en la 20ª posición.
+
+<h3>Tráfico, banderas rojas y reprimendas de la FIA</h3>
+
+El calor extremo en Montmeló obligó a los equipos a gestionar al milímetro sus tandas cronometradas. El neumático blando demostró una degradación prematura brutal, limitando las simulaciones de clasificación de los punteros. El líder del mundial, Kimi Antonelli, tuvo una sesión frustrante al encontrarse con tráfico en sus intentos de vuelta rápida, siendo estorbado primero por Lance Stroll y luego bloqueado por un Haas. El joven italiano terminó bajo investigación y recibió una reprimenda de los comisarios por conducción errática tras el altercado con el Aston Martin.
+
+A mitad de la tanda, Valtteri Bottas provocó la única bandera roja del día tras reportar por radio una pérdida total en el pedal de freno de su Cadillac, lo que lo mandó directo a las escapatoria de grava de la curva 10. Max Verstappen tampoco encontró el balance óptimo en su Red Bull, finalizando sexto por detrás de Lewis Hamilton.
 
 <div style="text-align: right; width: 100%; margin-top: -18px; margin-bottom: 15px;">
 <span style="font-size: 11px; color: #b3b3b3; font-style: italic; font-family: Arial, sans-serif; display: inline-block;">
