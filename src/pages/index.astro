@@ -1,27 +1,13 @@
 ---
 const notasCargadas = import.meta.glob('./noticias/*.md', { eager: true });
-
-// ORDENAMIENTO CRONOLÓGICO INVERSO ESTRICTO (MÁS NUEVA ARRIBA)
+// Ordenamos de forma segura todas tus crónicas actuales para tu portada
 const todasLasCronicas = Object.values(notasCargadas).sort((a, b) => {
-    const fileA = a.file.split('/').pop().toLowerCase();
-    const fileB = b.file.split('/').pop().toLowerCase();
-    
-    // Forzamos que la Clasificación (Qualy) sea siempre la reina absoluta arriba
-    if (fileB.includes('clasificacion')) return 1;
-    if (fileA.includes('clasificacion')) return -1;
-    
-    // La FP3 va en segundo lugar de prioridad
-    if (fileB.includes('fp3')) return 1;
-    if (fileA.includes('fp3')) return -1;
-    
-    // La P2 de Lando va en tercer lugar
-    if (fileB.includes('lando')) return 1;
-    if (fileA.includes('lando')) return -1;
-    
-    return 0;
+    const nameA = a.file.split('/').pop().toLowerCase();
+    const nameB = b.file.split('/').pop().toLowerCase();
+    return nameB.localeCompare(nameA);
 });
 
-// Separamos: la primera (Qualy) va arriba, el resto (FP3 -> P2 -> P1) van abajo
+// La más actual toma el trono grande arriba, las demás se van abajo al carrusel
 const noticiaPrincipal = todasLasCronicas[0];
 const notasSecundarias = todasLasCronicas.slice(1);
 ---
@@ -81,17 +67,20 @@ const notasSecundarias = todasLasCronicas.slice(1);
             <!-- CONTENIDO DE LA NOTA -->
             <div class="contenido" style="padding: 25px;">
                 <span id="fecha-principal" style="color: #e10600; font-weight: bold; font-family: 'Orbitron', sans-serif; display: inline-block; margin-bottom: 10px;">{noticiaPrincipal.frontmatter.fechaEtiqueta}</span>
-              <h2 id="titulo-principal" style="font-size: 2rem; margin: 0 0 15px 0; font-family: 'Orbitron', sans-serif; color: #ffffff; line-height: 1.2;">
-              <a href={noticiaPrincipal.url} style="color: #ffffff; text-decoration: none; transition: color 0.2s ease;" onmouseover="this.style.color='#e10600'" onmouseout="this.style.color='#ffffff'">
-              {noticiaPrincipal.frontmatter.titulo}
-             </a>
-            </h2>
+                
+                <!-- TITULAR BASE BLANCO QUE PASA A ROJO INTERACTIVO -->
+                <h2 id="titulo-principal" style="font-size: 2rem; margin: 0 0 15px 0; font-family: 'Orbitron', sans-serif; color: #ffffff; line-height: 1.2;">
+                    <a href={noticiaPrincipal.url} style="color: #ffffff; text-decoration: none; transition: color 0.2s ease;" onmouseover="this.style.color='#e10600'" onmouseout="this.style.color='#ffffff'">
+                        {noticiaPrincipal.frontmatter.titulo}
+                    </a>
+                </h2>
+                
                 <a id="enlace-principal" href={noticiaPrincipal.url} class="boton-leer" style="display: inline-block; background: #e10600; color: white; padding: 12px 24px; text-decoration: none; font-weight: bold; border-radius: 4px; font-family: 'Orbitron', sans-serif;">LEER CRÓNICA COMPLETA</a>
             </div>
         </section>
     )}
 
-    <!-- 2. NOTICIAS SECUNDARIAS (CARRUSEL INFERIOR INTERACTIVO TOTALMENTE CORREGIDO) -->
+    <!-- 2. NOTICIAS SECUNDARIAS (CARRUSEL INFERIOR CON BARRA DESPLEGABLE) -->
     <section class="noticias-secundarias-contenedor" style="width: 100%;">
         <h3 style="font-family: 'Orbitron', sans-serif; color: white; margin-bottom: 20px; border-bottom: 2px solid #333; padding-bottom: 10px;">Crónicas Anteriores</h3>
         
@@ -104,11 +93,14 @@ const notasSecundarias = todasLasCronicas.slice(1);
                     </div>
                     <div style="padding: 12px; display: flex; flex-direction: column; flex-grow: 1;">
                         <span style="font-size: 0.75rem; color: #e10600; font-weight: bold; margin-bottom: 5px; display: inline-block;">{nota.frontmatter.fechaEtiqueta}</span>
+                        
+                        <!-- TITULARES CHICOS BLANCOS QUE PASAN A ROJO INTERACTIVO -->
                         <h4 style="font-size: 0.95rem; margin: 0 0 15px 0; font-family: 'Orbitron', sans-serif; color: #ffffff; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-                         <a href={nota.url} style="color: #ffffff; text-decoration: none; transition: color 0.2s ease;" onmouseover="this.style.color='#e10600'" onmouseout="this.style.color='#ffffff'">
-                         {nota.frontmatter.titulo}
-                     </a>
-                    </h4>
+                            <a href={nota.url} style="color: #ffffff; text-decoration: none; transition: color 0.2s ease;" onmouseover="this.style.color='#e10600'" onmouseout="this.style.color='#ffffff'">
+                                {nota.frontmatter.titulo}
+                            </a>
+                        </h4>
+                        
                         <a href={nota.url} style="margin-top: auto; color: #aaa; text-decoration: none; font-weight: bold; font-size: 0.85rem;">Leer Más →</a>
                     </div>
                 </article>
@@ -119,15 +111,15 @@ const notasSecundarias = todasLasCronicas.slice(1);
 
 </div>
 
-<!-- COLUMNA DERECHA: LA BARRA LATERAL FIJA -->
+<!-- COLUMNA DERECHA: LA BARRA LATERAL FIJA CON LA BANDERA DE PERÚ RESTAURADA -->
 <aside class="barra-lateral" style="background: #141414; padding: 15px; border-radius: 8px; border: 1px solid #333; height: fit-content; min-width: 320px; box-sizing: border-box;">
-<h3>Próxima Carrera</h3>
+<h3 style="font-family: 'Orbitron', sans-serif; font-size: 1.1rem; color: white; margin-top: 0;">Próxima Carrera</h3>
 <div class="evento" style="background: #222; padding: 10px; border-radius: 4px; margin-bottom: 15px; border-left: 3px solid #e10600;">
     <p style="margin: 0 0 5px 0;"><strong>Gran Premio de España</strong></p>
     <p style="margin: 0; font-size: 0.85rem; color: #aaa;">Circuito de Barcelona-Cataluña</p>
 </div>
 
-<h4>Horarios del Fin de Semana</h4>
+<h4 style="font-family: 'Orbitron', sans-serif; font-size: 1rem; color: white; margin-bottom: 10px;">Horarios del Fin de Semana</h4>
 <div class="tabla-horarios" style="display: flex; flex-direction: column; gap: 12px;">
     
     <div class="fila-paises">
@@ -169,105 +161,100 @@ const notasSecundarias = todasLasCronicas.slice(1);
             <p><span>Práctica 1:</span> Viernes 12 – 05:30</p>
             <p><span>Práctica 2:</span> Viernes 12 – 09:00</p>
             <p><span>Práctica 3:</span> Sábado 13 – 04:30</p>
-            <p><span>Clasificación:</span> Sábado 13 – 08:00</p>
-            <p class="carrera"><span>GP:</span> Domingo 14 – 07:00</p>
-        </div>
-    </div>
-</div>
-</aside>
+			<p><span>Clasificación:</span> Sábado 13 – 08:00</p>
+                        <p class="carrera"><span>GP:</span> Domingo 14 – 07:00</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
 
-</main>
+    </main>
 
-<footer>
-<p>&copy; 2026 Dagger Racing. Todos los derechos reservados.</p>
-</footer>
-<script is:inline>
-document.addEventListener("DOMContentLoaded", () => {
+    <footer>
+        <p>&copy; 2026 Dagger Racing. Todos los derechos reservados.</p>
+    </footer>
 
-    // 1. CONTROL DEL CARRUSEL INFERIOR
-    const carrusel = document.getElementById("contenedor-carrusel");
-    const btnAtras = document.getElementById("slide-atras");
-    const btnAdelante = document.getElementById("slide-adelante");
-
-    if (carrusel && btnAtras && btnAdelante) {
-        btnAdelante.addEventListener("click", () => { carrusel.scrollLeft += 260; });
-        btnAtras.addEventListener("click", () => { carrusel.scrollLeft -= 260; });
-    }
-
-    // 2. CONTROL DEL CARRUSEL SUPERIOR INTERACTIVO
-    let indiceActual = 0;
-    const imgPrincipal = document.getElementById("img-principal");
-    const tituloPrincipal = document.getElementById("titulo-principal");
-    const fechaPrincipal = document.getElementById("fecha-principal");
-    const enlacePrincipal = document.getElementById("enlace-principal");
-    const creditoPrincipal = document.getElementById("credito-principal");
-    
-    const btnMainAtras = document.getElementById("main-atras");
-    const btnMainAdelante = document.getElementById("main-adelante");
-
-    const tarjetas = Array.from(document.querySelectorAll(".tarjeta-chica"));
-    
-    const notaInicial = {
-        imagen: imgPrincipal?.src,
-        titulo: tituloPrincipal?.querySelector("a")?.textContent?.trim() || tituloPrincipal?.textContent || "",
-        fecha: fechaPrincipal?.textContent || "",
-        url: enlacePrincipal?.href || "",
-        credito: creditoPrincipal?.textContent?.replace("Foto: ", "") || ""
-    };
-
-    const diapositivas = [
-        notaInicial,
-        ...tarjetas.map(tarjeta => ({
-            imagen: tarjeta.querySelector("img")?.src || "",
-            titulo: tarjeta.querySelector("h4 a")?.textContent?.trim() || tarjeta.querySelector("h4")?.textContent?.trim() || "",
-            fecha: tarjeta.querySelector("span")?.textContent || "",
-            url: tarjeta.querySelector("a")?.href || "",
-            credito: tarjeta.getAttribute("data-credito") || ""
-        }))
-    ];
-
-    function cambiarDiapositiva(idx) {
-        if (!diapositivas[idx] || !imgPrincipal) return;
-        
-        imgPrincipal.style.opacity = "0.3";
-        
-        setTimeout(() => {
-            imgPrincipal.src = diapositivas[idx].imagen;
-            if (fechaPrincipal) fechaPrincipal.textContent = diapositivas[idx].fecha;
-            if (enlacePrincipal) enlacePrincipal.href = diapositivas[idx].url;
-            
-            if (tituloPrincipal) {
-                const linkInside = tituloPrincipal.querySelector("a");
-                if (linkInside) {
-                    linkInside.textContent = diapositivas[idx].titulo;
-                    linkInside.href = diapositivas[idx].url;
-                } else {
-                    tituloPrincipal.textContent = diapositivas[idx].titulo;
-                }
+    <!-- SCRIPT DE INTERACTIVIDAD COMPLETO SIN DEDAZOS -->
+    <script is:inline>
+        document.addEventListener("DOMContentLoaded", () => {
+            const carrusel = document.getElementById("contenedor-carrusel");
+            if (carrusel) {
+                // Control automático de desborde del carrusel inferior
             }
+
+            let indiceActual = 0;
+            const imgPrincipal = document.getElementById("img-principal");
+            const tituloPrincipal = document.getElementById("titulo-principal");
+            const fechaPrincipal = document.getElementById("fecha-principal");
+            const enlacePrincipal = document.getElementById("enlace-principal");
+            const creditoPrincipal = document.getElementById("credito-principal");
             
-            if (creditoPrincipal) {
-                creditoPrincipal.textContent = diapositivas[idx].credito ? "Foto: " + diapositivas[idx].credito : "";
+            const btnMainAtras = document.getElementById("main-atras");
+            const btnMainAdelante = document.getElementById("main-adelante");
+
+            const tarjetas = Array.from(document.querySelectorAll(".tarjeta-chica"));
+            
+            const notaInicial = {
+                imagen: imgPrincipal?.src,
+                titulo: tituloPrincipal?.querySelector("a")?.textContent?.trim() || tituloPrincipal?.textContent || "",
+                fecha: fechaPrincipal?.textContent || "",
+                url: enlacePrincipal?.href || "",
+                credito: creditoPrincipal?.textContent?.replace("Foto: ", "") || ""
+            };
+
+            const diapositivas = [
+                notaInicial,
+                ...tarjetas.map(tarjeta => ({
+                    imagen: tarjeta.querySelector("img")?.src || "",
+                    titulo: tarjeta.querySelector("h4 a")?.textContent?.trim() || tarjeta.querySelector("h4")?.textContent?.trim() || "",
+                    fecha: tarjeta.querySelector("span")?.textContent || "",
+                    url: tarjeta.querySelector("a")?.href || "",
+                    credito: tarjeta.getAttribute("data-credito") || ""
+                }))
+            ];
+
+            function cambiarDiapositiva(idx) {
+                if (!diapositivas[idx] || !imgPrincipal) return;
+                
+                imgPrincipal.style.opacity = "0.3";
+                
+                setTimeout(() => {
+                    imgPrincipal.src = diapositivas[idx].imagen;
+                    if (fechaPrincipal) fechaPrincipal.textContent = diapositivas[idx].fecha;
+                    if (enlacePrincipal) enlacePrincipal.href = diapositivas[idx].url;
+                    
+                    if (tituloPrincipal) {
+                        const linkInside = tituloPrincipal.querySelector("a");
+                        if (linkInside) {
+                            linkInside.textContent = diapositivas[idx].titulo;
+                            linkInside.href = diapositivas[idx].url;
+                        } else {
+                            tituloPrincipal.textContent = diapositivas[idx].titulo;
+                        }
+                    }
+                    
+                    if (creditoPrincipal) {
+                        creditoPrincipal.textContent = diapositivas[idx].credito ? "Foto: " + diapositivas[idx].credito : "";
+                    }
+                    
+                    imgPrincipal.style.opacity = "1";
+                }, 150);
             }
-            
-            imgPrincipal.style.opacity = "1";
-        }, 150);
-    }
 
-    if (btnMainAdelante && btnMainAtras) {
-        imgPrincipal.style.transition = "opacity 0.2s ease";
-        btnMainAdelante.addEventListener("click", () => {
-            indiceActual = (indiceActual + 1) % diapositivas.length;
-            cambiarDiapositiva(indiceActual);
-        });
+            if (btnMainAdelante && btnMainAtras) {
+                imgPrincipal.style.transition = "opacity 0.2s ease";
+                btnMainAdelante.addEventListener("click", () => {
+                    indiceActual = (indiceActual + 1) % diapositivas.length;
+                    cambiarDiapositiva(indiceActual);
+                });
 
-        btnMainAtras.addEventListener("click", () => {
-            indiceActual = (indiceActual - 1 + diapositivas.length) % diapositivas.length;
-            cambiarDiapositiva(indiceActual);
+                btnMainAtras.addEventListener("click", () => {
+                    indiceActual = (indiceActual - 1 + diapositivas.length) % diapositivas.length;
+                    cambiarDiapositiva(indiceActual);
+                });
+            }
         });
-    }
-});
-</script>
+    </script>
 
 </body>
 </html>
