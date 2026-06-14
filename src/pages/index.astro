@@ -1,26 +1,13 @@
 ---
 const notasCargadas = import.meta.glob('./noticias/*.md', { eager: true });
-
-// ORDENAMIENTO CRONOLÓGICO PERFECTO (QUALY -> FP3 -> P2 -> P1)
+// Ordenamos cronológicamente de mayor a menor por el nombre de archivo (Fechas más nuevas primero)
 const todasLasCronicas = Object.values(notasCargadas).sort((a, b) => {
-    const fileA = a.file.split('/').pop().toLowerCase();
-    const fileB = b.file.split('/').pop().toLowerCase();
-    
-    // Si 'b' es clasificación, tiene prioridad máxima (va primero)
-    if (fileB.includes('clasificacion')) return 1;
-    if (fileA.includes('clasificacion')) return -1;
-    
-    // Si 'b' es la FP3, va antes que las prácticas del viernes
-    if (fileB.includes('fp3')) return 1;
-    if (fileA.includes('fp3')) return -1;
-    
-    // Si 'b' es Lando (P2), va antes que la P1
-    if (fileB.includes('lando')) return 1;
-    if (fileA.includes('lando')) return -1;
-    
-    return 0;
+    const nameA = a.file.split('/').pop();
+    const nameB = b.file.split('/').pop();
+    return nameB.localeCompare(nameA);
 });
 
+// La más nueva toma el trono grande, las demás van abajo al carrusel interactivo
 const noticiaPrincipal = todasLasCronicas[0];
 const notasSecundarias = todasLasCronicas.slice(1);
 ---
@@ -77,21 +64,20 @@ const notasSecundarias = todasLasCronicas.slice(1);
                 </div>
             </div>
 
-         <!-- CONTENIDO DE LA NOTA -->
+            <!-- CONTENIDO DE LA NOTA -->
             <div class="contenido" style="padding: 25px;">
                 <span id="fecha-principal" style="color: #e10600; font-weight: bold; font-family: 'Orbitron', sans-serif; display: inline-block; margin-bottom: 10px;">{noticiaPrincipal.frontmatter.fechaEtiqueta}</span>
-                
-                <!-- ESTA ES LA LÍNEA QUE CAMBIA A ROJO CON ENLACE -->
                 <h2 id="titulo-principal" style="font-size: 2rem; margin: 0 0 15px 0; font-family: 'Orbitron', sans-serif; color: #e10600; line-height: 1.2;">
                     <a href={noticiaPrincipal.url} style="color: #e10600; text-decoration: none; transition: color 0.2s ease;" onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#e10600'">
                         {noticiaPrincipal.frontmatter.titulo}
                     </a>
                 </h2>
-                
                 <a id="enlace-principal" href={noticiaPrincipal.url} class="boton-leer" style="display: inline-block; background: #e10600; color: white; padding: 12px 24px; text-decoration: none; font-weight: bold; border-radius: 4px; font-family: 'Orbitron', sans-serif;">LEER CRÓNICA COMPLETA</a>
             </div>
+        </section>
+    )}
 
-   <!-- 2. NOTICIAS SECUNDARIAS (CARRUSEL INFERIOR LIMPIO SIN CRÉDITOS ABAJO) -->
+    <!-- 2. NOTICIAS SECUNDARIAS (CARRUSEL INFERIOR INTERACTIVO TOTALMENTE CORREGIDO) -->
     <section class="noticias-secundarias-contenedor" style="width: 100%;">
         <h3 style="font-family: 'Orbitron', sans-serif; color: white; margin-bottom: 20px; border-bottom: 2px solid #333; padding-bottom: 10px;">Crónicas Anteriores</h3>
         
@@ -104,14 +90,11 @@ const notasSecundarias = todasLasCronicas.slice(1);
                     </div>
                     <div style="padding: 12px; display: flex; flex-direction: column; flex-grow: 1;">
                         <span style="font-size: 0.75rem; color: #e10600; font-weight: bold; margin-bottom: 5px; display: inline-block;">{nota.frontmatter.fechaEtiqueta}</span>
-                        
-                        <!-- TITULAR COMPLETAMENTE ENLAZADO EN ROJO INTERACTIVO -->
                         <h4 style="font-size: 0.95rem; margin: 0 0 15px 0; font-family: 'Orbitron', sans-serif; color: #e10600; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
                             <a href={nota.url} style="color: #e10600; text-decoration: none; transition: color 0.2s ease;" onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#e10600'">
                                 {nota.frontmatter.titulo}
                             </a>
                         </h4>
-                        
                         <a href={nota.url} style="margin-top: auto; color: #aaa; text-decoration: none; font-weight: bold; font-size: 0.85rem;">Leer Más →</a>
                     </div>
                 </article>
@@ -124,13 +107,13 @@ const notasSecundarias = todasLasCronicas.slice(1);
 
 <!-- COLUMNA DERECHA: LA BARRA LATERAL FIJA -->
 <aside class="barra-lateral" style="background: #141414; padding: 15px; border-radius: 8px; border: 1px solid #333; height: fit-content; min-width: 320px; box-sizing: border-box;">
-<h3 style="font-family: 'Orbitron', sans-serif; font-size: 1.1rem; color: white; margin-top: 0;">Próxima Carrera</h3>
+<h3>Próxima Carrera</h3>
 <div class="evento" style="background: #222; padding: 10px; border-radius: 4px; margin-bottom: 15px; border-left: 3px solid #e10600;">
     <p style="margin: 0 0 5px 0;"><strong>Gran Premio de España</strong></p>
     <p style="margin: 0; font-size: 0.85rem; color: #aaa;">Circuito de Barcelona-Cataluña</p>
 </div>
 
-<h4 style="font-family: 'Orbitron', sans-serif; font-size: 1rem; color: white; margin-bottom: 10px;">Horarios del Fin de Semana</h4>
+<h4>Horarios del Fin de Semana</h4>
 <div class="tabla-horarios" style="display: flex; flex-direction: column; gap: 12px;">
     
     <div class="fila-paises">
@@ -156,7 +139,7 @@ const notasSecundarias = todasLasCronicas.slice(1);
     </div>
 
     <div class="fila-paises">
-        <span class="paises">🇨🇴 🇪🇨 🇵🇦 🇵🇪</span>
+        <span class="paises">🇨🇴 🇪🇨 🇵🇦 🇵</span>
         <div class="horarios">
             <p><span>Práctica 1:</span> Viernes 12 – 06:30</p>
             <p><span>Práctica 2:</span> Viernes 12 – 10:00</p>
@@ -184,8 +167,6 @@ const notasSecundarias = todasLasCronicas.slice(1);
 <footer>
 <p>&copy; 2026 Dagger Racing. Todos los derechos reservados.</p>
 </footer>
-
-<!-- SCRIPT DE INTERACTIVIDAD REVISADO AL 100% -->
 <script is:inline>
 document.addEventListener("DOMContentLoaded", () => {
     // 1. CONTROL DEL CARRUSEL INFERIOR
