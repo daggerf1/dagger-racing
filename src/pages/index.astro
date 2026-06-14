@@ -1,14 +1,22 @@
 ---
 const notasCargadas = import.meta.glob('./noticias/*.md', { eager: true });
 
-// Ordenamos estrictamente por el nombre de archivo (Las fechas de los nombres más nuevos arriba)
+// ORDENAMIENTO BULLETPROOF POR CRONOLOGÍA DE SESIONES
 const todasLasCronicas = Object.values(notasCargadas).sort((a, b) => {
-    const archivoA = a.file.split('/').pop();
-    const archivoB = b.file.split('/').pop();
-    return archivoB.localeCompare(archivoA);
+    const fileA = a.file.split('/').pop().toLowerCase();
+    const fileB = b.file.split('/').pop().toLowerCase();
+    
+    // Lógica estricta: Clasificación primero, luego FP3, luego PL2, luego PL1
+    if (fileA.includes('clasificacion')) return 1;
+    if (fileB.includes('clasificacion')) return -1;
+    if (fileA.includes('fp3')) return 1;
+    if (fileB.includes('fp3')) return -1;
+    if (fileA.includes('lando')) return 1;
+    if (fileB.includes('lando')) return -1;
+    return 0;
 });
 
-// La crónica más actual (Clasificación) toma el trono grande, las anteriores van abajo
+// FIJAMOS LA POSICIÓN [0] PARA LA NOTICIA DESTACADA
 const noticiaPrincipal = todasLasCronicas[0];
 const notasSecundarias = todasLasCronicas.slice(1);
 ---
