@@ -31,3 +31,4 @@ Este dramático abandono, sumado al retiro previo de Charles Leclerc, despejó e
 Para el público latinoamericano, la carrera de Franco Colapinto fue una cátedra de madurez. Tras padecer con la degradación y exigir por radio en la vuelta 21 que Pierre Gasly lo dejara pasar porque "ni siquiera estaba empujando", el equipo Alpine cedió. El argentino se metió de lleno en el fango de la zona media, batallando en un grupo ultracerrado contra Nico Hülkenberg (quien acabó abandonando tras una maniobra peligrosa) y Liam Lawson.
 
 Aprovechando el colapso final de Antonelli y Leclerc, y con Oscar Piastri completamente estancado en la séptima posición, Franco Colapinto cruzó la meta en una espectacular 8ª posición, justo por detrás de su compañero Gasly. Un resultado titánico para el piloto de Pilar, que supo sufrir en el infierno de Barcelona para terminar celebrando en los puntos en un domingo que siempre será recordado por el dominio británico.
+
