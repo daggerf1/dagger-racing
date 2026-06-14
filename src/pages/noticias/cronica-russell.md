@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MoldeCronica.astro
 titulo: "Mercedes golpea primero: George Russell lidera una Práctica 1 caótica y repleta de debutantes"
-fechaEtiqueta: "⏱️ 12 de juniio, 2026"
+fechaEtiqueta: "⏱️ 12 de junio, 2026"
 imagen: "russell p1-barcelona-2026.jpg"
 credito: "Jiri Krenek / Mercedes-AMG PETRONAS F1 Team Media"
 ---
