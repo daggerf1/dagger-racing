@@ -1,22 +1,26 @@
 ---
 const notasCargadas = import.meta.glob('./noticias/*.md', { eager: true });
 
-// ORDENAMIENTO BULLETPROOF POR CRONOLOGÍA DE SESIONES
+// ORDENAMIENTO CRONOLÓGICO PERFECTO (QUALY -> FP3 -> P2 -> P1)
 const todasLasCronicas = Object.values(notasCargadas).sort((a, b) => {
     const fileA = a.file.split('/').pop().toLowerCase();
     const fileB = b.file.split('/').pop().toLowerCase();
     
-    // Lógica estricta: Clasificación primero, luego FP3, luego PL2, luego PL1
-    if (fileA.includes('clasificacion')) return 1;
-    if (fileB.includes('clasificacion')) return -1;
-    if (fileA.includes('fp3')) return 1;
-    if (fileB.includes('fp3')) return -1;
-    if (fileA.includes('lando')) return 1;
-    if (fileB.includes('lando')) return -1;
+    // Si 'b' es clasificación, tiene prioridad máxima (va primero)
+    if (fileB.includes('clasificacion')) return 1;
+    if (fileA.includes('clasificacion')) return -1;
+    
+    // Si 'b' es la FP3, va antes que las prácticas del viernes
+    if (fileB.includes('fp3')) return 1;
+    if (fileA.includes('fp3')) return -1;
+    
+    // Si 'b' es Lando (P2), va antes que la P1
+    if (fileB.includes('lando')) return 1;
+    if (fileA.includes('lando')) return -1;
+    
     return 0;
 });
 
-// FIJAMOS LA POSICIÓN [0] PARA LA NOTICIA DESTACADA
 const noticiaPrincipal = todasLasCronicas[0];
 const notasSecundarias = todasLasCronicas.slice(1);
 ---
