@@ -1,6 +1,7 @@
 ---
 layout: ../../layouts/MoldeCronica.astro
 titulo: "Golpe de autoridad: Lando Norris vuela en Barcelona y McLaren destroza el cronómetro"
+fecha: "2026-06-12"
 fechaEtiqueta: "⏱️ 12 de junio, 2026"
 imagen: "lando norris p2-barcelona-2026.jpg"
 credito: "McLaren Automotive Limited / Media Press"

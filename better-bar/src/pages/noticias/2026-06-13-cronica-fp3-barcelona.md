@@ -1,6 +1,7 @@
 ---
 layout: ../../layouts/MoldeCronica.astro
 titulo: "Mercedes no da tregua: George Russell lidera una calurosa FP3 en Barcelona"
+fecha: "2026-06-13"
 fechaEtiqueta: "⏱️ 13 de junio, 2026"
 imagen: "russell-p3-bar2026.jpg"
 credito: "Jiri Krenek / Mercedes-AMG PETRONAS F1 Team Media"
