@@ -46,7 +46,7 @@ const notasSecundarias = todasLasCronicas.slice(1);
 <a href="#">Posiciones</a>
 </nav>
 
-<main class="container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto; padding: 15px; box-sizing: border-box; width: 100%;">
+<main class="container container-flexible">
 
 <!-- COLUMNA IZQUIERDA: NOTICIAS -->
 <div class="bloque-izquierdo" style="display: flex; flex-direction: column; gap: 40px; overflow: hidden; width: 100%;">
@@ -267,6 +267,27 @@ const notasSecundarias = todasLasCronicas.slice(1);
             }
         });
     </script>
+<style>
+/* 1. ESTILO POR DEFECTO PARA CELULARES (TODO EN VERTICAL) */
+.container-flexible {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px;
+    box-sizing: border-box;
+    width: 100%;
+}
 
+/* 2. REGLA INTELIGENTE PARA IPADS Y LAPTOPS (PANTALLAS GRANDES) */
+@media (min-width: 768px) {
+    .container-flexible {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 320px;
+        padding: 20px;
+    }
+}
+</style>
 </body>
 </html>
