@@ -1,13 +1,14 @@
 ---
 const notasCargadas = import.meta.glob('./noticias/*.md', { eager: true });
-// Ordenamos cronológicamente de mayor a menor por el nombre de archivo (Fechas más nuevas primero)
+
+// Ordenamos estrictamente por el nombre de archivo (Las fechas de los nombres más nuevos arriba)
 const todasLasCronicas = Object.values(notasCargadas).sort((a, b) => {
-    const nameA = a.file.split('/').pop();
-    const nameB = b.file.split('/').pop();
-    return nameB.localeCompare(nameA);
+    const archivoA = a.file.split('/').pop();
+    const archivoB = b.file.split('/').pop();
+    return archivoB.localeCompare(archivoA);
 });
 
-// La más nueva toma el trono grande, las demás van abajo al carrusel interactivo
+// La crónica más actual (Clasificación) toma el trono grande, las anteriores van abajo
 const noticiaPrincipal = todasLasCronicas[0];
 const notasSecundarias = todasLasCronicas.slice(1);
 ---
