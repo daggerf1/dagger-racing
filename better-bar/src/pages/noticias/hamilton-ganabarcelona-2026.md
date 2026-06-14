@@ -3,7 +3,7 @@ layout: ../../layouts/MoldeCronica.astro
 titulo: "¡ÉPICA EN BARCELONA! HAMILTON REINA EN EL CAOS DE CATALUNYA Y UN PODIO BRITÁNICO PARA LA HISTORIA"
 fecha: "2026-06-14"
 fechaEtiqueta: "⏱️ 14 de junio, 2026"
-imagen: "hamilton_barcelona2026.png"
+imagen: "hamilton-premio-barcelona2026.jpg"
 ---
 El Gran Premio de Barcelona-Catalunya 2026 ya forma parte de los libros de oro de la Fórmula 1. Lo que se vivió en el asfalto catalán fue una batalla campal de pura supervivencia, donde la alarmante degradación de los neumáticos obligó a los equipos a improvisar estrategias extremas de hasta tres paradas. Entre el caos de las radios, los abandonos y los incidentes, Lewis Hamilton emergió como el gran triunfador, liderando un hito sin precedentes para el automovilismo moderno: ¡un podio copado en su totalidad por la Union Jack británica!
 
