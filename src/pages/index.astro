@@ -184,7 +184,8 @@ const notasSecundarias = todasLasCronicas.slice(1);
 <footer>
 <p>&copy; 2026 Dagger Racing. Todos los derechos reservados.</p>
 </footer>
-<!-- SCRIPT DE INTERACTIVIDAD COMPLETO -->
+
+<!-- SCRIPT DE INTERACTIVIDAD REVISADO AL 100% -->
 <script is:inline>
 document.addEventListener("DOMContentLoaded", () => {
     // 1. CONTROL DEL CARRUSEL INFERIOR
@@ -212,19 +213,19 @@ document.addEventListener("DOMContentLoaded", () => {
     
     const notaInicial = {
         imagen: imgPrincipal?.src,
-        titulo: tituloPrincipal?.textContent,
-        fecha: fechaPrincipal?.textContent,
-        url: enlacePrincipal?.href,
+        titulo: tituloPrincipal?.querySelector("a")?.textContent?.trim() || tituloPrincipal?.textContent || "",
+        fecha: fechaPrincipal?.textContent || "",
+        url: enlacePrincipal?.href || "",
         credito: creditoPrincipal?.textContent?.replace("Foto: ", "") || ""
     };
 
     const diapositivas = [
         notaInicial,
         ...tarjetas.map(tarjeta => ({
-            imagen: tarjeta.querySelector("img")?.src,
-            titulo: tarjeta.querySelector("h4")?.textContent,
-            fecha: tarjeta.querySelector("span")?.textContent,
-            url: tarjeta.querySelector("a")?.href,
+            imagen: tarjeta.querySelector("img")?.src || "",
+            titulo: tarjeta.querySelector("h4 a")?.textContent?.trim() || tarjeta.querySelector("h4")?.textContent?.trim() || "",
+            fecha: tarjeta.querySelector("span")?.textContent || "",
+            url: tarjeta.querySelector("a")?.href || "",
             credito: tarjeta.getAttribute("data-credito") || ""
         }))
     ];
@@ -236,9 +237,18 @@ document.addEventListener("DOMContentLoaded", () => {
         
         setTimeout(() => {
             imgPrincipal.src = diapositivas[idx].imagen;
-            if (tituloPrincipal) tituloPrincipal.textContent = diapositivas[idx].titulo;
             if (fechaPrincipal) fechaPrincipal.textContent = diapositivas[idx].fecha;
             if (enlacePrincipal) enlacePrincipal.href = diapositivas[idx].url;
+            
+            if (tituloPrincipal) {
+                const linkInside = tituloPrincipal.querySelector("a");
+                if (linkInside) {
+                    linkInside.textContent = diapositivas[idx].titulo;
+                    linkInside.href = diapositivas[idx].url;
+                } else {
+                    tituloPrincipal.textContent = diapositivas[idx].titulo;
+                }
+            }
             
             if (creditoPrincipal) {
                 creditoPrincipal.textContent = diapositivas[idx].credito ? "Foto: " + diapositivas[idx].credito : "";
@@ -249,6 +259,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (btnMainAdelante && btnMainAtras) {
+        imgPrincipal.style.transition = "opacity 0.2s ease";
         btnMainAdelante.addEventListener("click", () => {
             indiceActual = (indiceActual + 1) % diapositivas.length;
             cambiarDiapositiva(indiceActual);
