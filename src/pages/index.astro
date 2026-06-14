@@ -42,8 +42,12 @@ const notasSecundarias = todasLasCronicas.slice(1);
     <!-- 1. NOTICIA PRINCIPAL (GRANDE ARRIBA) -->
     {noticiaPrincipal && (
         <section class="noticia-destacada" style="background: #1a1a1a; border-radius: 8px; overflow: hidden; border: 1px solid #333; width: 100%;">
-            <div class="contenedor-imagen-live" style="position: relative; height: 420px; width: 100%;">
-                <img src={`/${noticiaPrincipal.frontmatter.imagen}`} alt="Noticia Principal" style="width: 100%; height: 100%; object-fit: cover;">
+            <div class="contenedor-imagen-live" style="position: relative; height: 420px; width: 100%; background: #000;">
+    <img id="img-principal" src={`/${todasLasCronicas[0]?.frontmatter.imagen}`} alt="Noticia Principal" style="width: 100%; height: 100%; object-fit: cover;">
+    
+    <button id="main-atras" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); background: #e10600; color: white; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer; font-weight: bold; border: none; z-index: 10; font-family: monospace;">&lt;</button>
+    <button id="main-adelante" style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); background: #e10600; color: white; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer; font-weight: bold; border: none; z-index: 10; font-family: monospace;">&gt;</button>
+</div>
                 
                 {noticiaPrincipal.frontmatter.credito && (
                     <div style="text-align: right; width: 100%; position: absolute; bottom: 5px; right: 10px; z-index: 5;">
@@ -54,9 +58,9 @@ const notasSecundarias = todasLasCronicas.slice(1);
                 )}
             </div>
             <div class="contenido" style="padding: 25px;">
-                <span class="fecha" style="color: #e10600; font-weight: bold; font-family: 'Orbitron', sans-serif; display: inline-block; margin-bottom: 10px;">{noticiaPrincipal.frontmatter.fechaEtiqueta}</span>
-                <h2 style="font-size: 2rem; margin: 0 0 15px 0; font-family: 'Orbitron', sans-serif; color: white; line-height: 1.2;">{noticiaPrincipal.frontmatter.titulo}</h2>
-                <a href={noticiaPrincipal.url} class="boton-leer" style="display: inline-block; background: #e10600; color: white; padding: 12px 24px; text-decoration: none; font-weight: bold; border-radius: 4px; font-family: 'Orbitron', sans-serif;">LEER CRÓNICA COMPLETA</a>
+               <span id="fecha-principal" class="fecha" style="color: #e10600; font-weight: bold; font-family: 'Orbitron', sans-serif; display: inline-block; margin-bottom: 10px;">{noticiaPrincipal.frontmatter.fechaEtiqueta}</span>
+               <h2 id="titulo-principal" style="font-size: 2rem; margin: 0 0 15px 0; font-family: 'Orbitron', sans-serif; color: white; line-height: 1.2;">{noticiaPrincipal.frontmatter.titulo}</h2>
+                <a id="enlace-principal" href={noticiaPrincipal.url} class="boton-leer" style="display: inline-block; background: #e10600; color: white; padding: 12px 24px; text-decoration: none; font-weight: bold; border-radius: 4px; font-family: 'Orbitron', sans-serif;">LEER CRÓNICA COMPLETA</a>
             </div>
         </section>
     )}
@@ -164,19 +168,80 @@ const notasSecundarias = todasLasCronicas.slice(1);
 <p>&copy; 2026 Dagger Racing. Todos los derechos reservados.</p>
 </footer>
 
-<!-- SCRIPT DE INTERACTIVIDAD PARA HACER QUE LOS BOTONES MUEVAN EL CARRUSEL -->
+<!-- SCRIPT MAESTRO DE INTERACTIVIDAD UNIFICADO -->
 <script is:inline>
 document.addEventListener("DOMContentLoaded", () => {
+    // 1. CONTROL DEL CARRUSEL INFERIOR (BARRA GRIS)
     const carrusel = document.getElementById("contenedor-carrusel");
     const btnAtras = document.getElementById("slide-atras");
     const btnAdelante = document.getElementById("slide-adelante");
 
     if (carrusel && btnAtras && btnAdelante) {
         btnAdelante.addEventListener("click", () => {
-            carrusel.scrollLeft += 260; // Avanza el ancho de una tarjeta
+            carrusel.scrollLeft += 260;
         });
         btnAtras.addEventListener("click", () => {
-            carrusel.scrollLeft -= 260; // Retrocede el ancho de una tarjeta
+            carrusel.scrollLeft -= 260;
+        });
+    }
+
+    // 2. CONTROL DEL CARRUSEL DE ARRIBA (FLECHAS ROJAS EN LA FOTO GRANDE)
+    let indiceActual = 0;
+    const imgPrincipal = document.getElementById("img-principal");
+    const tituloPrincipal = document.getElementById("titulo-principal");
+    const fechaPrincipal = document.getElementById("fecha-principal");
+    const enlacePrincipal = document.getElementById("enlace-principal");
+    const btnMainAtras = document.getElementById("main-atras");
+    const btnMainAdelante = document.getElementById("main-adelante");
+
+    // Recopilamos los datos de las tarjetas de abajo para poder pasarlas arriba
+    const tarjetas = Array.from(document.querySelectorAll(".tarjeta-chica"));
+    
+    // Guardamos la información de la noticia que arranca por defecto
+    const notaInicial = {
+        imagen: imgPrincipal?.src,
+        titulo: tituloPrincipal?.textContent,
+        fecha: fechaPrincipal?.textContent,
+        url: enlacePrincipal?.href
+    };
+
+    // Creamos la lista de diapositivas combinando la principal con las de abajo
+    const diapositivas = [
+        notaInicial,
+        ...tarjetas.map(tarjeta => ({
+            imagen: tarjeta.querySelector("img")?.src,
+            titulo: tarjeta.querySelector("h4")?.textContent,
+            fecha: tarjeta.querySelector("span")?.textContent,
+            url: tarjeta.querySelector("a")?.href
+        }))
+    ];
+
+    function cambiarDiapositiva(idx) {
+        if (!diapositivas[idx] || !imgPrincipal) return;
+        
+        // Transición suave de desvanecimiento
+        imgPrincipal.style.opacity = "0.3";
+        
+        setTimeout(() => {
+            imgPrincipal.src = diapositivas[idx].imagen;
+            if (tituloPrincipal) tituloPrincipal.textContent = diapositivas[idx].titulo;
+            if (fechaPrincipal) fechaPrincipal.textContent = diapositivas[idx].fecha;
+            if (enlacePrincipal) enlacePrincipal.href = diapositivas[idx].url;
+            imgPrincipal.style.opacity = "1";
+        }, 150);
+    }
+
+    if (btnMainAdelante && btnMainAtras) {
+        imgPrincipal.style.transition = "opacity 0.2s ease";
+        
+        btnMainAdelante.addEventListener("click", () => {
+            indiceActual = (indiceActual + 1) % diapositivas.length;
+            cambiarDiapositiva(indiceActual);
+        });
+
+        btnMainAtras.addEventListener("click", () => {
+            indiceActual = (indiceActual - 1 + diapositivas.length) % diapositivas.length;
+            cambiarDiapositiva(indiceActual);
         });
     }
 });
