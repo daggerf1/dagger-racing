@@ -2,7 +2,7 @@
 layout: ../../layouts/MoldeCronica.astro
 titulo: "Thrill en Montmeló: George Russell firma la pole en Barcelona y Leclerc se estampa contra el muro"
 fechaEtiqueta: "⏱️ 13 de junio, 2026"
-imagen: "russell-qualy-barcelona-2026.jpg"
+imagen: "russell-qualy-bar2026.jpg"
 credito: "Clive Rose / Mercedes-AMG PETRONAS F1 Team Media"
 ---
 
