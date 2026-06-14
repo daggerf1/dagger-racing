@@ -77,28 +77,41 @@ const notasSecundarias = todasLasCronicas.slice(1);
                 </div>
             </div>
 
-            <!-- CONTENIDO DE LA NOTA -->
+         <!-- CONTENIDO DE LA NOTA -->
             <div class="contenido" style="padding: 25px;">
                 <span id="fecha-principal" style="color: #e10600; font-weight: bold; font-family: 'Orbitron', sans-serif; display: inline-block; margin-bottom: 10px;">{noticiaPrincipal.frontmatter.fechaEtiqueta}</span>
-                <h2 id="titulo-principal" style="font-size: 2rem; margin: 0 0 15px 0; font-family: 'Orbitron', sans-serif; color: white; line-height: 1.2;">{noticiaPrincipal.frontmatter.titulo}</h2>
+                
+                <!-- ESTA ES LA LÍNEA QUE CAMBIA A ROJO CON ENLACE -->
+                <h2 id="titulo-principal" style="font-size: 2rem; margin: 0 0 15px 0; font-family: 'Orbitron', sans-serif; color: #e10600; line-height: 1.2;">
+                    <a href={noticiaPrincipal.url} style="color: #e10600; text-decoration: none; transition: color 0.2s ease;" onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#e10600'">
+                        {noticiaPrincipal.frontmatter.titulo}
+                    </a>
+                </h2>
+                
                 <a id="enlace-principal" href={noticiaPrincipal.url} class="boton-leer" style="display: inline-block; background: #e10600; color: white; padding: 12px 24px; text-decoration: none; font-weight: bold; border-radius: 4px; font-family: 'Orbitron', sans-serif;">LEER CRÓNICA COMPLETA</a>
             </div>
-        </section>
-    )}
 
-    <!-- 2. NOTICIAS SECUNDARIAS (CARRUSEL INFERIOR LIMPIO SIN CRÉDITOS ABAJO) -->
+   <!-- 2. NOTICIAS SECUNDARIAS (CARRUSEL INFERIOR LIMPIO SIN CRÉDITOS ABAJO) -->
     <section class="noticias-secundarias-contenedor" style="width: 100%;">
         <h3 style="font-family: 'Orbitron', sans-serif; color: white; margin-bottom: 20px; border-bottom: 2px solid #333; padding-bottom: 10px;">Crónicas Anteriores</h3>
         
         <div id="contenedor-carrusel" style="display: flex; gap: 20px; overflow-x: auto; padding-bottom: 15px; scrollbar-color: #555 #222; scrollbar-width: thin; scroll-behavior: smooth; width: 100%;">
             
             {notasSecundarias.map((nota) => (
-                        <article class="tarjeta-chica" data-credito={nota.frontmatter.credito} style="flex: 0 0 260px; min-width: 260px; background: #111; border-radius: 6px; overflow: hidden; border: 1px solid #222; display: flex; flex-direction: column;">
+                <article class="tarjeta-chica" data-credito={nota.frontmatter.credito} style="flex: 0 0 260px; min-width: 260px; background: #111; border-radius: 6px; overflow: hidden; border: 1px solid #222; display: flex; flex-direction: column;">
+                    <div style="height: 140px; width: 100%; position: relative;">
                         <img src={`/${nota.frontmatter.imagen}`} alt="Imagen noticia" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div style="padding: 12px; display: flex; flex-direction: column; flex-grow: 1;">
                         <span style="font-size: 0.75rem; color: #e10600; font-weight: bold; margin-bottom: 5px; display: inline-block;">{nota.frontmatter.fechaEtiqueta}</span>
-                        <h4 style="font-size: 0.95rem; margin: 0 0 15px 0; font-family: 'Orbitron', sans-serif; color: white; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">{nota.frontmatter.titulo}</h4>
+                        
+                        <!-- TITULAR COMPLETAMENTE ENLAZADO EN ROJO INTERACTIVO -->
+                        <h4 style="font-size: 0.95rem; margin: 0 0 15px 0; font-family: 'Orbitron', sans-serif; color: #e10600; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+                            <a href={nota.url} style="color: #e10600; text-decoration: none; transition: color 0.2s ease;" onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#e10600'">
+                                {nota.frontmatter.titulo}
+                            </a>
+                        </h4>
+                        
                         <a href={nota.url} style="margin-top: auto; color: #aaa; text-decoration: none; font-weight: bold; font-size: 0.85rem;">Leer Más →</a>
                     </div>
                 </article>
