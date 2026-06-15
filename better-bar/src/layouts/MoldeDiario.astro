@@ -1,17 +1,47 @@
 ---
-layout: ".../.../layouts/MoldeDiario.astro"
-titulo: "¡ÉPICA EN BARCELONA! HAMILTON REINA EN EL CAOS DE CATALUNYA Y UN PODIO BRITÁNICO PARA LA HISTORIA"
-fecha: "2026-06-14"
-fechaEtiqueta: "⏱️ 14 de junio, 2026"
-imagen: "hamilton-premio-barcelona2026.jpg"
+const { content, frontmatter } = Astro.props;
+const data = content || frontmatter;
 ---
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{data.titulo}</title>
+</head>
+<body>
+
+  <main class="diario-cronica-container">
+    
+    <!-- COLUMNA 1 (IZQUIERDA) -->
+    <section class="columna-principal-nota">
+      <div class="cabecera-nota">
+        <span class="etiqueta-tiempo">{data.fechaEtiqueta}</span>
+        <h1>{data.titulo}</h1>
+      </div>
+      
+      <div class="contenedor-imagen-boceto">
+        <img src={`/images/${data.imagen}`} alt={data.titulo} />
+      </div>
+
+      <div class="cuerpo-nota-1">
+        <!-- Inyecta automáticamente los primeros párrafos hasta el primer h2 -->
+        <slot />
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>
+
 <style is:global>
-  /* 1. CONTENEDOR PRINCIPAL (ESTILO DIARIO CLÁSICO) */
+  /* Cuadrícula estilo periódico clásico */
   .diario-cronica-container {
     display: grid;
     grid-template-columns: 2.2fr 1.3fr 2fr;
-    gap: 32px;
+    gap: 28px;
     max-width: 1380px;
     margin: 30px auto;
     padding: 0 20px;
@@ -19,36 +49,20 @@ imagen: "hamilton-premio-barcelona2026.jpg"
     color: #111;
   }
 
-  /* Forzamos a que el contenedor del slot use CSS Grid interno */
-  .cuerpo-nota-1 {
-    display: grid;
-    grid-template-columns: 2.2fr 1.3fr 2fr;
-    grid-column: 1 / -1; /* Rompe el bloque inicial y abarca todo el ancho */
-    gap: 32px;
-    width: 100%;
-  }
-
-  /* 2. DISEÑO DE LA CABECERA (Abarca las 3 columnas superiores) */
-  .columna-principal-nota {
-    grid-column: 1 / -1;
-    width: 100%;
-  }
-
   .columna-principal-nota h1 {
     font-family: 'Helvetica Neue', Arial, sans-serif;
-    font-size: 2.8rem;
+    font-size: 2.6rem;
     font-weight: 900;
     line-height: 1.05;
     letter-spacing: -1px;
-    margin: 12px 0 20px 0;
-    text-align: center; /* Centrado clásico de cabecera de periódico */
+    margin: 8px 0 16px 0;
   }
 
   .contenedor-imagen-boceto {
     border: 1px solid #111;
-    padding: 5px;
+    padding: 4px;
     background: #fff;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
   }
 
   .contenedor-imagen-boceto img {
@@ -57,57 +71,15 @@ imagen: "hamilton-premio-barcelona2026.jpg"
     display: block;
   }
 
-  /* 3. AUTOMATIZACIÓN DE COLUMNAS USANDO SELECTORES CSS */
-  
-  /* COLUMNA 1 (IZQUIERDA): Introducción + Plan Maestro */
-  /* Envía los elementos iniciales a la columna 1 de la rejilla */
-  .cuerpo-nota-1 > p:nth-of-type(1),
-  .cuerpo-nota-1 > h2:nth-of-type(1),
-  .cuerpo-nota-1 > p:nth-of-type(2),
-  .cuerpo-nota-1 > p:nth-of-type(3) {
-    grid-column: 1;
-  }
-
-  /* COLUMNA 2 (CENTRAL): El Quiebre (VSC) */
-  /* Envía el segundo título h2 y sus párrafos al centro con las líneas divisorias de tu dibujo */
-  .cuerpo-nota-1 > h2:nth-of-type(2),
-  .cuerpo-nota-1 > p:nth-of-type(4),
-  .cuerpo-nota-1 > p:nth-of-type(5),
-  .cuerpo-nota-1 > p:nth-of-type(6) {
-    grid-column: 2;
-    border-left: 1px solid #111;
-    border-right: 1px solid #111;
-    padding: 0 20px;
-  }
-
-  /* COLUMNA 3 (DERECHA SUPERIOR): Drama en la pista */
-  .cuerpo-nota-1 > h2:nth-of-type(3),
-  .cuerpo-nota-1 > p:nth-of-type(7),
-  .cuerpo-nota-1 > p:nth-of-type(8),
-  .cuerpo-nota-1 > p:nth-of-type(9) {
-    grid-column: 3;
-  }
-
-  /* SUB-BLOQUE INFERIOR DERECHO (Dividido en dos por la línea horizontal): Colapinto y Cierre */
-  /* Estructuramos el área inferior derecha para simular tu fila dividida */
-  .cuerpo-nota-1 > h2:nth-of-type(4),
-  .cuerpo-nota-1 > p:nth-of-type(10),
-  .cuerpo-nota-1 > p:nth-of-type(11) {
-    grid-column: 3;
-    border-top: 1px solid #111;
-    margin-top: 20px;
-    padding-top: 15px;
-  }
-
-  /* 4. ESTILOS TIPOGRÁFICOS INTERNOS DEL MARKDOWN */
+  /* Estilos para los elementos que vienen del Markdown */
   .cuerpo-nota-1 h2 {
     font-family: 'Helvetica Neue', Arial, sans-serif;
     font-weight: 800;
     text-transform: uppercase;
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     border-bottom: 2px solid #111;
     padding-bottom: 4px;
-    margin-bottom: 12px;
+    margin-top: 24px;
     color: #111;
   }
 
@@ -116,40 +88,5 @@ imagen: "hamilton-premio-barcelona2026.jpg"
     line-height: 1.45;
     text-align: justify;
     margin-bottom: 14px;
-  }
-
-  /* Párrafo destacado (Lead Inicial) */
-  .cuerpo-nota-1 > p:first-of-type {
-    font-size: 1.15rem;
-    font-weight: bold;
-    line-height: 1.4;
-  }
-
-  .etiqueta-tiempo {
-    font-family: monospace;
-    font-size: 0.85rem;
-    border: 1px solid #111;
-    padding: 2px 6px;
-    text-transform: uppercase;
-    display: inline-block;
-  }
-
-  /* 5. DISEÑO RESPONSIVO (Se colapsa fluidamente en smartphones) */
-  @media (max-width: 1024px) {
-    .diario-cronica-container, .cuerpo-nota-1 {
-      grid-template-columns: 1fr;
-      gap: 24px;
-    }
-    .cuerpo-nota-1 > p, .cuerpo-nota-1 > h2 {
-      grid-column: 1 !important;
-    }
-    .cuerpo-nota-1 > h2:nth-of-type(2) {
-      border-left: none;
-      border-right: none;
-      padding: 0;
-    }
-    .cuerpo-nota-1 > h2:nth-of-type(4) {
-      border-top: 1px solid #111;
-    }
   }
 </style>
