@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/MoldeDiario.astro
+layout: "../../layouts/MoldeCronica.astro"
 titulo: "¡ÉPICA EN BARCELONA! HAMILTON REINA EN EL CAOS DE CATALUNYA Y UN PODIO BRITÁNICO PARA LA HISTORIA"
 fecha: "2026-06-14"
 fechaEtiqueta: "⏱️ 14 de junio, 2026"
@@ -28,7 +28,7 @@ Pero la gloria fue efímera. Pocas curvas después, la carrera del italiano se d
 
 Este dramático abandono, sumado al retiro previo de Charles Leclerc, despejó el camino para la foto de la década. Lewis Hamilton cruzó la bandera a cuadros inalcanzable en primera posición, conquistando una victoria magistral con Ferrari. Justo detrás, completando un podio histórico, George Russell logró resistir en el segundo puesto a pesar de sufrir con un ritmo lentísimo en los giros finales, mientras que Lando Norris firmó una sólida carrera de gestión para quedarse con la tercera plaza. 
 
-## FRANCO COLAPINTO: RESISTENCIA DE HIERRO Y 8º PUESTO PARA ALPINE
+## FRANCO COLAPINTO: RESISTENCIA DE HIERRO AND 8º PUESTO PARA ALPINE
 
 Para el público latinoamericano, la carrera de Franco Colapinto fue una cátedra de madurez. Tras padecer con la degradación y exigir por radio en la vuelta 21 que Pierre Gasly lo dejara pasar porque "ni siquiera estaba empujando", el equipo Alpine cedió. El argentino se metió de lleno en el fango de la zona media, batallando en un grupo ultracerrado contra Nico Hülkenberg (quien acabó abandonando tras una maniobra peligrosa) y Liam Lawson.
 
