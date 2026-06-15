@@ -1,0 +1,92 @@
+---
+const { content, frontmatter } = Astro.props;
+const data = content || frontmatter;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{data.titulo}</title>
+</head>
+<body>
+
+  <main class="diario-cronica-container">
+    
+    <!-- COLUMNA 1 (IZQUIERDA) -->
+    <section class="columna-principal-nota">
+      <div class="cabecera-nota">
+        <span class="etiqueta-tiempo">{data.fechaEtiqueta}</span>
+        <h1>{data.titulo}</h1>
+      </div>
+      
+      <div class="contenedor-imagen-boceto">
+        <img src={`/images/${data.imagen}`} alt={data.titulo} />
+      </div>
+
+      <div class="cuerpo-nota-1">
+        <!-- Inyecta automáticamente los primeros párrafos hasta el primer h2 -->
+        <slot />
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>
+
+<style is:global>
+  /* Cuadrícula estilo periódico clásico */
+  .diario-cronica-container {
+    display: grid;
+    grid-template-columns: 2.2fr 1.3fr 2fr;
+    gap: 28px;
+    max-width: 1380px;
+    margin: 30px auto;
+    padding: 0 20px;
+    font-family: 'Times New Roman', Times, serif;
+    color: #111;
+  }
+
+  .columna-principal-nota h1 {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 2.6rem;
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -1px;
+    margin: 8px 0 16px 0;
+  }
+
+  .contenedor-imagen-boceto {
+    border: 1px solid #111;
+    padding: 4px;
+    background: #fff;
+    margin-bottom: 16px;
+  }
+
+  .contenedor-imagen-boceto img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Estilos para los elementos que vienen del Markdown */
+  .cuerpo-nota-1 h2 {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    border-bottom: 2px solid #111;
+    padding-bottom: 4px;
+    margin-top: 24px;
+    color: #111;
+  }
+
+  .cuerpo-nota-1 p {
+    font-size: 1.05rem;
+    line-height: 1.45;
+    text-align: justify;
+    margin-bottom: 14px;
+  }
+</style>
