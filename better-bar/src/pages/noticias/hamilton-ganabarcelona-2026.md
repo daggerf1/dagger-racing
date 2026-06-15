@@ -45,7 +45,7 @@ imagen: "hamilton-premio-barcelona2026.jpg"
         Hamilton entró a boxes, los mecánicos clavaron un cambio rapidísimo y regresó a la pista en la primera posición con el compuesto duro. Al apagarse el VSC, el británico desató a la bestia: clavó un récord de vuelta demoledor de 1:20.122, sacando siete décimas por giro a sus perseguidores.
       </p>
       <p>
-        A pesar de que Dirección de Carrera avisó de una investigación por banderas amarillas, Race Control confirmó rápidamente que no había sanción para Hamilton, dejándole la vía libre hacia la gloria.
+        A pesar de que Dirección de Carrera avisó de una investigación por banners amarillas, Race Control confirmó rápidamente que no había sanción para Hamilton, dejándole la vía libre hacia la gloria.
       </p>
     </div>
   </section>
