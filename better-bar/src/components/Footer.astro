@@ -1,0 +1,59 @@
+<footer class="site-footer">
+    <div class="footer-container">
+        <p>&copy; 2026 Dagger Racing News. Todos los derechos reservados.</p>
+        
+        <!-- CONTENEDOR EN LÍNEA HORIZONTAL -->
+        <div class="footer-links">
+            <a href="/politica-privacidad">Política de Privacidad</a>
+            <span class="separador">|</span>
+            <a href="/cookies">Política de Cookies</a>
+        </div>
+        
+    </div>
+</footer>
+
+<style>
+    .site-footer {
+        background-color: #000000;
+        border-top: 2px solid #e10600;
+        color: #a0a0a0;
+        padding: 25px 0;
+        margin-top: 50px;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-align: center;
+        font-family: 'Rajdhani', sans-serif;
+    }
+
+    .footer-container {
+        max-width: 1350px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* TRUCO FLEXBOX PARA ALINEAR AL LADO */
+    .footer-links {
+        margin-top: 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px; /* Espaciado exacto entre los enlaces y la barra */
+    }
+
+    .footer-links a {
+        color: #ffffff;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+        color: #e10600;
+    }
+
+    .separador {
+        color: #475569;
+        font-weight: 400;
+    }
+</style>

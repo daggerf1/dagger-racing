@@ -1,0 +1,162 @@
+---
+// src/pages/politica-privacidad.astro
+---
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dagger Racing News - Noticias de Fórmula 1</title>
+<link rel="stylesheet" href="/css/barrasuperior.css">
+<link rel="icon" type="image/png" href="/daggerracingnews-logotipo.png">
+</head>
+<body>
+
+<html lang="es">
+	<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Política de Privacidad - Dagger Racing News</title>
+</head>
+	<body>
+
+
+		<header>
+			<h1>DAGGER <span>RACING NEWS</span></h1>
+			<p>noticias de la máxima categoría</p>
+			<nav>
+				<a href="/">Inicio</a>
+				<a href="/noticias">Noticias</a>
+				<a href="/calendario">Calendario</a>
+				<a href="/posiciones">Posiciones</a>
+			</nav>
+		</header>
+
+		<!-- CONTENEDOR DE TEXTO LEGAL PROFESIONAL -->
+		<main class="legal-container">
+			<h2>POLÍTICA DE PRIVACIDAD</h2>
+			<p class="last-update">Última actualización: Junio 2026</p>
+
+			<section class="legal-content">
+				<p>En <strong>Dagger Racing News</strong>, accesible desde daggerracingnews.com, la privacidad de nuestros visitantes es una prioridad absoluta. Este documento detalla los tipos de información que recopilamos, el tratamiento técnico de los mismos y cómo garantizamos una navegación segura dentro de nuestro portal deportivo.</p>
+
+				<h3>1. Archivos de registro (Log Files)</h3>
+				<p>Dagger Racing News implementa el uso estándar de archivos de registro del servidor. Estos archivos registran de forma automática a los usuarios al acceder a la plataforma. La información recopilada incluye direcciones IP, tipo de navegador, Proveedor de Servicios de Internet (ISP), marcas de fecha/hora, páginas de referencia o salida, y el número de clics. Estos datos se procesan únicamente para analizar tendencias y administrar el sitio, sin vinculación a identidades personales.</p>
+
+				<h3>2. Cookies de rendimiento y Web Beacons</h3>
+				<p>Al igual que los grandes portales de noticias, Dagger Racing News utiliza cookies para almacenar las preferencias de navegación y optimizar la experiencia de usuario. Esta tecnología nos permite adaptar el contenido multimedia y las crónicas de velocidad en función de los requerimientos técnicos de tu navegador.</p>
+
+				<h3>3. Cláusula Obligatoria de Google AdSense</h3>
+				<p>Informamos a nuestros usuarios que trabajamos con proveedores externos para la monetización del sitio:</p>
+				<ul>
+					<li><strong>Cookie DART de Google:</strong> Google utiliza cookies de DART para servir anuncios personalizados a los lectores que visitan daggerracingnews.com y otros sitios web en internet.</li>
+					<li><strong>Inhabilitación de seguimiento:</strong> Los usuarios pueden optar por rechazar el uso de estas cookies de publicidad visitando la política de privacidad de la red de anuncios de Google en el siguiente enlace oficial: <a href="https://google.com" target="_blank" rel="noopener noreferrer">https://google.com</a>.</li>
+				</ul>
+
+				<h3>4. Políticas de Terceros</h3>
+				<p>La política de privacidad de Dagger Racing News no se aplica a anunciantes externos o sitios web ajenos a nuestra redacción. Le recomendamos consultar las respectivas políticas de privacidad de esos servidores de anuncios de terceros para conocer sus instrucciones detalladas y saber cómo gestionar sus opciones de exclusión.</p>
+
+				<h3>5. Consentimiento de Navegación</h3>
+				<p>Al hacer uso de nuestra plataforma de automovilismo y consultar los datos del campeonato, usted acepta de forma implícita los términos descritos en esta Declaración de Privacidad.</p>
+			</section>
+		</main>
+
+	</body>
+</html>
+
+<style>
+	:root {
+		--bg-principal: #ffffff;
+		--rojo-racing: #e10600;
+		--texto-puro: #0f172a;
+		--texto-secundario: #475569;
+		--borde-tecnico: #e2e8f0;
+	}
+
+	body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fcfcfd;
+    color: #334155;
+    -webkit-font-smoothing: antialiased;
+}
+
+header {
+    background: #09090b;
+    border-bottom: 3px solid #e10600;
+    text-align: center;
+    padding: 14px 0 10px 0;
+}
+
+header h1 {
+    font-family: 'Segoe UI', -apple-system, sans-serif;
+    font-style: normal;
+    font-size: 18px;
+    margin: 0 0 4px 0;
+    color: #ffffff;
+    letter-spacing: 3px;
+    text-shadow: none;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+header h1 span {
+    color: #e10600;
+    margin-left: 4px;
+    font-style: normal;
+}
+
+
+header p {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0 0 12px 0;
+    color: #71717a;
+    font-weight: 500;
+}
+
+header nav a {
+    color: #a1a1aa;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: color 0.2s ease;
+}
+
+.legal-container {
+    max-width: 740px;
+    margin: 50px auto;
+    padding: 0 20px;
+    background: transparent; 
+    box-shadow: none; 
+}
+
+.legal-container h2 {
+    font-family: 'Segoe UI', -apple-system, sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #09090b;
+    border-left: 3px solid #e10600;
+    padding-left: 12px;
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+}
+
+.legal-content {
+    font-size: 15px;
+    line-height: 1.75;
+    color: #27272a;
+}
+
+.legal-content h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #09090b;
+    margin-top: 30px;
+    margin-bottom: 8px;
+    letter-spacing: 0px;
+}

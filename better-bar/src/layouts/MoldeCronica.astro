@@ -1,6 +1,8 @@
 ---
 import MenuNav from "../components/MenuNav.astro";
+import Footer from "../components/Footer.astro";
 const { frontmatter } = Astro.props;
+
 ---
 <!DOCTYPE html>
 <html lang="es">
@@ -119,9 +121,8 @@ const { frontmatter } = Astro.props;
         
     </main>
 
-    <footer>
-        <p>&copy; 2026 Dagger Racing News. Todos los derechos reservados.</p>
-    </footer>
+        <!-- CONTENEDOR ANCLADO DESDE COMPLEMENTS -->
+    <Footer />
 
     <!-- INTERACTIVIDAD DE DESPLEGUE SANEADA -->
     <script is:inline>

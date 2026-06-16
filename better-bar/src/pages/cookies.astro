@@ -1,0 +1,151 @@
+---
+// src/pages/terminos-condiciones.astro
+---
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dagger Racing News - Noticias de Fórmula 1</title>
+<link rel="stylesheet" href="/css/barrasuperior.css">
+<link rel="icon" type="image/png" href="/daggerracingnews-logotipo.png">
+</head>
+
+	<body>
+		
+		<!-- BARRA SUPERIOR DE TU MARCA -->
+		<header>
+			<h1>DAGGER <span>RACING NEWS</span></h1>
+			<p>noticias de la máxima categoría</p>
+			<nav>
+				<a href="/">Inicio</a>
+				<a href="/noticias">Noticias</a>
+				<a href="/calendario">Calendario</a>
+				<a href="/posiciones">Posiciones</a>
+			</nav>
+		</header>
+
+		<!-- CONTENEDOR DE TEXTO LEGAL FORMAL -->
+		<main class="legal-container">
+			<h2>POLÍTICA DE COOKIES</h2>
+			<p class="last-update">Última actualización: 16 de junio de 2026</p>
+
+			<section class="legal-content">
+				<p>Bienvenido a <strong>Dagger Racing News</strong>. Al acceder y navegar por este sitio web (daggerracingnews.com), usted acepta cumplir y estar sujeto a los siguientes términos y condiciones de uso, los cuales, junto con nuestra política de privacidad, rigen la relación entre el Sitio Web y usted en relación con este portal de información deportiva.</p>
+
+				<h3>1. Propiedad Intelectual y Uso de Contenidos</h3>
+				<p>El contenido, organización, gráficos, diseño, compilación y otros asuntos relacionados con el Sitio Web están protegidos bajo las leyes de derechos de autor y propiedad intelectual aplicables. Las crónicas periodísticas, análisis y opiniones publicadas son de carácter informativo para los entusiastas del automovilismo y queda prohibida su reproducción total o parcial sin autorización previa por escrito.</p>
+
+				<h3>2. Limitación de Responsabilidad</h3>
+				<p>La información contenida en este portal se proporciona únicamente con fines informativos y de entretenimiento sobre la Fórmula 1 y el deporte motor. Aunque nos esforzamos por mantener los datos actualizados y correctos, no garantizamos de ninguna forma la precisión absoluta o disponibilidad técnica de los horarios de transmisión o telemetría de terceros.</p>
+
+				<h3>3. Servicios e Integración de Terceros (Google AdSense)</h3>
+				<p>Este sitio web utiliza redes publicitarias externas, incluyendo a Google AdSense, para mostrar anuncios automatizados. Al utilizar este portal, usted reconoce que los anunciantes externos pueden recopilar datos de navegación anónimos a través de tecnologías informáticas (como cookies) para optimizar la relevancia de los banners publicitarios.</p>
+
+				<h3>4. Modificaciones del Servicio</h3>
+				<p>Dagger Racing News se reserva el derecho legítimo de modificar, suspender o discontinuar cualquier aspecto, sección o contenido del portal de noticias en cualquier momento y sin previo aviso técnico, con el fin de optimizar el rendimiento y la experiencia del lector.</p>
+
+				<h3>5. Aceptación de los Términos</h3>
+				<p>El acceso continuo y el uso de este portal web de automovilismo constituyen su aceptación expresa y vinculante de estos Términos y Condiciones de Uso en su totalidad.</p>
+			</section>
+		</main>
+
+	</body>
+</html>
+
+<style>
+	:root {
+		--bg-principal: #ffffff;
+		--rojo-racing: #e10600;
+		--texto-puro: #0f172a;
+		--texto-secundario: #475569;
+		--borde-tecnico: #e2e8f0;
+	}
+
+	body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fcfcfd;
+    color: #334155;
+    -webkit-font-smoothing: antialiased;
+}
+
+header {
+    background: #09090b;
+    border-bottom: 3px solid #e10600;
+    text-align: center;
+    padding: 14px 0 10px 0;
+}
+
+header h1 {
+    font-family: 'Segoe UI', -apple-system, sans-serif;
+    font-style: normal;
+    font-size: 18px;
+    margin: 0 0 4px 0;
+    color: #ffffff;
+    letter-spacing: 3px;
+    text-shadow: none;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+header h1 span {
+    color: #e10600;
+    margin-left: 4px;
+    font-style: normal;
+}
+
+
+header p {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0 0 12px 0;
+    color: #71717a;
+    font-weight: 500;
+}
+
+header nav a {
+    color: #a1a1aa;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: color 0.2s ease;
+}
+
+.legal-container {
+    max-width: 740px;
+    margin: 50px auto;
+    padding: 0 20px;
+    background: transparent; 
+    box-shadow: none; 
+}
+
+.legal-container h2 {
+    font-family: 'Segoe UI', -apple-system, sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #09090b;
+    border-left: 3px solid #e10600;
+    padding-left: 12px;
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+}
+
+.legal-content {
+    font-size: 15px;
+    line-height: 1.75;
+    color: #27272a;
+}
+
+.legal-content h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #09090b;
+    margin-top: 30px;
+    margin-bottom: 8px;
+    letter-spacing: 0px;
+}

@@ -1,5 +1,6 @@
 ---
 import MenuNav from "../components/MenuNav.astro";
+import Footer from "../components/Footer.astro";
 const notasCargadas = import.meta.glob('./noticias/*.md', { eager: true });
 
 // ORDENAMIENTO CRONOLÓGICO INVERSO AUTOMÁTICO REAL POR FECHA
@@ -28,7 +29,7 @@ const notasSecundarias = todasLasCronicasAny.slice(1);
 <link rel="icon" type="image/png" href="/daggerracingnews-logotipo.png">
 </head>
 <body>
-    
+
 
 <MenuNav />
 
@@ -168,9 +169,8 @@ const notasSecundarias = todasLasCronicasAny.slice(1);
 
 </main>
 
-<footer>
-    <p>&copy; 2026 Dagger Racing News. Todos los derechos reservados.</p>
-</footer>
+<!-- CAMBIO COMPONENTE DINÁMICO DESDE COMPLEMENTS -->
+<Footer />
 
 <!-- SCRIPT DE INTERACTIVIDAD COMPLETO SIN DEDAZOS -->
 <script is:inline>
@@ -276,5 +276,6 @@ const notasSecundarias = todasLasCronicasAny.slice(1);
     }
 }
 </style>
+
 </body>
 </html>
