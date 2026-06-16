@@ -1,10 +1,10 @@
 :root {
-    --bg-principal: #ffffff;
+    --bg-principal: #821313;
     --bg-tarjetas: #f8fafc;
     --rojo-racing: #e10600;
     --texto-puro: #0f172a;
     --texto-secundario: #475569;
-    --borde-tecnico: #e2e8f0;
+    --borde-tecnico: #001838;
 }
 
 body {
@@ -25,7 +25,7 @@ header {
 
 header h1 {
     font-family: 'Orbitron', sans-serif;
-    font-weight: 20px;
+    font-weight: 20;
     font-style: italic;
     font-size: 22px;
     margin: 0 0 2px 0;

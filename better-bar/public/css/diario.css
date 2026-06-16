@@ -1,0 +1,137 @@
+body, html {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden !important;
+  background-color: #ffffff !important;
+}
+
+.diario-cronica-container {
+  display: block !important;
+  width: 100% !important;
+  max-width: 1320px !important;
+  margin: 40px auto !important;
+  padding: 0 24px !important;
+  box-sizing: border-box !important;
+  font-family: 'Times New Roman', Times, serif !important;
+  color: #111111 !important;
+  background-color: #ffffff !important;
+}
+
+.columna-principal-nota {
+  display: block !important;
+  width: 100% !important;
+  margin-bottom: 32px !important;
+}
+
+.cabecera-nota {
+  text-align: center;
+  margin-bottom: 20px;
+  border-bottom: 3px double #111111;
+  padding-bottom: 16px;
+}
+
+.columna-principal-nota h1 {
+  font-family: 'Helvetica Neue', Arial, sans-serif !important;
+  font-size: 3rem !important;
+  font-weight: 900 !important;
+  line-height: 1.05 !important;
+  letter-spacing: -1px !important;
+  margin: 12px 0 0 0 !important;
+  text-transform: uppercase !important;
+  color: #111111 !important;
+}
+
+.contenedor-imagen-boceto {
+  display: block !important;
+  border: 1px solid #111111 !important;
+  padding: 5px !important;
+  background: #ffffff !important;
+  margin: 24px 0 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.contenedor-imagen-boceto {
+  display: block !important;
+  border: 1px solid #111111 !important;
+  padding: 5px !important;
+  background: #ffffff !important;
+  margin: 24px auto !important; /* Centra la caja de la foto */
+  width: 100% !important;
+  max-width: 750px !important; /* Controla el tamaño para que no se haga gigante */
+  box-sizing: border-box !important;
+}
+
+.contenedor-imagen-boceto img {
+  display: block !important;
+  width: 100% !important;
+  height: 450px !important; /* Altura fija fija estilo portada */
+  object-fit: cover !important; /* Recorta la foto estéticamente sin deformarla */
+}
+
+.cuerpo-nota-1 {
+  display: block !important;
+  column-count: 3 !important;
+  column-gap: 44px !important;
+  column-rule: 1px solid #111111 !important;
+  width: 100% !important;
+}
+
+.cuerpo-nota-1 h2 {
+  font-family: 'Helvetica Neue', Arial, sans-serif !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  font-size: 1.2rem !important;
+  color: #e50914 !important;
+  border-bottom: 2px solid #111111 !important;
+  padding-bottom: 4px !important;
+  margin-top: 24px !important;
+  margin-bottom: 14px !important;
+  break-inside: avoid !important;
+  page-break-inside: avoid !important;
+}
+
+.cuerpo-nota-1 p {
+  font-size: 1.05rem !important;
+  line-height: 1.55 !important;
+  text-align: justify !important;
+  margin: 0 0 16px 0 !important;
+}
+
+.cuerpo-nota-1 > p:first-of-type {
+  font-size: 1.25rem !important;
+  font-weight: bold !important;
+  line-height: 1.45 !important;
+}
+
+.etiqueta-tiempo {
+  font-family: monospace !important;
+  font-size: 0.85rem !important;
+  background: #111111 !important;
+  color: #ffffff !important;
+  padding: 4px 10px !important;
+  text-transform: uppercase !important;
+  display: inline-block !important;
+}
+
+@media (max-width: 1100px) {
+  .cuerpo-nota-1 { 
+    column-count: 2 !important; 
+    column-gap: 32px !important; 
+  }
+  .columna-principal-nota h1 { 
+    font-size: 2.4rem !important; 
+  }
+}
+
+@media (max-width: 768px) {
+  .cuerpo-nota-1 { 
+    column-count: 1 !important; 
+    column-rule: none !important; 
+  }
+  .columna-principal-nota h1 { 
+    font-size: 1.8rem !important; 
+  }
+}
