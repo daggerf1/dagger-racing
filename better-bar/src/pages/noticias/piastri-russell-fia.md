@@ -2,7 +2,7 @@
 layout: "../../layouts/MoldeCronica2.astro"
 titulo: "LA FIA CEDE ANTE MCLAREN Y MERCEDES TRAS EL POLÉMICO PREMIO DE MÓNACO 2026"
 fecha: "2026-06-17"
-fechaEtiqueta: "⏱️ 14 de junio, 2026"
+fechaEtiqueta: "⏱️ 17 de junio, 2026"
 imagen: "piastri-russell-fia.png"
 credito: "Mercedes / McLaren / FIA"
 ---
