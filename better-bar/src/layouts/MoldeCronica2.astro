@@ -17,19 +17,19 @@ const { frontmatter } = Astro.props;
 
     <MenuNav />
 
-    <main class="container">
+    <!-- CONTENEDOR PRINCIPAL FORZADO CON FLEXBOX -->
+    <main class="container" style="display: flex; flex-direction: row; gap: 20px; align-items: flex-start; max-width: 1200px; margin: 0 auto; padding: 20px;">
         
-        <!-- COLUMNA IZQUIERDA: LA NOTICIA COMPLETA -->
-        <section class="noticias">
-            <article class="tarjeta-noticia" style="border-left: 4px solid #e10600; padding-left: 15px;">
+        <!-- COLUMNA IZQUIERDA: NOTICIA COMPLETA (OCUPA EL 70% DEL ANCHO) -->
+        <section class="noticias" style="flex: 7; min-width: 0;">
+            <article class="tarjeta-noticia" style="border-left: 4px solid #e10600; padding-left: 15px; background: #fff;">
                 
-                <!-- SECCIÓN MOVIDA: FECHA Y TITULAR ARRIBA DE LA IMAGEN PRINCIPAL -->
                 <div class="contenido-cabecera" style="margin-bottom: 15px;">
                     <span class="fecha">{frontmatter.fechaEtiqueta}</span>
                     <h2 class="titular-cronica" style="font-size: 1.8rem; margin: 10px 0 20px 0; line-height: 1.3;">{frontmatter.titulo}</h2>
                 </div>
 
-                <div class="contenedor-imagen-live" style="height: 400px; margin-bottom: 20px;">
+                <div class="contenedor-imagen-live" style="height: 400px; margin-bottom: 20px; overflow: hidden;">
                     <img src={`/${frontmatter.imagen}`} alt="Monoplaza en pista" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
                 
@@ -42,10 +42,8 @@ const { frontmatter } = Astro.props;
                 )}
                 
                 <div class="contenido">
-                    <!-- Aquí Astro inyectará automáticamente los párrafos y tablas de tus archivos .md -->
                     <slot />
 
-                    <!-- TU BOTÓN AZUL OSCURO REAL INTEGRADO -->
                     <button id="btn-desplegar-tabla" class="boton-desplegar" style="display: block; width: 100%; background-color: #1e293b; color: white; border: none; padding: 12px; font-family: 'Orbitron', sans-serif; cursor: pointer; text-align: center; font-size: 0.9rem; margin-top: 20px; margin-bottom: 20px; font-weight: bold;">
                         Ver resto de posiciones ↓
                     </button>
@@ -56,8 +54,8 @@ const { frontmatter } = Astro.props;
             </article>
         </section>
 
-        <!-- COLUMNA DERECHA CORREGIDA: MISMA ESTRUCTURA E IDENTIDAD DE LA PÁGINA PRINCIPAL -->
-        <aside class="barra-lateral-derecha">
+        <!-- COLUMNA DERECHA FORZADA ARRIBA (OCUPA EL 30% DEL ANCHO) -->
+        <aside class="barra-lateral-derecha" style="flex: 3; min-width: 280px; position: sticky; top: 20px;">
             <div class="seccion-proxima">
                 <h3>Crónicas Anteriores</h3>
                 <div class="evento">
@@ -71,7 +69,7 @@ const { frontmatter } = Astro.props;
                 <div class="tabla-horarios">
                     
                     <!-- Tarjeta de Crónica 1 -->
-                    <div class="fila-paises" style="margin-bottom: 12px; padding: 12px;">
+                    <div class="fila-paises" style="margin-bottom: 12px; padding: 12px; background: #f9f9f9; border-radius: 4px;">
                         <div class="horarios">
                             <a href="/noticias/hamilton-ganabarcelona-2026" style="text-decoration: none; color: inherit; display: block;">
                                 <span style="font-size: 0.75rem; color: #888; display: block; margin-bottom: 4px;">⏱️ 14 de junio, 2026</span>
@@ -83,7 +81,7 @@ const { frontmatter } = Astro.props;
                     </div>
 
                     <!-- Tarjeta de Crónica 2 -->
-                    <div class="fila-paises" style="margin-bottom: 12px; padding: 12px;">
+                    <div class="fila-paises" style="margin-bottom: 12px; padding: 12px; background: #f9f9f9; border-radius: 4px;">
                         <div class="horarios">
                             <a href="/noticias/2026-06-13-clasificacion-barcelona" style="text-decoration: none; color: inherit; display: block;">
                                 <span style="font-size: 0.75rem; color: #888; display: block; margin-bottom: 4px;">⏱️ 13 de junio, 2026</span>
@@ -95,7 +93,7 @@ const { frontmatter } = Astro.props;
                     </div>
 
                     <!-- Tarjeta de Crónica 3 -->
-                    <div class="fila-paises" style="margin-bottom: 12px; padding: 12px;">
+                    <div class="fila-paises" style="margin-bottom: 12px; padding: 12px; background: #f9f9f9; border-radius: 4px;">
                         <div class="horarios">
                             <a href="/noticias/cronica-russell" style="text-decoration: none; color: inherit; display: block;">
                                 <span style="font-size: 0.75rem; color: #888; display: block; margin-bottom: 4px;">⏱️ 13 de junio, 2026</span>
@@ -112,10 +110,8 @@ const { frontmatter } = Astro.props;
         
     </main>
 
-    <!-- CONTENEDOR ANCLADO DESDE COMPLEMENTS -->
     <Footer />
 
-    <!-- INTERACTIVIDAD DE DESPLEGUE SANEADA -->
     <script is:inline>
         document.addEventListener("DOMContentLoaded", () => {
             const boton = document.getElementById("btn-desplegar-tabla");
@@ -138,6 +134,19 @@ const { frontmatter } = Astro.props;
             }
         });
     </script>
+
+    <!-- ESTILO RESPONSIVO PARA MÓVILES (HACE QUE SE APILEN SI LA PANTALLA ES CHICA) -->
+    <style>
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column !important;
+            }
+            .barra-lateral-derecha {
+                width: 100% !important;
+                margin-top: 20px;
+            }
+        }
+    </style>
 
 </body>
 </html>
