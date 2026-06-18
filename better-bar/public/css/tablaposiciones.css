@@ -1,0 +1,106 @@
+.contenedor-campeonato {
+    background: #111111;
+    border: 1px solid #222222;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.titulo-tabla {
+    font-family: 'Orbitron', sans-serif;
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-top: 0;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #e10600;
+    padding-bottom: 8px;
+    display: inline-block;
+}
+
+.tabla-f1 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.fila-tabla {
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    border-bottom: 1px solid #222222;
+    color: #ffffff;
+    font-size: 0.9rem;
+    background: #161616;
+}
+
+/* Formato especial de cabecera */
+.fila-tabla.encabezado {
+    background: #000000;
+    color: #888888;
+    font-weight: bold;
+    font-size: 0.75rem;
+    border-bottom: 2px solid #333333;
+}
+
+/* Columnas proporcionales */
+.col-pos { flex: 1; max-width: 45px; text-align: center; font-weight: bold; }
+.col-piloto { flex: 4; text-align: left; }
+.col-equipo { flex: 3; text-align: left; }
+.col-puntos { flex: 1.5; max-width: 60px; text-align: center; font-weight: bold; }
+
+/* Estilos visuales del Podio (Top 3) */
+.posicion-1 { border-left: 4px solid #ffd700; background: #1a1913; }
+.posicion-2 { border-left: 4px solid #c0c0c0; background: #171717; }
+.posicion-3 { border-left: 4px solid #cd7f32; background: #151311; }
+
+.item-podio {
+    color: #e10600;
+    font-size: 1rem;
+}
+
+.total-pts {
+    color: #e10600;
+}
+
+.text-mutado {
+    color: #888888;
+    font-size: 0.85rem;
+}
+
+/* Animación y estado del contenedor desplegables */
+.filas-tabla-ocultas {
+    width: 100%;
+    animation: fadeEfecto 0.2s ease-in-out;
+}
+
+@keyframes fadeEfecto {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Botón interactivo azul oscuro real */
+.boton-desplegar {
+    display: block;
+    width: 100%;
+    background-color: #1e293b;
+    color: #ffffff;
+    border: none;
+    padding: 12px;
+    font-family: 'Orbitron', sans-serif;
+    cursor: pointer;
+    text-align: center;
+    font-size: 0.9rem;
+    margin-top: 15px;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.boton-desplegar:hover {
+    background-color: #0f172a;
+    color: #e10600;
+}

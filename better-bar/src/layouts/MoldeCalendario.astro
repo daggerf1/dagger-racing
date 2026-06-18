@@ -1,0 +1,157 @@
+---
+// @ts-ignore
+import MenuNav from "../components/MenuNav.astro";
+// @ts-ignore
+import Footer from "../components/Footer.astro";
+
+const { frontmatter } = Astro.props;
+
+// CARGA DINÁMICA DE ARTÍCULOS PARA LA BARRA LATERAL RECOMENDADA
+const notasCargadas = import.meta.glob('../pages/noticias/*.md', { eager: true });
+
+// ORDENAMIENTO CRONOLÓGICO INVERSO AUTOMÁTICO POR FECHA
+const todasLasCronicas = Object.values(notasCargadas).sort((a: any, b: any) => {
+    const fechaA = new Date(a.frontmatter.fecha).getTime();
+    const fechaB = new Date(b.frontmatter.fecha).getTime();
+    return fechaB - fechaA;
+});
+
+// Filtramos para obtener las 3 notas más recientes para recomendar
+const cronicasRecomendadas = (todasLasCronicas as any).slice(0, 3);
+---
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dagger Racing News - {frontmatter.titulo || 'Calendario'}</title>
+    <link rel="stylesheet" href="/css/styless.css">
+    <link rel="stylesheet" href="/css/tablaposiciones.css">
+    <link rel="icon" type="image/png" href="/daggerracingnews-logotipo.png">
+</head>
+<body style="background: #0a0a0a; color: white; margin: 0; padding: 0;">
+
+    <MenuNav />
+
+    <!-- CONTENEDOR PRINCIPAL FLUIDO CON ALIGN-ITEMS STRETCH PARA ACTIVAR EL STICKY -->
+    <main class="container" style="display: flex; flex-direction: row; gap: 25px; align-items: stretch; max-width: 1200px; margin: 0 auto; padding: 20px; box-sizing: border-box;">
+        
+        <!-- COLUMNA IZQUIERDA: CONTENIDO DINÁMICO DEL CALENDARIO (70%) -->
+        <section class="contenido-calendario" style="flex: 7; min-width: 0;">
+            <article class="tarjeta-noticia" style="border-left: 4px solid #e10600; padding: 25px; padding-left: 20px; background: #111111; border-radius: 8px; border: 1px solid #222;">
+                
+                <div class="contenido-cabecera" style="margin-bottom: 25px;">
+                    <span class="fecha" style="color: #e10600; font-weight: bold; font-family: 'Orbitron', sans-serif; text-transform: uppercase; letter-spacing: 1px;">
+                        {frontmatter.fechaEtiqueta || 'Temporada Oficial'}
+                    </span>
+                    <h2 class="titular-cronica" style="font-size: 2rem; margin: 10px 0 0 0; line-height: 1.2; font-family: 'Orbitron', sans-serif; color: #ffffff;">
+                        {frontmatter.titulo}
+                    </h2>
+                </div>
+
+                {frontmatter.imagen && (
+                    <div class="contenedor-imagen-live" style="height: 380px; margin-bottom: 25px; overflow: hidden; border-radius: 6px; border: 1px solid #333;">
+                        <img src={`/${frontmatter.imagen}`} alt="Portada Calendario" style="width: 100%; height: 100%; object-fit: cover;"/>
+                    </div>
+                )}
+                
+                <div class="contenido-markdown" style="font-family: Arial, sans-serif; line-height: 1.6; color: #e0e0e0;">
+                    <!-- Aquí Astro inyectará automáticamente tus tablas y textos del archivo .md -->
+                    <slot />
+                </div>
+
+            </article>
+        </section>
+
+        <!-- COLUMNA DERECHA: BARRA LATERAL FIJA BLANCA (30%) -->
+        <aside class="barra-lateral-derecha" style="flex: 3; min-width: 300px; box-sizing: border-box;">
+            
+            <!-- CONTENEDOR INTERNO STICKY CON UN TOP DE 90PX PARA EL MENÚ -->
+            <div style="position: sticky; top: 90px; display: flex; flex-direction: column; gap: 20px;">
+
+                <!-- Bloque Informativo -->
+                <div class="seccion-proxima" style="background: #ffffff; padding: 15px; border-radius: 8px; border: 1px solid #e0e0e0;">
+                    <h3 style="font-family: 'Orbitron', sans-serif; color: #111111; margin-top:0; margin-bottom: 8px; font-size: 1.1rem; border-bottom: 2px solid #e10600; padding-bottom: 4px; display: inline-block;">
+                        Próximo Destino
+                    </h3>
+                    <div class="evento">
+                        <p style="color: #222222; margin: 0; font-weight: bold; font-size: 0.95rem;">Gran Premio de Austria</p>
+                        <p style="color: #666666; font-size: 0.85rem; margin: 4px 0 0 0;">Red Bull Ring | 26-28 Junio</p>
+                    </div>
+                </div>
+
+                <!-- Bloque Crónicas Recientes Dinámicas con foto -->
+                <div class="seccion-horarios" style="background: #ffffff; padding: 15px; border-radius: 8px; border: 1px solid #e0e0e0;">
+                    <h4 style="font-family: 'Orbitron', sans-serif; color: #111111; margin-top: 0; margin-bottom: 15px; font-size: 1rem; letter-spacing: 0.5px;">
+                        Últimas Crónicas
+                    </h4>
+                    <div class="tabla-horarios" style="display: flex; flex-direction: column; gap: 15px;">
+                        
+                        {cronicasRecomendadas.map((nota: any) => (
+                            <div class="fila-paises" style="background: #ffffff; border: 1px solid #eaeaea; border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.05)'" onmouseout="this.style.transform='none'; this.style.boxShadow='none'">
+                                
+                                <div style="height: 100px; width: 100%;">
+                                    <img src={`/${nota.frontmatter.imagen}`} alt={nota.frontmatter.titulo} style="width: 100%; height: 100%; object-fit: cover;"/>
+                                </div>
+                                
+                                <div style="padding: 10px;">
+                                    <a href={nota.url} style="text-decoration: none; color: inherit; display: block;">
+                                        <span style="font-size: 0.7rem; color: #e10600; font-weight: bold; display: block; margin-bottom: 4px; font-family: 'Orbitron', sans-serif;">
+                                            {nota.frontmatter.fechaEtiqueta}
+                                        </span>
+                                        <p class="carrera" style="font-size: 0.85rem; font-weight: bold; line-height: 1.3; color: #222222; margin: 0; font-family: 'Orbitron', sans-serif; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; transition: color 0.2s;" onmouseover="this.style.color='#e10600'" onmouseout="this.style.color='#222222'">
+                                            {nota.frontmatter.titulo}
+                                        </p>
+                                    </a>
+                                </div>
+                            </div>
+                        ))}
+
+                    </div>
+                </div>
+
+            </div>
+        </aside>
+        
+    </main>
+
+    <Footer />
+
+        <!-- INTERACTIVIDAD DEL SCRIPT SEGURO DEL LADO DEL CLIENTE -->
+        <script>
+            if (typeof document !== 'undefined') {
+                const boton = document.getElementById("btn-desplegar-tiempos") || document.querySelector(".boton-desplegar");
+                const tablaOculta = document.querySelector(".filas-tabla-ocultas") as HTMLElement;
+
+                if (tablaOculta && boton) {
+                    // Estado inicial forzado
+                    tablaOculta.style.display = "none";
+                    
+                    boton.addEventListener("click", () => {
+                        if (tablaOculta.style.display === "none") {
+                            tablaOculta.style.display = "block";
+                            boton.textContent = "Ocultar posiciones ↑";
+                        } else {
+                            tablaOculta.style.display = "none";
+                            boton.textContent = "Ver resto de posiciones ↓";
+                        }
+                    });
+                }
+            }
+        </script>
+
+        <!-- ESTILO RESPONSIVO ADAPTADO -->
+        <style>
+            @media (max-width: 768px) {
+                .container {
+                    flex-direction: column !important;
+                }
+                .barra-lateral-derecha {
+                    width: 100% !important;
+                    margin-top: 20px;
+                }
+            }
+        </style>
+
+    </body>
+</html>
