@@ -12,7 +12,6 @@ const { frontmatter } = Astro.props;
     <title>Dagger Racing News - {frontmatter.titulo}</title>
     <link rel="stylesheet" href="/css/styless.css">
     <link rel="icon" type="image/png" href="/daggerracingnews-logotipo.png">
-
 </head>
 <body>
 
@@ -30,12 +29,11 @@ const { frontmatter } = Astro.props;
                     <h2 class="titular-cronica" style="font-size: 1.8rem; margin: 10px 0 20px 0; line-height: 1.3;">{frontmatter.titulo}</h2>
                 </div>
 
-                <!-- CONTENEDOR DE IMAGEN PRINCIPAL -->
                 <div class="contenedor-imagen-live" style="height: 400px; margin-bottom: 20px;">
                     <img src={`/${frontmatter.imagen}`} alt="Monoplaza en pista" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
                 
-                {frontmatter.credito && (
+                 {frontmatter.credito && (
                     <div style="text-align: right; width: 100%; margin-top: 5px; margin-bottom: 15px;">
                         <span style="font-size: 11px; color: #b3b3b3; font-style: italic; font-family: Arial, sans-serif;">
                             Foto: {frontmatter.credito}
@@ -58,65 +56,53 @@ const { frontmatter } = Astro.props;
             </article>
         </section>
 
-        <!-- COLUMNA DERECHA: BARRA DE HORARIOS COMPLETA CON TU FORMATO -->
+        <!-- COLUMNA DERECHA CORREGIDA: MISMA ESTRUCTURA E IDENTIDAD DE LA PÁGINA PRINCIPAL -->
         <aside class="barra-lateral-derecha">
             <div class="seccion-proxima">
-                <h3>Próxima Carrera</h3>
+                <h3>Crónicas Anteriores</h3>
                 <div class="evento">
-                    <p><strong>Gran Premio de España</strong></p>
-                    <p>Circuito de Barcelona-Cataluña</p>
+                    <p><strong>Artículos recomendados</strong></p>
+                    <p>No te pierdas las últimas novedades</p>
                 </div>
             </div>
 
             <div class="seccion-horarios">
-                <h4>Horarios del Fin de Semana</h4>
+                <h4>Más Noticias</h4>
                 <div class="tabla-horarios">
                     
-                    <!-- Tarjeta 1: Argentina, Brasil, Paraguay, Uruguay -->
-                    <div class="fila-paises">
-                        <span class="paises">🇦🇷 🇧🇷 🇵🇾 🇺🇾</span>
+                    <!-- Tarjeta de Crónica 1 -->
+                    <div class="fila-paises" style="margin-bottom: 12px; padding: 12px;">
                         <div class="horarios">
-                            <p><span>Práctica 1:</span> Viernes 12 – 08:30</p>
-                            <p><span>Práctica 2:</span> Viernes 12 – 12:00</p>
-                            <p><span>Práctica 3:</span> Sábado 13 – 07:30</p>
-                            <p><span>Clasificación:</span> Sábado 13 – 11:00</p>
-                            <p class="carrera"><span>GP:</span> Domingo 14 – 10:00</p>
+                            <a href="/noticias/hamilton-ganabarcelona-2026" style="text-decoration: none; color: inherit; display: block;">
+                                <span style="font-size: 0.75rem; color: #888; display: block; margin-bottom: 4px;">⏱️ 14 de junio, 2026</span>
+                                <p class="carrera" style="font-size: 0.95rem; font-weight: bold; line-height: 1.3; color: #111; margin: 0;">
+                                    ¡ÉPICA EN BARCELONA! HAMILTON REINA EN EL CAOS
+                                </p>
+                            </a>
                         </div>
                     </div>
 
-                    <!-- Tarjeta 2: Bolivia, Chile, Rep. Dominicana, Puerto Rico, Venezuela -->
-                    <div class="fila-paises">
-                        <span class="paises">🇧🇴 🇨🇱 🇩🇴 🇵🇷 🇻🇪</span>
+                    <!-- Tarjeta de Crónica 2 -->
+                    <div class="fila-paises" style="margin-bottom: 12px; padding: 12px;">
                         <div class="horarios">
-                            <p><span>Práctica 1:</span> Viernes 12 – 07:30</p>
-                            <p><span>Práctica 2:</span> Viernes 12 – 11:00</p>
-                            <p><span>Práctica 3:</span> Sábado 13 – 06:30</p>
-                            <p><span>Clasificación:</span> Sábado 13 – 10:00</p>
-                            <p class="carrera"><span>GP:</span> Domingo 14 – 09:00</p>
+                            <a href="/noticias/2026-06-13-clasificacion-barcelona" style="text-decoration: none; color: inherit; display: block;">
+                                <span style="font-size: 0.75rem; color: #888; display: block; margin-bottom: 4px;">⏱️ 13 de junio, 2026</span>
+                                <p class="carrera" style="font-size: 0.95rem; font-weight: bold; line-height: 1.3; color: #111; margin: 0;">
+                                    Thrill en Montmeló: George Russell firma la pole en Barcelona
+                                </p>
+                            </a>
                         </div>
                     </div>
 
-                    <!-- Tarjeta 3: Colombia, Ecuador, Panamá, Perú -->
-                    <div class="fila-paises">
-                        <span class="paises">🇨🇴 🇪🇨 🇵🇦 🇵🇪</span>
+                    <!-- Tarjeta de Crónica 3 -->
+                    <div class="fila-paises" style="margin-bottom: 12px; padding: 12px;">
                         <div class="horarios">
-                            <p><span>Práctica 1:</span> Viernes 12 – 06:30</p>
-                            <p><span>Práctica 2:</span> Viernes 12 – 10:00</p>
-                            <p><span>Práctica 3:</span> Sábado 13 – 05:30</p>
-                            <p><span>Clasificación:</span> Sábado 13 – 09:00</p>
-                            <p class="carrera"><span>GP:</span> Domingo 14 – 08:00</p>
-                        </div>
-                    </div>
-
-                    <!-- Tarjeta 4: Costa Rica, El Salvador, Honduras, México -->
-                    <div class="fila-paises">
-                        <span class="paises">🇨🇷 🇸🇻 🇭🇳 🇲🇽</span>
-                        <div class="horarios">
-                            <p><span>Práctica 1:</span> Viernes 12 – 05:30</p>
-                            <p><span>Práctica 2:</span> Viernes 12 – 09:00</p>
-                            <p><span>Práctica 3:</span> Sábado 13 – 04:30</p>
-                            <p><span>Clasificación:</span> Sábado 13 – 08:00</p>
-                            <p class="carrera"><span>GP:</span> Domingo 14 – 07:00</p>
+                            <a href="/noticias/cronica-russell" style="text-decoration: none; color: inherit; display: block;">
+                                <span style="font-size: 0.75rem; color: #888; display: block; margin-bottom: 4px;">⏱️ 13 de junio, 2026</span>
+                                <p class="carrera" style="font-size: 0.95rem; font-weight: bold; line-height: 1.3; color: #111; margin: 0;">
+                                    Mercedes no da tregua: Russell lidera una calurosa FP3
+                                </p>
+                            </a>
                         </div>
                     </div>
 
