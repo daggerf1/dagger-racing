@@ -29,8 +29,8 @@ const cronicasRecomendadas = (todasLasCronicas as any).filter((nota: any) => not
 
     <MenuNav />
 
-    <!-- CONTENEDOR PRINCIPAL FLUIDO CON FLEXBOX -->
-    <main class="container" style="display: flex; flex-direction: row; gap: 25px; align-items: flex-start; max-width: 1200px; margin: 0 auto; padding: 20px; box-sizing: border-box;">
+    <!-- 1. CAMBIO AQUÍ: SE CAMBIÓ A ALIGN-ITEMS: STRETCH PARA DARLE ALTURA A LA BARRA -->
+    <main class="container" style="display: flex; flex-direction: row; gap: 25px; align-items: stretch; max-width: 1200px; margin: 0 auto; padding: 20px; box-sizing: border-box;">
         
         <!-- COLUMNA IZQUIERDA: NOTICIA COMPLETA (70%) -->
         <section class="noticias" style="flex: 7; min-width: 0;">
@@ -67,40 +67,46 @@ const cronicasRecomendadas = (todasLasCronicas as any).filter((nota: any) => not
         </section>
 
         <!-- COLUMNA DERECHA DINÁMICA: BARRA TOTALMENTE BLANCA -->
-        <aside class="barra-lateral-derecha" style="flex: 3; min-width: 300px; position: sticky; top: 20px; box-sizing: border-box;">
-            <div class="seccion-proxima" style="background: #ffffff; padding: 15px; border-radius: 8px; border: 1px solid #e0e0e0; margin-bottom: 20px;">
-                <h3 style="font-family: 'Orbitron', sans-serif; color: #111111; margin-top:0;">Crónicas Anteriores</h3>
-                <div class="evento">
-                    <p style="color: #222222; margin:0;"><strong>Artículos recomendados</strong></p>
-                    <p style="color: #666666; font-size: 0.85rem; margin:0;">No te pierdas las últimas novedades</p>
-                </div>
-            </div>
+        <aside class="barra-lateral-derecha" style="flex: 3; min-width: 300px; box-sizing: border-box;">
+            
+            <!-- 2. CAMBIO AQUÍ: ENVOLTORIO INTERNO STICKY CON UN TOP DE 90PX PARA EL MENÚ -->
+            <div style="position: sticky; top: 90px; display: flex; flex-direction: column; gap: 20px;">
 
-            <div class="seccion-horarios" style="background: #ffffff; padding: 15px; border-radius: 8px; border: 1px solid #e0e0e0;">
-                <h4 style="font-family: 'Orbitron', sans-serif; color: #111111; margin-top:0; margin-bottom:15px;">Más Noticias</h4>
-                <div class="tabla-horarios" style="display: flex; flex-direction: column; gap: 15px;">
-                    
-                    {cronicasRecomendadas.slice(0, 3).map((nota: any) => (
-                        <div class="fila-paises" style="background: #ffffff; border: 1px solid #eaeaea; border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.05)'" onmouseout="this.style.transform='none'; this.style.boxShadow='none'">
-                            {/* IMAGEN DE LA NOTA SECUNDARIA DINÁMICA */}
-                            <div style="height: 110px; width: 100%;">
-                                <img src={`/${nota.frontmatter.imagen}`} alt={nota.frontmatter.titulo} style="width: 100%; height: 100%; object-fit: cover;">
-                            </div>
-                            
-                            <div style="padding: 10px;">
-                                <a href={nota.url} style="text-decoration: none; color: inherit; display: block;">
-                                    <span style="font-size: 0.7rem; color: #e10600; font-weight: bold; display: block; margin-bottom: 4px; font-family: 'Orbitron', sans-serif;">
-                                        ⏱️ {nota.frontmatter.fechaEtiqueta}
-                                    </span>
-                                    <p class="carrera" style="font-size: 0.85rem; font-weight: bold; line-height: 1.3; color: #222222; margin: 0; font-family: 'Orbitron', sans-serif; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; transition: color 0.2s;" onmouseover="this.style.color='#e10600'" onmouseout="this.style.color='#222222'">
-                                        {nota.frontmatter.titulo}
-                                    </p>
-                                </a>
-                            </div>
-                        </div>
-                    ))}
-
+                <div class="seccion-proxima" style="background: #ffffff; padding: 15px; border-radius: 8px; border: 1px solid #e0e0e0;">
+                    <h3 style="font-family: 'Orbitron', sans-serif; color: #111111; margin-top:0;">Crónicas Anteriores</h3>
+                    <div class="evento">
+                        <p style="color: #222222; margin:0;"><strong>Artículos recomendados</strong></p>
+                        <p style="color: #666666; font-size: 0.85rem; margin:0;">No te pierdas las últimas novedades</p>
+                    </div>
                 </div>
+
+                <div class="seccion-horarios" style="background: #ffffff; padding: 15px; border-radius: 8px; border: 1px solid #e0e0e0;">
+                    <h4 style="font-family: 'Orbitron', sans-serif; color: #111111; margin-top:0; margin-bottom:15px;">Más Noticias</h4>
+                    <div class="tabla-horarios" style="display: flex; flex-direction: column; gap: 15px;">
+                        
+                        {cronicasRecomendadas.slice(0, 3).map((nota: any) => (
+                            <div class="fila-paises" style="background: #ffffff; border: 1px solid #eaeaea; border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.05)'" onmouseout="this.style.transform='none'; this.style.boxShadow='none'">
+                                {/* IMAGEN DE LA NOTA SECUNDARIA DINÁMICA */}
+                                <div style="height: 110px; width: 100%;">
+                                    <img src={`/${nota.frontmatter.imagen}`} alt={nota.frontmatter.titulo} style="width: 100%; height: 100%; object-fit: cover;">
+                                </div>
+                                
+                                <div style="padding: 10px;">
+                                    <a href={nota.url} style="text-decoration: none; color: inherit; display: block;">
+                                        <span style="font-size: 0.7rem; color: #e10600; font-weight: bold; display: block; margin-bottom: 4px; font-family: 'Orbitron', sans-serif;">
+                                            {nota.frontmatter.fechaEtiqueta}
+                                        </span>
+                                        <p class="carrera" style="font-size: 0.85rem; font-weight: bold; line-height: 1.3; color: #222222; margin: 0; font-family: 'Orbitron', sans-serif; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; transition: color 0.2s;" onmouseover="this.style.color='#e10600'" onmouseout="this.style.color='#222222'">
+                                            {nota.frontmatter.titulo}
+                                        </p>
+                                    </a>
+                                </div>
+                            </div>
+                        ))}
+
+                    </div>
+                </div>
+
             </div>
         </aside>
         
