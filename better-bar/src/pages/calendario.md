@@ -33,10 +33,10 @@ layout: ../layouts/MoldeCalendario.astro
                 <td style="padding: 15px; text-align: center; font-weight: 500; border: 1px solid #333333;">04:30 AM</td>
                 <td style="padding: 15px; text-align: center; font-weight: 500; border: 1px solid #333333;">05:30 AM</td>
                 <td style="padding: 15px; text-align: center; font-weight: 500; border: 1px solid #333333;">06:30 AM</td>
-                <td style="padding: 15px; text-align: center; font-weight: 500; border: 1px solid #110101;">07:30 AM</td>
+                <td style="padding: 15px; text-align: center; font-weight: 500; border: 1px solid #333333;">07:30 AM</td>
             </tr>
             <tr style="transition: background 0.2s;" onmouseover="this.style.background='#1c1c1c'" onmouseout="this.style.background='transparent'">
-                <td style="padding: 15px 20px; font-weight: bold; color: #ffffff; border: 1px solid #110101;">Clasificación (Sábado 13)</td>
+                <td style="padding: 15px 20px; font-weight: bold; color: #ffffff; border: 1px solid #333333;">Clasificación (Sábado 13)</td>
                 <td style="padding: 15px; text-align: center; font-weight: bold; color: #ffffff; border: 1px solid #333333;">08:00 AM</td>
                 <td style="padding: 15px; text-align: center; font-weight: bold; color: #ffffff; border: 1px solid #333333;">09:00 AM</td>
                 <td style="padding: 15px; text-align: center; font-weight: bold; color: #ffffff; border: 1px solid #333333;">10:00 AM</td>
