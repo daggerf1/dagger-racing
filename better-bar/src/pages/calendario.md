@@ -5,11 +5,11 @@ layout: ../layouts/MoldeCalendario.astro
 <div class="contenedor-tabla-horarios" style="overflow-x: auto; margin: 25px 0; background: #430202;  border-radius: 8px; border: 1px solid #ee0000; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);">
     <table style="width: 100%; border-collapse: collapse; font-family: 'Orbitron', sans-serif; color: #ffffff; font-size: 0.85rem; min-width: 600px;">
         <thead>
-            <tr style="background: #ffffff;">
+            <tr style="background: #000000;">
                 <th style="padding: 15px 20px; text-align: left; font-weight: bold; color: #e10600; letter-spacing: 0.5px; border: 1px solid #333333;">SESIÓN</th>
-                <th style="padding: 15px; text-align: center; font-size: 1.1rem; letter-spacing: 4px; border: 1px solid #ffffff; color: #110101;">🇨🇷 🇸🇻 🇭🇳 🇲🇽</th>
-                <th style="padding: 15px; text-align: center; font-size: 1.1rem; letter-spacing: 4px; border: 1px solid #ffffff; color: #110101;">🇨🇴 🇪🇨 🇵🇦 🇵🇪</th>
-                <th style="padding: 15px; text-align: center; font-size: 1.1rem; letter-spacing: 4px; border: 1px solid #ffffff; color: #110101;">🇧🇴 🇨🇱 🇩🇴 🇵🇷 🇻🇪</th>
+                <th style="padding: 15px; text-align: center; font-size: 1.1rem; letter-spacing: 4px; border: 1px solid #333333; color: #110101;">🇨🇷 🇸🇻 🇭🇳 🇲🇽</th>
+                <th style="padding: 15px; text-align: center; font-size: 1.1rem; letter-spacing: 4px; border: 1px solid #333333; color: #110101;">🇨🇴 🇪🇨 🇵🇦 🇵🇪</th>
+                <th style="padding: 15px; text-align: center; font-size: 1.1rem; letter-spacing: 4px; border: 1px solid #333333; color: #110101;">🇧🇴 🇨🇱 🇩🇴 🇵🇷 🇻🇪</th>
                 <th style="padding: 15px; text-align: center; font-size: 1.1rem; letter-spacing: 4px; border: 1px solid #333333; color: #110101;">🇦🇷 🇧🇷 🇵🇾 🇺🇾</th>
             </tr>
         </thead>
