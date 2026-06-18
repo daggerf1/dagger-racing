@@ -1,6 +1,6 @@
 .contenedor-campeonato {
-    background: #111111;
-    border: 1px solid #222222;
+    background: #ffffff;
+    border: 1px solid #ffffff;
     border-radius: 8px;
     padding: 20px;
     margin: 20px 0;
@@ -102,5 +102,33 @@
 
 .boton-desplegar:hover {
     background-color: #0f172a;
-    color: #e10600;
+    color: #1fef64;
+}
+
+/* EFECTO DE DEGRADADO DINÁMICO FONDO DE PÁGINA */
+.fondo-dinamico-rojo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle at 50% 50%, rgba(159, 44, 44, 0.48) 0%, rgba(0, 0, 0, 0.685) 70%);
+    z-index: -1;
+    pointer-events: none;
+    animation: movimientoGlowF1 12s ease-in-out infinite alternate;
+}
+
+@keyframes movimientoGlowF1 {
+    0% {
+        background-position: 0% 0%;
+        transform: scale(1);
+    }
+    50% {
+        background-position: 100% 50%;
+        transform: scale(1.15) translate(20px, -30px);
+    }
+    100% {
+        background-position: 50% 100%;
+        transform: scale(0.95) translate(-20px, 10px);
+    }
 }

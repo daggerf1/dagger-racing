@@ -29,19 +29,21 @@ const cronicasRecomendadas = (todasLasCronicas as any).slice(0, 3);
     <link rel="stylesheet" href="/css/tablaposiciones.css">
     <link rel="icon" type="image/png" href="/daggerracingnews-logotipo.png">
 </head>
-<body style="background: #0a0a0a; color: white; margin: 0; padding: 0;">
+
+<body style="background: #6c0505; color: rgb(0, 0, 0); margin: 0; padding: 0; position: relative; overflow-x: hidden;">
+
+    <!-- ¡ESTA ES LA LÍNEA CLAVE QUE TE FALTABA EN EL HTML! -->
+    <div class="fondo-dinamico-rojo"></div>
 
     <MenuNav />
 
-    <!-- CONTENEDOR PRINCIPAL FLUIDO CON ALIGN-ITEMS STRETCH PARA ACTIVAR EL STICKY -->
     <main class="container" style="display: flex; flex-direction: row; gap: 25px; align-items: stretch; max-width: 1200px; margin: 0 auto; padding: 20px; box-sizing: border-box;">
+
         
         <!-- COLUMNA IZQUIERDA: CONTENIDO DINÁMICO DEL CALENDARIO (70%) -->
         <section class="contenido-calendario" style="flex: 7; min-width: 0;">
-            <article class="tarjeta-noticia" style="border-left: 4px solid #e10600; padding: 25px; padding-left: 20px; background: #111111; border-radius: 8px; border: 1px solid #222;">
-                
-                <div class="contenido-cabecera" style="margin-bottom: 25px;">
-                    <span class="fecha" style="color: #e10600; font-weight: bold; font-family: 'Orbitron', sans-serif; text-transform: uppercase; letter-spacing: 1px;">
+            <div class="contenido-cabecera" style="margin-bottom: 25px;">
+                    <span class="fecha" style="color: #e1070078; font-weight: bold; font-family: 'Orbitron', sans-serif; text-transform: uppercase; letter-spacing: 1px;">
                         {frontmatter.fechaEtiqueta || 'Temporada Oficial'}
                     </span>
                     <h2 class="titular-cronica" style="font-size: 2rem; margin: 10px 0 0 0; line-height: 1.2; font-family: 'Orbitron', sans-serif; color: #ffffff;">

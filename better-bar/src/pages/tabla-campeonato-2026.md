@@ -2,9 +2,9 @@
 layout: ../layouts/MoldeCalendario.astro
 ---
 
-<h3 style="margin-top: 30px; font-family: 'Orbitron', sans-serif; border-bottom: 2px solid #e10600; padding-bottom: 8px; color: #ffffff; letter-spacing: 1px; text-align: center;">MUNDIAL DE PILOTOS 2026</h3>
+<h3 style="margin-top: 30px; font-family: 'Orbitron', sans-serif; border-bottom: 2px solid #e1070043; padding-bottom: 8px; color: #ffffff; letter-spacing: 1px; text-align: center;">MUNDIAL DE PILOTOS 2026</h3>
 
-<div class="contenedor-tabla-campeonato" style="overflow-x: auto; margin: 25px 0; background: #111111; border-radius: 8px; border: 1px solid #333333; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+<div class="contenedor-tabla-campeonato" style="overflow-x: auto; margin: 25px 0; background: #430202; border-radius: 8px; border: 1px solid #ffffff; box-shadow: 0 4px 15px rgba(199, 8, 8, 0.87);">
     <table style="width: 100%; border-collapse: collapse; font-family: 'Orbitron', sans-serif; color: #ffffff; font-size: 0.85rem; min-width: 600px;">
        <thead>
             <tr style="background: #000000;">
