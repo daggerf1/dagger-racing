@@ -1,8 +1,8 @@
 ---
 layout: "../../layouts/MoldeCronica.astro"
 titulo: "¡ÉPICA EN BARCELONA! HAMILTON REINA EN EL CAOS DE CATALUNYA Y UN PODIO BRITÁNICO PARA LA HISTORIA"
-fecha: "2026-06-17"
-fechaEtiqueta: "⏱️ 17 de junio, 2026"
+fecha: "2026-06-14"
+fechaEtiqueta: "⏱️ 14 de junio, 2026"
 imagen: "hamilton-premio-barcelona2026.jpg"
 ---
 
