@@ -16,7 +16,9 @@ Este procedimiento legal, programado para arrancar formalmente en una serie de a
 
 ## El Origen del Escándalo: El Colapso Tecnológico del Pit Lane
 
+<div style="display: flex; justify-content: center; margin: 30px 0;">
 <img src="/fia.png" alt="Logo Oficial de la FIA">
+</div>
 
 Para entender la magnitud de las apelaciones, es necesario remontarse al desarrollo de la carrera en las calles del Principado. Durante el Gran Premio, el sistema informático y los sensores magnéticos encargados de regular y medir la velocidad de los monoplazas en la calle de boxes (pit lane) sufrieron una falla de calibración masiva. El sistema comenzó a registrar mediciones erróneas, disparando alertas automáticas de infracción por exceso de velocidad a múltiples pilotos que, en realidad, se encontraban dentro de los límites reglamentarios.
 
