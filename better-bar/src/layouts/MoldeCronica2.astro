@@ -1,8 +1,20 @@
 ---
 import MenuNav from "../components/MenuNav.astro";
 import Footer from "../components/Footer.astro";
-const { frontmatter } = Astro.props;
+const { frontmatter, url } = Astro.props;
 
+// CARGA DINÁMICA CORREGIDA APUNTANDO A LA CARPETA REAL DE NOTICIAS
+const notasCargadas = import.meta.glob('/src/pages/noticias/*.md', { eager: true });
+
+// ORDENAMIENTO CRONOLÓGICO INVERSO Y FILTRADO DE LA NOTA ACTUAL
+const todasLasCronicas = Object.values(notasCargadas).sort((a: any, b: any) => {
+    const fechaA = new Date(a.frontmatter.fecha).getTime();
+    const fechaB = new Date(b.frontmatter.fecha).getTime();
+    return fechaB - fechaA;
+});
+
+// Filtramos para que no se recomiende la misma noticia que se está leyendo
+const cronicasRecomendadas = (todasLasCronicas as any).filter((nota: any) => nota.url !== url);
 ---
 <!DOCTYPE html>
 <html lang="es">
@@ -17,20 +29,20 @@ const { frontmatter } = Astro.props;
 
     <MenuNav />
 
-    <!-- CONTENEDOR PRINCIPAL FORZADO CON FLEXBOX -->
-    <main class="container" style="display: flex; flex-direction: row; gap: 20px; align-items: flex-start; max-width: 1200px; margin: 0 auto; padding: 20px;">
+    <!-- CONTENEDOR PRINCIPAL FLUIDO CON FLEXBOX -->
+    <main class="container" style="display: flex; flex-direction: row; gap: 25px; align-items: flex-start; max-width: 1200px; margin: 0 auto; padding: 20px; box-sizing: border-box;">
         
-        <!-- COLUMNA IZQUIERDA: NOTICIA COMPLETA (OCUPA EL 70% DEL ANCHO) -->
+        <!-- COLUMNA IZQUIERDA: NOTICIA COMPLETA (70%) -->
         <section class="noticias" style="flex: 7; min-width: 0;">
             <article class="tarjeta-noticia" style="border-left: 4px solid #e10600; padding-left: 15px; background: #fff;">
                 
                 <div class="contenido-cabecera" style="margin-bottom: 15px;">
                     <span class="fecha">{frontmatter.fechaEtiqueta}</span>
-                    <h2 class="titular-cronica" style="font-size: 1.8rem; margin: 10px 0 20px 0; line-height: 1.3;">{frontmatter.titulo}</h2>
+                    <h2 class="titular-cronica" style="font-size: 1.8rem; margin: 10px 0 20px 0; line-height: 1.3; font-family: 'Orbitron', sans-serif;">{frontmatter.titulo}</h2>
                 </div>
 
-                <div class="contenedor-imagen-live" style="height: 400px; margin-bottom: 20px; overflow: hidden;">
-                    <img src={`/${frontmatter.imagen}`} alt="Monoplaza en pista" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="contenedor-imagen-live" style="height: 400px; margin-bottom: 20px; overflow: hidden; border-radius: 4px;">
+                    <img src={`/${frontmatter.imagen}`} alt="Imagen de portada" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
                 
                  {frontmatter.credito && (
@@ -44,7 +56,7 @@ const { frontmatter } = Astro.props;
                 <div class="contenido">
                     <slot />
 
-                    <button id="btn-desplegar-tabla" class="boton-desplegar" style="display: block; width: 100%; background-color: #1e293b; color: white; border: none; padding: 12px; font-family: 'Orbitron', sans-serif; cursor: pointer; text-align: center; font-size: 0.9rem; margin-top: 20px; margin-bottom: 20px; font-weight: bold;">
+                    <button id="btn-desplegar-tabla" class="boton-desplegar" style="display: block; width: 100%; background-color: #ffffff; color: white; border: none; padding: 12px; font-family: 'Orbitron', sans-serif; cursor: pointer; text-align: center; font-size: 0.9rem; margin-top: 20px; margin-bottom: 20px; font-weight: bold;">
                         Ver resto de posiciones ↓
                     </button>
                     
@@ -54,55 +66,39 @@ const { frontmatter } = Astro.props;
             </article>
         </section>
 
-        <!-- COLUMNA DERECHA FORZADA ARRIBA (OCUPA EL 30% DEL ANCHO) -->
-        <aside class="barra-lateral-derecha" style="flex: 3; min-width: 280px; position: sticky; top: 20px;">
-            <div class="seccion-proxima">
-                <h3>Crónicas Anteriores</h3>
+        <!-- COLUMNA DERECHA DINÁMICA: BARRA TOTALMENTE BLANCA -->
+        <aside class="barra-lateral-derecha" style="flex: 3; min-width: 300px; position: sticky; top: 20px; box-sizing: border-box;">
+            <div class="seccion-proxima" style="background: #ffffff; padding: 15px; border-radius: 8px; border: 1px solid #e0e0e0; margin-bottom: 20px;">
+                <h3 style="font-family: 'Orbitron', sans-serif; color: #111111; margin-top:0;">Crónicas Anteriores</h3>
                 <div class="evento">
-                    <p><strong>Artículos recomendados</strong></p>
-                    <p>No te pierdas las últimas novedades</p>
+                    <p style="color: #222222; margin:0;"><strong>Artículos recomendados</strong></p>
+                    <p style="color: #666666; font-size: 0.85rem; margin:0;">No te pierdas las últimas novedades</p>
                 </div>
             </div>
 
-            <div class="seccion-horarios">
-                <h4>Más Noticias</h4>
-                <div class="tabla-horarios">
+            <div class="seccion-horarios" style="background: #ffffff; padding: 15px; border-radius: 8px; border: 1px solid #e0e0e0;">
+                <h4 style="font-family: 'Orbitron', sans-serif; color: #111111; margin-top:0; margin-bottom:15px;">Más Noticias</h4>
+                <div class="tabla-horarios" style="display: flex; flex-direction: column; gap: 15px;">
                     
-                    <!-- Tarjeta de Crónica 1 -->
-                    <div class="fila-paises" style="margin-bottom: 12px; padding: 12px; background: #f9f9f9; border-radius: 4px;">
-                        <div class="horarios">
-                            <a href="/noticias/hamilton-ganabarcelona-2026" style="text-decoration: none; color: inherit; display: block;">
-                                <span style="font-size: 0.75rem; color: #888; display: block; margin-bottom: 4px;">⏱️ 14 de junio, 2026</span>
-                                <p class="carrera" style="font-size: 0.95rem; font-weight: bold; line-height: 1.3; color: #111; margin: 0;">
-                                    ¡ÉPICA EN BARCELONA! HAMILTON REINA EN EL CAOS
-                                </p>
-                            </a>
+                    {cronicasRecomendadas.slice(0, 3).map((nota: any) => (
+                        <div class="fila-paises" style="background: #ffffff; border: 1px solid #eaeaea; border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.05)'" onmouseout="this.style.transform='none'; this.style.boxShadow='none'">
+                            {/* IMAGEN DE LA NOTA SECUNDARIA DINÁMICA */}
+                            <div style="height: 110px; width: 100%;">
+                                <img src={`/${nota.frontmatter.imagen}`} alt={nota.frontmatter.titulo} style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            
+                            <div style="padding: 10px;">
+                                <a href={nota.url} style="text-decoration: none; color: inherit; display: block;">
+                                    <span style="font-size: 0.7rem; color: #e10600; font-weight: bold; display: block; margin-bottom: 4px; font-family: 'Orbitron', sans-serif;">
+                                        ⏱️ {nota.frontmatter.fechaEtiqueta}
+                                    </span>
+                                    <p class="carrera" style="font-size: 0.85rem; font-weight: bold; line-height: 1.3; color: #222222; margin: 0; font-family: 'Orbitron', sans-serif; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; transition: color 0.2s;" onmouseover="this.style.color='#e10600'" onmouseout="this.style.color='#222222'">
+                                        {nota.frontmatter.titulo}
+                                    </p>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-
-                    <!-- Tarjeta de Crónica 2 -->
-                    <div class="fila-paises" style="margin-bottom: 12px; padding: 12px; background: #f9f9f9; border-radius: 4px;">
-                        <div class="horarios">
-                            <a href="/noticias/2026-06-13-clasificacion-barcelona" style="text-decoration: none; color: inherit; display: block;">
-                                <span style="font-size: 0.75rem; color: #888; display: block; margin-bottom: 4px;">⏱️ 13 de junio, 2026</span>
-                                <p class="carrera" style="font-size: 0.95rem; font-weight: bold; line-height: 1.3; color: #111; margin: 0;">
-                                    Thrill en Montmeló: George Russell firma la pole en Barcelona
-                                </p>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Tarjeta de Crónica 3 -->
-                    <div class="fila-paises" style="margin-bottom: 12px; padding: 12px; background: #f9f9f9; border-radius: 4px;">
-                        <div class="horarios">
-                            <a href="/noticias/cronica-russell" style="text-decoration: none; color: inherit; display: block;">
-                                <span style="font-size: 0.75rem; color: #888; display: block; margin-bottom: 4px;">⏱️ 13 de junio, 2026</span>
-                                <p class="carrera" style="font-size: 0.95rem; font-weight: bold; line-height: 1.3; color: #111; margin: 0;">
-                                    Mercedes no da tregua: Russell lidera una calurosa FP3
-                                </p>
-                            </a>
-                        </div>
-                    </div>
+                    ))}
 
                 </div>
             </div>
@@ -135,7 +131,6 @@ const { frontmatter } = Astro.props;
         });
     </script>
 
-    <!-- ESTILO RESPONSIVO PARA MÓVILES (HACE QUE SE APILEN SI LA PANTALLA ES CHICA) -->
     <style>
         @media (max-width: 768px) {
             .container {
