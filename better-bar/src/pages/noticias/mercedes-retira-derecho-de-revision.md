@@ -42,4 +42,12 @@ La controversia comenzó cuando **Alpine** demostró con éxito que los sistemas
 
 ## ⚠️ Situación de la parrilla
 
+<div style="display: flex; flex-direction: column; align-items: center; margin: 30px 0;">
+  <img src="/redbull-y-mclaren.png" alt="Red Bull y McLaren" width="400">
+  <span style="font-size: 12px; color: #666; margin-top: 8px; font-family: sans-serif; text-align: center;">
+    Imagen representativa, logotipos de Red Bull y Mclaren
+  </span>
+</div>
+
 Mientras Mercedes decide cerrar el caso para pasar página, otras escuderías de la parrilla como **Red Bull** y **McLaren** mantienen firmes sus apelaciones independientes ante el Tribunal Internacional de la FIA, disconformes con la resolución del podio de Alpine.
+
