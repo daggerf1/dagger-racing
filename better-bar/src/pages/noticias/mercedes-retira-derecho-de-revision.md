@@ -1,6 +1,6 @@
 ---
 layout: "../../layouts/MoldeCronica2.astro"
-titulo: "MERCEDES RETIRA SU DERECO DE REVISIÓN ANTE LA FIA 2026"
+titulo: "MERCEDES RETIRA SU DERECHO DE REVISIÓN ANTE LA FIA 2026"
 fecha: "2026-06-19"
 fechaEtiqueta: "⏱️ 19 de junio, 2026"
 imagen: "mercedes-retira-derecho-revision-fia.png"
