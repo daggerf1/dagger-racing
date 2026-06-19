@@ -4,7 +4,7 @@ layout: ../layouts/MoldeTabla.astro
 
 <h3 style="margin-top: 30px; font-family: 'Orbitron', sans-serif; border-bottom: 2px solid #e10600; padding-bottom: 8px; color: #ffffff; letter-spacing: 1px; text-align: center;">MUNDIAL DE PILOTOS 2026</h3>
 
-<div class="contenedor-tabla-horarios" style="overflow-x: auto; margin: 25px 0; background: #430202;  border-radius: 8px; border: 1px solid #ee0000; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);">
+<div class="contenedor-tabla-horarios" style="overflow-x: auto; margin: 25px 0; background: #430202; border-radius: 8px; border: 1px solid #ee0000; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);">
     <table style="width: 100%; border-collapse: collapse; font-family: 'Orbitron', sans-serif; color: #ffffff; font-size: 0.85rem; min-width: 600px;">
        <thead>
             <tr style="background: #000000;">
@@ -89,59 +89,86 @@ layout: ../layouts/MoldeTabla.astro
             </tr>
             <tr style="transition: background 0.2s;" onmouseover="this.style.background='#161616'" onmouseout="this.style.background='transparent'">
                 <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">11</td>
-                <td style="padding: 15px 20px; border: 1px solid #333333;">🇬🇧 Oliver Bearman</td>
-                <td style="padding: 15px 20px; border: 1px solid #333333;">Haas</td>
-                <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">18</td>
+                <td style="padding: 15px 20px; border: 1px solid #333333;">🇪🇸 Carlos Sainz</td>
+                <td style="padding: 15px 20px; border: 1px solid #333333;">Williams</td>
+                <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">22</td>
                 <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">0</td>
             </tr>
             <tr style="transition: background 0.2s;" onmouseover="this.style.background='#161616'" onmouseout="this.style.background='transparent'">
                 <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">12</td>
-                <td style="padding: 15px 20px; border: 1px solid #333333;">🇦🇷 Franco Colapinto</td>
-                <td style="padding: 15px 20px; border: 1px solid #333333;">Alpine</td>
-                <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">16</td>
+                <td style="padding: 15px 20px; border: 1px solid #333333;">🇪🇸 Fernando Alonso</td>
+                <td style="padding: 15px 20px; border: 1px solid #333333;">Aston Martin</td>
+                <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">18</td>
                 <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">0</td>
             </tr>
             <tr style="transition: background 0.2s;" onmouseover="this.style.background='#161616'" onmouseout="this.style.background='transparent'">
-           <tr style="transition: background 0.2s;" onmouseover="this.style.background='#161616'" onmouseout="this.style.background='transparent'">
                 <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">13</td>
-                <td style="padding: 15px 20px; border: 1px solid #333333;">🇬🇧 Arvid Lindblad</td>
-                <td style="padding: 15px 20px; border: 1px solid #333333;">Racing Bulls</td>
-                <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">13</td>
+                <td style="padding: 15px 20px; border: 1px solid #333333;">🇲🇽 Sergio Pérez</td>
+                <td style="padding: 15px 20px; border: 1px solid #333333;">Aston Martin</td>
+                <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">14</td>
                 <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">0</td>
             </tr>
             <tr style="transition: background 0.2s;" onmouseover="this.style.background='#161616'" onmouseout="this.style.background='transparent'">
                 <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">14</td>
-                <td style="padding: 15px 20px; border: 1px solid #333333;">🇪🇸 Carlos Sainz Jr.</td>
-                <td style="padding: 15px 20px; border: 1px solid #333333;">Williams</td>
-                <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">6</td>
+                <td style="padding: 15px 20px; border: 1px solid #333333;">🇨🇦 Lance Stroll</td>
+                <td style="padding: 15px 20px; border: 1px solid #333333;">Aston Martin</td>
+                <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">10</td>
                 <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">0</td>
             </tr>
             <tr style="transition: background 0.2s;" onmouseover="this.style.background='#161616'" onmouseout="this.style.background='transparent'">
                 <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">15</td>
-                <td style="padding: 15px 20px; border: 1px solid #333333;">🇹🇭 Alexander Albon</td>
-                <td style="padding: 15px 20px; border: 1px solid #333333;">Williams</td>
-                <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">5</td>
+                <td style="padding: 15px 20px; border: 1px solid #333333;">🇯🇵 Yuki Tsunoda</td>
+                <td style="padding: 15px 20px; border: 1px solid #333333;">Racing Bulls</td>
+                <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">6</td>
                 <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">0</td>
             </tr>
             <tr style="transition: background 0.2s;" onmouseover="this.style.background='#161616'" onmouseout="this.style.background='transparent'">
                 <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">16</td>
-                <td style="padding: 15px 20px; border: 1px solid #333333;">🇫🇷 Esteban Ocon</td>
-                <td style="padding: 15px 20px; border: 1px solid #333333;">Haas</td>
-                <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">3</td>
+                <td style="padding: 15px 20px; border: 1px solid #333333;">🇹🇭 Alexander Albon</td>
+                <td style="padding: 15px 20px; border: 1px solid #333333;">Williams</td>
+                <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">4</td>
                 <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">0</td>
             </tr>
             <tr style="transition: background 0.2s;" onmouseover="this.style.background='#161616'" onmouseout="this.style.background='transparent'">
                 <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">17</td>
-                <td style="padding: 15px 20px; border: 1px solid #333333;">🇧🇷 Gabriel Bortoleto</td>
-                <td style="padding: 15px 20px; border: 1px solid #333333;">Audi</td>
+                <td style="padding: 15px 20px; border: 1px solid #333333;">🇦🇺 Jack Doohan</td>
+                <td style="padding: 15px 20px; border: 1px solid #333333;">Alpine</td>
                 <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">2</td>
                 <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">0</td>
             </tr>
             <tr style="transition: background 0.2s;" onmouseover="this.style.background='#161616'" onmouseout="this.style.background='transparent'">
                 <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">18</td>
-                <td style="padding: 15px 20px; border: 1px solid #333333;">🇪🇸 Fernando Alonso</td>
-                <td style="padding: 15px 20px; border: 1px solid #333333;">Aston Martin</td>
+                <td style="padding: 15px 20px; border: 1px solid #333333;">🇬🇧 Oliver Bearman</td>
+                <td style="padding: 15px 20px; border: 1px solid #333333;">Haas</td>
                 <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">1</td>
+                <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">0</td>
+            </tr>
+            <tr style="transition: background 0.2s;" onmouseover="this.style.background='#161616'" onmouseout="this.style.background='transparent'">
+                <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">19</td>
+                <td style="padding: 15px 20px; border: 1px solid #333333;">🇫🇷 Esteban Ocon</td>
+                <td style="padding: 15px 20px; border: 1px solid #333333;">Haas</td>
+                <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">0</td>
+                <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">0</td>
+            </tr>
+            <tr style="transition: background 0.2s;" onmouseover="this.style.background='#161616'" onmouseout="this.style.background='transparent'">
+                <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">20</td>
+                <td style="padding: 15px 20px; border: 1px solid #333333;">🇩🇪 Nico Hülkenberg</td>
+                <td style="padding: 15px 20px; border: 1px solid #333333;">Kick Sauber</td>
+                <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">0</td>
+                <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">0</td>
+            </tr>
+            <tr style="transition: background 0.2s;" onmouseover="this.style.background='#161616'" onmouseout="this.style.background='transparent'">
+                <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">21</td>
+                <td style="padding: 15px 20px; border: 1px solid #333333;">🇧🇷 Gabriel Bortoleto</td>
+                <td style="padding: 15px 20px; border: 1px solid #333333;">Kick Sauber</td>
+                <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">0</td>
+                <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">0</td>
+            </tr>
+            <tr style="transition: background 0.2s;" onmouseover="this.style.background='#161616'" onmouseout="this.style.background='transparent'">
+                <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">22</td>
+                <td style="padding: 15px 20px; border: 1px solid #333333;">🇦🇷 Franco Colapinto</td>
+                <td style="padding: 15px 20px; border: 1px solid #333333;">Williams / Reserva</td>
+                <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">0</td>
                 <td style="padding: 15px 20px; text-align: center; border: 1px solid #333333;">0</td>
             </tr>
         </tbody>

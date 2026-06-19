@@ -2,17 +2,30 @@
 import MenuNav from "../components/MenuNav.astro";
 import Footer from "../components/Footer.astro";
 
-// Datos oficiales de los pilotos temporada 2026
+// Datos oficiales de los 22 pilotos de la temporada 2026 en estricto orden y escala de rojos inversa
 const pilotos2026 = [
-     { pos: "01", piloto: "Andrea Kimi Antonelli", escuderia: "Mercedes", pts: 156, victorias: 5, bandera: "🇮🇹", color: "#450a0a", lider: true },
-    { pos: "02", piloto: "Lewis Hamilton", escuderia: "Ferrari", pts: 115, victorias: 1, bandera: "🇬🇧", color: "#520606", lider: false },
-    { pos: "03", piloto: "George Russell", escuderia: "Mercedes", pts: 106, victorias: 1, bandera: "🇬🇧", color: "#5e0606", lider: false },
-    { pos: "04", piloto: "Charles Leclerc", escuderia: "Ferrari", pts: 75, victorias: 0, bandera: "🇲🇨", color: "#730505", lider: false },
-    { pos: "05", piloto: "Lando Norris", escuderia: "McLaren", pts: 73, victorias: 0, bandera: "🇬🇧", color: "#8a0505", lider: false },
-    { pos: "06", piloto: "Oscar Piastri", escuderia: "McLaren", pts: 68, victorias: 0, bandera: "🇦🇺", color: "#a30400", lider: false },
-    { pos: "07", piloto: "Max Verstappen", escuderia: "Red Bull Racing", pts: 55, victorias: 0, bandera: "🇳🇱", color: "#c20500", lider: false },
-    { pos: "08", piloto: "Pierre Gasly", escuderia: "Alpine", pts: 41, victorias: 0, bandera: "🇫🇷", color: "#e10600", lider: false },
-    { pos: "09", piloto: "Isack Hadjar", escuderia: "Red Bull Racing", pts: 34, victorias: 0, bandera: "🇫🇷", color: "#ff1e27", lider: false }
+    { pos: "01", piloto: "Kimi Antonelli", escuderia: "Mercedes", pts: 156, victorias: 5, bandera: "🇮🇹", color: "#450a0a", lider: true },
+    { pos: "02", piloto: "Lewis Hamilton", escuderia: "Ferrari", pts: 115, victorias: 1, bandera: "🇬🇧", color: "#4d0909", lider: false },
+    { pos: "03", piloto: "George Russell", escuderia: "Mercedes", pts: 106, victorias: 1, bandera: "🇬🇧", color: "#540909", lider: false },
+    { pos: "04", piloto: "Charles Leclerc", escuderia: "Ferrari", pts: 75, victorias: 0, bandera: "🇲🇨", color: "#5c0808", lider: false },
+    { pos: "05", piloto: "Lando Norris", escuderia: "McLaren", pts: 73, victorias: 0, bandera: "🇬🇧", color: "#640808", lider: false },
+    { pos: "06", piloto: "Oscar Piastri", escuderia: "McLaren", pts: 68, victorias: 0, bandera: "🇦🇺", color: "#6c0707", lider: false },
+    { pos: "07", piloto: "Max Verstappen", escuderia: "Red Bull", pts: 55, victorias: 0, bandera: "🇳🇱", color: "#740707", lider: false },
+    { pos: "08", piloto: "Pierre Gasly", escuderia: "Alpine", pts: 41, victorias: 0, bandera: "🇫🇷", color: "#7d0606", lider: false },
+    { pos: "09", piloto: "Isack Hadjar", escuderia: "Red Bull", pts: 34, victorias: 0, bandera: "🇫🇷", color: "#850606", lider: false },
+    { pos: "10", piloto: "Liam Lawson", escuderia: "Racing Bulls", pts: 28, victorias: 0, bandera: "🇳🇿", color: "#8d0505", lider: false },
+    { pos: "11", piloto: "Oliver Bearman", escuderia: "Haas", pts: 18, victorias: 0, bandera: "🇬🇧", color: "#950505", lider: false },
+    { pos: "12", piloto: "Franco Colapinto", escuderia: "Alpine", pts: 16, victorias: 0, bandera: "🇦🇷", color: "#9e0404", lider: false },
+    { pos: "13", piloto: "Arvid Lindblad", escuderia: "Racing Bulls", pts: 13, victorias: 0, bandera: "🇬🇧", color: "#a60404", lider: false },
+    { pos: "14", piloto: "Carlos Sainz", escuderia: "Williams", pts: 5, victorias: 0, bandera: "🇪🇸", color: "#ae0303", lider: false },
+    { pos: "15", piloto: "Alex Albon", escuderia: "Williams", pts: 5, victorias: 0, bandera: "🇹🇭", color: "#b60303", lider: false },
+    { pos: "16", piloto: "Esteban Ocon", escuderia: "Haas", pts: 3, victorias: 0, bandera: "🇫🇷", color: "#be0202", lider: false },
+    { pos: "17", piloto: "Gabriel Bortoleto", escuderia: "Audi", pts: 2, victorias: 0, bandera: "🇧🇷", color: "#c70202", lider: false },
+    { pos: "18", piloto: "Fernando Alonso", escuderia: "Aston Martin", pts: 1, victorias: 0, bandera: "🇪🇸", color: "#cf0101", lider: false },
+    { pos: "19", piloto: "Nico Hulkenberg", escuderia: "Audi", pts: 0, victorias: 0, bandera: "🇩🇪", color: "#d70101", lider: false },
+    { pos: "20", piloto: "Valtteri Bottas", escuderia: "Cadillac", pts: 0, victorias: 0, bandera: "🇫🇮", color: "#e00000", lider: false },
+    { pos: "21", piloto: "Sergio Perez", escuderia: "Cadillac", pts: 0, victorias: 0, bandera: "🇲🇽", color: "#e80000", lider: false },
+    { pos: "22", piloto: "Lance Stroll", escuderia: "Aston Martin", pts: 0, victorias: 0, bandera: "🇨🇦", color: "#ff1e27", lider: false }
 ];
 ---
 <!DOCTYPE html>
@@ -31,24 +44,18 @@ const pilotos2026 = [
 
     <MenuNav />
 
-    <!-- CONTENEDOR PRINCIPAL CON RED DE REJILLA SUTIL DE FONDO (Look F1 Tech) -->
     <main style="max-width: 1000px; margin: 0 auto; padding: 30px 16px; min-height: 100vh; box-sizing: border-box; background-image: linear-gradient(rgba(31, 31, 36, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(31, 31, 36, 0.3) 1px, transparent 1px); background-size: 40px 40px;">
       
-        <!-- ENCABEZADO DE DISEÑO ULTRA COMPETITIVO -->
         <div style="margin-bottom: 35px; text-align: center; position: relative;">
             <h1 style="font-family: 'Orbitron', sans-serif; font-weight: 900; color: #ffffff; letter-spacing: 2px; text-transform: uppercase; font-size: 1.8rem; margin: 0; padding-bottom: 12px;">
                 MUNDIAL DE PILOTOS <span style="color: #ff1e27;">2026</span>
             </h1>
-            <!-- Línea de velocidad asimétrica -->
-          <!-- Línea de velocidad unificada en Rojo F1 -->
             <div style="width: 120px; height: 4px; background: linear-gradient(90deg, #ff1e27 0%, transparent 100%); margin: 0 auto; border-radius: 2px;"></div>
         </div>
         
-        <!-- TABLA PRINCIPAL CON CONTORNO DE FIBRA OSCURA -->
         <section class="tarjeta-tabla-f1" style="background: #0c0c0e; border: 1px solid #1f1f24; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.6); overflow: hidden; margin-bottom: 35px; position: relative;">
             
-            <!-- Barra superior con degradado dinámico deportivo -->
-         <div style="height: 4px; width: 100%; background: linear-gradient(90deg, #450a0a 0%, #ff1e27 100%);"></div>
+            <div style="height: 4px; width: 100%; background: linear-gradient(90deg, #450a0a 0%, #ff1e27 100%);"></div>
 
             <div style="overflow-x: auto;">
                 <table style="width: 100%; border-collapse: collapse; font-family: 'Orbitron', sans-serif; font-size: 0.85rem; min-width: 650px;">
@@ -64,11 +71,11 @@ const pilotos2026 = [
                     <tbody>
                         {pilotos2026.map((p) => (
                             <tr 
-                                style={`background: ${p.lider ? 'linear-gradient(90deg, rgba(255, 215, 0, 0.05) 0%, transparent 100%)' : 'transparent'}; border-bottom: 1px solid #1f1f24; border-left: 4px solid ${p.color}; transition: all 0.2s;`}
+                                style={`background: ${p.lider ? 'linear-gradient(90deg, rgba(255, 30, 39, 0.03) 0%, transparent 100%)' : 'transparent'}; border-bottom: 1px solid #1f1f24; border-left: 4px solid ${p.color}; transition: all 0.2s;`}
                                 onmouseover="this.style.background='rgba(255, 255, 255, 0.03)'" 
-                                onmouseout={`this.style.background="${p.lider ? 'linear-gradient(90deg, rgba(255, 215, 0, 0.05) 0%, transparent 100%)' : 'transparent'}"`}
+                                onmouseout={`this.style.background="${p.lider ? 'linear-gradient(90deg, rgba(255, 30, 39, 0.03) 0%, transparent 100%)' : 'transparent'}"`}
                             >
-                                <td style={`padding: 16px 15px; text-align: center; font-weight: 900; font-size: 1rem; color: ${p.lider ? '#ffd700' : '#71717a'};`}>
+                                <td style={`padding: 16px 15px; text-align: center; font-weight: 900; font-size: 1rem; color: ${p.lider ? '#ff1e27' : '#71717a'};`}>
                                     {p.pos}
                                 </td>
                                 <td style="padding: 16px 20px; font-weight: bold; color: #ffffff; font-family: 'Inter', sans-serif;">
@@ -77,10 +84,10 @@ const pilotos2026 = [
                                 <td style="padding: 16px 20px; color: #a1a1aa; font-weight: 500; font-family: 'Inter', sans-serif;">
                                     {p.escuderia}
                                 </td>
-                                <td style={`padding: 16px 15px; text-align: center; font-weight: 900; font-size: 1.05rem; color: ${p.lider ? '#ffd700' : '#ffffff'}; background: rgba(255, 255, 255, 0.01);`}>
+                                <td style={`padding: 16px 15px; text-align: center; font-weight: 900; font-size: 1.05rem; color: #ffffff; background: rgba(255, 255, 255, 0.01);`}>
                                     {p.pts}
                                 </td>
-                                <td style={`padding: 16px 15px; text-align: center; font-weight: bold; color: ${p.victorias > 0 ? (p.lider ? '#ffd700' : '#ffffff') : '#4b5563'};`}>
+                                <td style={`padding: 16px 15px; text-align: center; font-weight: bold; color: ${p.victorias > 0 ? '#ffffff' : '#4b5563'};`}>
                                     {p.victorias}
                                 </td>
                             </tr>
