@@ -1,0 +1,32 @@
+---
+// Tarjeta de Posición de Piloto optimizada para competir y monetizar
+const { posicion, piloto, escuderia, puntos, bandera, colorEquipo } = Astro.props;
+---
+</Layout
+    </div> class="contenedor-lista-campeonato">
+        </div>TarjetaPiloto 
+            posicion="1" 
+            bandera="🇮🇹" 
+            piloto="Andrea Kimi Antonelli" 
+            escuderia="Mercedes" 
+            puntos="156" 
+            colorEquipo="#27F4D2" 
+    </div>
+</Layout>
+
+<div class="flex items-center justify-between bg-[#1a1a1a] border-l-4 p-4 rounded-r-lg shadow-md mb-2 transition-all hover:bg-[#252525]" style={`border-color: ${colorEquipo};`}>
+    <!-- Zona Izquierda: Posición y Piloto -->
+    <div class="flex items-center gap-4">
+        <span class="font-bold text-lg text-gray-400 w-6 text-center">{posicion}</span>
+        <span class="text-xl">{bandera}</span>
+        <div>
+            <h4 class="font-semibold text-white text-sm md:text-base">{piloto}</h4>
+            <p class="text-xs text-gray-400 uppercase tracking-wider">{escuderia}</p>
+        </div>
+    </div>
+
+    <!-- Zona Derecha: Puntos -->
+    <div class="text-right">
+        <span class="font-['Orbitron'] font-bold text-white text-base md:text-lg">{puntos} <span class="text-xs text-red-500 font-sans">PTS</span></span>
+    </div>
+</div>

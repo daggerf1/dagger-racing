@@ -1,5 +1,5 @@
 ---
-layout: ../layouts/MoldeCalendario.astro
+layout: ../layouts/MoldeTabla.astro
 ---
 
 <h3 style="margin-top: 30px; font-family: 'Orbitron', sans-serif; border-bottom: 2px solid #e10600; padding-bottom: 8px; color: #ffffff; letter-spacing: 1px; text-align: center;">MUNDIAL DE PILOTOS 2026</h3>

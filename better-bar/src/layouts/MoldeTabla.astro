@@ -1,0 +1,106 @@
+---
+import MenuNav from "../components/MenuNav.astro";
+import Footer from "../components/Footer.astro";
+
+// Datos oficiales de los pilotos temporada 2026
+const pilotos2026 = [
+     { pos: "01", piloto: "Andrea Kimi Antonelli", escuderia: "Mercedes", pts: 156, victorias: 5, bandera: "🇮🇹", color: "#450a0a", lider: true },
+    { pos: "02", piloto: "Lewis Hamilton", escuderia: "Ferrari", pts: 115, victorias: 1, bandera: "🇬🇧", color: "#520606", lider: false },
+    { pos: "03", piloto: "George Russell", escuderia: "Mercedes", pts: 106, victorias: 1, bandera: "🇬🇧", color: "#5e0606", lider: false },
+    { pos: "04", piloto: "Charles Leclerc", escuderia: "Ferrari", pts: 75, victorias: 0, bandera: "🇲🇨", color: "#730505", lider: false },
+    { pos: "05", piloto: "Lando Norris", escuderia: "McLaren", pts: 73, victorias: 0, bandera: "🇬🇧", color: "#8a0505", lider: false },
+    { pos: "06", piloto: "Oscar Piastri", escuderia: "McLaren", pts: 68, victorias: 0, bandera: "🇦🇺", color: "#a30400", lider: false },
+    { pos: "07", piloto: "Max Verstappen", escuderia: "Red Bull Racing", pts: 55, victorias: 0, bandera: "🇳🇱", color: "#c20500", lider: false },
+    { pos: "08", piloto: "Pierre Gasly", escuderia: "Alpine", pts: 41, victorias: 0, bandera: "🇫🇷", color: "#e10600", lider: false },
+    { pos: "09", piloto: "Isack Hadjar", escuderia: "Red Bull Racing", pts: 34, victorias: 0, bandera: "🇫🇷", color: "#ff1e27", lider: false }
+];
+---
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dagger Racing News - Mundial de Pilotos 2026</title>
+    <link rel="stylesheet" href="/css/styless.css">
+    <link rel="icon" type="image/png" href="/daggerracingnews-logotipo.png">
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body style="background-color: #08080a; margin: 0; padding: 0; font-family: 'Inter', sans-serif; color: #ffffff; overflow-x: hidden;">
+
+    <MenuNav />
+
+    <!-- CONTENEDOR PRINCIPAL CON RED DE REJILLA SUTIL DE FONDO (Look F1 Tech) -->
+    <main style="max-width: 1000px; margin: 0 auto; padding: 30px 16px; min-height: 100vh; box-sizing: border-box; background-image: linear-gradient(rgba(31, 31, 36, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(31, 31, 36, 0.3) 1px, transparent 1px); background-size: 40px 40px;">
+      
+        <!-- ENCABEZADO DE DISEÑO ULTRA COMPETITIVO -->
+        <div style="margin-bottom: 35px; text-align: center; position: relative;">
+            <h1 style="font-family: 'Orbitron', sans-serif; font-weight: 900; color: #ffffff; letter-spacing: 2px; text-transform: uppercase; font-size: 1.8rem; margin: 0; padding-bottom: 12px;">
+                MUNDIAL DE PILOTOS <span style="color: #ff1e27;">2026</span>
+            </h1>
+            <!-- Línea de velocidad asimétrica -->
+          <!-- Línea de velocidad unificada en Rojo F1 -->
+            <div style="width: 120px; height: 4px; background: linear-gradient(90deg, #ff1e27 0%, transparent 100%); margin: 0 auto; border-radius: 2px;"></div>
+        </div>
+
+        <!-- ESPACIO PUBLICITARIO PREMIUM (Optimizado para Monetización) -->
+        <div style="background: #111114; border: 1px dashed #2d2d35; border-radius: 8px; padding: 12px; text-align: center; margin-bottom: 30px; color: #52525b; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-family: 'Orbitron', sans-serif;">
+            ⚡ Espacio Publicitario / Ad Zone
+        </div>
+        <!-- TABLA PRINCIPAL CON CONTORNO DE FIBRA OSCURA -->
+        <section class="tarjeta-tabla-f1" style="background: #0c0c0e; border: 1px solid #1f1f24; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.6); overflow: hidden; margin-bottom: 35px; position: relative;">
+            
+            <!-- Barra superior con degradado dinámico deportivo -->
+         <div style="height: 4px; width: 100%; background: linear-gradient(90deg, #450a0a 0%, #ff1e27 100%);"></div>
+
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; font-family: 'Orbitron', sans-serif; font-size: 0.85rem; min-width: 650px;">
+                    <thead>
+                        <tr style="background: #121215; border-bottom: 2px solid #1f1f24;">
+                            <th style="padding: 18px 15px; text-align: center; font-weight: bold; color: #52525b; font-size: 0.75rem; letter-spacing: 1px; width: 70px;">POS</th>
+                            <th style="padding: 18px 20px; text-align: left; font-weight: bold; color: #52525b; font-size: 0.75rem; letter-spacing: 1px;">PILOTO</th>
+                            <th style="padding: 18px 20px; text-align: left; font-weight: bold; color: #52525b; font-size: 0.75rem; letter-spacing: 1px;">ESCUDERÍA</th>
+                            <th style="padding: 18px 15px; text-align: center; font-weight: bold; color: #ff1e27; font-size: 0.75rem; letter-spacing: 1px; width: 100px;">PTS</th>
+                            <th style="padding: 18px 15px; text-align: center; font-weight: bold; color: #52525b; font-size: 0.75rem; letter-spacing: 1px; width: 120px;">VICTORIAS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {pilotos2026.map((p) => (
+                            <tr 
+                                style={`background: ${p.lider ? 'linear-gradient(90deg, rgba(255, 215, 0, 0.05) 0%, transparent 100%)' : 'transparent'}; border-bottom: 1px solid #1f1f24; border-left: 4px solid ${p.color}; transition: all 0.2s;`}
+                                onmouseover="this.style.background='rgba(255, 255, 255, 0.03)'" 
+                                onmouseout={`this.style.background="${p.lider ? 'linear-gradient(90deg, rgba(255, 215, 0, 0.05) 0%, transparent 100%)' : 'transparent'}"`}
+                            >
+                                <td style={`padding: 16px 15px; text-align: center; font-weight: 900; font-size: 1rem; color: ${p.lider ? '#ffd700' : '#71717a'};`}>
+                                    {p.pos}
+                                </td>
+                                <td style="padding: 16px 20px; font-weight: bold; color: #ffffff; font-family: 'Inter', sans-serif;">
+                                    <span style="margin-right: 8px; font-family: 'Inter', sans-serif;">{p.bandera}</span> {p.piloto}
+                                </td>
+                                <td style="padding: 16px 20px; color: #a1a1aa; font-weight: 500; font-family: 'Inter', sans-serif;">
+                                    {p.escuderia}
+                                </td>
+                                <td style={`padding: 16px 15px; text-align: center; font-weight: 900; font-size: 1.05rem; color: ${p.lider ? '#ffd700' : '#ffffff'}; background: rgba(255, 255, 255, 0.01);`}>
+                                    {p.pts}
+                                </td>
+                                <td style={`padding: 16px 15px; text-align: center; font-weight: bold; color: ${p.victorias > 0 ? (p.lider ? '#ffd700' : '#ffffff') : '#4b5563'};`}>
+                                    {p.victorias}
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- BANNER DE PUBLICIDAD INFERIOR INTEGRADO -->
+        <div style="background: #0c0c0e; border: 1px solid #1f1f24; border-radius: 8px; padding: 15px; text-align: center; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: #52525b; font-family: 'Orbitron', sans-serif;">
+            Anuncio Recomendado / Sponsored Content
+        </div>
+
+    </main>
+
+    <Footer />
+</body>
+</html>
