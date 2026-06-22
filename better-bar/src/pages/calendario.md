@@ -7,43 +7,43 @@ layout: ../layouts/MoldeCalendario.astro
         <thead>
             <tr style="background: #000000;">
                 <th style="padding: 15px 20px; text-align: left; font-weight: bold; color: #e10600; letter-spacing: 0.5px; border: 1px solid #333333;">SESIÓN</th>
-                <th style="padding: 15px; text-align: center; font-size: 1.1rem; letter-spacing: 4px; border: 1px solid #333333; color: #110101;">🇨🇷 🇸🇻 🇭🇳 🇲🇽</th>
-                <th style="padding: 15px; text-align: center; font-size: 1.1rem; letter-spacing: 4px; border: 1px solid #333333; color: #110101;">🇨🇴 🇪🇨 🇵🇦 🇵🇪</th>
-                <th style="padding: 15px; text-align: center; font-size: 1.1rem; letter-spacing: 4px; border: 1px solid #333333; color: #110101;">🇧🇴 🇨🇱 🇩🇴 🇵🇷 🇻🇪</th>
-                <th style="padding: 15px; text-align: center; font-size: 1.1rem; letter-spacing: 4px; border: 1px solid #333333; color: #110101;">🇦🇷 🇧🇷 🇵🇾 🇺🇾</th>
+                <th style="padding: 15px; text-align: center; font-size: 1.1rem; letter-spacing: 4px; border: 1px solid #333333; color: #ffffff;">🇨🇷 🇸防 🇭🇳 🇲🇽</th>
+                <th style="padding: 15px; text-align: center; font-size: 1.1rem; letter-spacing: 4px; border: 1px solid #333333; color: #ffffff;">🇨🇴 🇪🇨 🇵🇦 🇵🇪</th>
+                <th style="padding: 15px; text-align: center; font-size: 1.1rem; letter-spacing: 4px; border: 1px solid #333333; color: #ffffff;">🇧🇴 🇨🇱 🇩🇴 🇵🇷 🇻🇪</th>
+                <th style="padding: 15px; text-align: center; font-size: 1.1rem; letter-spacing: 4px; border: 1px solid #333333; color: #ffffff;">🇦🇷 🇧🇷 🇵🇾 🇺🇾</th>
             </tr>
         </thead>
         <tbody>
             <tr style="transition: background 0.2s;" onmouseover="this.style.background='#1c1c1c'" onmouseout="this.style.background='transparent'">
-                <td style="padding: 15px 20px; font-weight: bold; color: #ffffff; border: 1px solid #333333;">Práctica Libre 1 (Viernes 12)</td>
+                <td style="padding: 15px 20px; font-weight: bold; color: #ffffff; border: 1px solid #333333;">Práctica Libre 1 (Viernes 26)</td>
                 <td style="padding: 15px; text-align: center; font-weight: 500; border: 1px solid #333333;">05:30 AM</td>
                 <td style="padding: 15px; text-align: center; font-weight: 500; border: 1px solid #333333;">06:30 AM</td>
                 <td style="padding: 15px; text-align: center; font-weight: 500; border: 1px solid #333333;">07:30 AM</td>
                 <td style="padding: 15px; text-align: center; font-weight: 500; border: 1px solid #333333;">08:30 AM</td>
             </tr>
             <tr style="transition: background 0.2s;" onmouseover="this.style.background='#1c1c1c'" onmouseout="this.style.background='transparent'">
-                <td style="padding: 15px 20px; font-weight: bold; color: #ffffff; border: 1px solid #333333;">Práctica Libre 2 (Viernes 12)</td>
+                <td style="padding: 15px 20px; font-weight: bold; color: #ffffff; border: 1px solid #333333;">Práctica Libre 2 (Viernes 26)</td>
                 <td style="padding: 15px; text-align: center; font-weight: 500; border: 1px solid #333333;">09:00 AM</td>
                 <td style="padding: 15px; text-align: center; font-weight: 500; border: 1px solid #333333;">10:00 AM</td>
                 <td style="padding: 15px; text-align: center; font-weight: 500; border: 1px solid #333333;">11:00 AM</td>
                 <td style="padding: 15px; text-align: center; font-weight: 500; border: 1px solid #333333;">12:00 PM</td>
             </tr>
             <tr style="transition: background 0.2s;" onmouseover="this.style.background='#1c1c1c'" onmouseout="this.style.background='transparent'">
-                <td style="padding: 15px 20px; font-weight: bold; color: #ffffff; border: 1px solid #333333;">Práctica Libre 3 (Sábado 13)</td>
+                <td style="padding: 15px 20px; font-weight: bold; color: #ffffff; border: 1px solid #333333;">Práctica Libre 3 (Sábado 27)</td>
                 <td style="padding: 15px; text-align: center; font-weight: 500; border: 1px solid #333333;">04:30 AM</td>
                 <td style="padding: 15px; text-align: center; font-weight: 500; border: 1px solid #333333;">05:30 AM</td>
                 <td style="padding: 15px; text-align: center; font-weight: 500; border: 1px solid #333333;">06:30 AM</td>
                 <td style="padding: 15px; text-align: center; font-weight: 500; border: 1px solid #333333;">07:30 AM</td>
             </tr>
             <tr style="transition: background 0.2s;" onmouseover="this.style.background='#1c1c1c'" onmouseout="this.style.background='transparent'">
-                <td style="padding: 15px 20px; font-weight: bold; color: #ffffff; border: 1px solid #333333;">Clasificación (Sábado 13)</td>
+                <td style="padding: 15px 20px; font-weight: bold; color: #ffffff; border: 1px solid #333333;">Clasificación (Sábado 27)</td>
                 <td style="padding: 15px; text-align: center; font-weight: bold; color: #ffffff; border: 1px solid #333333;">08:00 AM</td>
                 <td style="padding: 15px; text-align: center; font-weight: bold; color: #ffffff; border: 1px solid #333333;">09:00 AM</td>
                 <td style="padding: 15px; text-align: center; font-weight: bold; color: #ffffff; border: 1px solid #333333;">10:00 AM</td>
                 <td style="padding: 15px; text-align: center; font-weight: bold; color: #ffffff; border: 1px solid #333333;">11:00 AM</td>
             </tr>
             <tr style="background: rgba(192, 39, 33, 0.72); transition: background 0.2s;" onmouseover="this.style.background='rgba(247, 243, 243, 0.3)'" onmouseout="this.style.background='rgba(230, 12, 5, 0.15)'">
-                <td style="padding: 18px 20px; font-weight: bold; color: #ffffff; font-size: 0.9rem; border: 1px solid #333333;">Gran Premio (Domingo 14)</td>
+                <td style="padding: 18px 20px; font-weight: bold; color: #ffffff; font-size: 0.9rem; border: 1px solid #333333;">Gran Premio (Domingo 28)</td>
                 <td style="padding: 18px; text-align: center; font-weight: bold; color: #ffffff; font-size: 0.9rem; border: 1px solid #333333;">07:00 AM</td>
                 <td style="padding: 18px; text-align: center; font-weight: bold; color: #ffffff; font-size: 0.9rem; border: 1px solid #333333;">08:00 AM</td>
                 <td style="padding: 18px; text-align: center; font-weight: bold; color: #ffffff; font-size: 0.9rem; border: 1px solid #333333;">09:00 AM</td>
@@ -52,4 +52,3 @@ layout: ../layouts/MoldeCalendario.astro
         </tbody>
     </table>
 </div>
-
