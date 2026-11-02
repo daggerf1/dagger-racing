@@ -1,0 +1,65 @@
+[
+  {
+    "fecha": "19 jun, 2026",
+    "categoria": "FÓRMULA 1",
+    "titulo": "MERCEDES RETIRA SU DERECHO DE REVISIÓN ANTE LA FIA 2026",
+    "extracto": "La escudería de Brackley decide dar marcha atrás de manera definitiva tras los complejos incidentes técnicos de las últimas semanas.",
+    "fotoCredito": "Gemini",
+    "link": "#",
+    "imagen": "/fia.jpg"
+  },
+  {
+    "fecha": "17 jun, 2026",
+    "categoria": "FIA",
+    "titulo": "LA FIA CEDE ANTE MCLAREN Y MERCEDES TRAS EL POLÉMICO PREMIO DE MÓNACO 2026",
+    "extracto": "Nuevas regulaciones inmediatas sacuden el paddock tras las fuertes presiones políticas de los equipos británicos.",
+    "fotoCredito": "Archivo DRN",
+    "link": "#",
+    "imagen": "/piastri-russell-fia.jpg"
+  },
+  {
+    "fecha": "14 jun, 2026",
+    "categoria": "CRÓNICA",
+    "titulo": "¡ÉPICA EN BARCELONA! HAMILTON REINA EN EL CAOS DE CATALUNYA Y PODIO BRITÁNICO",
+    "extracto": "Una carrera impredecible pasada por agua consagra al heptacampeón en un desenlace caótico ante miles de aficionados.",
+    "fotoCredito": "Agencias",
+    "link": "#",
+    "imagen": "/piastri-russell-fia.jpg"
+  },
+  {
+    "fecha": "13 jun, 2026",
+    "categoria": "CLASIFICACIÓN",
+    "titulo": "THRILL EN MONTMELÓ: GEORGE RUSSELL FIRMA UNA POLE POSITION DE INFARTO",
+    "extracto": "El británico pulveriza el cronómetro en el último sector mientras Leclerc termina contra las protecciones de la curva 4.",
+    "fotoCredito": "DRN Live",
+    "link": "#",
+    "imagen": "/fia.jpg"
+  },
+  {
+    "fecha": "12 jun, 2026",
+    "categoria": "PRÁCTICAS",
+    "titulo": "MERCEDES SE ADUEÑA DE LOS ENTRENAMIENTOS LIBRES TRAS INTRODUCIR MEJORAS",
+    "extracto": "Los registros aerodinámicos en tandas largas colocan a las flechas de plata al frente, encendiendo las alarmas en Ferrari.",
+    "fotoCredito": "Archivo",
+    "link": "#",
+    "imagen": "/piastri-russell-fia.jpg"
+  },
+  {
+    "fecha": "10 jun, 2026",
+    "categoria": "DATOS",
+    "titulo": "CRONOLOGÍA TÉCNICA: EL COMPLEJO ANÁLISIS DE TELEMETRÍA PREVIO A CATALUNYA",
+    "extracto": "Desglosamos las variables de carga aerodinámica y degradación de neumáticos que definirán las estrategias en pista.",
+    "fotoCredito": "Telemetría DRN",
+    "link": "#",
+    "imagen": "/fia.jpg"
+  },
+  {
+    "fecha": "08 jun, 2026",
+    "categoria": "EXCLUSIVA",
+    "titulo": "PREVIA OFICIAL: LAS ESCUDERÍAS SE PREPARAN PARA LA BATALLA EN EUROPA",
+    "extracto": "Todo listo en el paddock para el inicio de la gira europea tradicional con actualizaciones masivas en los monoplazas.",
+    "fotoCredito": "Paddock",
+    "link": "#",
+    "imagen": "/piastri-russell-fia.jpg"
+  }
+]

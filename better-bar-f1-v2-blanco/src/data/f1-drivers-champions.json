@@ -1,0 +1,146 @@
+[
+  {
+    "position": 1,
+    "driverId": "kimi-antonelli",
+    "team": "Mercedes",
+    "points": 380
+  },
+  {
+    "position": 2,
+    "driverId": "max-verstappen",
+    "team": "Red Bull Racing",
+    "points": 261
+  },
+  {
+    "position": 3,
+    "driverId": "lewis-hamilton",
+    "team": "Ferrari",
+    "points": 259
+  },
+  {
+    "position": 4,
+    "driverId": "george-russell",
+    "team": "Mercedes",
+    "points": 250
+  },
+  {
+    "position": 5,
+    "driverId": "charles-leclerc",
+    "team": "Ferrari",
+    "points": 245
+  },
+  {
+    "position": 6,
+    "driverId": "lando-norris",
+    "team": "McLaren",
+    "points": 221
+  },
+  {
+    "position": 7,
+    "driverId": "oscar-piastri",
+    "team": "McLaren",
+    "points": 150
+  },
+  {
+    "position": 8,
+    "driverId": "isack-hadjar",
+    "team": "Red Bull Racing",
+    "points": 105
+  },
+  {
+    "position": 9,
+    "driverId": "liam-lawson",
+    "team": "Racing Bulls",
+    "points": 79
+  },
+  {
+    "position": 10,
+    "driverId": "pierre-gasly",
+    "team": "Alpine",
+    "points": 43
+  },
+  {
+    "position": 11,
+    "driverId": "arvid-lindblad",
+    "team": "Racing Bulls",
+    "points": 38
+  },
+  {
+    "position": 12,
+    "driverId": "franco-colapinto",
+    "team": "Alpine",
+    "points": 31
+  },
+  {
+    "position": 13,
+    "driverId": "oliver-bearman",
+    "team": "Haas F1 Team",
+    "points": 23
+  },
+  {
+    "position": 14,
+    "driverId": "nico-hulkenberg",
+    "team": "Audi",
+    "points": 13
+  },
+  {
+    "position": 15,
+    "driverId": "gabriel-bortoleto",
+    "team": "Audi",
+    "points": 10
+  },
+  {
+    "position": 16,
+    "driverId": "esteban-ocon",
+    "team": "Haas F1 Team",
+    "points": 7
+  },
+  {
+    "position": 17,
+    "driverId": "fernando-alonso",
+    "team": "Aston Martin",
+    "points": 7
+  },
+  {
+    "position": 18,
+    "driverId": "carlos-sainz",
+    "team": "Williams",
+    "points": 7
+  },
+  {
+    "position": 19,
+    "driverId": "alexander-albon",
+    "team": "Williams",
+    "points": 5
+  },
+  {
+    "position": 20,
+    "driverId": "yuki-tsunoda",
+    "team": "Racing Bulls",
+    "points": 1
+  },
+  {
+    "position": 21,
+    "driverId": "lance-stroll",
+    "team": "Aston Martin",
+    "points": 0
+  },
+  {
+    "position": 22,
+    "driverId": "valtteri-bottas",
+    "team": "Cadillac",
+    "points": 0
+  },
+  {
+    "position": 23,
+    "driverId": "ryo-hirakawa",
+    "team": "Haas F1 Team",
+    "points": 0
+  },
+  {
+    "position": 24,
+    "driverId": "sergio-perez",
+    "team": "Cadillac",
+    "points": 0
+  }
+]

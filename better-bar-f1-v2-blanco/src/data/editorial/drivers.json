@@ -1,0 +1,156 @@
+[
+  {
+    "id": "george-russell",
+    "name": "George Russell",
+    "slug": "george-russell",
+    "number": 63,
+    "active": true
+  },
+  {
+    "id": "kimi-antonelli",
+    "name": "Kimi Antonelli",
+    "slug": "kimi-antonelli",
+    "number": 12,
+    "active": true
+  },
+  {
+    "id": "charles-leclerc",
+    "name": "Charles Leclerc",
+    "slug": "charles-leclerc",
+    "number": 16,
+    "active": true
+  },
+  {
+    "id": "lewis-hamilton",
+    "name": "Lewis Hamilton",
+    "slug": "lewis-hamilton",
+    "number": 44,
+    "active": true
+  },
+  {
+    "id": "lando-norris",
+    "name": "Lando Norris",
+    "slug": "lando-norris",
+    "number": 1,
+    "active": true
+  },
+  {
+    "id": "oscar-piastri",
+    "name": "Oscar Piastri",
+    "slug": "oscar-piastri",
+    "number": 81,
+    "active": true
+  },
+  {
+    "id": "max-verstappen",
+    "name": "Max Verstappen",
+    "slug": "max-verstappen",
+    "number": 3,
+    "active": true
+  },
+  {
+    "id": "isack-hadjar",
+    "name": "Isack Hadjar",
+    "slug": "isack-hadjar",
+    "number": 6,
+    "active": true
+  },
+  {
+    "id": "liam-lawson",
+    "name": "Liam Lawson",
+    "slug": "liam-lawson",
+    "number": 30,
+    "active": true
+  },
+  {
+    "id": "arvid-lindblad",
+    "name": "Arvid Lindblad",
+    "slug": "arvid-lindblad",
+    "number": 41,
+    "active": true
+  },
+  {
+    "id": "pierre-gasly",
+    "name": "Pierre Gasly",
+    "slug": "pierre-gasly",
+    "number": 10,
+    "active": true
+  },
+  {
+    "id": "franco-colapinto",
+    "name": "Franco Colapinto",
+    "slug": "franco-colapinto",
+    "number": 43,
+    "active": true
+  },
+  {
+    "id": "esteban-ocon",
+    "name": "Esteban Ocon",
+    "slug": "esteban-ocon",
+    "number": 31,
+    "active": true
+  },
+  {
+    "id": "oliver-bearman",
+    "name": "Oliver Bearman",
+    "slug": "oliver-bearman",
+    "number": 87,
+    "active": true
+  },
+  {
+    "id": "nico-hulkenberg",
+    "name": "Nico Hulkenberg",
+    "slug": "nico-hulkenberg",
+    "number": 27,
+    "active": true
+  },
+  {
+    "id": "gabriel-bortoleto",
+    "name": "Gabriel Bortoleto",
+    "slug": "gabriel-bortoleto",
+    "number": 5,
+    "active": true
+  },
+  {
+    "id": "carlos-sainz",
+    "name": "Carlos Sainz",
+    "slug": "carlos-sainz",
+    "number": 55,
+    "active": true
+  },
+  {
+    "id": "alexander-albon",
+    "name": "Alexander Albon",
+    "slug": "alexander-albon",
+    "number": 23,
+    "active": true
+  },
+  {
+    "id": "fernando-alonso",
+    "name": "Fernando Alonso",
+    "slug": "fernando-alonso",
+    "number": 14,
+    "active": true
+  },
+  {
+    "id": "lance-stroll",
+    "name": "Lance Stroll",
+    "slug": "lance-stroll",
+    "number": 18,
+    "active": true
+  },
+  {
+    "id": "sergio-perez",
+    "name": "Sergio Perez",
+    "slug": "sergio-perez",
+    "number": 11,
+    "active": true
+  },
+  {
+    "id": "valtteri-bottas",
+    "name": "Valtteri Bottas",
+    "slug": "valtteri-bottas",
+    "number": 77,
+    "active": true
+  }
+]

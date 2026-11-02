@@ -1,0 +1,558 @@
+/* ======================================================
+   DAGGER RACING NEWS
+   GLOBAL.CSS
+====================================================== */
+
+/* -------------------------
+   VARIABLES
+------------------------- */
+
+:root{
+    --red:#e10600;
+    --black:#151515;
+    --gray:#f6f6f6;
+    --border:#e6e6e6;
+    --text:#202020;
+    --muted:#6f6f6f;
+    --container:1200px;
+}
+
+/* -------------------------
+   RESET
+------------------------- */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:
+        Inter,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background:#fff;
+    color:var(--text);
+    overflow-x:hidden;
+}
+
+img{
+    display:block;
+    max-width:100%;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+ul{
+    list-style:none;
+}
+
+/* -------------------------
+   CONTAINER
+------------------------- */
+
+.container{
+    width:min(var(--container), calc(100% - 40px));
+    margin:auto;
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.top-header{
+
+    position:sticky;
+    top:0;
+
+    z-index:500;
+
+    background:#fff;
+
+    border-top:3px solid var(--red);
+
+    border-bottom:1px solid #d9d9d9;
+
+}
+
+.top-header::after{
+
+    content:"";
+
+    display:block;
+
+    height:2px;
+
+    background:var(--red);
+
+}
+
+/* ------------------------- */
+
+.top-nav nav{
+
+    height:92px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+}
+
+/* ------------------------- */
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+}
+
+.logo img{
+
+    width:46px;
+
+}
+
+.logo span{
+
+    color:var(--red);
+
+    font-weight:900;
+
+    font-size:1.7rem;
+
+    letter-spacing:.04em;
+
+    text-transform:uppercase;
+
+}
+
+/* ------------------------- */
+
+.menu{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:40px;
+
+}
+
+.menu li{
+
+    position:relative;
+
+}
+
+.menu li:not(:last-child)::after{
+
+    content:"";
+
+    position:absolute;
+
+    right:-20px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    width:1px;
+
+    height:18px;
+
+    background:#222;
+
+}
+
+.menu a{
+
+    font-size:.9rem;
+
+    font-weight:700;
+
+    letter-spacing:.08em;
+
+    text-transform:uppercase;
+
+    transition:.2s;
+
+}
+
+.menu a:hover{
+
+    color:var(--red);
+
+}
+
+/* =====================================================
+   SECCIONES
+===================================================== */
+
+.section-header{
+
+    margin:55px 0 25px;
+
+}
+
+.section-header h2{
+
+    font-size:2.4rem;
+
+    font-weight:900;
+
+    text-transform:uppercase;
+
+}
+
+.section-header::after{
+
+    content:"";
+
+    display:block;
+
+    margin-top:10px;
+
+    width:135px;
+
+    height:3px;
+
+    background:var(--red);
+
+}
+
+/* =====================================================
+   NOTICIA PRINCIPAL
+===================================================== */
+
+.headline-article{
+
+    display:grid;
+
+    grid-template-columns:48% 52%;
+
+    background:#fff;
+
+    border:1px solid var(--border);
+
+    overflow:hidden;
+
+}
+
+.headline-image-area{
+
+    min-height:420px;
+
+    background:#eee;
+
+}
+
+.headline-image-area img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+}
+
+.headline-content{
+
+    padding:38px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+}
+
+/* ------------------------- */
+
+.meta-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:18px;
+
+}
+
+.badge-date{
+
+    background:var(--red);
+
+    color:#fff;
+
+    padding:6px 14px;
+
+    font-size:.75rem;
+
+    font-weight:700;
+
+}
+
+.category-text{
+
+    font-size:.78rem;
+
+    font-weight:700;
+
+    text-transform:uppercase;
+
+}
+
+/* ------------------------- */
+
+.title-main{
+
+    font-size:2.2rem;
+
+    line-height:1.1;
+
+    font-weight:900;
+
+    text-transform:uppercase;
+
+    margin-bottom:20px;
+
+}
+
+.excerpt{
+
+    color:var(--muted);
+
+    line-height:1.7;
+
+    margin-bottom:25px;
+
+}
+
+.btn-read-more{
+
+    color:var(--red);
+
+    font-weight:800;
+
+    text-transform:uppercase;
+
+    transition:.2s;
+
+}
+
+.btn-read-more:hover{
+
+    color:#000;
+
+}
+
+/* =====================================================
+   GRID
+===================================================== */
+
+.news-feed{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:24px;
+
+}
+
+.news-card{
+
+    border:1px solid var(--border);
+
+    background:#fff;
+
+    transition:.25s;
+
+}
+
+.news-card:hover{
+
+    transform:translateY(-6px);
+
+    border-color:var(--red);
+
+}
+
+.card-image-area{
+
+    aspect-ratio:16/9;
+
+    background:#eee;
+
+}
+
+.news-content{
+
+    padding:18px;
+
+}
+
+.title-secondary{
+
+    font-size:1.05rem;
+
+    font-weight:800;
+
+    text-transform:uppercase;
+
+    line-height:1.4;
+
+}
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.drn-sidebar{
+
+    position:fixed;
+
+    right:0;
+
+    top:120px;
+
+    width:74px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+.sidebar-item{
+
+    width:44px;
+
+    height:44px;
+
+    border-radius:50%;
+
+    border:1px solid var(--border);
+
+    background:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    transition:.2s;
+
+}
+
+.sidebar-item:hover{
+
+    background:var(--red);
+
+    color:#fff;
+
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer{
+
+    margin-top:70px;
+
+    background:#111;
+
+    color:#fff;
+
+    padding:40px;
+
+    text-align:center;
+
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:1050px){
+
+.news-feed{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+.headline-article{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+@media(max-width:760px){
+
+.menu{
+
+display:none;
+
+}
+
+.news-feed{
+
+grid-template-columns:1fr;
+
+}
+
+.logo span{
+
+font-size:1.2rem;
+
+}
+
+.headline-content{
+
+padding:24px;
+
+}
+
+.title-main{
+
+font-size:1.6rem;
+
+}
+
+.drn-sidebar{
+
+display:none;
+
+}
+
+}

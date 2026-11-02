@@ -1,0 +1,19 @@
+---
+// src/components/NewsCard.astro
+const { fecha, categoria, titulo, extracto, fotoCredito, link, imagen } = Astro.props;
+---
+
+<article class="news-card">
+  <div class="card-image-area" style={`background-image: url(${imagen}); background-size: cover; background-position: center;`}>
+    <span class="photo-credit">Foto: {fotoCredito}</span>
+  </div>
+  <div class="news-content">
+    <div class="meta-row">
+      <span class="badge-date">{fecha}</span>
+      <span class="category-text">{categoria}</span>
+    </div>
+    <h3 class="title-secondary">{titulo}</h3>
+    <p class="excerpt">{extracto}</p>
+   <a href={link} class="btn-read-more">LEER MÁS ➔</a>
+  </div>
+</article>

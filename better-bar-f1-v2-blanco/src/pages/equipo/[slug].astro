@@ -1,0 +1,10 @@
+---
+import MenuNav from "../../components/MenuNav.astro"; import Footer from "../../components/Footer.astro";
+import teams from "../../data/editorial/teams.json"; import standings from "../../data/f1-constructors-championship.json";
+export function getStaticPaths(){return teams.filter(t=>t.active).map(team=>({params:{slug:team.slug},props:{team}}))}
+const {team}=Astro.props; const standing=standings.find(s=>s.teamId===team.id);
+const notes=Object.values(import.meta.glob("../noticias/*.md",{eager:true})) as any[];
+const related=notes.filter(n=>JSON.stringify(n.frontmatter).toLowerCase().includes(team.name.toLowerCase()));
+---
+<!doctype html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><title>{team.name} | Dagger Racing News</title><link rel="stylesheet" href="/css/styless.css">
+<style>.profile{max-width:900px;margin:45px auto 90px;padding:0 20px}.hero-p{border-bottom:2px solid #e10600;padding:25px 0}.label{color:#e10600;font-weight:900}.hero-p h1{font-size:clamp(2.4rem,8vw,5rem);margin:8px 0;text-transform:uppercase}.stat{font-size:1.1rem;color:#bbb}.cards{display:grid;gap:15px;margin-top:30px}.card{padding:20px;background:#111;border:1px solid #333;color:white;text-decoration:none}.card:hover{border-color:#e10600}</style></head><body><MenuNav/><main class="profile"><header class="hero-p"><span class="label">EQUIPO</span><h1>{team.name}</h1>{standing&&<p class="stat">P{standing.position} · {standing.points} puntos</p>}</header><section class="cards"><h2>Noticias relacionadas</h2>{related.length?related.map((n:any)=><a class="card" href={n.url}><strong>{n.frontmatter.titulo}</strong></a>):<p>Las noticias etiquetadas con {team.name} aparecerán aquí.</p>}</section></main><Footer/></body></html>

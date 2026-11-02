@@ -1,0 +1,94 @@
+---
+import MenuNav from "../components/MenuNav.astro";
+import Footer from "../components/Footer.astro";
+
+// Horarios del Calendario Oficial con escala de rojos y grises profesionales
+const horariosSesiones = [
+    { sesion: "Práctica Libre 1 (Viernes 26)", h1: "05:30 AM", h2: "06:30 AM", h3: "07:30 AM", h4: "08:30 AM", color: "#450a0a", esGp: false },
+    { sesion: "Práctica Libre 2 (Viernes 26)", h1: "09:00 AM", h2: "10:00 AM", h3: "11:00 AM", h4: "12:00 PM", color: "#5e0606", esGp: false },
+    { sesion: "Práctica Libre 3 (Sábado 27)", h1: "04:30 AM", h2: "05:30 AM", h3: "06:30 AM", h4: "07:30 AM", color: "#730505", esGp: false },
+    { sesion: "Clasificación (Sábado 27)", h1: "08:00 AM", h2: "09:00 AM", h3: "10:00 AM", h4: "11:00 AM", color: "#a30400", esGp: false },
+    { sesion: "Gran Premio (Domingo 28)", h1: "07:00 AM", h2: "08:00 AM", h3: "09:00 AM", h4: "10:00 AM", color: "#ff1e27", esGp: true }
+];
+---
+<!DOCTYPE html>
+<html lang="es">
+   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dagger Racing News - Horarios del Gran Premio</title>
+    <link rel="stylesheet" href="/css/styless.css">
+    <link rel="icon" type="image/png" href="/daggerracingnews-logotipo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body style="background-color: #08080a; margin: 0; padding: 0; font-family: 'Inter', sans-serif; color: #ffffff; overflow-x: hidden;">
+
+    <MenuNav />
+
+    <!-- CONTENEDOR PRINCIPAL CON RED DE REJILLA SUTIL DE FONDO (Look F1 Tech) -->
+    <main style="max-width: 1000px; margin: 0 auto; padding: 30px 16px; min-height: 100vh; box-sizing: border-box; background-image: linear-gradient(rgba(31, 31, 36, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(31, 31, 36, 0.3) 1px, transparent 1px); background-size: 40px 40px;">
+      
+        <!-- ENCABEZADO DE DISEÑO ULTRA COMPETITIVO -->
+        <div style="margin-bottom: 35px; text-align: center; position: relative;">
+            <h1 style="font-family: 'Orbitron', sans-serif; font-weight: 900; color: #ffffff; letter-spacing: 2px; text-transform: uppercase; font-size: 1.8rem; margin: 0; padding-bottom: 12px;">
+                HORARIOS DEL <span style="color: #ff1e27;">GRAN PREMIO DE AUSTRIA 2026</span>
+            </h1>
+            <!-- Línea de velocidad unificada en Rojo F1 -->
+            <div style="width: 120px; height: 4px; background: linear-gradient(90deg, #ff1e27 0%, transparent 100%); margin: 0 auto; border-radius: 2px;"></div>
+        </div>
+    
+
+        <!-- TABLA PRINCIPAL CON CONTORNO DE FIBRA OSCURA -->
+        <section class="tarjeta-tabla-f1" style="background: #0c0c0e; border: 1px solid #1f1f24; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.6); overflow: hidden; margin-bottom: 35px; position: relative;">
+            
+         <!-- Barra superior con degradado dinámico deportivo -->
+         <div style="height: 4px; width: 100%; background: linear-gradient(90deg, #450a0a 0%, #ff1e27 100%);"></div>
+
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; font-family: 'Orbitron', sans-serif; font-size: 0.85rem; min-width: 650px;">
+                    <thead>
+                        <tr style="background: #121215; border-bottom: 2px solid #1f1f24;">
+                            <th style="padding: 18px 20px; text-align: left; font-weight: bold; color: #52525b; font-size: 0.75rem; letter-spacing: 1px;">SESIÓN</th>
+                            <th style="padding: 18px 15px; text-align: center; font-size: 1.1rem; letter-spacing: 4px; border: 1px solid #121215;">🇨🇷 🇸🇻 🇭🇳 🇲🇽</th>
+                            <th style="padding: 18px 15px; text-align: center; font-size: 1.1rem; letter-spacing: 4px; border: 1px solid #121215;">🇨🇴 🇪🇨 🇵🇦 🇵🇪</th>
+                            <th style="padding: 18px 15px; text-align: center; font-size: 1.1rem; letter-spacing: 4px; border: 1px solid #121215;">🇧🇴 🇨🇱 🇩🇴 🇵🇷 🇻🇪</th>
+                            <th style="padding: 18px 15px; text-align: center; font-size: 1.1rem; letter-spacing: 4px; border: 1px solid #121215;">🇦🇷 🇧🇷 🇵🇾 🇺🇾</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {horariosSesiones.map((s) => (
+                            <tr 
+                                style={`background: ${s.esGp ? 'linear-gradient(90deg, rgba(255, 30, 39, 0.04) 0%, transparent 100%)' : 'transparent'}; border-bottom: 1px solid #1f1f24; border-left: 4px solid ${s.color}; transition: all 0.2s;`}
+                                onmouseover="this.style.background='rgba(255, 255, 255, 0.03)'" 
+                                onmouseout={`this.style.background="${s.esGp ? 'linear-gradient(90deg, rgba(255, 30, 39, 0.04) 0%, transparent 100%)' : 'transparent'}"`}
+                            >
+                                <td style={`padding: 16px 20px; font-weight: bold; color: #ffffff; font-family: 'Inter', sans-serif; font-size: 0.9rem;`}>
+                                    {s.sesion}
+                                </td>
+                                <td style="padding: 16px 15px; text-align: center; font-weight: 500; color: #ffffff;">
+                                    {s.h1}
+                                </td>
+                                <td style="padding: 16px 15px; text-align: center; font-weight: 500; color: #ffffff;">
+                                    {s.h2}
+                                </td>
+                                <td style="padding: 16px 15px; text-align: center; font-weight: 500; color: #ffffff;">
+                                    {s.h3}
+                                </td>
+                                <td style={`padding: 16px 15px; text-align: center; font-weight: 500; color: ${s.esGp ? '#ff1e27' : '#ffffff'}; font-size: 0.9rem;`}>
+                                    {s.h4}
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    
+    </main>
+
+    <Footer />
+</body>
+</html>

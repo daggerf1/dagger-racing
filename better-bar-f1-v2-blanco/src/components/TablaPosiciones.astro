@@ -1,0 +1,106 @@
+---
+import MenuNav from "../components/MenuNav.astro";
+import Footer from "../components/Footer.astro";
+import standings from "../data/f1-drivers-champions.json";
+import drivers from "../data/editorial/drivers.json";
+import { slugifyTeam } from "../lib/f1";
+
+const driverMap = Object.fromEntries(drivers.map((d) => [d.id, d]));
+const flags: Record<string,string> = {
+ "alexander-albon":"🇹🇭","fernando-alonso":"🇪🇸","kimi-antonelli":"🇮🇹","oliver-bearman":"🇬🇧",
+ "gabriel-bortoleto":"🇧🇷","valtteri-bottas":"🇫🇮","franco-colapinto":"🇦🇷","pierre-gasly":"🇫🇷",
+ "isack-hadjar":"🇫🇷","lewis-hamilton":"🇬🇧","nico-hulkenberg":"🇩🇪","liam-lawson":"🇳🇿",
+ "charles-leclerc":"🇲🇨","arvid-lindblad":"🇬🇧","lando-norris":"🇬🇧","esteban-ocon":"🇫🇷",
+ "sergio-perez":"🇲🇽","oscar-piastri":"🇦🇺","george-russell":"🇬🇧","carlos-sainz":"🇪🇸",
+ "lance-stroll":"🇨🇦","max-verstappen":"🇳🇱"
+};
+const pilotos = standings.map((s) => ({
+ pos:s.position, driverId:s.driverId, nombre:driverMap[s.driverId]?.name ?? s.driverId,
+ escuderia:s.team, puntos:s.points, bandera:flags[s.driverId] ?? "🏁",
+ teamSlug:slugifyTeam(s.team)
+}));
+const topPilotos = pilotos.slice(0,3);
+const restoPilotos = pilotos.slice(3);
+---
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dagger Racing News - Campeonato 2026</title>
+    <link rel="stylesheet" href="/css/styless.css">
+    <link rel="icon" type="image/png" href="/daggerracingnews-logotipo.png">
+<style>.standing-link{color:inherit;text-decoration:none}.standing-link:hover{color:#e10600;text-decoration:underline}</style>
+</head>
+<body style="background: #0a0a0a; color: white; margin: 0; padding: 0;">
+
+    <MenuNav />
+
+    <main class="container" style="max-width: 800px; margin: 40px auto; padding: 0 20px; box-sizing: border-box;">
+        
+        <div class="contenedor-campeonato">
+            <h3 class="titulo-tabla">MUNDIAL DE PILOTOS 2026</h3>
+            
+            <div class="tabla-f1">
+                <div class="fila-tabla encabezado">
+                    <span class="col-pos">POS</span>
+                    <span class="col-piloto">PILOTO</span>
+                    <span class="col-equipo">ESCUDERÍA</span>
+                    <span class="col-puntos">PTS</span>
+                </div>
+
+                <div class="bloque-visible">
+                    {topPilotos.map((p) => (
+                        <div class={`fila-tabla posicion-${p.pos}`}>
+                            <span class="col-pos item-podio">{p.pos}</span>
+                            <span class="col-piloto"><strong>{p.bandera} <a class="standing-link" href={`/piloto/${p.driverId}`}>{p.nombre}</a></strong></span>
+                            <span class="col-equipo"><a class="standing-link" href={`/equipo/${p.teamSlug}`}>{p.escuderia}</a></span>
+                            <span class="col-puntos total-pts">{p.puntos}</span>
+                        </div>
+                    ))}
+                </div>
+
+                <div id="tabla-oculta-pilotos" class="filas-tabla-ocultas">
+                    {restoPilotos.map((p) => (
+                        <div class="fila-tabla">
+                            <span class="col-pos">{p.pos}</span>
+                            <span class="col-piloto">{p.bandera} <a class="standing-link" href={`/piloto/${p.driverId}`}>{p.nombre}</a></span>
+                            <span class="col-equipo text-mutado"><a class="standing-link" href={`/equipo/${p.teamSlug}`}>{p.escuderia}</a></span>
+                            <span class="col-puntos">{p.puntos}</span>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            <button id="btn-desplegar-tabla" class="boton-desplegar">
+                Ver tabla completa ↓
+            </button>
+        </div>
+
+    </main>
+
+    <Footer />
+
+    <script is:inline>
+        document.addEventListener("DOMContentLoaded", () => {
+            const boton = document.getElementById("btn-desplegar-tabla");
+            const tablaOculta = document.getElementById("tabla-oculta-pilotos");
+
+            if (tablaOculta && boton) {
+                tablaOculta.style.display = "none";
+                
+                boton.addEventListener("click", () => {
+                    if (tablaOculta.style.display === "none") {
+                        tablaOculta.style.display = "block";
+                        boton.textContent = "Ocultar posiciones ↑";
+                    } else {
+                        tablaOculta.style.display = "none";
+                        boton.textContent = "Ver tabla completa ↓";
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>

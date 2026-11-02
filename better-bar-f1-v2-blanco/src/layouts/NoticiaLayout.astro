@@ -1,0 +1,726 @@
+---
+import MenuNav from "../components/MenuNav.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+    title: string;
+    description?: string;
+    publishedAt: Date;
+    updatedAt?: Date;
+    author?: string;
+    category: string;
+    subcategory?: string;
+    image?: string;
+    imageAlt?: string;
+    drivers?: string[];
+    teams?: string[];
+    tags?: string[];
+}
+
+const {
+    title,
+    description,
+    publishedAt,
+    updatedAt,
+    author = "redaccion",
+    category,
+    subcategory,
+    image,
+    imageAlt,
+    drivers = [],
+    teams = [],
+    tags = [],
+} = Astro.props;
+
+const formatDate = (date: Date) =>
+    new Intl.DateTimeFormat("es-MX", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+    }).format(date);
+
+const formatName = (value: string) =>
+    value
+        .split("-")
+        .map(
+            (word) =>
+                word.charAt(0).toUpperCase() +
+                word.slice(1)
+        )
+        .join(" ");
+
+const imageSrc = image
+    ? image.startsWith("/")
+        ? image
+        : `/images/${image}`
+    : undefined;
+
+const authorName =
+    author === "redaccion"
+        ? "Redacción Dagger Racing News"
+        : formatName(author);
+
+/*
+ * El canonical solamente se genera cuando Astro.site
+ * esté configurado en astro.config.
+ */
+const canonicalURL = Astro.site
+    ? new URL(Astro.url.pathname, Astro.site)
+    : undefined;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+
+        <title>{title} | Dagger Racing News</title>
+
+        {
+            description && (
+                <meta
+                    name="description"
+                    content={description}
+                />
+            )
+        }
+
+        {
+            canonicalURL && (
+                <link
+                    rel="canonical"
+                    href={canonicalURL}
+                />
+            )
+        }
+
+        <link
+            rel="stylesheet"
+            href="/css/styless.css"
+        />
+
+        <link
+            rel="icon"
+            type="image/png"
+            href="/daggerracingnews-logotipo.png"
+        />
+
+        <link
+            rel="preconnect"
+            href="https://fonts.googleapis.com"
+        />
+
+        <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossorigin
+        />
+
+        <link
+            href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Inter:wght@400;500;600;700;800&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+
+    <body>
+        <MenuNav />
+
+        <main class="article-page">
+            <article class="article">
+
+                <!-- CABECERA EDITORIAL -->
+                <header class="article-header">
+
+                    <div class="article-kicker">
+
+                        <a href={`/categoria/${category}/`}>
+                            {formatName(category)}
+                        </a>
+
+                        {
+                            subcategory && (
+                                <>
+                                    <span>/</span>
+
+                                    <a
+                                        href={`/subcategoria/${subcategory}/`}
+                                    >
+                                        {formatName(subcategory)}
+                                    </a>
+                                </>
+                            )
+                        }
+
+                    </div>
+
+                    <h1>{title}</h1>
+
+                    {
+                        description && (
+                            <p class="article-description">
+                                {description}
+                            </p>
+                        )
+                    }
+
+                    <div class="article-meta">
+
+                        <span>
+                            Por <strong>{authorName}</strong>
+                        </span>
+
+                        <span class="meta-separator">
+                            •
+                        </span>
+
+                        <time datetime={publishedAt.toISOString()}>
+                            {formatDate(publishedAt)}
+                        </time>
+
+                        {
+                            updatedAt &&
+                            updatedAt.getTime() !==
+                                publishedAt.getTime() && (
+                                <>
+                                    <span class="meta-separator">
+                                        •
+                                    </span>
+
+                                    <span>
+                                        Actualizada{" "}
+                                        <time
+                                            datetime={updatedAt.toISOString()}
+                                        >
+                                            {formatDate(updatedAt)}
+                                        </time>
+                                    </span>
+                                </>
+                            )
+                        }
+
+                    </div>
+
+                </header>
+
+                <!-- IMAGEN PRINCIPAL -->
+                {
+                    imageSrc && (
+                        <figure class="article-image">
+                            <img
+                                src={imageSrc}
+                                alt={imageAlt || title}
+                                loading="eager"
+                            />
+                        </figure>
+                    )
+                }
+
+                <!-- PILOTOS Y EQUIPOS -->
+                {
+                    (drivers.length > 0 ||
+                        teams.length > 0) && (
+                        <div class="article-entities">
+
+                            {
+                                drivers.map((driver) => (
+                                    <a
+                                        href={`/piloto/${driver}/`}
+                                        class="entity-link"
+                                    >
+                                        {formatName(driver)}
+                                    </a>
+                                ))
+                            }
+
+                            {
+                                teams.map((team) => (
+                                    <a
+                                        href={`/equipo/${team}/`}
+                                        class="entity-link"
+                                    >
+                                        {formatName(team)}
+                                    </a>
+                                ))
+                            }
+
+                        </div>
+                    )
+                }
+
+                <!-- CUERPO DE LA NOTICIA -->
+                <div class="article-content">
+                    <slot />
+                </div>
+
+                <!-- HASHTAGS -->
+                {
+                    tags.length > 0 && (
+                        <footer class="article-footer">
+
+                            <div class="article-tags">
+
+                                {
+                                    tags.map((tag) => (
+                                        <a
+                                            href={`/etiqueta/${tag}/`}
+                                            class="tag"
+                                        >
+                                            #
+                                            {formatName(tag).replaceAll(
+                                                " ",
+                                                ""
+                                            )}
+                                        </a>
+                                    ))
+                                }
+
+                            </div>
+
+                        </footer>
+                    )
+                }
+
+                <!-- NOTICIAS RELACIONADAS -->
+                <section
+                    class="related-section"
+                    aria-labelledby="related-title"
+                >
+
+                    <div class="section-heading">
+
+                        <span></span>
+
+                        <h2 id="related-title">
+                            Noticias relacionadas
+                        </h2>
+
+                    </div>
+
+                    <div class="related-content">
+                        <slot name="related" />
+                    </div>
+
+                </section>
+
+            </article>
+        </main>
+
+        <Footer />
+    </body>
+</html>
+
+<style>
+    :global(*) {
+        box-sizing: border-box;
+    }
+
+    :global(html) {
+        background: #ffffff;
+    }
+
+    :global(body) {
+        margin: 0;
+        background: #ffffff;
+        color: #111111;
+        font-family: "Inter", sans-serif;
+        overflow-x: hidden;
+    }
+
+    /* =========================
+       CONTENEDOR
+       ========================= */
+
+    .article-page {
+        width: 100%;
+        min-height: 100vh;
+
+        padding: 52px 20px 80px;
+
+        background: #ffffff;
+    }
+
+    .article {
+        width: 100%;
+        max-width: 980px;
+
+        margin: 0 auto;
+    }
+
+    /* =========================
+       CABECERA
+       ========================= */
+
+    .article-header {
+        max-width: 900px;
+        margin-bottom: 32px;
+    }
+
+    .article-kicker {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+
+        gap: 9px;
+
+        margin-bottom: 18px;
+
+        font-family: "Orbitron", sans-serif;
+        font-size: 0.72rem;
+        font-weight: 800;
+
+        letter-spacing: 1.4px;
+        text-transform: uppercase;
+    }
+
+    .article-kicker a {
+        color: #d60000;
+        text-decoration: none;
+    }
+
+    .article-kicker a:hover {
+        text-decoration: underline;
+    }
+
+    .article-kicker span {
+        color: #aaaaaa;
+    }
+
+    h1 {
+        margin: 0;
+
+        color: #111111;
+
+        font-family: "Orbitron", sans-serif;
+
+        font-size: clamp(
+            2rem,
+            5vw,
+            4rem
+        );
+
+        font-weight: 900;
+        line-height: 1.04;
+
+        letter-spacing: -1.5px;
+    }
+
+    .article-description {
+        max-width: 820px;
+
+        margin: 22px 0 0;
+
+        color: #555555;
+
+        font-size: clamp(
+            1.05rem,
+            2vw,
+            1.28rem
+        );
+
+        line-height: 1.6;
+    }
+
+    /* =========================
+       FECHA / AUTOR
+       ========================= */
+
+    .article-meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+
+        gap: 8px;
+
+        margin-top: 24px;
+        padding-top: 18px;
+
+        border-top: 1px solid #e5e5e5;
+
+        color: #666666;
+
+        font-size: 0.88rem;
+    }
+
+    .article-meta strong {
+        color: #111111;
+    }
+
+    .meta-separator {
+        color: #d60000;
+    }
+
+    /* =========================
+       IMAGEN
+       ========================= */
+
+    .article-image {
+        width: 100%;
+
+        margin: 0 0 28px;
+    }
+
+    .article-image img {
+        display: block;
+
+        width: 100%;
+        max-height: 620px;
+
+        object-fit: cover;
+
+        border-radius: 4px;
+    }
+
+    /* =========================
+       PILOTOS / EQUIPOS
+       ========================= */
+
+    .article-entities {
+        display: flex;
+        flex-wrap: wrap;
+
+        gap: 8px;
+
+        margin: 0 0 32px;
+    }
+
+    .entity-link {
+        padding: 7px 12px;
+
+        border: 1px solid #dddddd;
+        border-radius: 999px;
+
+        color: #333333;
+        background: #ffffff;
+
+        font-size: 0.78rem;
+        font-weight: 700;
+
+        text-decoration: none;
+
+        transition:
+            color 0.2s ease,
+            border-color 0.2s ease,
+            background 0.2s ease;
+    }
+
+    .entity-link:hover {
+        color: #ffffff;
+
+        background: #d60000;
+
+        border-color: #d60000;
+    }
+
+    /* =========================
+       CONTENIDO
+       ========================= */
+
+    .article-content {
+        max-width: 780px;
+
+        color: #242424;
+
+        font-size: 1.08rem;
+        line-height: 1.85;
+    }
+
+    .article-content :global(p) {
+        margin: 0 0 1.5em;
+    }
+
+    .article-content :global(h2) {
+        margin: 2em 0 0.7em;
+
+        color: #111111;
+
+        font-family: "Orbitron", sans-serif;
+
+        font-size: clamp(
+            1.4rem,
+            3vw,
+            2rem
+        );
+
+        line-height: 1.2;
+    }
+
+    .article-content :global(h3) {
+        margin: 1.8em 0 0.7em;
+
+        color: #111111;
+
+        font-size: 1.3rem;
+    }
+
+    .article-content :global(a) {
+        color: #c90000;
+
+        font-weight: 600;
+    }
+
+    .article-content :global(blockquote) {
+        margin: 2em 0;
+
+        padding:
+            4px
+            0
+            4px
+            22px;
+
+        border-left: 4px solid #d60000;
+
+        color: #444444;
+
+        font-size: 1.15rem;
+        font-weight: 600;
+
+        line-height: 1.7;
+    }
+
+    .article-content :global(img) {
+        display: block;
+
+        max-width: 100%;
+        height: auto;
+
+        margin: 30px 0;
+
+        border-radius: 4px;
+    }
+
+    /* =========================
+       TAGS
+       ========================= */
+
+    .article-footer {
+        max-width: 780px;
+
+        margin-top: 45px;
+        padding-top: 22px;
+
+        border-top: 1px solid #e5e5e5;
+    }
+
+    .article-tags {
+        display: flex;
+        flex-wrap: wrap;
+
+        gap: 8px;
+    }
+
+    .tag {
+        padding: 8px 12px;
+
+        color: #b80000;
+
+        background: #fff4f4;
+
+        border-radius: 4px;
+
+        font-size: 0.78rem;
+        font-weight: 800;
+
+        text-decoration: none;
+    }
+
+    .tag:hover {
+        color: #ffffff;
+
+        background: #d60000;
+    }
+
+    /* =========================
+       RELACIONADAS
+       ========================= */
+
+    .related-section {
+        margin-top: 65px;
+        padding-top: 26px;
+
+        border-top: 1px solid #dddddd;
+    }
+
+    .section-heading {
+        display: flex;
+        align-items: center;
+
+        gap: 12px;
+
+        margin-bottom: 25px;
+    }
+
+    .section-heading > span {
+        display: block;
+
+        width: 5px;
+        height: 30px;
+
+        background: #d60000;
+    }
+
+    .section-heading h2 {
+        margin: 0;
+
+        color: #111111;
+
+        font-family: "Orbitron", sans-serif;
+
+        font-size: clamp(
+            1.1rem,
+            3vw,
+            1.45rem
+        );
+
+        font-weight: 900;
+
+        text-transform: uppercase;
+    }
+
+    .related-content:empty {
+        display: none;
+    }
+
+    /* =========================
+       RESPONSIVE
+       ========================= */
+
+    @media (max-width: 700px) {
+
+        .article-page {
+            padding:
+                35px
+                16px
+                60px;
+        }
+
+        h1 {
+            letter-spacing: -0.7px;
+        }
+
+        .article-description {
+            margin-top: 17px;
+        }
+
+        .article-meta {
+            align-items: flex-start;
+        }
+
+        .article-content {
+            font-size: 1rem;
+            line-height: 1.75;
+        }
+
+        .article-image img {
+            border-radius: 0;
+        }
+
+        .related-section {
+            margin-top: 50px;
+        }
+    }
+</style>

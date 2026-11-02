@@ -1,0 +1,498 @@
+---
+import MenuNav from "../../components/MenuNav.astro";
+import Footer from "../../components/Footer.astro";
+
+import drivers from "../../data/editorial/drivers.json";
+import standings from "../../data/f1-drivers-champions.json";
+
+import { slugifyTeam } from "../../lib/f1";
+import { getArticlesByDriver } from "../../lib/content/articles";
+
+export function getStaticPaths() {
+    return drivers
+        .filter((driver) => driver.active)
+        .map((driver) => ({
+            params: {
+                slug: driver.slug,
+            },
+            props: {
+                driver,
+            },
+        }));
+}
+
+const { driver } = Astro.props;
+
+const standing = standings.find(
+    (item) => item.driverId === driver.id
+);
+
+/*
+ * Las noticias ya llegan ordenadas
+ * de más reciente a más antigua.
+ */
+const related = await getArticlesByDriver(driver.slug);
+
+const formatDate = (date: Date) =>
+    new Intl.DateTimeFormat("es-MX", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+    }).format(date);
+---
+
+<!doctype html>
+
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8" />
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    />
+
+    <title>
+        {driver.name} | Dagger Racing News
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="/css/styless.css"
+    />
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="/daggerracingnews-logotipo.png"
+    />
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    />
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    />
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    />
+
+</head>
+
+
+<body>
+
+    <MenuNav />
+
+
+    <main class="profile">
+
+        <!-- PERFIL DEL PILOTO -->
+
+        <header class="hero-p">
+
+            <span class="label">
+                PILOTO · #{driver.number}
+            </span>
+
+            <h1>
+                {driver.name}
+            </h1>
+
+            {
+                standing && (
+                    <p class="stat">
+
+                        P{standing.position}
+
+                        {" · "}
+
+                        {standing.points} puntos
+
+                        {" · "}
+
+                        <a
+                            href={`/equipo/${slugifyTeam(
+                                standing.team
+                            )}/`}
+                        >
+                            {standing.team}
+                        </a>
+
+                    </p>
+                )
+            }
+
+        </header>
+
+
+        <!-- NOTICIAS DEL PILOTO -->
+
+        <section class="related-section">
+
+            <h2>
+                Noticias relacionadas
+            </h2>
+
+
+            {
+                related.length > 0 ? (
+
+                    <div class="news-grid">
+
+                        {
+                            related.map((article) => (
+
+                                <a
+                                    class="news-card"
+                                    href={`/noticias/${article.data.slug}/`}
+                                >
+
+                                    <time
+                                        datetime={
+                                            article.data.publishedAt.toISOString()
+                                        }
+                                    >
+                                        {
+                                            formatDate(
+                                                article.data.publishedAt
+                                            )
+                                        }
+                                    </time>
+
+
+                                    <h3>
+                                        {article.data.title}
+                                    </h3>
+
+                                </a>
+
+                            ))
+                        }
+
+                    </div>
+
+                ) : (
+
+                    <p class="empty-message">
+                        Las noticias etiquetadas con{" "}
+                        {driver.name} aparecerán aquí.
+                    </p>
+
+                )
+            }
+
+        </section>
+
+    </main>
+
+
+    <Footer />
+
+</body>
+
+</html>
+
+
+<style>
+
+    :global(*) {
+        box-sizing: border-box;
+    }
+
+
+    :global(html) {
+        background: #ffffff;
+    }
+
+
+    :global(body) {
+        margin: 0;
+
+        background: #ffffff;
+
+        color: #111111;
+
+        font-family: "Inter", sans-serif;
+    }
+
+
+    /* =========================
+       CONTENEDOR
+       ========================= */
+
+    .profile {
+        width: 100%;
+
+        max-width: 1100px;
+
+        margin: 45px auto 90px;
+
+        padding: 0 20px;
+    }
+
+
+    /* =========================
+       PILOTO
+       ========================= */
+
+    .hero-p {
+        padding: 25px 0 30px;
+
+        border-bottom: 2px solid #e10600;
+    }
+
+
+    .label {
+        display: block;
+
+        color: #e10600;
+
+        font-size: 0.8rem;
+
+        font-weight: 900;
+
+        text-align: center;
+    }
+
+
+    .hero-p h1 {
+        margin: 8px 0;
+
+        color: #111111;
+
+        font-family: "Orbitron", sans-serif;
+
+        font-size: clamp(
+            2.4rem,
+            8vw,
+            5rem
+        );
+
+        font-weight: 900;
+
+        line-height: 1;
+
+        text-align: center;
+
+        text-transform: uppercase;
+    }
+
+
+    .stat {
+        margin: 18px 0 0;
+
+        color: #bbbbbb;
+
+        font-size: 1.1rem;
+
+        text-align: center;
+
+        text-transform: uppercase;
+
+        letter-spacing: 2px;
+    }
+
+
+    .stat a {
+        color: inherit;
+
+        font-weight: 700;
+    }
+
+
+    /* =========================
+       NOTICIAS RELACIONADAS
+       ========================= */
+
+    .related-section {
+        margin-top: 45px;
+    }
+
+
+    .related-section h2 {
+        margin:
+            0
+            0
+            25px;
+
+        color: #333333;
+
+        font-family: "Orbitron", sans-serif;
+
+        font-size: 1.35rem;
+
+        font-weight: 900;
+
+        text-transform: uppercase;
+    }
+
+
+    /* =========================
+       CUADRÍCULA
+       ========================= */
+
+    .news-grid {
+        display: grid;
+
+        grid-template-columns:
+            repeat(
+                3,
+                minmax(0, 1fr)
+            );
+
+        gap: 18px;
+    }
+
+
+    /* =========================
+       TARJETA DE NOTICIA
+       ========================= */
+
+    .news-card {
+        position: relative;
+
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: flex-end;
+
+        min-height: 180px;
+
+        padding: 22px;
+
+        overflow: hidden;
+
+        background: #ffffff;
+
+        border: 1px solid #dddddd;
+
+        border-top: 4px solid #111111;
+
+        color: #111111;
+
+        text-decoration: none;
+
+        transition:
+            transform 0.2s ease,
+            border-color 0.2s ease,
+            box-shadow 0.2s ease;
+    }
+
+
+    .news-card:hover {
+        transform: translateY(-4px);
+
+        border-color: #e10600;
+
+        border-top-color: #e10600;
+
+        box-shadow:
+            0
+            12px
+            30px
+            rgba(0, 0, 0, 0.08);
+    }
+
+
+    /* FECHA */
+
+    .news-card time {
+        display: block;
+
+        margin-bottom: 10px;
+
+        color: #e10600;
+
+        font-size: 0.7rem;
+
+        font-weight: 900;
+
+        letter-spacing: 1px;
+
+        text-transform: uppercase;
+    }
+
+
+    /* TÍTULO */
+
+    .news-card h3 {
+        margin: 0;
+
+        color: #111111;
+
+        font-family: "Orbitron", sans-serif;
+
+        font-size: 1.05rem;
+
+        font-weight: 900;
+
+        line-height: 1.35;
+    }
+
+
+    .empty-message {
+        color: #666666;
+    }
+
+
+    /* =========================
+       TABLET
+       ========================= */
+
+    @media (max-width: 850px) {
+
+        .news-grid {
+            grid-template-columns:
+                repeat(
+                    2,
+                    minmax(0, 1fr)
+                );
+        }
+
+    }
+
+
+    /* =========================
+       MÓVIL
+       ========================= */
+
+    @media (max-width: 550px) {
+
+        .profile {
+            margin-top: 30px;
+
+            padding: 0 16px;
+        }
+
+
+        .related-section {
+            margin-top: 35px;
+        }
+
+
+        .news-grid {
+            grid-template-columns: 1fr;
+
+            gap: 12px;
+        }
+
+
+        .news-card {
+            min-height: 145px;
+
+            padding: 18px;
+        }
+
+    }
+
+</style>

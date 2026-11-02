@@ -1,0 +1,974 @@
+/* ==========================================================
+   DAGGER RACING NEWS
+   STYLES.CSS
+   Diseño blanco + rojo
+========================================================== */
+
+
+/* ==========================================================
+   VARIABLES
+========================================================== */
+
+:root {
+    --bg-principal: #ffffff;
+    --bg-tarjetas: #f8fafc;
+
+    --rojo-racing: #e10600;
+    --rojo-racing-hover: #b80500;
+
+    --texto-puro: #0f172a;
+    --texto-secundario: #475569;
+
+    --borde-tecnico: #e2e8f0;
+}
+
+
+/* ==========================================================
+   BASE
+========================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+
+html {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-principal);
+}
+
+
+body {
+    font-family: 'Rajdhani', sans-serif;
+
+    margin: 0;
+    padding: 0;
+
+    background-color: var(--bg-principal);
+
+    color: var(--texto-secundario);
+
+    -webkit-font-smoothing: antialiased;
+}
+
+
+/* ==========================================================
+   CABECERA
+   BLANCA + LÍNEA ROJA
+========================================================== */
+
+header {
+    background: #ffffff;
+
+    border-bottom: 3px solid var(--rojo-racing);
+
+    text-align: center;
+
+    padding: 10px 0 5px 0;
+}
+
+
+/* TÍTULO DEL HEADER */
+
+header h1 {
+    font-family: 'Orbitron', sans-serif;
+
+    font-style: italic;
+
+    font-size: 22px;
+
+    margin: 0 0 2px 0;
+
+    color: #111111;
+
+    letter-spacing: 2px;
+
+    font-weight: 700;
+}
+
+
+header h1 span {
+    color: var(--rojo-racing);
+
+    margin-left: 5px;
+
+    font-style: italic;
+}
+
+
+header p {
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 3px;
+
+    color: #64748b;
+
+    margin: 0 0 8px 0;
+
+    font-weight: 200;
+}
+
+
+/* ==========================================================
+   NAVEGACIÓN
+   BLANCA
+========================================================== */
+
+nav {
+    background-color: #ffffff;
+
+    display: flex;
+
+    gap: 16px;
+
+    justify-content: center;
+    align-items: center;
+
+    border: none;
+
+    position: sticky;
+
+    padding-top: 2px;
+
+    margin-top: 2px;
+
+    z-index: 1000;
+}
+
+
+nav a {
+    font-family: 'Orbitron', sans-serif;
+
+    color: #111111;
+
+    padding: 4px 8px;
+
+    text-decoration: none;
+
+    text-transform: uppercase;
+
+    font-size: 10px;
+
+    font-weight: 500;
+
+    letter-spacing: 2px;
+
+    transition:
+        color 0.2s ease,
+        background-color 0.2s ease;
+}
+
+
+nav a:hover {
+    color: var(--rojo-racing);
+
+    background-color: transparent;
+}
+
+
+/* ==========================================================
+   CONTENEDOR PRINCIPAL
+========================================================== */
+
+.container {
+    max-width: 1280px;
+
+    margin: 40px auto;
+
+    display: flex;
+
+    gap: 40px;
+
+    padding: 0 20px;
+}
+
+
+/* ==========================================================
+   NOTICIAS
+========================================================== */
+
+.noticias {
+    flex: 2;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 35px;
+}
+
+
+/* ==========================================================
+   TARJETA NOTICIA
+========================================================== */
+
+.tarjeta-noticia {
+    background-color: var(--bg-principal);
+
+    border-bottom: 2px solid var(--borde-tecnico);
+
+    border-radius: 0;
+
+    overflow: hidden;
+
+    padding-bottom: 25px;
+
+    transition:
+        border-color 0.2s ease;
+}
+
+
+.tarjeta-noticia:hover {
+    border-bottom-color: var(--rojo-racing);
+}
+
+
+/* ==========================================================
+   IMAGEN PRINCIPAL / CARRUSEL
+========================================================== */
+
+.contenedor-imagen-live {
+    position: relative;
+
+    width: 100%;
+
+    height: 450px;
+
+    background-color: var(--bg-tarjetas);
+
+    border-radius: 4px;
+
+    overflow: hidden;
+
+    margin-bottom: 20px;
+}
+
+
+.contenedor-imagen-live img {
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+
+/* ==========================================================
+   FLECHA DEL CARRUSEL
+========================================================== */
+
+.flecha-navegacion {
+    position: absolute;
+
+    right: 20px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    background-color:
+        rgba(225, 6, 0, 0.9);
+
+    color: #ffffff;
+
+    border: none;
+
+    font-family: 'Orbitron', sans-serif;
+
+    font-size: 2rem;
+
+    font-weight: 900;
+
+    width: 60px;
+
+    height: 60px;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 4px 15px
+        rgba(0, 0, 0, 0.5);
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+
+    z-index: 10;
+}
+
+
+.flecha-navegacion:hover {
+    background-color: #ff1e15;
+
+    transform:
+        translateY(-50%)
+        scale(1.1);
+
+    box-shadow:
+        0 0 20px
+        rgba(255, 30, 21, 0.6);
+}
+
+
+/* ==========================================================
+   CONTENIDO NOTICIA
+========================================================== */
+
+.contenido {
+    padding: 25px 0 0 0;
+}
+
+
+.contenido h2 {
+    font-family: 'Orbitron', sans-serif;
+
+    margin-top: 0;
+
+    color: var(--texto-puro);
+
+    font-size: 1.9rem;
+
+    letter-spacing: -0.5px;
+
+    line-height: 1.2;
+}
+
+
+/* ==========================================================
+   FECHA
+========================================================== */
+
+.fecha {
+    color: var(--rojo-racing);
+
+    font-weight: 700;
+
+    font-size: 0.85rem;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+
+    display: block;
+
+    margin-bottom: 8px;
+}
+
+
+/* ==========================================================
+   BOTÓN LEER
+========================================================== */
+
+.boton-leer {
+    display: inline-block;
+
+    background: var(--texto-puro);
+
+    color: #ffffff;
+
+    padding: 12px 28px;
+
+    text-decoration: none;
+
+    font-family: 'Orbitron', sans-serif;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    font-size: 0.8rem;
+
+    letter-spacing: 1px;
+
+    transition:
+        background-color 0.2s ease;
+}
+
+
+.boton-leer:hover {
+    background-color: var(--rojo-racing);
+}
+
+
+/* ==========================================================
+   BARRA LATERAL
+========================================================== */
+
+.barra-lateral-derecha {
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 35px;
+
+    align-items: flex-start;
+}
+
+
+/* ==========================================================
+   PRÓXIMO GP
+========================================================== */
+
+.seccion-proxima {
+    flex: 1;
+
+    border-left:
+        4px solid
+        var(--rojo-racing);
+
+    padding-left: 20px;
+
+    width: 100%;
+}
+
+
+.seccion-proxima h3 {
+    font-family: 'Orbitron', sans-serif;
+
+    color: var(--texto-puro);
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+
+    margin-top: 0;
+
+    margin-bottom: 12px;
+
+    font-size: 1.3rem;
+}
+
+
+/* ==========================================================
+   HORARIOS
+========================================================== */
+
+.seccion-horarios {
+    flex: 1;
+
+    width: 100%;
+}
+
+
+.seccion-horarios h4 {
+    font-family: 'Orbitron', sans-serif;
+
+    color: var(--texto-puro);
+
+    text-transform: uppercase;
+
+    font-size: 1.3rem;
+
+    letter-spacing: 1px;
+
+    margin: 0 0 20px 0;
+}
+
+
+/* ==========================================================
+   EVENTOS
+========================================================== */
+
+.evento {
+    color: var(--texto-secundario);
+}
+
+
+.evento p {
+    margin: 4px 0;
+
+    font-size: 1rem;
+}
+
+
+.evento p strong {
+    color: var(--texto-puro);
+
+    font-size: 1.2rem;
+}
+
+
+/* ==========================================================
+   TABLA DE HORARIOS
+========================================================== */
+
+.tabla-horarios {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+
+.fila-paises {
+    background: var(--bg-tarjetas);
+
+    border:
+        1px solid
+        var(--borde-tecnico);
+
+    padding: 15px;
+
+    border-radius: 4px;
+}
+
+
+.paises {
+    display: block;
+
+    font-size: 1.1rem;
+
+    color: var(--texto-puro);
+
+    border-bottom:
+        1px solid
+        var(--borde-tecnico);
+
+    padding-bottom: 8px;
+
+    margin-bottom: 10px;
+}
+
+
+/* ==========================================================
+   HORARIOS POR PAÍS
+========================================================== */
+
+.horarios p {
+    margin: 6px 0;
+
+    font-size: 0.9rem;
+
+    color: var(--texto-secundario);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    font-weight: 500;
+}
+
+
+.horarios p span {
+    color: var(--texto-puro);
+
+    font-weight: 600;
+}
+
+
+.horarios p.carrera {
+    color: var(--texto-puro);
+
+    border-top:
+        1px solid
+        var(--borde-tecnico);
+
+    padding-top: 8px;
+
+    margin-top: 10px;
+
+    font-weight: 700;
+}
+
+
+.horarios p.carrera span {
+    color: var(--rojo-racing);
+}
+
+
+/* ==========================================================
+   TABLA TIEMPOS PL1
+========================================================== */
+
+.tabla-tiempos-pl1 {
+    margin: 20px 0;
+
+    border:
+        1px solid
+        var(--borde-tecnico);
+
+    background-color:
+        var(--bg-tarjetas);
+
+    border-radius: 4px;
+
+    overflow: hidden;
+}
+
+
+/* ==========================================================
+   ENCABEZADO DE TABLAS
+
+   SE MANTIENE OSCURO.
+   ESTO NO ES LA BARRA DE NAVEGACIÓN.
+========================================================== */
+
+.encabezado-tabla {
+    background-color:
+        var(--texto-puro);
+
+    color: #ffffff;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 10px 15px;
+
+    font-family: 'Orbitron', sans-serif;
+
+    font-size: 0.85rem;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+}
+
+
+/* ==========================================================
+   FILAS TABLA
+========================================================== */
+
+.fila-tabla {
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 12px 15px;
+
+    border-bottom:
+        1px solid
+        var(--borde-tecnico);
+
+    color: var(--texto-puro);
+
+    font-family: 'Rajdhani', sans-serif;
+
+    font-weight: 600;
+
+    font-size: 1rem;
+}
+
+
+/* ==========================================================
+   PRIMER LUGAR
+========================================================== */
+
+.top-1 {
+    background-color:
+        rgba(225, 6, 0, 0.05);
+
+    border-left:
+        3px solid
+        var(--rojo-racing);
+}
+
+
+.top-1 span:last-child {
+    color: var(--rojo-racing);
+
+    font-family: 'Orbitron', sans-serif;
+}
+
+
+/* ==========================================================
+   CRÓNICA DESPLEGABLE
+========================================================== */
+
+.cronica-desplegable summary.boton-leer {
+    width: 100%;
+
+    text-align: center;
+
+    background-color: #15151e;
+
+    color: #ffffff;
+
+    padding: 14px 0;
+
+    cursor: pointer;
+
+    font-family: 'Orbitron', sans-serif;
+
+    font-size: 0.85rem;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    display: block;
+
+    border-top:
+        1px solid
+        var(--borde-tecnico);
+
+    transition:
+        background-color 0.2s ease;
+}
+
+
+.cronica-desplegable
+summary.boton-leer:hover {
+    background-color:
+        var(--rojo-racing);
+}
+
+
+.cronica-desplegable[open]
+summary.boton-leer {
+    background-color:
+        var(--rojo-racing);
+
+    color: #ffffff;
+}
+
+
+.contenedor-desplegado {
+    background-color:
+        var(--bg-tarjetas);
+}
+
+
+/* ==========================================================
+   FOOTER
+
+   SE MANTIENE OSCURO INTENCIONALMENTE.
+========================================================== */
+
+footer {
+    background-color: #15151e;
+
+    border-top:
+        3px solid
+        var(--rojo-racing);
+
+    color: #94a3b8;
+
+    text-align: center;
+
+    padding: 40px 0;
+
+    font-family: 'Orbitron', sans-serif;
+
+    font-size: 0.8rem;
+
+    letter-spacing: 1px;
+}
+
+
+/* ==========================================================
+   BOTÓN DESPLEGAR
+========================================================== */
+
+.boton-desplegar {
+    display: block;
+
+    width: 100%;
+
+    background-color:
+        var(--rojo-racing) !important;
+
+    color: #ffffff;
+
+    border: none;
+
+    padding: 14px;
+
+    font-family: 'Orbitron', sans-serif;
+
+    cursor: pointer;
+
+    text-align: center;
+
+    font-size: 0.95rem;
+
+    margin-top: 20px;
+
+    margin-bottom: 30px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+
+    /*
+     * CORREGIDO:
+     * antes estaba:
+     * transition: *background* 0.2s ease;
+     */
+
+    transition:
+        background-color 0.2s ease;
+}
+
+
+.boton-desplegar:hover {
+    background-color:
+        var(--rojo-racing-hover) !important;
+}
+
+
+/* ==========================================================
+   CRÉDITOS DE FOTOGRAFÍA
+========================================================== */
+
+.photo-credit {
+    color: #ffffff !important;
+
+    font-weight: 500;
+
+    text-shadow:
+        1px 1px 3px
+        rgba(0, 0, 0, 0.8);
+}
+
+
+/* ==========================================================
+   TABLETS
+========================================================== */
+
+@media (max-width: 1024px) {
+
+    .container {
+        flex-direction: column;
+
+        gap: 30px;
+    }
+
+
+    .tarjeta-noticia {
+        flex-direction:
+            column !important;
+    }
+
+
+    .contenedor-imagen-live {
+        width:
+            100% !important;
+
+        height:
+            300px !important;
+    }
+
+}
+
+
+/* ==========================================================
+   CELULARES
+========================================================== */
+
+@media (max-width: 768px) {
+
+    header h1 {
+        font-size: 2.2rem;
+
+        letter-spacing: 2px;
+    }
+
+
+    nav {
+        flex-wrap: wrap;
+
+        background:
+            #ffffff;
+    }
+
+
+    nav a {
+        color: #111111;
+
+        padding:
+            12px 15px;
+
+        font-size:
+            0.75rem;
+    }
+
+
+    nav a:hover {
+        color:
+            var(--rojo-racing);
+
+        background:
+            transparent;
+    }
+
+
+    .contenido h2 {
+        font-size:
+            1.4rem;
+    }
+
+
+    .encabezado-tabla,
+    .fila-tabla {
+        font-size:
+            0.85rem;
+
+        padding:
+            10px;
+    }
+
+}
+
+
+/* ==========================================================
+   CELULARES PEQUEÑOS
+========================================================== */
+
+@media (max-width: 480px) {
+
+    .container {
+        margin:
+            25px auto;
+
+        padding:
+            0 14px;
+    }
+
+
+    .contenedor-imagen-live {
+        height:
+            240px !important;
+    }
+
+
+    .flecha-navegacion {
+        right:
+            12px;
+
+        width:
+            46px;
+
+        height:
+            46px;
+
+        font-size:
+            1.5rem;
+    }
+
+
+    .contenido h2 {
+        font-size:
+            1.25rem;
+    }
+
+}

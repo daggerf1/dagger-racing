@@ -1,0 +1,509 @@
+---
+import MenuNav from "../components/MenuNav.astro";
+import Footer from "../components/Footer.astro";
+
+import drivers from "../data/editorial/drivers.json";
+
+const activeDrivers = drivers.filter(
+    (driver) => driver.active
+);
+---
+
+<!doctype html>
+
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    />
+
+    <title>
+        Pilotos F1 | Dagger Racing News
+    </title>
+
+    <meta
+        name="description"
+        content="Todos los pilotos de Fórmula 1 en Dagger Racing News."
+    />
+
+    <link
+        rel="stylesheet"
+        href="/css/styless.css"
+    />
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="/daggerracingnews-logotipo.png"
+    />
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    />
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    />
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    />
+
+</head>
+
+
+<body>
+
+    <MenuNav />
+
+
+    <main class="drivers-page">
+
+        <!-- CABECERA -->
+
+        <header class="drivers-header">
+
+            <span class="eyebrow">
+                FÓRMULA 1
+            </span>
+
+            <h1>
+                PILOTOS
+            </h1>
+
+            <p>
+                Consulta los perfiles de los pilotos y
+                todas las noticias relacionadas con cada uno.
+            </p>
+
+        </header>
+
+
+        <!-- CUADRÍCULA -->
+
+        <section
+            class="drivers-grid"
+            aria-label="Pilotos de Fórmula 1"
+        >
+
+            {
+                activeDrivers.map((driver) => (
+
+                    <a
+                        class="driver-card"
+                        href={`/piloto/${driver.slug}/`}
+                    >
+
+                        <div class="driver-number">
+                            #{driver.number}
+                        </div>
+
+
+                        <div class="driver-info">
+
+                            <span class="driver-label">
+                                PILOTO
+                            </span>
+
+                            <h2>
+                                {driver.name}
+                            </h2>
+
+                            <span class="driver-link">
+                                VER PERFIL
+                                <span aria-hidden="true">
+                                    →
+                                </span>
+                            </span>
+
+                        </div>
+
+                    </a>
+
+                ))
+            }
+
+        </section>
+
+    </main>
+
+
+    <Footer />
+
+</body>
+
+</html>
+
+
+<style>
+
+    :global(*) {
+        box-sizing: border-box;
+    }
+
+
+    :global(html) {
+        background: #ffffff;
+    }
+
+
+    :global(body) {
+        margin: 0;
+
+        background: #ffffff;
+
+        color: #111111;
+
+        font-family: "Inter", sans-serif;
+    }
+
+
+    /* =========================
+       PÁGINA
+       ========================= */
+
+    .drivers-page {
+        width: 100%;
+
+        max-width: 1250px;
+
+        margin: 0 auto;
+
+        padding:
+            60px
+            30px
+            90px;
+    }
+
+
+    /* =========================
+       CABECERA
+       ========================= */
+
+    .drivers-header {
+        position: relative;
+
+        margin-bottom: 42px;
+
+        padding-bottom: 28px;
+
+        border-bottom: 1px solid #dddddd;
+    }
+
+
+    .drivers-header::after {
+        content: "";
+
+        position: absolute;
+
+        bottom: -1px;
+        left: 0;
+
+        width: 90px;
+        height: 3px;
+
+        background: #e10600;
+    }
+
+
+    .eyebrow {
+        display: block;
+
+        margin-bottom: 8px;
+
+        color: #e10600;
+
+        font-family: "Orbitron", sans-serif;
+
+        font-size: 0.75rem;
+
+        font-weight: 900;
+
+        letter-spacing: 2px;
+    }
+
+
+    .drivers-header h1 {
+        margin: 0;
+
+        color: #111111;
+
+        font-family: "Orbitron", sans-serif;
+
+        font-size: clamp(
+            2.8rem,
+            8vw,
+            5.5rem
+        );
+
+        font-weight: 900;
+
+        line-height: 1;
+
+        letter-spacing: -2px;
+    }
+
+
+    .drivers-header p {
+        max-width: 650px;
+
+        margin:
+            18px
+            0
+            0;
+
+        color: #666666;
+
+        font-size: 1rem;
+
+        line-height: 1.6;
+    }
+
+
+    /* =========================
+       GRID
+       ========================= */
+
+    .drivers-grid {
+        display: grid;
+
+        grid-template-columns:
+            repeat(
+                3,
+                minmax(0, 1fr)
+            );
+
+        gap: 18px;
+    }
+
+
+    /* =========================
+       TARJETA
+       ========================= */
+
+    .driver-card {
+        position: relative;
+
+        min-height: 190px;
+
+        padding: 24px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: space-between;
+
+        overflow: hidden;
+
+        background: #ffffff;
+
+        border: 1px solid #dddddd;
+
+        border-top: 4px solid #111111;
+
+        color: #111111;
+
+        text-decoration: none;
+
+        transition:
+            transform 0.2s ease,
+            border-color 0.2s ease,
+            box-shadow 0.2s ease;
+    }
+
+
+    .driver-card:hover {
+        transform: translateY(-4px);
+
+        border-color: #e10600;
+
+        border-top-color: #e10600;
+
+        box-shadow:
+            0
+            12px
+            30px
+            rgba(0, 0, 0, 0.08);
+    }
+
+
+    /* =========================
+       NÚMERO
+       ========================= */
+
+    .driver-number {
+        position: absolute;
+
+        top: 8px;
+        right: 15px;
+
+        color: #eeeeee;
+
+        font-family: "Orbitron", sans-serif;
+
+        font-size: 3.7rem;
+
+        font-weight: 900;
+
+        line-height: 1;
+
+        transition: color 0.2s ease;
+    }
+
+
+    .driver-card:hover
+    .driver-number {
+        color: #ffe4e4;
+    }
+
+
+    /* =========================
+       INFORMACIÓN
+       ========================= */
+
+    .driver-info {
+        position: relative;
+
+        z-index: 2;
+
+        margin-top: auto;
+    }
+
+
+    .driver-label {
+        display: block;
+
+        margin-bottom: 7px;
+
+        color: #e10600;
+
+        font-size: 0.68rem;
+
+        font-weight: 900;
+
+        letter-spacing: 1.5px;
+    }
+
+
+    .driver-info h2 {
+        max-width: 85%;
+
+        margin:
+            0
+            0
+            18px;
+
+        color: #111111;
+
+        font-family: "Orbitron", sans-serif;
+
+        font-size: 1.35rem;
+
+        font-weight: 900;
+
+        line-height: 1.15;
+
+        text-transform: uppercase;
+    }
+
+
+    .driver-link {
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 7px;
+
+        color: #555555;
+
+        font-size: 0.7rem;
+
+        font-weight: 800;
+
+        letter-spacing: 1px;
+
+        transition: color 0.2s ease;
+    }
+
+
+    .driver-card:hover
+    .driver-link {
+        color: #e10600;
+    }
+
+
+    /* =========================
+       TABLET
+       ========================= */
+
+    @media (
+        max-width: 900px
+    ) {
+
+        .drivers-grid {
+            grid-template-columns:
+                repeat(
+                    2,
+                    minmax(0, 1fr)
+                );
+        }
+
+    }
+
+
+    /* =========================
+       MÓVIL
+       ========================= */
+
+    @media (
+        max-width: 600px
+    ) {
+
+        .drivers-page {
+            padding:
+                40px
+                16px
+                65px;
+        }
+
+
+        .drivers-header {
+            margin-bottom: 28px;
+        }
+
+
+        .drivers-grid {
+            grid-template-columns: 1fr;
+
+            gap: 12px;
+        }
+
+
+        .driver-card {
+            min-height: 155px;
+
+            padding: 20px;
+        }
+
+
+        .driver-number {
+            font-size: 3rem;
+        }
+
+
+        .driver-info h2 {
+            font-size: 1.2rem;
+        }
+
+    }
+
+</style>

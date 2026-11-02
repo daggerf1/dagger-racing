@@ -1,0 +1,211 @@
+
+---
+// src/pages/index.astro
+
+import NewsCard from "../components/NewsCard.astro";
+import MenuNav from "../components/MenuNav.astro";
+import Footer from "../components/Footer.astro";
+
+import {
+  getPublishedArticles,
+  getFeaturedArticles,
+} from "../lib/content/articles";
+
+const todasLasNoticias = await getPublishedArticles();
+
+const noticiasDestacadas = await getFeaturedArticles();
+
+const noticiaPrincipal =
+  noticiasDestacadas[0] ??
+  todasLasNoticias[0];
+
+const notasSecundarias = todasLasNoticias.filter(
+  (nota) => nota.id !== noticiaPrincipal?.id
+);
+
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat("es-MX", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(date);
+---
+
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <title>Dagger Racing News | Portal F1</title>
+
+    <meta
+      name="description"
+      content="Noticias, crónicas y análisis de Fórmula 1 en Dagger Racing News."
+    />
+
+    <link
+      rel="stylesheet"
+      href="/css/global.css"
+    />
+  </head>
+
+  <body>
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <header class="top-header">
+
+      <div class="top-red-line"></div>
+
+      <div class="top-nav">
+        <MenuNav />
+      </div>
+
+    </header>
+
+
+    <!-- =========================
+         CONTENIDO PRINCIPAL
+    ========================= -->
+
+    <main class="container">
+
+      <!-- CRÓNICA DESTACADA -->
+
+      <div class="section-header">
+        <h2>Crónica Destacada</h2>
+      </div>
+
+      {
+        noticiaPrincipal && (
+
+          <section class="headline-article">
+
+            <div
+              class="headline-image-area"
+              style={
+                noticiaPrincipal.data.image
+                  ? `background-image:url(${
+                      noticiaPrincipal.data.image.startsWith("/")
+                        ? noticiaPrincipal.data.image
+                        : `/images/${noticiaPrincipal.data.image}`
+                    }); background-size:cover; background-position:center;`
+                  : undefined
+              }
+            ></div>
+
+            <div class="headline-content">
+
+              <div class="meta-row">
+
+                <span class="badge-date">
+                  {formatDate(
+                    noticiaPrincipal.data.publishedAt
+                  )}
+                </span>
+
+                <span class="category-text">
+                  {
+                    noticiaPrincipal.data.category
+                      .replaceAll("-", " ")
+                      .toUpperCase()
+                  }
+                </span>
+
+              </div>
+
+              <h3 class="title-main">
+                {noticiaPrincipal.data.title}
+              </h3>
+
+              <p class="excerpt">
+                {
+                  noticiaPrincipal.data.description ??
+                  "Haga clic abajo para leer la crónica completa y el análisis."
+                }
+              </p>
+
+              <a
+                class="btn-read-more"
+                href={`/noticias/${noticiaPrincipal.data.slug}/`}
+              >
+                LEER CRÓNICA COMPLETA ➜
+              </a>
+
+            </div>
+
+          </section>
+
+        )
+      }
+
+
+      <!-- =========================
+           CRÓNICAS ANTERIORES
+      ========================= -->
+
+      <div class="section-header">
+        <h2>Crónicas Anteriores</h2>
+      </div>
+
+      <section class="news-feed">
+
+        {
+          notasSecundarias.map((nota) => (
+
+            <NewsCard
+              fecha={formatDate(
+                nota.data.publishedAt
+              )}
+
+              categoria={
+                nota.data.category
+                  .replaceAll("-", " ")
+                  .toUpperCase()
+              }
+
+              titulo={nota.data.title}
+
+              extracto={
+                nota.data.description ??
+                "Toda la actualidad de la Fórmula 1."
+              }
+
+              fotoCredito="Archivo"
+
+              link={`/noticias/${nota.data.slug}/`}
+
+              imagen={
+                nota.data.image
+                  ? nota.data.image.startsWith("/")
+                    ? nota.data.image
+                    : `/images/${nota.data.image}`
+                  : ""
+              }
+            />
+
+          ))
+        }
+
+      </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER OFICIAL DAGGER
+    ========================= -->
+
+    <Footer />
+
+  </body>
+
+</html>
