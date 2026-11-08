@@ -1,333 +1,40 @@
 ---
-import MenuNav from "../../components/MenuNav.astro";
-import Footer from "../../components/Footer.astro";
+import { getCollection, render } from "astro:content";
+import NoticiaLayout from "../../layouts/NoticiaLayout.astro";
 
-import drivers from "../../data/editorial/drivers.json";
-import standings from "../../data/f1-drivers-champions.json";
+export async function getStaticPaths() {
+  const noticias = await getCollection(
+    "noticias",
+    ({ data }) => data.status === "published"
+  );
 
-import { slugifyTeam } from "../../lib/f1";
-import { getArticlesByDriver } from "../../lib/content/articles";
-
-export function getStaticPaths() {
-    return drivers
-        .filter((driver) => driver.active)
-        .map((driver) => ({
-            params: {
-                slug: driver.slug,
-            },
-            props: {
-                driver,
-            },
-        }));
+  return noticias.map((noticia) => ({
+    params: {
+      slug: noticia.data.slug,
+    },
+    props: {
+      noticia,
+    },
+  }));
 }
 
-const { driver } = Astro.props;
-
-const standing = standings.find(
-    (item) => item.driverId === driver.id
-);
-
-/*
- * NUEVO SISTEMA EDITORIAL
- *
- * Cualquier noticia que tenga:
- *
- * drivers:
- *   - "charles-leclerc"
- *
- * aparecerá automáticamente en
- * /piloto/charles-leclerc/
- */
-const related = await getArticlesByDriver(driver.slug);
-
-const formatDate = (date: Date) =>
-    new Intl.DateTimeFormat("es-MX", {
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-    }).format(date);
+const { noticia } = Astro.props;
+const { Content } = await render(noticia);
 ---
 
-<!doctype html>
-
-<html lang="es">
-
-<head>
-
-    <meta charset="UTF-8" />
-
-    <meta
-        name="viewport"
-        content="width=device-width"
-    />
-
-    <title>
-        {driver.name} | Dagger Racing News
-    </title>
-
-    <link
-        rel="stylesheet"
-        href="/css/styless.css"
-    />
-
-    <link
-        rel="icon"
-        type="image/png"
-        href="/daggerracingnews-logotipo.png"
-    />
-
-    <style>
-
-        .profile {
-            max-width: 900px;
-
-            margin: 45px auto 90px;
-
-            padding: 0 20px;
-        }
-
-
-        /* =========================
-           CABECERA DEL PILOTO
-           ========================= */
-
-        .hero-p {
-            border-bottom: 2px solid #e10600;
-
-            padding: 25px 0;
-        }
-
-
-        .label {
-            color: #e10600;
-
-            font-weight: 900;
-        }
-
-
-        .hero-p h1 {
-            font-size: clamp(
-                2.4rem,
-                8vw,
-                5rem
-            );
-
-            margin: 8px 0;
-
-            text-transform: uppercase;
-        }
-
-
-        .stat {
-            font-size: 1.1rem;
-
-            color: #bbb;
-        }
-
-
-        .stat a {
-            color: inherit;
-
-            font-weight: 700;
-        }
-
-
-        /* =========================
-           NOTICIAS
-           ========================= */
-
-        .cards {
-            display: grid;
-
-            gap: 15px;
-
-            margin-top: 30px;
-        }
-
-
-        .cards h2 {
-            margin-bottom: 5px;
-        }
-
-
-        .card {
-            display: block;
-
-            padding: 20px;
-
-            background: #111;
-
-            border: 1px solid #333;
-
-            color: white;
-
-            text-decoration: none;
-
-            transition:
-                border-color 0.2s ease,
-                transform 0.2s ease;
-        }
-
-
-        .card:hover {
-            border-color: #e10600;
-
-            transform: translateY(-2px);
-        }
-
-
-        .card-date {
-            display: block;
-
-            margin-bottom: 8px;
-
-            color: #e10600;
-
-            font-size: 0.75rem;
-
-            font-weight: 800;
-
-            text-transform: uppercase;
-        }
-
-
-        .card strong {
-            display: block;
-
-            font-size: 1.05rem;
-
-            line-height: 1.4;
-        }
-
-
-        .card-description {
-            margin: 10px 0 0;
-
-            color: #aaa;
-
-            font-size: 0.9rem;
-
-            line-height: 1.5;
-        }
-
-    </style>
-
-</head>
-
-
-<body>
-
-    <MenuNav />
-
-
-    <main class="profile">
-
-
-        <!-- PERFIL DEL PILOTO -->
-
-        <header class="hero-p">
-
-            <span class="label">
-                PILOTO · #{driver.number}
-            </span>
-
-
-            <h1>
-                {driver.name}
-            </h1>
-
-
-            {
-                standing && (
-                    <p class="stat">
-
-                        P{standing.position}
-
-                        {" · "}
-
-                        {standing.points} puntos
-
-                        {" · "}
-
-                        <a
-                            href={`/equipo/${slugifyTeam(
-                                standing.team
-                            )}/`}
-                        >
-                            {standing.team}
-                        </a>
-
-                    </p>
-                )
-            }
-
-        </header>
-
-
-        <!-- NOTICIAS DEL PILOTO -->
-
-        <section class="cards">
-
-            <h2>
-                Noticias relacionadas
-            </h2>
-
-
-            {
-                related.length > 0 ? (
-
-                    related.map((article) => (
-
-                        <a
-                            class="card"
-                            href={`/noticias/${article.data.slug}/`}
-                        >
-
-                            <span class="card-date">
-                                {formatDate(
-                                    article.data.publishedAt
-                                )}
-                            </span>
-
-
-                            <strong>
-                                {article.data.title}
-                            </strong>
-
-
-                            {
-                                article.data.description && (
-                                    <p class="card-description">
-                                        {
-                                            article.data
-                                                .description
-                                        }
-                                    </p>
-                                )
-                            }
-
-                        </a>
-
-                    ))
-
-                ) : (
-
-                    <p>
-                        Las noticias etiquetadas con{" "}
-                        {driver.name} aparecerán aquí.
-                    </p>
-
-                )
-            }
-
-        </section>
-
-
-    </main>
-
-
-    <Footer />
-
-</body>
-
-</html>
+<NoticiaLayout
+  title={noticia.data.title}
+  description={noticia.data.description}
+  publishedAt={noticia.data.publishedAt}
+  updatedAt={noticia.data.updatedAt}
+  author={noticia.data.author}
+  category={noticia.data.category}
+  subcategory={noticia.data.subcategory}
+  image={noticia.data.image}
+  imageAlt={noticia.data.imageAlt}
+  drivers={noticia.data.drivers}
+  teams={noticia.data.teams}
+  tags={noticia.data.tags}
+>
+  <Content />
+</NoticiaLayout>
