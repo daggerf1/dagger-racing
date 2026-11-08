@@ -2,7 +2,7 @@
 <!-- src/components/MenuNav.astro -->
 
 <!-- CABECERA BLANCA -->
-<header data-drn-racing-nav
+<header class="drn-cabecera-bicolor" data-drn-racing-nav
     style="
         background: #b80000;
         border-bottom: 3px solid #ff4545;
@@ -90,7 +90,7 @@
 
 
     <!-- NAVEGACIÓN -->
-    <nav class="drn-racing-links"
+    <nav class="drn-bloque-rojo" class="drn-racing-links"
         style="
             display: flex !important;
             flex-direction: row !important;
@@ -113,7 +113,7 @@
     >
 
         <!-- INICIO -->
-        <a class="drn-racing-link"
+        <a class="drn-enlace-rojo" class="drn-racing-link"
             href="/"
             style="
                 color: #ffffff;
@@ -156,7 +156,7 @@
 
 
         <!-- PILOTOS -->
-        <a class="drn-racing-link"
+        <a class="drn-enlace-rojo" class="drn-racing-link"
             href="/pilotos/"
             style="
                 color: #ffffff;
@@ -199,7 +199,7 @@
 
 
         <!-- CALENDARIO -->
-        <a class="drn-racing-link"
+        <a class="drn-enlace-rojo" class="drn-racing-link"
             href="/calendario"
             style="
                 color: #ffffff;
@@ -242,7 +242,7 @@
 
 
         <!-- CAMPEONATO -->
-        <a class="drn-racing-link"
+        <a class="drn-enlace-rojo" class="drn-racing-link"
             href="/campeonato"
             style="
                 color: #ffffff;
@@ -341,5 +341,64 @@
         header[data-drn-racing-nav] .drn-racing-link::after {
             transition: none;
         }
+    }
+</style>
+
+
+<style>
+    :global(.drn-cabecera-bicolor) {
+        background: #ffffff !important;
+        border: none !important;
+    }
+
+    :global(.drn-cabecera-bicolor .drn-bloque-rojo) {
+        position: relative !important;
+        isolation: isolate;
+        height: auto !important;
+        min-height: 0 !important;
+    }
+
+    :global(.drn-cabecera-bicolor .drn-bloque-rojo::before) {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        top: -12px;
+        bottom: -12px;
+        left: -16px;
+        right: -40px;
+        background: #b80000;
+        pointer-events: none;
+    }
+
+    :global(.drn-cabecera-bicolor .drn-enlace-rojo) {
+        position: relative;
+        display: inline-block;
+        color: #ffffff !important;
+        padding: 8px 3px !important;
+        transition: transform 220ms ease, text-shadow 220ms ease;
+    }
+
+    :global(.drn-cabecera-bicolor .drn-enlace-rojo::after) {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 3px;
+        background: #ffffff;
+        box-shadow: 0 0 8px #ffffff;
+        transform: scaleX(0);
+        transition: transform 220ms ease;
+    }
+
+    :global(.drn-cabecera-bicolor .drn-enlace-rojo:hover),
+    :global(.drn-cabecera-bicolor .drn-enlace-rojo:focus-visible) {
+        transform: translateY(-3px);
+        text-shadow: 0 0 8px #ffffff;
+    }
+
+    :global(.drn-cabecera-bicolor .drn-enlace-rojo:hover::after),
+    :global(.drn-cabecera-bicolor .drn-enlace-rojo:focus-visible::after) {
+        transform: scaleX(1);
     }
 </style>
