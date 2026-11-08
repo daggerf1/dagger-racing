@@ -28,6 +28,10 @@ const standing = standings.find(
     (item) => item.driverId === driver.id
 );
 
+/*
+ * Las noticias ya llegan ordenadas
+ * de más reciente a más antigua.
+ */
 const related = await getArticlesByDriver(driver.slug);
 
 const formatDate = (date: Date) =>
@@ -37,50 +41,62 @@ const formatDate = (date: Date) =>
         year: "numeric",
     }).format(date);
 
+
 /*
 ====================================================
-  IMÁGENES Y CRÉDITOS — PERFILES DE PILOTOS
+  FOTOGRAFÍAS Y DERECHOS DE AUTOR
 ====================================================
 
-INSTRUCCIONES:
+CONFIGURACIÓN GENERAL:
 
-1. Guarda las fotografías en la carpeta public/.
+- Fotografías de máximo 850 píxeles de ancho.
+- Fotografías centradas.
+- Sin recortes.
+- Adaptables a móviles.
+- Créditos debajo de la fotografía.
+- Créditos alineados al extremo DERECHO.
+- Tamaño de letra de 9 píxeles.
+- Enlaces clicables.
 
-2. Busca el nombre del piloto aquí abajo.
+PARA AÑADIR FOTOGRAFÍAS:
 
-3. En "imagen", escribe la ruta de su fotografía.
+1. Guarda la imagen en public/.
 
-4. En "credito", escribe el fotógrafo, agencia
-   o titular de los derechos correspondiente.
+2. Busca el nombre del piloto.
 
-EJEMPLO:
+3. Completa los campos:
 
-"charles-leclerc": {
-    imagen: "/foto-original-de-charles.png",
-    credito: "© Fotógrafo / Agencia"
-},
+imagen:
+    Ruta de la fotografía.
 
-Si todavía no tienes una fotografía, deja:
+credito:
+    Fotógrafo y fuente original.
 
-imagen: "",
-credito: "",
+adaptacion:
+    Información sobre la adaptación.
 
-La página seguirá funcionando normalmente.
+licencia:
+    Enlace a la licencia.
 
-IMPORTANTE:
-No inventes créditos. Utiliza los datos reales
-de autoría o licencia de cada imagen.
+original:
+    Enlace a la fotografía original.
+
+Si no hay imagen, deja los campos vacíos.
+
+No inventes atribuciones ni licencias.
 
 ====================================================
 */
 
-const fotosPilotos: Record<
-    string,
-    {
-        imagen: string;
-        credito: string;
-    }
-> = {
+type FotoPiloto = {
+    imagen: string;
+    credito: string;
+    adaptacion: string;
+    licencia: string;
+    original: string;
+};
+
+const fotosPilotos: Record<string, FotoPiloto> = {
 
     // ============================================
     // MERCEDES
@@ -89,16 +105,28 @@ const fotosPilotos: Record<
     // AQUÍ KIMI ANTONELLI
     "kimi-antonelli": {
         imagen:
-            "/monoplaza-mercedes-kimiantonelli-12-sobre-pista-reflectante-drn.png",
+            "/monoplaza_antonelli_drn_daggerracingnews.png",
 
-        // AQUÍ EL CRÉDITO DE LA IMAGEN DE KIMI
-        credito: "",
+        credito:
+            "Fotografía original: © Steffen Prößdorf / Wikimedia Commons.",
+
+        adaptacion:
+            "Adaptación con IA: Dagger Racing News",
+
+        licencia:
+            "https://creativecommons.org/licenses/by-sa/4.0/",
+
+        original:
+            "https://commons.wikimedia.org/wiki/File:2026-08-21_Motorsport,_Formel_1,_Großer_Preis_der_Niederlande_2026_STP_2295.jpg",
     },
 
     // AQUÍ GEORGE RUSSELL
     "george-russell": {
-        imagen: "",
-        credito: "",
+        imagen: "monoplaza_russell_drn_daggerracingnews.png",
+        credito: "Fotografía original: © Steffen Prößdorf / Wikimedia Commons.",
+        adaptacion: "Adaptación con IA: Dagger Racing News",
+        licencia: "https://creativecommons.org/licenses/by-sa/4.0/",
+        original: "https://commons.wikimedia.org/wiki/File:2026-08-21_Motorsport,_Formel_1,_Großer_Preis_der_Niederlande_2026_STP_2295.jpg",
     },
 
 
@@ -108,14 +136,20 @@ const fotosPilotos: Record<
 
     // AQUÍ CHARLES LECLERC
     "charles-leclerc": {
-        imagen: "",
-        credito: "",
+        imagen: "monoplaza_leclerc_drn_daggerracingnews.png",
+        credito: "Fotografía original: © Steffen Prößdorf / Wikimedia Commons.",
+        adaptacion: "Adaptación con IA: Dagger Racing News",
+        licencia: "https://creativecommons.org/licenses/by-sa/4.0/",
+        original: "https://commons.wikimedia.org/wiki/File:2026-08-21_Motorsport,_Formel_1,_Großer_Preis_der_Niederlande_2026_STP_2295.jpg",
     },
 
     // AQUÍ LEWIS HAMILTON
     "lewis-hamilton": {
-        imagen: "",
-        credito: "",
+        imagen: "monoplaza_hamilton_drn_daggerracingnews.png",
+        credito: "Fotografía original: © Steffen Prößdorf / Wikimedia Commons.",
+        adaptacion: "Adaptación con IA: Dagger Racing News",
+        licencia: "https://creativecommons.org/licenses/by-sa/4.0/",
+        original: "https://commons.wikimedia.org/wiki/File:2026-08-21_Motorsport,_Formel_1,_Großer_Preis_der_Niederlande_2026_STP_2295.jpg",
     },
 
 
@@ -125,14 +159,20 @@ const fotosPilotos: Record<
 
     // AQUÍ MAX VERSTAPPEN
     "max-verstappen": {
-        imagen: "",
-        credito: "",
+        imagen: "monoplaza_verstappen_drn_daggerracingnews.png",
+        credito: "Fotografía original: © Steffen Prößdorf / Wikimedia Commons.",
+        adaptacion: "Adaptación con IA: Dagger Racing News",
+        licencia: "https://creativecommons.org/licenses/by-sa/4.0/",
+        original: "https://commons.wikimedia.org/wiki/File:2026-08-21_Motorsport,_Formel_1,_Großer_Preis_der_Niederlande_2026_STP_2295.jpg",
     },
 
     // AQUÍ ISACK HADJAR
     "isack-hadjar": {
-        imagen: "",
-        credito: "",
+        imagen: "monoplaza_hadjar_drn_daggerracingnews.png",
+        credito: "Fotografía original: © Steffen Prößdorf / Wikimedia Commons.",
+        adaptacion: "Adaptación con IA: Dagger Racing News",
+        licencia: "https://creativecommons.org/licenses/by-sa/4.0/",
+        original: "",
     },
 
 
@@ -142,14 +182,20 @@ const fotosPilotos: Record<
 
     // AQUÍ LANDO NORRIS
     "lando-norris": {
-        imagen: "",
-        credito: "",
+        imagen: "monoplaza_norris_drn_daggerracingnews.png",
+        credito: "Fotografía original: © Steffen Prößdorf / Wikimedia Commons.",
+        adaptacion: "Adaptación con IA: Dagger Racing News",
+        licencia: "https://creativecommons.org/licenses/by-sa/4.0/",
+        original: "https://commons.wikimedia.org/wiki/File:2026-08-21_Motorsport,_Formel_1,_Großer_Preis_der_Niederlande_2026_STP_2295.jpg",
     },
 
     // AQUÍ OSCAR PIASTRI
     "oscar-piastri": {
-        imagen: "",
-        credito: "",
+        imagen: "monoplaza_piastri_drn_daggerracingnews.png",
+        credito: "Fotografía original: © Steffen Prößdorf / Wikimedia Commons.",
+        adaptacion: "Adaptación con IA: Dagger Racing News",
+        licencia: "https://creativecommons.org/licenses/by-sa/4.0/",
+        original: "",
     },
 
 
@@ -159,14 +205,20 @@ const fotosPilotos: Record<
 
     // AQUÍ FERNANDO ALONSO
     "fernando-alonso": {
-        imagen: "",
-        credito: "",
+        imagen: "monoplaza_alonso_drn_daggerracingnews.png",
+        credito: "Fotografía original: © Steffen Prößdorf / Wikimedia Commons.",
+        adaptacion: "Adaptación con IA: Dagger Racing News",
+        licencia: "https://creativecommons.org/licenses/by-sa/4.0/",
+        original: "https://commons.wikimedia.org/wiki/File:2026-08-21_Motorsport,_Formel_1,_Großer_Preis_der_Niederlande_2026_STP_2295.jpg",
     },
 
     // AQUÍ LANCE STROLL
     "lance-stroll": {
-        imagen: "",
-        credito: "",
+        imagen: "monoplaza_stroll_drn_daggerracingnews.png",
+        credito: "Fotografía original: © Steffen Prößdorf / Wikimedia Commons.",
+        adaptacion: "Adaptación con IA: Dagger Racing News",
+        licencia: "https://creativecommons.org/licenses/by-sa/4.0/",
+        original: "https://commons.wikimedia.org/wiki/File:2026-08-21_Motorsport,_Formel_1,_Großer_Preis_der_Niederlande_2026_STP_2295.jpg",
     },
 
 
@@ -176,14 +228,20 @@ const fotosPilotos: Record<
 
     // AQUÍ PIERRE GASLY
     "pierre-gasly": {
-        imagen: "",
-        credito: "",
+        imagen: "monoplaza_gasly_drn_daggerracingnews.png",
+        credito: "Fotografía original: © Steffen Prößdorf / Wikimedia Commons.",
+        adaptacion: "Adaptación con IA: Dagger Racing News",
+        licencia: "https://creativecommons.org/licenses/by-sa/4.0/",
+        original: "https://commons.wikimedia.org/wiki/File:2026-08-21_Motorsport,_Formel_1,_Großer_Preis_der_Niederlande_2026_STP_2295.jpg",
     },
 
     // AQUÍ FRANCO COLAPINTO
     "franco-colapinto": {
-        imagen: "",
-        credito: "",
+        imagen: "monoplaza_colapinto_drn_daggerracingnews.png",
+        credito: "Fotografía original: © Steffen Prößdorf / Wikimedia Commons.",
+        adaptacion: "Adaptación con IA: Dagger Racing News",
+        licencia: "https://creativecommons.org/licenses/by-sa/4.0/",
+        original: "https://commons.wikimedia.org/wiki/File:2026-08-21_Motorsport,_Formel_1,_Großer_Preis_der_Niederlande_2026_STP_2295.jpg",
     },
 
 
@@ -195,12 +253,18 @@ const fotosPilotos: Record<
     "esteban-ocon": {
         imagen: "",
         credito: "",
+        adaptacion: "",
+        licencia: "",
+        original: "",
     },
 
     // AQUÍ OLIVER BEARMAN
     "oliver-bearman": {
-        imagen: "",
-        credito: "",
+        imagen: "monoplaza_bearman_drn_daggerracingnews.png",
+        credito: "Fotografía original: © Steffen Prößdorf / Wikimedia Commons.",
+        adaptacion: "Adaptación con IA: Dagger Racing News",
+        licencia: "https://creativecommons.org/licenses/by-sa/4.0/",
+        original: "https://commons.wikimedia.org/wiki/File:2026-08-21_Motorsport,_Formel_1,_Großer_Preis_der_Niederlande_2026_STP_2295.jpg",
     },
 
 
@@ -210,14 +274,20 @@ const fotosPilotos: Record<
 
     // AQUÍ LIAM LAWSON
     "liam-lawson": {
-        imagen: "",
-        credito: "",
+        imagen: "monoplaza_lawson_drn_daggerracingnews.png",
+        credito: "Fotografía original: © Steffen Prößdorf / Wikimedia Commons.",
+        adaptacion: "Adaptación con IA: Dagger Racing News",
+        licencia: "https://creativecommons.org/licenses/by-sa/4.0/",
+        original: "https://commons.wikimedia.org/wiki/File:2026-08-21_Motorsport,_Formel_1,_Großer_Preis_der_Niederlande_2026_STP_2295.jpg",
     },
 
     // AQUÍ ARVID LINDBLAD
     "arvid-lindblad": {
-        imagen: "",
-        credito: "",
+        imagen: "monoplaza_lindblad_drn_daggerracingnews.png",
+        credito: "Fotografía original: © Steffen Prößdorf / Wikimedia Commons.",
+        adaptacion: "Adaptación con IA: Dagger Racing News",
+        licencia: "https://creativecommons.org/licenses/by-sa/4.0/",
+        original: "https://commons.wikimedia.org/wiki/File:2026-08-21_Motorsport,_Formel_1,_Großer_Preis_der_Niederlande_2026_STP_2295.jpg",
     },
 
 
@@ -227,14 +297,20 @@ const fotosPilotos: Record<
 
     // AQUÍ CARLOS SAINZ
     "carlos-sainz": {
-        imagen: "",
-        credito: "",
+        imagen: "monoplaza_sainz_drn_daggerracingnews.png",
+        credito: "Fotografía original: © Steffen Prößdorf / Wikimedia Commons.",
+        adaptacion: "Adaptación con IA: Dagger Racing News",
+        licencia: "https://creativecommons.org/licenses/by-sa/4.0/",
+        original: "https://commons.wikimedia.org/wiki/File:2026-08-21_Motorsport,_Formel_1,_Großer_Preis_der_Niederlande_2026_STP_2295.jpg",
     },
 
     // AQUÍ ALEXANDER ALBON
     "alexander-albon": {
-        imagen: "",
-        credito: "",
+        imagen: "monoplaza_albon_drn_daggerracingnews.png",
+        credito: "Fotografía original: © Steffen Prößdorf / Wikimedia Commons.",
+        adaptacion: "Adaptación con IA: Dagger Racing News",
+        licencia: "https://creativecommons.org/licenses/by-sa/4.0/",
+        original: "https://commons.wikimedia.org/wiki/File:2026-08-21_Motorsport,_Formel_1,_Großer_Preis_der_Niederlande_2026_STP_2295.jpg",
     },
 
 
@@ -244,14 +320,20 @@ const fotosPilotos: Record<
 
     // AQUÍ NICO HÜLKENBERG
     "nico-hulkenberg": {
-        imagen: "",
-        credito: "",
+        imagen: "monoplaza_hulkenberg_drn_daggerracingnews.png",
+        credito: "Fotografía original: © Steffen Prößdorf / Wikimedia Commons.",
+        adaptacion: "Adaptación con IA: Dagger Racing News",
+        licencia: "https://creativecommons.org/licenses/by-sa/4.0/",
+        original: "https://commons.wikimedia.org/wiki/File:2026-08-21_Motorsport,_Formel_1,_Großer_Preis_der_Niederlande_2026_STP_2295.jpg",
     },
 
     // AQUÍ GABRIEL BORTOLETO
     "gabriel-bortoleto": {
-        imagen: "",
-        credito: "",
+        imagen: "monoplaza_bortoleto_drn_daggerracingnews.png",
+        credito: "Fotografía original: © Steffen Prößdorf / Wikimedia Commons.",
+        adaptacion: "Adaptación con IA: Dagger Racing News",
+        licencia: "https://creativecommons.org/licenses/by-sa/4.0/",
+        original: "https://commons.wikimedia.org/wiki/File:2026-08-21_Motorsport,_Formel_1,_Großer_Preis_der_Niederlande_2026_STP_2295.jpg",
     },
 
 
@@ -261,37 +343,43 @@ const fotosPilotos: Record<
 
     // AQUÍ SERGIO PÉREZ
     "sergio-perez": {
-        imagen: "",
-        credito: "",
+        imagen: "monoplaza_perez_drn_daggerracingnews.png",
+        credito: "Fotografía original: © Steffen Prößdorf / Wikimedia Commons.",
+        adaptacion: "Adaptación con IA: Dagger Racing News",
+        licencia: "https://creativecommons.org/licenses/by-sa/4.0/",
+        original: "https://commons.wikimedia.org/wiki/File:2026-08-21_Motorsport,_Formel_1,_Großer_Preis_der_Niederlande_2026_STP_2295.jpg",
     },
 
     // AQUÍ VALTTERI BOTTAS
     "valtteri-bottas": {
-        imagen: "",
-        credito: "",
+        imagen: "monoplaza_bottas_drn_daggerracingnews.png",
+        credito: "Fotografía original: © Steffen Prößdorf / Wikimedia Commons.",
+        adaptacion: "Adaptación con IA: Dagger Racing News",
+        licencia: "https://creativecommons.org/licenses/by-sa/4.0/",
+        original: "https://commons.wikimedia.org/wiki/File:2026-08-21_Motorsport,_Formel_1,_Großer_Preis_der_Niederlande_2026_STP_2295.jpg",
     },
 
 };
 
+
 /*
 ====================================================
-  IDENTIFICAR LA FOTO DEL PILOTO
+  SELECCIÓN AUTOMÁTICA DE FOTOGRAFÍA
 ====================================================
-
-La mayoría de las fotos se identifican mediante
-el slug del piloto.
-
-Para Kimi también comprobamos su nombre,
-por si el identificador de drivers.json
-fuera diferente.
 */
+
+const fotoVacia: FotoPiloto = {
+    imagen: "",
+    credito: "",
+    adaptacion: "",
+    licencia: "",
+    original: "",
+};
 
 function obtenerFotoPiloto(
     piloto: typeof driver
-): {
-    imagen: string;
-    credito: string;
-} {
+): FotoPiloto {
+
     const slug = String(piloto.slug).toLowerCase();
     const nombre = String(piloto.name).toLowerCase();
 
@@ -299,15 +387,17 @@ function obtenerFotoPiloto(
         return fotosPilotos["kimi-antonelli"];
     }
 
-    return (
-        fotosPilotos[slug] || {
-            imagen: "",
-            credito: "",
-        }
-    );
+    return fotosPilotos[slug] || fotoVacia;
 }
 
 const fotoPiloto = obtenerFotoPiloto(driver);
+
+const tieneCreditos = Boolean(
+    fotoPiloto.credito ||
+    fotoPiloto.adaptacion ||
+    fotoPiloto.licencia ||
+    fotoPiloto.original
+);
 ---
 
 <!doctype html>
@@ -356,14 +446,16 @@ const fotoPiloto = obtenerFotoPiloto(driver);
 
 </head>
 
+
 <body>
 
     <MenuNav />
 
+
     <main class="profile">
 
         <!-- =====================================
-             FOTO PRINCIPAL DEL PILOTO
+             FOTOGRAFÍA DEL PILOTO
              ===================================== -->
 
         {
@@ -378,11 +470,92 @@ const fotoPiloto = obtenerFotoPiloto(driver);
                         decoding="async"
                     />
 
-                    {
-                        fotoPiloto.credito && (
 
-                            <figcaption class="photo-credit">
-                                {fotoPiloto.credito}
+                    <!-- =====================================
+                         DERECHOS DE AUTOR
+                         ALINEADOS A LA DERECHA
+                         ===================================== -->
+
+                    {
+                        tieneCreditos && (
+
+                            <figcaption class="credito-fotografia">
+
+                                {
+                                    fotoPiloto.credito && (
+
+                                        <div class="credito-linea">
+                                            {fotoPiloto.credito}
+                                        </div>
+
+                                    )
+                                }
+
+                                {
+                                    (
+                                        fotoPiloto.adaptacion ||
+                                        fotoPiloto.licencia ||
+                                        fotoPiloto.original
+                                    ) && (
+
+                                        <div class="credito-linea">
+
+                                            {
+                                                fotoPiloto.adaptacion && (
+                                                    <span>
+                                                        {fotoPiloto.adaptacion}
+                                                    </span>
+                                                )
+                                            }
+
+                                            {
+                                                fotoPiloto.licencia && (
+                                                    <>
+                                                        {
+                                                            fotoPiloto.adaptacion
+                                                                ? " · "
+                                                                : ""
+                                                        }
+
+                                                        <a
+                                                            href={fotoPiloto.licencia}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                        >
+                                                            CC BY-SA 4.0
+                                                        </a>
+                                                    </>
+                                                )
+                                            }
+
+                                            {
+                                                fotoPiloto.original && (
+                                                    <>
+                                                        {
+                                                            (
+                                                                fotoPiloto.adaptacion ||
+                                                                fotoPiloto.licencia
+                                                            )
+                                                                ? " · "
+                                                                : ""
+                                                        }
+
+                                                        <a
+                                                            href={fotoPiloto.original}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                        >
+                                                            Fotografía original
+                                                        </a>
+                                                    </>
+                                                )
+                                            }
+
+                                        </div>
+
+                                    )
+                                }
+
                             </figcaption>
 
                         )
@@ -497,11 +670,13 @@ const fotoPiloto = obtenerFotoPiloto(driver);
 
     </main>
 
+
     <Footer />
 
 </body>
 
 </html>
+
 
 <style>
 
@@ -520,6 +695,7 @@ const fotoPiloto = obtenerFotoPiloto(driver);
         font-family: "Inter", sans-serif;
     }
 
+
     /* =========================
        CONTENEDOR
        ========================= */
@@ -531,45 +707,92 @@ const fotoPiloto = obtenerFotoPiloto(driver);
         padding: 0 20px;
     }
 
+
     /* =========================
-       FOTOGRAFÍA DEL PILOTO
+       FOTOGRAFÍAS DE TODOS LOS PILOTOS
        ========================= */
 
     .driver-photo {
         width: 100%;
-        margin: 0 0 28px;
+        max-width: 850px;
+        margin: 0 auto 28px;
     }
 
     .driver-photo img {
         display: block;
+
         width: 100%;
         height: auto;
-        max-height: 540px;
-        object-fit: cover;
+
+        max-width: 100%;
+        max-height: none;
+
+        object-fit: contain;
         object-position: center;
+
         background: #f1f1f1;
     }
 
-    /*
-       CRÉDITOS / DERECHOS DE AUTOR
 
-       Debajo de la imagen,
-       alineados a la derecha.
-    */
+    /* =========================
+       DERECHOS DE AUTOR
+       TODOS LOS PILOTOS
+       ALINEACIÓN FORZADA A LA DERECHA
+       ========================= */
 
-    .photo-credit {
-        margin-top: 8px;
+    .credito-fotografia {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-end !important;
 
-        color: #777777;
+        width: 100% !important;
+        max-width: 100% !important;
 
-        font-family: "Inter", sans-serif;
-        font-size: 0.68rem;
-        font-weight: 500;
+        margin: 6px 0 0 !important;
+        padding: 0 !important;
 
-        line-height: 1.5;
-        text-align: right;
-        letter-spacing: 0.2px;
+        font-family: Arial, sans-serif !important;
+        font-size: 9px !important;
+        font-weight: 400 !important;
+        line-height: 1.5 !important;
+
+        color: #888888 !important;
+        text-align: right !important;
+        letter-spacing: 0 !important;
     }
+
+    .credito-linea {
+        display: block !important;
+
+        width: fit-content;
+        max-width: 100%;
+
+        margin: 0 0 0 auto !important;
+        padding: 0 !important;
+
+        font-family: Arial, sans-serif !important;
+        font-size: 9px !important;
+        font-weight: 400 !important;
+        line-height: 1.5 !important;
+
+        color: #888888 !important;
+        text-align: right !important;
+    }
+
+    .credito-fotografia a {
+        color: #777777 !important;
+
+        font-size: inherit !important;
+        font-weight: inherit !important;
+
+        text-decoration: underline !important;
+        text-underline-offset: 2px;
+    }
+
+    .credito-fotografia a:hover {
+        color: #e10600 !important;
+    }
+
 
     /* =========================
        PILOTO
@@ -591,10 +814,18 @@ const fotoPiloto = obtenerFotoPiloto(driver);
     .hero-p h1 {
         margin: 8px 0;
         color: #111111;
+
         font-family: "Orbitron", sans-serif;
-        font-size: clamp(2.4rem, 8vw, 5rem);
+
+        font-size: clamp(
+            2.4rem,
+            8vw,
+            5rem
+        );
+
         font-weight: 900;
         line-height: 1;
+
         text-align: center;
         text-transform: uppercase;
     }
@@ -602,6 +833,7 @@ const fotoPiloto = obtenerFotoPiloto(driver);
     .stat {
         margin: 18px 0 0;
         color: #bbbbbb;
+
         font-size: 1.1rem;
         text-align: center;
         text-transform: uppercase;
@@ -613,6 +845,7 @@ const fotoPiloto = obtenerFotoPiloto(driver);
         font-weight: 700;
     }
 
+
     /* =========================
        NOTICIAS RELACIONADAS
        ========================= */
@@ -623,12 +856,14 @@ const fotoPiloto = obtenerFotoPiloto(driver);
 
     .related-section h2 {
         margin: 0 0 25px;
+
         color: #333333;
         font-family: "Orbitron", sans-serif;
         font-size: 1.35rem;
         font-weight: 900;
         text-transform: uppercase;
     }
+
 
     /* =========================
        CUADRÍCULA
@@ -640,21 +875,26 @@ const fotoPiloto = obtenerFotoPiloto(driver);
         gap: 18px;
     }
 
+
     /* =========================
        TARJETA DE NOTICIA
        ========================= */
 
     .news-card {
         position: relative;
+
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
+
         min-height: 180px;
         padding: 22px;
         overflow: hidden;
+
         background: #ffffff;
         border: 1px solid #dddddd;
         border-top: 4px solid #111111;
+
         color: #111111;
         text-decoration: none;
 
@@ -668,25 +908,32 @@ const fotoPiloto = obtenerFotoPiloto(driver);
         transform: translateY(-4px);
         border-color: #e10600;
         border-top-color: #e10600;
-        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+
+        box-shadow:
+            0 12px 30px rgba(0, 0, 0, 0.08);
     }
+
 
     /* FECHA */
 
     .news-card time {
         display: block;
         margin-bottom: 10px;
+
         color: #e10600;
         font-size: 0.7rem;
         font-weight: 900;
+
         letter-spacing: 1px;
         text-transform: uppercase;
     }
+
 
     /* TÍTULO */
 
     .news-card h3 {
         margin: 0;
+
         color: #111111;
         font-family: "Orbitron", sans-serif;
         font-size: 1.05rem;
@@ -697,6 +944,7 @@ const fotoPiloto = obtenerFotoPiloto(driver);
     .empty-message {
         color: #666666;
     }
+
 
     /* =========================
        TABLET
@@ -709,6 +957,7 @@ const fotoPiloto = obtenerFotoPiloto(driver);
         }
 
     }
+
 
     /* =========================
        MÓVIL
@@ -723,14 +972,6 @@ const fotoPiloto = obtenerFotoPiloto(driver);
 
         .driver-photo {
             margin-bottom: 22px;
-        }
-
-        .driver-photo img {
-            max-height: 320px;
-        }
-
-        .photo-credit {
-            font-size: 0.62rem;
         }
 
         .related-section {
