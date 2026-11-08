@@ -2,7 +2,7 @@
 <!-- src/components/MenuNav.astro -->
 
 <!-- CABECERA BLANCA -->
-<header class="drn-cabecera-bicolor" data-drn-racing-nav
+<header class="drn-header-final" data-drn-racing-nav
     style="
         background: #b80000;
         border-bottom: 3px solid #ff4545;
@@ -90,7 +90,7 @@
 
 
     <!-- NAVEGACIÓN -->
-    <nav class="drn-bloque-rojo" class="drn-racing-links"
+    <nav class="drn-nav-final"
         style="
             display: flex !important;
             flex-direction: row !important;
@@ -113,7 +113,7 @@
     >
 
         <!-- INICIO -->
-        <a class="drn-enlace-rojo" class="drn-racing-link"
+        <a class="drn-link-final"
             href="/"
             style="
                 color: #ffffff;
@@ -156,7 +156,7 @@
 
 
         <!-- PILOTOS -->
-        <a class="drn-enlace-rojo" class="drn-racing-link"
+        <a class="drn-link-final"
             href="/pilotos/"
             style="
                 color: #ffffff;
@@ -199,7 +199,7 @@
 
 
         <!-- CALENDARIO -->
-        <a class="drn-enlace-rojo" class="drn-racing-link"
+        <a class="drn-link-final"
             href="/calendario"
             style="
                 color: #ffffff;
@@ -242,7 +242,7 @@
 
 
         <!-- CAMPEONATO -->
-        <a class="drn-enlace-rojo" class="drn-racing-link"
+        <a class="drn-link-final"
             href="/campeonato"
             style="
                 color: #ffffff;
@@ -273,132 +273,115 @@
 
 
 
+
+
+
+
+
+
 <style>
-    header[data-drn-racing-nav] {
-        background: linear-gradient(
-            90deg,
-            #ffffff 0%,
-            #fff4f4 22%,
-            #e77474 48%,
-            #b80000 72%,
-            #970000 100%
-        ) !important;
-        border-bottom: 3px solid #e10600 !important;
-    }
-
-    header[data-drn-racing-nav] .drn-racing-links {
-        height: auto !important;
+    :global(.drn-header-final) {
+        background: #ffffff !important;
+        border: none !important;
+        padding: 0 0 0 40px !important;
         min-height: 0 !important;
+        height: auto !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        overflow: visible;
     }
 
-    header[data-drn-racing-nav] .logo-area a,
-    header[data-drn-racing-nav] .logo-area span {
+    :global(.drn-header-final .logo-area) {
+        padding: 8px 0;
+        flex-shrink: 0;
+    }
+
+    :global(.drn-header-final .logo-area span) {
         color: #111111 !important;
     }
 
-    header[data-drn-racing-nav] .logo-area span[style*="#e10600"] {
+    :global(.drn-header-final .logo-area span[style*="#e10600"]) {
         color: #e10600 !important;
     }
 
-    header[data-drn-racing-nav] .drn-racing-link {
-        position: relative;
-        display: inline-block;
-        color: #ffffff !important;
-        padding: 8px 3px !important;
-        text-decoration: none;
-        transition:
-            transform 220ms ease,
-            text-shadow 220ms ease;
-    }
-
-    header[data-drn-racing-nav] .drn-racing-link::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: 3px;
-        background: #ffffff;
-        border-radius: 3px;
-        box-shadow: 0 0 8px #ffffff, 0 0 15px #ff7777;
-        transform: scaleX(0);
-        transition: transform 220ms ease;
-    }
-
-    header[data-drn-racing-nav] .drn-racing-link:hover,
-    header[data-drn-racing-nav] .drn-racing-link:focus-visible {
-        transform: translateY(-3px);
-        text-shadow: 0 0 7px #ffffff, 0 0 14px #ffaaaa;
-    }
-
-    header[data-drn-racing-nav] .drn-racing-link:hover::after,
-    header[data-drn-racing-nav] .drn-racing-link:focus-visible::after {
-        transform: scaleX(1);
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-        header[data-drn-racing-nav] .drn-racing-link,
-        header[data-drn-racing-nav] .drn-racing-link::after {
-            transition: none;
-        }
-    }
-</style>
-
-
-<style>
-    :global(.drn-cabecera-bicolor) {
-        background: #ffffff !important;
-        border: none !important;
-    }
-
-    :global(.drn-cabecera-bicolor .drn-bloque-rojo) {
+    :global(.drn-header-final .drn-nav-final) {
         position: relative !important;
-        isolation: isolate;
+        display: flex !important;
+        align-items: center !important;
+        gap: 16px !important;
+        width: auto !important;
         height: auto !important;
         min-height: 0 !important;
+        margin: 0 !important;
+        padding: 7px 34px 7px 12px !important;
+        background: #b80000 !important;
+        border: none !important;
+        box-shadow: none !important;
+        isolation: isolate;
     }
 
-    :global(.drn-cabecera-bicolor .drn-bloque-rojo::before) {
+    :global(.drn-header-final .drn-nav-final::after) {
         content: "";
         position: absolute;
         z-index: -1;
-        top: -12px;
-        bottom: -12px;
-        left: -16px;
-        right: -40px;
+        top: 0;
+        bottom: 0;
+        left: 100%;
+        width: 50vw;
         background: #b80000;
-        pointer-events: none;
     }
 
-    :global(.drn-cabecera-bicolor .drn-enlace-rojo) {
+    :global(.drn-header-final .drn-link-final) {
         position: relative;
         display: inline-block;
+        padding: 4px 2px !important;
         color: #ffffff !important;
-        padding: 8px 3px !important;
-        transition: transform 220ms ease, text-shadow 220ms ease;
+        text-decoration: none;
+        transition: transform 200ms ease, text-shadow 200ms ease;
     }
 
-    :global(.drn-cabecera-bicolor .drn-enlace-rojo::after) {
+    :global(.drn-header-final .drn-link-final::after) {
         content: "";
         position: absolute;
         left: 0;
         right: 0;
         bottom: 0;
-        height: 3px;
+        height: 2px;
         background: #ffffff;
-        box-shadow: 0 0 8px #ffffff;
+        box-shadow: 0 0 7px #ffffff;
         transform: scaleX(0);
-        transition: transform 220ms ease;
+        transition: transform 200ms ease;
     }
 
-    :global(.drn-cabecera-bicolor .drn-enlace-rojo:hover),
-    :global(.drn-cabecera-bicolor .drn-enlace-rojo:focus-visible) {
+    :global(.drn-header-final .drn-link-final:hover),
+    :global(.drn-header-final .drn-link-final:focus-visible) {
         transform: translateY(-3px);
         text-shadow: 0 0 8px #ffffff;
     }
 
-    :global(.drn-cabecera-bicolor .drn-enlace-rojo:hover::after),
-    :global(.drn-cabecera-bicolor .drn-enlace-rojo:focus-visible::after) {
+    :global(.drn-header-final .drn-link-final:hover::after),
+    :global(.drn-header-final .drn-link-final:focus-visible::after) {
         transform: scaleX(1);
+    }
+
+    @media (max-width: 850px) {
+        :global(.drn-header-final) {
+            flex-wrap: wrap !important;
+            padding-left: 12px !important;
+        }
+
+        :global(.drn-header-final .drn-nav-final) {
+            flex-wrap: wrap !important;
+            gap: 10px !important;
+            padding-right: 12px !important;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        :global(.drn-header-final .drn-link-final),
+        :global(.drn-header-final .drn-link-final::after) {
+            transition: none;
+        }
     }
 </style>
