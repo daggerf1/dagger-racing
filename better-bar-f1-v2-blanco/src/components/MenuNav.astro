@@ -270,15 +270,34 @@
 </header>
 
 
+
+
+
 <style>
     header[data-drn-racing-nav] {
-        background: #b80000 !important;
-        border-bottom: 3px solid #ff4545 !important;
+        background: linear-gradient(
+            90deg,
+            #ffffff 0%,
+            #fff4f4 22%,
+            #e77474 48%,
+            #b80000 72%,
+            #970000 100%
+        ) !important;
+        border-bottom: 3px solid #e10600 !important;
     }
 
     header[data-drn-racing-nav] .drn-racing-links {
         height: auto !important;
         min-height: 0 !important;
+    }
+
+    header[data-drn-racing-nav] .logo-area a,
+    header[data-drn-racing-nav] .logo-area span {
+        color: #111111 !important;
+    }
+
+    header[data-drn-racing-nav] .logo-area span[style*="#e10600"] {
+        color: #e10600 !important;
     }
 
     header[data-drn-racing-nav] .drn-racing-link {
@@ -289,7 +308,6 @@
         text-decoration: none;
         transition:
             transform 220ms ease,
-            color 220ms ease,
             text-shadow 220ms ease;
     }
 
@@ -300,21 +318,17 @@
         right: 0;
         bottom: 0;
         height: 3px;
-        background: #ffb0b0;
+        background: #ffffff;
         border-radius: 3px;
-        box-shadow: 0 0 8px #ff5555, 0 0 15px #ff7777;
+        box-shadow: 0 0 8px #ffffff, 0 0 15px #ff7777;
         transform: scaleX(0);
-        transform-origin: center;
         transition: transform 220ms ease;
     }
 
     header[data-drn-racing-nav] .drn-racing-link:hover,
     header[data-drn-racing-nav] .drn-racing-link:focus-visible {
         transform: translateY(-3px);
-        color: #ffffff !important;
-        text-shadow:
-            0 0 7px #ffffff,
-            0 0 15px #ff8c8c;
+        text-shadow: 0 0 7px #ffffff, 0 0 14px #ffaaaa;
     }
 
     header[data-drn-racing-nav] .drn-racing-link:hover::after,
