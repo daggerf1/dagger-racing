@@ -1,3 +1,4 @@
+
 ---
 import MenuNav from "../../components/MenuNav.astro";
 import Footer from "../../components/Footer.astro";
@@ -27,10 +28,6 @@ const standing = standings.find(
     (item) => item.driverId === driver.id
 );
 
-/*
- * Las noticias ya llegan ordenadas
- * de más reciente a más antigua.
- */
 const related = await getArticlesByDriver(driver.slug);
 
 const formatDate = (date: Date) =>
@@ -39,6 +36,278 @@ const formatDate = (date: Date) =>
         month: "long",
         year: "numeric",
     }).format(date);
+
+/*
+====================================================
+  IMÁGENES Y CRÉDITOS — PERFILES DE PILOTOS
+====================================================
+
+INSTRUCCIONES:
+
+1. Guarda las fotografías en la carpeta public/.
+
+2. Busca el nombre del piloto aquí abajo.
+
+3. En "imagen", escribe la ruta de su fotografía.
+
+4. En "credito", escribe el fotógrafo, agencia
+   o titular de los derechos correspondiente.
+
+EJEMPLO:
+
+"charles-leclerc": {
+    imagen: "/foto-original-de-charles.png",
+    credito: "© Fotógrafo / Agencia"
+},
+
+Si todavía no tienes una fotografía, deja:
+
+imagen: "",
+credito: "",
+
+La página seguirá funcionando normalmente.
+
+IMPORTANTE:
+No inventes créditos. Utiliza los datos reales
+de autoría o licencia de cada imagen.
+
+====================================================
+*/
+
+const fotosPilotos: Record<
+    string,
+    {
+        imagen: string;
+        credito: string;
+    }
+> = {
+
+    // ============================================
+    // MERCEDES
+    // ============================================
+
+    // AQUÍ KIMI ANTONELLI
+    "kimi-antonelli": {
+        imagen:
+            "/monoplaza-mercedes-kimiantonelli-12-sobre-pista-reflectante-drn.png",
+
+        // AQUÍ EL CRÉDITO DE LA IMAGEN DE KIMI
+        credito: "",
+    },
+
+    // AQUÍ GEORGE RUSSELL
+    "george-russell": {
+        imagen: "",
+        credito: "",
+    },
+
+
+    // ============================================
+    // FERRARI
+    // ============================================
+
+    // AQUÍ CHARLES LECLERC
+    "charles-leclerc": {
+        imagen: "",
+        credito: "",
+    },
+
+    // AQUÍ LEWIS HAMILTON
+    "lewis-hamilton": {
+        imagen: "",
+        credito: "",
+    },
+
+
+    // ============================================
+    // RED BULL
+    // ============================================
+
+    // AQUÍ MAX VERSTAPPEN
+    "max-verstappen": {
+        imagen: "",
+        credito: "",
+    },
+
+    // AQUÍ ISACK HADJAR
+    "isack-hadjar": {
+        imagen: "",
+        credito: "",
+    },
+
+
+    // ============================================
+    // MCLAREN
+    // ============================================
+
+    // AQUÍ LANDO NORRIS
+    "lando-norris": {
+        imagen: "",
+        credito: "",
+    },
+
+    // AQUÍ OSCAR PIASTRI
+    "oscar-piastri": {
+        imagen: "",
+        credito: "",
+    },
+
+
+    // ============================================
+    // ASTON MARTIN
+    // ============================================
+
+    // AQUÍ FERNANDO ALONSO
+    "fernando-alonso": {
+        imagen: "",
+        credito: "",
+    },
+
+    // AQUÍ LANCE STROLL
+    "lance-stroll": {
+        imagen: "",
+        credito: "",
+    },
+
+
+    // ============================================
+    // ALPINE
+    // ============================================
+
+    // AQUÍ PIERRE GASLY
+    "pierre-gasly": {
+        imagen: "",
+        credito: "",
+    },
+
+    // AQUÍ FRANCO COLAPINTO
+    "franco-colapinto": {
+        imagen: "",
+        credito: "",
+    },
+
+
+    // ============================================
+    // HAAS
+    // ============================================
+
+    // AQUÍ ESTEBAN OCON
+    "esteban-ocon": {
+        imagen: "",
+        credito: "",
+    },
+
+    // AQUÍ OLIVER BEARMAN
+    "oliver-bearman": {
+        imagen: "",
+        credito: "",
+    },
+
+
+    // ============================================
+    // RACING BULLS
+    // ============================================
+
+    // AQUÍ LIAM LAWSON
+    "liam-lawson": {
+        imagen: "",
+        credito: "",
+    },
+
+    // AQUÍ ARVID LINDBLAD
+    "arvid-lindblad": {
+        imagen: "",
+        credito: "",
+    },
+
+
+    // ============================================
+    // WILLIAMS
+    // ============================================
+
+    // AQUÍ CARLOS SAINZ
+    "carlos-sainz": {
+        imagen: "",
+        credito: "",
+    },
+
+    // AQUÍ ALEXANDER ALBON
+    "alexander-albon": {
+        imagen: "",
+        credito: "",
+    },
+
+
+    // ============================================
+    // AUDI
+    // ============================================
+
+    // AQUÍ NICO HÜLKENBERG
+    "nico-hulkenberg": {
+        imagen: "",
+        credito: "",
+    },
+
+    // AQUÍ GABRIEL BORTOLETO
+    "gabriel-bortoleto": {
+        imagen: "",
+        credito: "",
+    },
+
+
+    // ============================================
+    // CADILLAC
+    // ============================================
+
+    // AQUÍ SERGIO PÉREZ
+    "sergio-perez": {
+        imagen: "",
+        credito: "",
+    },
+
+    // AQUÍ VALTTERI BOTTAS
+    "valtteri-bottas": {
+        imagen: "",
+        credito: "",
+    },
+
+};
+
+/*
+====================================================
+  IDENTIFICAR LA FOTO DEL PILOTO
+====================================================
+
+La mayoría de las fotos se identifican mediante
+el slug del piloto.
+
+Para Kimi también comprobamos su nombre,
+por si el identificador de drivers.json
+fuera diferente.
+*/
+
+function obtenerFotoPiloto(
+    piloto: typeof driver
+): {
+    imagen: string;
+    credito: string;
+} {
+    const slug = String(piloto.slug).toLowerCase();
+    const nombre = String(piloto.name).toLowerCase();
+
+    if (nombre.includes("antonelli")) {
+        return fotosPilotos["kimi-antonelli"];
+    }
+
+    return (
+        fotosPilotos[slug] || {
+            imagen: "",
+            credito: "",
+        }
+    );
+}
+
+const fotoPiloto = obtenerFotoPiloto(driver);
 ---
 
 <!doctype html>
@@ -87,15 +356,47 @@ const formatDate = (date: Date) =>
 
 </head>
 
-
 <body>
 
     <MenuNav />
 
-
     <main class="profile">
 
-        <!-- PERFIL DEL PILOTO -->
+        <!-- =====================================
+             FOTO PRINCIPAL DEL PILOTO
+             ===================================== -->
+
+        {
+            fotoPiloto.imagen && (
+
+                <figure class="driver-photo">
+
+                    <img
+                        src={fotoPiloto.imagen}
+                        alt={`Imagen de ${driver.name}`}
+                        loading="eager"
+                        decoding="async"
+                    />
+
+                    {
+                        fotoPiloto.credito && (
+
+                            <figcaption class="photo-credit">
+                                {fotoPiloto.credito}
+                            </figcaption>
+
+                        )
+                    }
+
+                </figure>
+
+            )
+        }
+
+
+        <!-- =====================================
+             PERFIL DEL PILOTO
+             ===================================== -->
 
         <header class="hero-p">
 
@@ -109,6 +410,7 @@ const formatDate = (date: Date) =>
 
             {
                 standing && (
+
                     <p class="stat">
 
                         P{standing.position}
@@ -128,20 +430,22 @@ const formatDate = (date: Date) =>
                         </a>
 
                     </p>
+
                 )
             }
 
         </header>
 
 
-        <!-- NOTICIAS DEL PILOTO -->
+        <!-- =====================================
+             NOTICIAS DEL PILOTO
+             ===================================== -->
 
         <section class="related-section">
 
             <h2>
                 Noticias relacionadas
             </h2>
-
 
             {
                 related.length > 0 ? (
@@ -168,7 +472,6 @@ const formatDate = (date: Date) =>
                                         }
                                     </time>
 
-
                                     <h3>
                                         {article.data.title}
                                     </h3>
@@ -194,13 +497,11 @@ const formatDate = (date: Date) =>
 
     </main>
 
-
     <Footer />
 
 </body>
 
 </html>
-
 
 <style>
 
@@ -208,22 +509,16 @@ const formatDate = (date: Date) =>
         box-sizing: border-box;
     }
 
-
     :global(html) {
         background: #ffffff;
     }
 
-
     :global(body) {
         margin: 0;
-
         background: #ffffff;
-
         color: #111111;
-
         font-family: "Inter", sans-serif;
     }
-
 
     /* =========================
        CONTENEDOR
@@ -231,14 +526,50 @@ const formatDate = (date: Date) =>
 
     .profile {
         width: 100%;
-
         max-width: 1100px;
-
         margin: 45px auto 90px;
-
         padding: 0 20px;
     }
 
+    /* =========================
+       FOTOGRAFÍA DEL PILOTO
+       ========================= */
+
+    .driver-photo {
+        width: 100%;
+        margin: 0 0 28px;
+    }
+
+    .driver-photo img {
+        display: block;
+        width: 100%;
+        height: auto;
+        max-height: 540px;
+        object-fit: cover;
+        object-position: center;
+        background: #f1f1f1;
+    }
+
+    /*
+       CRÉDITOS / DERECHOS DE AUTOR
+
+       Debajo de la imagen,
+       alineados a la derecha.
+    */
+
+    .photo-credit {
+        margin-top: 8px;
+
+        color: #777777;
+
+        font-family: "Inter", sans-serif;
+        font-size: 0.68rem;
+        font-weight: 500;
+
+        line-height: 1.5;
+        text-align: right;
+        letter-spacing: 0.2px;
+    }
 
     /* =========================
        PILOTO
@@ -246,68 +577,41 @@ const formatDate = (date: Date) =>
 
     .hero-p {
         padding: 25px 0 30px;
-
         border-bottom: 2px solid #e10600;
     }
 
-
     .label {
         display: block;
-
         color: #e10600;
-
         font-size: 0.8rem;
-
         font-weight: 900;
-
         text-align: center;
     }
-
 
     .hero-p h1 {
         margin: 8px 0;
-
         color: #111111;
-
         font-family: "Orbitron", sans-serif;
-
-        font-size: clamp(
-            2.4rem,
-            8vw,
-            5rem
-        );
-
+        font-size: clamp(2.4rem, 8vw, 5rem);
         font-weight: 900;
-
         line-height: 1;
-
         text-align: center;
-
         text-transform: uppercase;
     }
-
 
     .stat {
         margin: 18px 0 0;
-
         color: #bbbbbb;
-
         font-size: 1.1rem;
-
         text-align: center;
-
         text-transform: uppercase;
-
         letter-spacing: 2px;
     }
 
-
     .stat a {
         color: inherit;
-
         font-weight: 700;
     }
-
 
     /* =========================
        NOTICIAS RELACIONADAS
@@ -317,24 +621,14 @@ const formatDate = (date: Date) =>
         margin-top: 45px;
     }
 
-
     .related-section h2 {
-        margin:
-            0
-            0
-            25px;
-
+        margin: 0 0 25px;
         color: #333333;
-
         font-family: "Orbitron", sans-serif;
-
         font-size: 1.35rem;
-
         font-weight: 900;
-
         text-transform: uppercase;
     }
-
 
     /* =========================
        CUADRÍCULA
@@ -342,16 +636,9 @@ const formatDate = (date: Date) =>
 
     .news-grid {
         display: grid;
-
-        grid-template-columns:
-            repeat(
-                3,
-                minmax(0, 1fr)
-            );
-
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 18px;
     }
-
 
     /* =========================
        TARJETA DE NOTICIA
@@ -359,27 +646,16 @@ const formatDate = (date: Date) =>
 
     .news-card {
         position: relative;
-
         display: flex;
-
         flex-direction: column;
-
         justify-content: flex-end;
-
         min-height: 180px;
-
         padding: 22px;
-
         overflow: hidden;
-
         background: #ffffff;
-
         border: 1px solid #dddddd;
-
         border-top: 4px solid #111111;
-
         color: #111111;
-
         text-decoration: none;
 
         transition:
@@ -388,62 +664,39 @@ const formatDate = (date: Date) =>
             box-shadow 0.2s ease;
     }
 
-
     .news-card:hover {
         transform: translateY(-4px);
-
         border-color: #e10600;
-
         border-top-color: #e10600;
-
-        box-shadow:
-            0
-            12px
-            30px
-            rgba(0, 0, 0, 0.08);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
     }
-
 
     /* FECHA */
 
     .news-card time {
         display: block;
-
         margin-bottom: 10px;
-
         color: #e10600;
-
         font-size: 0.7rem;
-
         font-weight: 900;
-
         letter-spacing: 1px;
-
         text-transform: uppercase;
     }
-
 
     /* TÍTULO */
 
     .news-card h3 {
         margin: 0;
-
         color: #111111;
-
         font-family: "Orbitron", sans-serif;
-
         font-size: 1.05rem;
-
         font-weight: 900;
-
         line-height: 1.35;
     }
-
 
     .empty-message {
         color: #666666;
     }
-
 
     /* =========================
        TABLET
@@ -452,15 +705,10 @@ const formatDate = (date: Date) =>
     @media (max-width: 850px) {
 
         .news-grid {
-            grid-template-columns:
-                repeat(
-                    2,
-                    minmax(0, 1fr)
-                );
+            grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 
     }
-
 
     /* =========================
        MÓVIL
@@ -470,26 +718,32 @@ const formatDate = (date: Date) =>
 
         .profile {
             margin-top: 30px;
-
             padding: 0 16px;
         }
 
+        .driver-photo {
+            margin-bottom: 22px;
+        }
+
+        .driver-photo img {
+            max-height: 320px;
+        }
+
+        .photo-credit {
+            font-size: 0.62rem;
+        }
 
         .related-section {
             margin-top: 35px;
         }
 
-
         .news-grid {
             grid-template-columns: 1fr;
-
             gap: 12px;
         }
 
-
         .news-card {
             min-height: 145px;
-
             padding: 18px;
         }
 
