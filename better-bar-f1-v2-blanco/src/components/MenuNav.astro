@@ -2,10 +2,10 @@
 <!-- src/components/MenuNav.astro -->
 
 <!-- CABECERA BLANCA -->
-<header class="drn-header-final" data-drn-racing-nav
+<header
     style="
-        background: #b80000;
-        border-bottom: 3px solid #ff4545;
+        background: #ffffff;
+        border-bottom: 3px solid #e10600;
         padding: 12px 40px;
 
         display: flex !important;
@@ -65,7 +65,7 @@
                     font-weight: 800;
                     font-size: 0.9rem;
 
-                    color: #ffffff;
+                    color: #111111;
 
                     font-family: Helvetica, Arial, sans-serif;
 
@@ -90,7 +90,7 @@
 
 
     <!-- NAVEGACIÓN -->
-    <nav class="drn-nav-final"
+    <nav
         style="
             display: flex !important;
             flex-direction: row !important;
@@ -113,10 +113,10 @@
     >
 
         <!-- INICIO -->
-        <a class="drn-link-final"
+        <a
             href="/"
             style="
-                color: #ffffff;
+                color: #111111;
 
                 text-decoration: none;
 
@@ -130,8 +130,8 @@
                 transition: color 0.2s ease;
             "
 
-            
-            
+            onmouseover="this.style.color='#e10600'"
+            onmouseout="this.style.color='#111111'"
         >
             Inicio
         </a>
@@ -156,10 +156,10 @@
 
 
         <!-- PILOTOS -->
-        <a class="drn-link-final"
+        <a
             href="/pilotos/"
             style="
-                color: #ffffff;
+                color: #111111;
 
                 text-decoration: none;
 
@@ -173,8 +173,8 @@
                 transition: color 0.2s ease;
             "
 
-            
-            
+            onmouseover="this.style.color='#e10600'"
+            onmouseout="this.style.color='#111111'"
         >
             Pilotos
         </a>
@@ -199,10 +199,10 @@
 
 
         <!-- CALENDARIO -->
-        <a class="drn-link-final"
+        <a
             href="/calendario"
             style="
-                color: #ffffff;
+                color: #111111;
 
                 text-decoration: none;
 
@@ -216,8 +216,8 @@
                 transition: color 0.2s ease;
             "
 
-            
-            
+            onmouseover="this.style.color='#e10600'"
+            onmouseout="this.style.color='#111111'"
         >
             Calendario
         </a>
@@ -242,10 +242,10 @@
 
 
         <!-- CAMPEONATO -->
-        <a class="drn-link-final"
+        <a
             href="/campeonato"
             style="
-                color: #ffffff;
+                color: #111111;
 
                 text-decoration: none;
 
@@ -259,8 +259,8 @@
                 transition: color 0.2s ease;
             "
 
-            
-            
+            onmouseover="this.style.color='#e10600'"
+            onmouseout="this.style.color='#111111'"
         >
             Tabla de Campeonato
         </a>
@@ -268,120 +268,3 @@
     </nav>
 
 </header>
-
-
-
-
-
-
-
-
-
-
-
-<style>
-    :global(.drn-header-final) {
-        background: #ffffff !important;
-        border: none !important;
-        padding: 0 0 0 40px !important;
-        min-height: 0 !important;
-        height: auto !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: space-between !important;
-        overflow: visible;
-    }
-
-    :global(.drn-header-final .logo-area) {
-        padding: 8px 0;
-        flex-shrink: 0;
-    }
-
-    :global(.drn-header-final .logo-area span) {
-        color: #111111 !important;
-    }
-
-    :global(.drn-header-final .logo-area span[style*="#e10600"]) {
-        color: #e10600 !important;
-    }
-
-    :global(.drn-header-final .drn-nav-final) {
-        position: relative !important;
-        display: flex !important;
-        align-items: center !important;
-        gap: 16px !important;
-        width: auto !important;
-        height: auto !important;
-        min-height: 0 !important;
-        margin: 0 !important;
-        padding: 7px 34px 7px 12px !important;
-        background: #b80000 !important;
-        border: none !important;
-        box-shadow: none !important;
-        isolation: isolate;
-    }
-
-    :global(.drn-header-final .drn-nav-final::after) {
-        content: "";
-        position: absolute;
-        z-index: -1;
-        top: 0;
-        bottom: 0;
-        left: 100%;
-        width: 50vw;
-        background: #b80000;
-    }
-
-    :global(.drn-header-final .drn-link-final) {
-        position: relative;
-        display: inline-block;
-        padding: 4px 2px !important;
-        color: #ffffff !important;
-        text-decoration: none;
-        transition: transform 200ms ease, text-shadow 200ms ease;
-    }
-
-    :global(.drn-header-final .drn-link-final::after) {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: 2px;
-        background: #ffffff;
-        box-shadow: 0 0 7px #ffffff;
-        transform: scaleX(0);
-        transition: transform 200ms ease;
-    }
-
-    :global(.drn-header-final .drn-link-final:hover),
-    :global(.drn-header-final .drn-link-final:focus-visible) {
-        transform: translateY(-3px);
-        text-shadow: 0 0 8px #ffffff;
-    }
-
-    :global(.drn-header-final .drn-link-final:hover::after),
-    :global(.drn-header-final .drn-link-final:focus-visible::after) {
-        transform: scaleX(1);
-    }
-
-    @media (max-width: 850px) {
-        :global(.drn-header-final) {
-            flex-wrap: wrap !important;
-            padding-left: 12px !important;
-        }
-
-        :global(.drn-header-final .drn-nav-final) {
-            flex-wrap: wrap !important;
-            gap: 10px !important;
-            padding-right: 12px !important;
-        }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-        :global(.drn-header-final .drn-link-final),
-        :global(.drn-header-final .drn-link-final::after) {
-            transition: none;
-        }
-    }
-</style>
