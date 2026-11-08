@@ -101,7 +101,7 @@ ul{
 
 .top-nav nav{
 
-    height:92px;
+    height: auto;
 
     display:flex;
 
