@@ -5,7 +5,9 @@ const { fecha, categoria, titulo, extracto, fotoCredito, link, imagen } = Astro.
 
 <article class="news-card">
   <div class="card-image-area" style={`background-image: url(${imagen}); background-size: cover; background-position: center;`}>
-    <span class="photo-credit">Foto: {fotoCredito}</span>
+    {fotoCredito && (
+      <span class="photo-credit">Foto: {fotoCredito}</span>
+    )}
   </div>
   <div class="news-content">
     <div class="meta-row">

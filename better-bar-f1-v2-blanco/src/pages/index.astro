@@ -187,7 +187,11 @@ const formatDate = (date: Date) =>
                 "Toda la actualidad de la Fórmula 1."
               }
 
-              fotoCredito="Archivo"
+              fotoCredito={
+                nota.data.slug === "mercedes-campeon-constructores-2026"
+                  ? ""
+                  : "Archivo"
+              }
 
               link={`/noticias/${nota.data.slug}/`}
 
