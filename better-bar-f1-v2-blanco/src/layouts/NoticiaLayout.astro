@@ -240,6 +240,27 @@ const canonicalURL = Astro.site
                                 alt={imageAlt || title}
                                 loading="eager"
                             />
+                            {imageSrc.includes("norris-interlagos-2026.png") && (
+                                <figcaption class="drn-photo-credit">
+                                    Fotografía original: Steffen Prößdorf (Stepro) / Wikimedia Commons · CC BY-SA 4.0 · Edición gráfica mediante IA: Dagger Racing News. Imagen modificada respecto al original.{" "}
+                                    Original:{" "}
+                                    <a
+                                        href="https://commons.wikimedia.org/wiki/Special:Redirect/file/2024-08-25_Motorsport,_Formel_1,_Großer_Preis_der_Niederlande_2024_STP_3968_by_Stepro_(Lando_Norris).jpg"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        Wikimedia Commons
+                                    </a>
+                                    {" "}· Licencia:{" "}
+                                    <a
+                                        href="https://creativecommons.org/licenses/by-sa/4.0/"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        CC BY-SA 4.0
+                                    </a>
+                                </figcaption>
+                            )}
                             {imageSrc.includes("retrato-piastri-interlagos-2026.png") && (
                                 <figcaption class="drn-photo-credit">
                                     Fotografía original: Yu Chu Chin / Wikimedia Commons · CC BY-SA 4.0 · Edición gráfica mediante inteligencia artificial: Dagger Racing News. Imagen modificada respecto al original.{" "}
