@@ -117,9 +117,11 @@ const formatDate = (date: Date) =>
 
                 <span class="category-text">
                   {
-                    noticiaPrincipal.data.category
-                      .replaceAll("-", " ")
-                      .toUpperCase()
+                    noticiaPrincipal.data.category === "formula-1"
+                      ? "FÓRMULA 1"
+                      : noticiaPrincipal.data.category
+                          .replaceAll("-", " ")
+                          .toUpperCase()
                   }
                 </span>
 
