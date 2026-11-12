@@ -1,0 +1,280 @@
+---
+import { getCollection } from "astro:content";
+import MenuNav from "../../components/MenuNav.astro";
+import Footer from "../../components/Footer.astro";
+
+export async function getStaticPaths() {
+  const noticias = await getCollection(
+    "noticias",
+    ({ data }) => data.status === "published"
+  );
+
+  const etiquetas = new Map<string, typeof noticias>();
+
+  for (const noticia of noticias) {
+    for (const etiqueta of new Set(noticia.data.tags ?? [])) {
+      const slug = etiqueta.trim().toLowerCase();
+
+      if (!slug) continue;
+
+      if (!etiquetas.has(slug)) {
+        etiquetas.set(slug, []);
+      }
+
+      etiquetas.get(slug)!.push(noticia);
+    }
+  }
+
+  return Array.from(etiquetas.entries()).map(([slug, articulos]) => ({
+    params: { slug },
+    props: {
+      etiqueta: slug,
+      articulos: articulos.sort(
+        (a, b) =>
+          b.data.publishedAt.getTime() -
+          a.data.publishedAt.getTime()
+      ),
+    },
+  }));
+}
+
+const { etiqueta, articulos } = Astro.props;
+
+const nombreEtiqueta = etiqueta.replaceAll("-", " ");
+
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat("es-MX", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(date);
+---
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>#{etiqueta} | Dagger Racing News</title>
+
+    <meta
+      name="description"
+      content={`Noticias y crónicas de Fórmula 1 relacionadas con ${nombreEtiqueta} en Dagger Racing News.`}
+    />
+
+    <link rel="stylesheet" href="/css/global.css" />
+
+    <script
+      is:inline
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-MWQZRP8XT1"
+    ></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){window.dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MWQZRP8XT1');
+    </script>
+  </head>
+
+  <body>
+    <header class="top-header">
+      <div class="top-red-line"></div>
+      <div class="top-nav">
+        <MenuNav />
+      </div>
+    </header>
+
+    <main class="etiqueta-page">
+      <nav class="etiqueta-breadcrumb" aria-label="Ruta de navegación">
+        <a href="/">INICIO</a>
+        <span>/</span>
+        <span>ETIQUETAS</span>
+      </nav>
+
+      <h1>#{etiqueta}</h1>
+
+      <p class="etiqueta-description">
+        Todas las noticias relacionadas con
+        <strong>{nombreEtiqueta}</strong>.
+      </p>
+
+      <div class="etiqueta-count">
+        {articulos.length}
+        {articulos.length === 1 ? " noticia" : " noticias"}
+      </div>
+
+      <section class="etiqueta-list" aria-label={`Noticias de ${etiqueta}`}>
+        {
+          articulos.map((noticia) => (
+            <article class="etiqueta-card">
+              <a
+                class="etiqueta-image-link"
+                href={`/noticias/${noticia.data.slug}/`}
+                aria-label={`Leer ${noticia.data.title}`}
+              >
+                {noticia.data.image && (
+                  <img
+                    src={noticia.data.image}
+                    alt={noticia.data.imageAlt || noticia.data.title}
+                    loading="lazy"
+                  />
+                )}
+              </a>
+
+              <div class="etiqueta-card-body">
+                <time datetime={noticia.data.publishedAt.toISOString()}>
+                  {formatDate(noticia.data.publishedAt)}
+                </time>
+
+                <h2>
+                  <a href={`/noticias/${noticia.data.slug}/`}>
+                    {noticia.data.title}
+                  </a>
+                </h2>
+
+                <p>{noticia.data.description}</p>
+
+                <a
+                  class="etiqueta-read-more"
+                  href={`/noticias/${noticia.data.slug}/`}
+                >
+                  LEER NOTICIA →
+                </a>
+              </div>
+            </article>
+          ))
+        }
+      </section>
+    </main>
+
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .etiqueta-page {
+    width: min(1100px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 55px 0 80px;
+    box-sizing: border-box;
+  }
+
+  .etiqueta-breadcrumb {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 24px;
+    font-family: "Orbitron", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #d60000;
+  }
+
+  .etiqueta-breadcrumb a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .etiqueta-page h1 {
+    margin: 0;
+    text-align: center;
+    color: #111;
+    font-family: "Orbitron", sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    overflow-wrap: anywhere;
+  }
+
+  .etiqueta-description {
+    margin: 20px auto;
+    max-width: 750px;
+    text-align: center;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .etiqueta-count {
+    margin: 45px 0 22px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #d60000;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .etiqueta-list {
+    display: grid;
+    gap: 24px;
+  }
+
+  .etiqueta-card {
+    display: grid;
+    grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+    gap: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  .etiqueta-image-link {
+    display: block;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: #eee;
+  }
+
+  .etiqueta-image-link img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .etiqueta-card-body {
+    min-width: 0;
+  }
+
+  .etiqueta-card-body time {
+    color: #777;
+    font-size: 0.8rem;
+  }
+
+  .etiqueta-card-body h2 {
+    margin: 10px 0;
+    font-family: "Orbitron", sans-serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+    line-height: 1.3;
+  }
+
+  .etiqueta-card-body h2 a {
+    color: #111;
+    text-decoration: none;
+  }
+
+  .etiqueta-card-body h2 a:hover {
+    color: #d60000;
+  }
+
+  .etiqueta-card-body p {
+    color: #555;
+    line-height: 1.6;
+  }
+
+  .etiqueta-read-more {
+    color: #d60000;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  @media (max-width: 700px) {
+    .etiqueta-page {
+      padding-top: 35px;
+    }
+
+    .etiqueta-card {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+  }
+</style>
