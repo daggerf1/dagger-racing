@@ -383,6 +383,115 @@
 
     }
 
+
+
+    /* DRN-HEADER-BLANCO-DESKTOP-2026 */
+
+    @media screen and (min-width: 851px) {
+
+        header[data-drn-nav-compacta] {
+            background: #ffffff !important;
+            border: 0 !important;
+            border-bottom: 2px solid #e10600 !important;
+            box-shadow: none !important;
+            padding: 15px 32px !important;
+            min-height: 66px !important;
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            gap: 24px !important;
+        }
+
+        header[data-drn-nav-compacta] .logo-area {
+            flex: 0 0 auto;
+        }
+
+        header[data-drn-nav-compacta] nav[data-drn-enlaces] {
+            display: flex !important;
+            flex-direction: row !important;
+            flex-wrap: nowrap !important;
+            align-items: center !important;
+            justify-content: flex-end !important;
+            gap: 14px !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            width: auto !important;
+            background: transparent !important;
+            border: 0 !important;
+            box-shadow: none !important;
+            isolation: auto !important;
+        }
+
+        header[data-drn-nav-compacta]
+        nav[data-drn-enlaces]::before {
+            display: none !important;
+            content: none !important;
+        }
+
+        header[data-drn-nav-compacta]
+        nav[data-drn-enlaces] > span {
+            display: block !important;
+            width: 2px !important;
+            height: 13px !important;
+            min-width: 2px !important;
+            font-size: 0 !important;
+            line-height: 0 !important;
+            color: transparent !important;
+            background: #e10600 !important;
+            transform: none !important;
+            margin: 0 2px !important;
+        }
+
+        header[data-drn-nav-compacta] a[data-drn-link] {
+            color: #151515 !important;
+            background: transparent !important;
+            font-size: 12px !important;
+            font-weight: 800 !important;
+            letter-spacing: 0.7px !important;
+            white-space: nowrap !important;
+            padding: 7px 2px !important;
+            text-shadow: none !important;
+            transition: color .2s ease, transform .2s ease !important;
+        }
+
+        header[data-drn-nav-compacta]
+        a[data-drn-link]::after {
+            background: #e10600 !important;
+            box-shadow: none !important;
+            height: 2px !important;
+        }
+
+        header[data-drn-nav-compacta]
+        a[data-drn-link]:hover,
+        header[data-drn-nav-compacta]
+        a[data-drn-link]:focus-visible {
+            color: #e10600 !important;
+            transform: translateY(-2px) !important;
+            text-shadow: none !important;
+        }
+
+    }
+
+    @media screen and (min-width: 851px) and (max-width: 1100px) {
+
+        header[data-drn-nav-compacta] {
+            padding-left: 18px !important;
+            padding-right: 18px !important;
+            gap: 12px !important;
+        }
+
+        header[data-drn-nav-compacta] nav[data-drn-enlaces] {
+            gap: 8px !important;
+        }
+
+        header[data-drn-nav-compacta] a[data-drn-link] {
+            font-size: 10px !important;
+            letter-spacing: 0.2px !important;
+        }
+
+    }
+
 </style>
 
 
@@ -475,4 +584,66 @@
             transition: none !important;
         }
     }
+</style>
+
+
+<style is:global>
+/* DRN-ELIMINAR-BLOQUE-ROJO-DESKTOP */
+
+@media screen and (min-width: 851px) {
+
+    header[data-drn-nav-compacta] {
+        background: #ffffff !important;
+        border: 0 !important;
+        border-bottom: 2px solid #e10600 !important;
+        overflow: hidden !important;
+        box-shadow: none !important;
+    }
+
+    header[data-drn-nav-compacta]
+    nav[data-drn-enlaces] {
+        background: transparent !important;
+        background-color: transparent !important;
+        background-image: none !important;
+        box-shadow: none !important;
+        border: none !important;
+        isolation: auto !important;
+    }
+
+    header[data-drn-nav-compacta]
+    nav[data-drn-enlaces]::before,
+    header[data-drn-nav-compacta]
+    nav[data-drn-enlaces]::after {
+        display: none !important;
+        content: none !important;
+        background: transparent !important;
+    }
+
+    header[data-drn-nav-compacta]
+    nav[data-drn-enlaces] > span {
+        display: inline-block !important;
+        width: 2px !important;
+        min-width: 2px !important;
+        height: 14px !important;
+        background: #e10600 !important;
+        color: transparent !important;
+        font-size: 0 !important;
+        transform: none !important;
+    }
+
+    header[data-drn-nav-compacta]
+    a[data-drn-link] {
+        color: #111111 !important;
+        background: transparent !important;
+        text-shadow: none !important;
+    }
+
+    header[data-drn-nav-compacta]
+    a[data-drn-link]:hover,
+    header[data-drn-nav-compacta]
+    a[data-drn-link]:focus-visible {
+        color: #e10600 !important;
+    }
+
+}
 </style>
