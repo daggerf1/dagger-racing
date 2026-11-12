@@ -972,3 +972,13 @@ footer {
     }
 
 }
+/* DRN: titulares rojos al pasar el cursor */
+a:hover h2,
+a:hover h3,
+a:hover h4,
+h2 a:hover,
+h3 a:hover,
+h4 a:hover {
+    color: #e00000 !important;
+    transition: color 0.2s ease;
+}
