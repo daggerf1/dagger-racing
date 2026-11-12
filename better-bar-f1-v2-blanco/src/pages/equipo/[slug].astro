@@ -116,6 +116,57 @@ const related = await getArticlesByTeam(teamArticleSlug);
 }
 </style>
 
+<!-- DRN-TARJETAS-BLANCAS-COMPACTAS -->
+
+<style>
+@media screen and (max-width: 650px) {
+    .team-news-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 10px !important;
+        align-items: start !important;
+    }
+
+    .team-news-card {
+        background: #ffffff !important;
+        color: #111111 !important;
+        border: 1px solid #dddddd !important;
+        min-width: 0 !important;
+    }
+
+    .team-news-info {
+        background: #ffffff !important;
+        color: #111111 !important;
+        padding: 7px 8px !important;
+    }
+
+    .team-news-category {
+        display: block;
+        color: #e10600 !important;
+        font-size: 0.58rem !important;
+        line-height: 1.1 !important;
+    }
+
+    .team-news-info h3 {
+        color: #111111 !important;
+        font-size: 0.72rem !important;
+        line-height: 1.2 !important;
+        margin: 4px 0 !important;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+    }
+
+    .team-news-info time {
+        display: block;
+        color: #666666 !important;
+        font-size: 0.58rem !important;
+        line-height: 1.1 !important;
+        margin-top: 4px !important;
+    }
+}
+</style>
+
 </head><body><MenuNav/><main class="profile"><header class="hero-p"><span class="label">EQUIPO</span><h1>{team.name}</h1>{standing&&<p class="stat">P{standing.position} · {standing.points} puntos</p>}</header><section class="team-news">
     <h2>Noticias relacionadas</h2>
 
