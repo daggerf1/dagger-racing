@@ -42,3 +42,20 @@ const { fecha, categoria, titulo, extracto, fotoCredito, link, imagen } = Astro.
     outline-offset: 3px;
   }
 </style>
+
+
+<style>
+  /* DRN-NEWS-CARD-HOVER-ROJO */
+  @media (hover: hover) {
+    :global(.news-feed) :global(a:hover) :global(h2),
+    :global(.news-feed) :global(a:hover) :global(h3),
+    :global(.news-feed) :global(a:hover) :global(h4),
+    :global(.news-feed) :global(article:hover) :global(h2),
+    :global(.news-feed) :global(article:hover) :global(h3),
+    :global(.news-feed) :global(article:hover) :global(h4) {
+      color: #e00000 !important;
+      text-decoration: underline !important;
+      text-underline-offset: 2px;
+    }
+  }
+</style>
