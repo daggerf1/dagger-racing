@@ -97,7 +97,7 @@
 
             gap: 16px;
 
-            background: #b80000 !important;
+            background: transparent !important;
 
             border: none !important;
 
@@ -587,63 +587,4 @@
 </style>
 
 
-<style is:global>
-/* DRN-ELIMINAR-BLOQUE-ROJO-DESKTOP */
 
-@media screen and (min-width: 851px) {
-
-    header[data-drn-nav-compacta] {
-        background: #ffffff !important;
-        border: 0 !important;
-        border-bottom: 2px solid #e10600 !important;
-        overflow: hidden !important;
-        box-shadow: none !important;
-    }
-
-    header[data-drn-nav-compacta]
-    nav[data-drn-enlaces] {
-        background: transparent !important;
-        background-color: transparent !important;
-        background-image: none !important;
-        box-shadow: none !important;
-        border: none !important;
-        isolation: auto !important;
-    }
-
-    header[data-drn-nav-compacta]
-    nav[data-drn-enlaces]::before,
-    header[data-drn-nav-compacta]
-    nav[data-drn-enlaces]::after {
-        display: none !important;
-        content: none !important;
-        background: transparent !important;
-    }
-
-    header[data-drn-nav-compacta]
-    nav[data-drn-enlaces] > span {
-        display: inline-block !important;
-        width: 2px !important;
-        min-width: 2px !important;
-        height: 14px !important;
-        background: #e10600 !important;
-        color: transparent !important;
-        font-size: 0 !important;
-        transform: none !important;
-    }
-
-    header[data-drn-nav-compacta]
-    a[data-drn-link] {
-        color: #111111 !important;
-        background: transparent !important;
-        text-shadow: none !important;
-    }
-
-    header[data-drn-nav-compacta]
-    a[data-drn-link]:hover,
-    header[data-drn-nav-compacta]
-    a[data-drn-link]:focus-visible {
-        color: #e10600 !important;
-    }
-
-}
-</style>
