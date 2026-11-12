@@ -138,8 +138,8 @@ const canonicalURL = Astro.site
 
                     <div class="article-kicker">
 
-                        <a href={`/categoria/${category}/`}>
-                            {formatName(category)}
+                        <a href={category === "formula-1" ? "/" : `/categoria/${category}/`}>
+                            {category === "formula-1" ? "INICIO" : formatName(category)}
                         </a>
 
                         {
@@ -148,9 +148,9 @@ const canonicalURL = Astro.site
                                     <span>/</span>
 
                                     <a
-                                        href={`/subcategoria/${subcategory}/`}
+                                        href={subcategory === "cronica" ? "/piloto/lando-norris/" : `/subcategoria/${subcategory}/`}
                                     >
-                                        {formatName(subcategory)}
+                                        {subcategory === "cronica" ? "LANDO NORRIS" : formatName(subcategory)}
                                     </a>
                                 </>
                             )
@@ -723,4 +723,111 @@ const canonicalURL = Astro.site
             margin-top: 50px;
         }
     }
+
+
+    /* DRN-ALINEACION-EDITORIAL-DESKTOP */
+
+    @media (min-width: 851px) {
+
+        .article-image,
+        .article-content {
+            width: 100%;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+            box-sizing: border-box;
+        }
+
+        .article-image {
+            display: block;
+        }
+
+        .article-image img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .article-content {
+            padding-left: 0;
+            padding-right: 0;
+            text-align: left;
+        }
+
+        .article-content p {
+            text-align: justify;
+            text-justify: inter-word;
+            hyphens: auto;
+            overflow-wrap: break-word;
+            line-height: 1.85;
+        }
+
+    }
+
+
+
+    /* DRN-CORRECCION-EDITORIAL-FINAL */
+
+    @media screen and (min-width: 851px) {
+
+        .article .article-image,
+        .article .article-content,
+        .article .article-entities,
+        .article .article-footer {
+            width: 100% !important;
+            max-width: 850px !important;
+            box-sizing: border-box !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+
+        .article .article-content {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+            text-align: justify !important;
+        }
+
+        .article .article-content p,
+        .article .article-content li {
+            text-align: justify !important;
+            text-align-last: left;
+            text-justify: inter-word;
+            hyphens: auto;
+            overflow-wrap: break-word;
+        }
+
+        .article .article-content h2,
+        .article .article-content h3,
+        .article .article-content h4 {
+            text-align: left !important;
+        }
+
+        .article .article-footer {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
+        .article .article-tags {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            justify-content: flex-start !important;
+            align-items: center !important;
+            gap: 8px !important;
+            padding: 16px !important;
+            box-sizing: border-box !important;
+        }
+
+        .article .article-tags .tag {
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            margin: 0 !important;
+        }
+
+    }
+
+    /* FIN-DRN-CORRECCION-EDITORIAL-FINAL */
+
 </style>

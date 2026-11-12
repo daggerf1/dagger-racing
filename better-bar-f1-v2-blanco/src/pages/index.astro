@@ -89,7 +89,7 @@ const formatDate = (date: Date) =>
 
           <section class="headline-article">
 
-            <div
+            <a
               class="headline-image-area"
               style={
                 noticiaPrincipal.data.image
@@ -100,7 +100,10 @@ const formatDate = (date: Date) =>
                     }); background-size:contain; background-position:center; background-repeat:no-repeat; background-color:#111111;`
                   : undefined
               }
-            ></div>
+            
+              href={`/noticias/${noticiaPrincipal.data.slug}/`}
+              aria-label={`Leer noticia: ${noticiaPrincipal.data.title}`}
+            ></a>
 
             <div class="headline-content">
 
@@ -123,7 +126,12 @@ const formatDate = (date: Date) =>
               </div>
 
               <h3 class="title-main">
-                {noticiaPrincipal.data.title}
+                <a
+                  href={`/noticias/${noticiaPrincipal.data.slug}/`}
+                  style="color:inherit;text-decoration:none;"
+                >
+                  {noticiaPrincipal.data.title}
+                </a>
               </h3>
 
               <p class="excerpt">

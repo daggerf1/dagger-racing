@@ -79,22 +79,14 @@ ul{
 
     background:#fff;
 
-    border-top:3px solid var(--red);
+    border-top:none;
 
-    border-bottom:1px solid #d9d9d9;
+    border-bottom:none;
 
 }
 
 .top-header::after{
-
-    content:"";
-
-    display:block;
-
-    height:2px;
-
-    background:var(--red);
-
+    display:none;
 }
 
 /* ------------------------- */
@@ -555,4 +547,25 @@ display:none;
 
 }
 
+}
+
+/* DRN-TITULAR-INTERACTIVO */
+
+.title-main a {
+    color: #222222 !important;
+    text-decoration: none !important;
+    transition: color 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.title-main a:hover,
+.title-main a:focus-visible,
+.title-main a:active {
+    color: #e10600 !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .title-main a {
+        transition: none;
+    }
 }
