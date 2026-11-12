@@ -147,6 +147,15 @@ const canonicalURL = Astro.site
                 <header class="article-header">
 
                     <div class="article-kicker">
+                    {drivers.includes("rafael-camara") ? (
+                        <>
+                            <a href="/">INICIO</a>
+                            <span>/</span>
+                            <a href="/piloto/rafael-camara/">CÂMARA</a>
+                        </>
+                    ) : (
+                        <>
+                            
 
                         <a href={category === "formula-1" || (category === "lifestyle" && subcategory === "pilotos" && drivers.includes("charles-leclerc")) ? "/" : `/categoria/${category}/`}>
                             {category === "formula-1" || (category === "lifestyle" && subcategory === "pilotos" && drivers.includes("charles-leclerc")) ? "INICIO" : formatName(category)}
@@ -188,7 +197,10 @@ const canonicalURL = Astro.site
                             )
                         }
 
-                    </div>
+                    
+                        </>
+                    )}
+                </div>
 
                     <h1>{title}</h1>
 
@@ -290,7 +302,16 @@ const canonicalURL = Astro.site
                                     </a>
                                 </figcaption>
                             )}
-                        </figure>
+                        
+                            {imageSrc.includes("rafael-camara-haas-interlagos-2026.png") && (
+                                <figcaption class="drn-photo-credit">
+                                    <strong>Créditos de imagen:</strong>{" "}
+                                    Ilustración editorial generada mediante inteligencia artificial por Dagger Racing News (DRN).
+                                    <br />
+                                    <em>Imagen representativa. No corresponde a una fotografía real ni documenta una escena ocurrida.</em>
+                                </figcaption>
+                            )}
+</figure>
                     )
                 }
 
