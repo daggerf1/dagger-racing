@@ -989,3 +989,21 @@ a:hover .title-main,
 article:hover .title-main {
     color: #e00000 !important;
 }
+
+/* DRN-HOVER-TITULARES-INICIO-V2 */
+@media (hover: hover) {
+  .news-card:hover h2,
+  .news-card:hover h3,
+  .news-card:hover h4,
+  .article-card:hover h2,
+  .article-card:hover h3,
+  .article-card:hover h4,
+  .noticia-card:hover h2,
+  .noticia-card:hover h3,
+  .noticia-card:hover h4,
+  .card:hover h2,
+  .card:hover h3,
+  .card:hover h4 {
+    color: #e00000 !important;
+  }
+}
