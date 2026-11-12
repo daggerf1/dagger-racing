@@ -15,9 +15,8 @@ teams:
 tags:
   - "rafael-camara"
   - "haas"
-  - "esteban-ocon"
   - "ferrari-driver-academy"
-  - "gabriel-bortoleto"
+  - "oliver-bearman"
   - "gran-premio-de-sao-paulo"
   - "interlagos"
   - "formula-1"
