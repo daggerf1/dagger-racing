@@ -569,3 +569,18 @@ display:none;
         transition: none;
     }
 }
+
+
+/* DRN-FOTO-DESTACADA-MOVIL */
+@media screen and (max-width: 760px) {
+    .headline-article .headline-image-area {
+        display: block;
+        min-height: 0;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        background-color: transparent;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+}
