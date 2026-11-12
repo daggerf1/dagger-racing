@@ -356,6 +356,33 @@
             transition: none;
         }
     }
+
+
+    /* DRN-LOGO-CENTRADO-MOVIL */
+
+    @media screen and (max-width: 850px) {
+
+        header[data-drn-nav-compacta] .logo-area {
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            width: 100% !important;
+            margin: 0 auto !important;
+            padding: 14px 10px !important;
+            box-sizing: border-box !important;
+        }
+
+        header[data-drn-nav-compacta] .logo-area > a {
+            display: inline-flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            width: fit-content !important;
+            max-width: 100% !important;
+            margin: 0 auto !important;
+        }
+
+    }
+
 </style>
 
 
