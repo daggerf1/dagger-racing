@@ -97,7 +97,7 @@
 
             gap: 16px;
 
-            background: transparent !important;
+            
 
             border: none !important;
 
@@ -607,6 +607,22 @@
     header[data-drn-nav-compacta] nav[data-drn-enlaces]::before {
         display: none !important;
         content: none !important;
+    }
+}
+</style>
+
+
+<style is:global>
+/* DRN-MENU-ROJO-MOVIL-RESTAURADO */
+@media screen and (max-width: 850px) {
+    header[data-drn-nav-compacta] nav[data-drn-enlaces] {
+        background: #b80000 !important;
+        background-color: #b80000 !important;
+        width: 100% !important;
+    }
+
+    header[data-drn-nav-compacta] nav[data-drn-enlaces] a[data-drn-link] {
+        color: #ffffff !important;
     }
 }
 </style>
