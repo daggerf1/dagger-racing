@@ -10,8 +10,7 @@ image: "/bianca-leclerc-charles-leclerc-alexandra-leclerc-ferrari.png"
 imageAlt: "Charles Leclerc y Alexandra Leclerc"
 drivers:
   - "charles-leclerc"
-teams:
-  - "ferrari"
+teams: []
 tags:
   - "charles-leclerc"
   - "alexandra-leclerc"

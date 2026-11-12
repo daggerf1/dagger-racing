@@ -147,6 +147,16 @@ const canonicalURL = Astro.site
                 <header class="article-header">
 
                     <div class="article-kicker">
+                    <!-- DRN-BIANCA-LIFESTYLE -->
+                    {imageSrc.includes("bianca-leclerc-charles-leclerc-alexandra-leclerc-ferrari.png") ? (
+                        <>
+                            <a href="/">INICIO</a>
+                            <span>/</span>
+                            <a href="/etiqueta/lifestyle/">LIFESTYLE</a>
+                        </>
+                    ) : (
+                        <>
+
                     {title === "Ferrari toca fondo en Brasil: Leclerc califica el rendimiento como un desastre" ? (
                         <>
                             <a href="/">INICIO</a>
@@ -216,6 +226,9 @@ const canonicalURL = Astro.site
                         }
 
                     
+                        </>
+                    )}
+                
                         </>
                     )}
                 
