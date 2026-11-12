@@ -148,8 +148,8 @@ const canonicalURL = Astro.site
 
                     <div class="article-kicker">
 
-                        <a href={category === "formula-1" ? "/" : `/categoria/${category}/`}>
-                            {category === "formula-1" ? "INICIO" : formatName(category)}
+                        <a href={category === "formula-1" || (category === "lifestyle" && subcategory === "pilotos" && drivers.includes("charles-leclerc")) ? "/" : `/categoria/${category}/`}>
+                            {category === "formula-1" || (category === "lifestyle" && subcategory === "pilotos" && drivers.includes("charles-leclerc")) ? "INICIO" : formatName(category)}
                         </a>
 
                         {
@@ -159,7 +159,9 @@ const canonicalURL = Astro.site
 
                                     <a
                                         href={
-                                            (subcategory === "cronica" || (subcategory === "paddock" && drivers.includes("oscar-piastri")))
+                                            (category === "lifestyle" && subcategory === "pilotos" && drivers.includes("charles-leclerc"))
+                                                ? "/piloto/charles-leclerc/"
+                                                : (subcategory === "cronica" || (subcategory === "paddock" && drivers.includes("oscar-piastri")))
                                                 ? subcategory === "paddock" && drivers.includes("oscar-piastri")
                                                     ? "/piloto/oscar-piastri/"
                                                     : teams.length > 0
@@ -170,7 +172,9 @@ const canonicalURL = Astro.site
                                                 : `/subcategoria/${subcategory}/`
                                         }
                                     >
-                                        {(subcategory === "cronica" || (subcategory === "paddock" && drivers.includes("oscar-piastri")))
+                                        {(category === "lifestyle" && subcategory === "pilotos" && drivers.includes("charles-leclerc"))
+                                            ? "LECLERC"
+                                            : (subcategory === "cronica" || (subcategory === "paddock" && drivers.includes("oscar-piastri")))
                                             ? subcategory === "paddock" && drivers.includes("oscar-piastri")
                                                 ? "PIASTRI"
                                                 : teams.length > 0
