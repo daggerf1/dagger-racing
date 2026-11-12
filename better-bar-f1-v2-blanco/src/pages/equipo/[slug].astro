@@ -8,4 +8,107 @@ const teamArticleSlug = team.slug === "haas-f1-team" ? "haas" : team.slug;
 const related = await getArticlesByTeam(teamArticleSlug);
 ---
 <!doctype html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><title>{team.name} | Dagger Racing News</title><link rel="stylesheet" href="/css/styless.css">
-<style>.profile{max-width:900px;margin:45px auto 90px;padding:0 20px}.hero-p{border-bottom:2px solid #e10600;padding:25px 0}.label{color:#e10600;font-weight:900}.hero-p h1{font-size:clamp(2.4rem,8vw,5rem);margin:8px 0;text-transform:uppercase}.stat{font-size:1.1rem;color:#bbb}.cards{display:grid;gap:15px;margin-top:30px}.card{padding:20px;background:#111;border:1px solid #333;color:white;text-decoration:none}.card:hover{border-color:#e10600}</style></head><body><MenuNav/><main class="profile"><header class="hero-p"><span class="label">EQUIPO</span><h1>{team.name}</h1>{standing&&<p class="stat">P{standing.position} · {standing.points} puntos</p>}</header><section class="cards"><h2>Noticias relacionadas</h2>{related.length?related.map((n:any)=><a class="card" href={`/noticias/${n.data.slug || n.id}/`}><strong>{n.data.title}</strong></a>):<p>Las noticias etiquetadas con {team.name} aparecerán aquí.</p>}</section></main><Footer/></body></html>
+<style>.profile{max-width:900px;margin:45px auto 90px;padding:0 20px}.hero-p{border-bottom:2px solid #e10600;padding:25px 0}.label{color:#e10600;font-weight:900}.hero-p h1{font-size:clamp(2.4rem,8vw,5rem);margin:8px 0;text-transform:uppercase}.stat{font-size:1.1rem;color:#bbb}.cards{display:grid;gap:15px;margin-top:30px}.card{padding:20px;background:#111;border:1px solid #333;color:white;text-decoration:none}.card:hover{border-color:#e10600}</style>
+<style>
+.team-news {
+    margin-top: 35px;
+}
+
+.team-news h2 {
+    margin-bottom: 24px;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+}
+
+.team-news-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.team-news-card {
+    display: block;
+    overflow: hidden;
+    background: #111;
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid #333;
+    transition: border-color .2s ease, transform .2s ease;
+}
+
+.team-news-card:hover {
+    border-color: #e10600;
+    transform: translateY(-3px);
+}
+
+.team-news-card img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+
+.team-news-info {
+    padding: 18px;
+}
+
+.team-news-category {
+    color: #e10600;
+    font-size: .75rem;
+    font-weight: 800;
+    letter-spacing: .06em;
+}
+
+.team-news-info h3 {
+    margin: 10px 0 14px;
+    font-size: 1.15rem;
+    line-height: 1.4;
+}
+
+.team-news-info time {
+    color: #aaa;
+    font-size: .85rem;
+}
+
+@media (max-width: 650px) {
+    .team-news-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head><body><MenuNav/><main class="profile"><header class="hero-p"><span class="label">EQUIPO</span><h1>{team.name}</h1>{standing&&<p class="stat">P{standing.position} · {standing.points} puntos</p>}</header><section class="team-news">
+    <h2>Noticias relacionadas</h2>
+
+    {related.length > 0 ? (
+        <div class="team-news-grid">
+            {related.map((n) => (
+                <a
+                    class="team-news-card"
+                    href={`/noticias/${n.data.slug || n.id}/`}
+                >
+                    {n.data.image && (
+                        <img
+                            src={n.data.image}
+                            alt={n.data.imageAlt || n.data.title}
+                            loading="lazy"
+                        />
+                    )}
+
+                    <div class="team-news-info">
+                        <span class="team-news-category">FÓRMULA 1</span>
+                        <h3>{n.data.title}</h3>
+                        <time datetime={new Date(n.data.publishedAt).toISOString()}>
+                            {new Intl.DateTimeFormat("es-MX", {
+                                day: "numeric",
+                                month: "long",
+                                year: "numeric"
+                            }).format(new Date(n.data.publishedAt))}
+                        </time>
+                    </div>
+                </a>
+            ))}
+        </div>
+    ) : (
+        <p>Las noticias relacionadas con {team.name} aparecerán aquí.</p>
+    )}
+</section></main><Footer/></body></html>
