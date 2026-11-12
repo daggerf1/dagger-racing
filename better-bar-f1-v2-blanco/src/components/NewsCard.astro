@@ -4,18 +4,41 @@ const { fecha, categoria, titulo, extracto, fotoCredito, link, imagen } = Astro.
 ---
 
 <article class="news-card">
-  <div class="card-image-area" style={`background-image: url(${imagen}); background-size: cover; background-position: center;`}>
+  <a
+    href={link}
+    class="card-image-area"
+    aria-label={`Leer noticia: ${titulo}`}
+    style={`display: block; background-image: url("${imagen}"); background-size: cover; background-position: center;`}
+  >
     {fotoCredito && (
       <span class="photo-credit">Foto: {fotoCredito}</span>
     )}
-  </div>
+  </a>
   <div class="news-content">
     <div class="meta-row">
       <span class="badge-date">{fecha}</span>
       <span class="category-text">{categoria}</span>
     </div>
-    <h3 class="title-secondary">{titulo}</h3>
+    <h3 class="title-secondary"><a href={link} class="news-title-link">{titulo}</a></h3>
     <p class="excerpt">{extracto}</p>
    <a href={link} class="btn-read-more">LEER MÁS ➔</a>
   </div>
 </article>
+
+<style>
+  .news-title-link {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .news-title-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .news-title-link:focus-visible,
+  .card-image-area:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+</style>

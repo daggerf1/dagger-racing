@@ -158,9 +158,23 @@ const canonicalURL = Astro.site
                                     <span>/</span>
 
                                     <a
-                                        href={subcategory === "cronica" ? "/piloto/lando-norris/" : `/subcategoria/${subcategory}/`}
+                                        href={
+                                            subcategory === "cronica"
+                                                ? teams.length > 0
+                                                    ? `/equipo/${teams[0]}/`
+                                                    : drivers.length > 0
+                                                        ? `/piloto/${drivers[0]}/`
+                                                        : "/"
+                                                : `/subcategoria/${subcategory}/`
+                                        }
                                     >
-                                        {subcategory === "cronica" ? "LANDO NORRIS" : formatName(subcategory)}
+                                        {subcategory === "cronica"
+                                            ? teams.length > 0
+                                                ? formatName(teams[0])
+                                                : drivers.length > 0
+                                                    ? formatName(drivers[0])
+                                                    : formatName(subcategory)
+                                            : formatName(subcategory)}
                                     </a>
                                 </>
                             )
