@@ -41,7 +41,13 @@ El neerlandés avanzó en el tráfico inicial y aprovechó las fases de cambio d
 
 ![Ilustración editorial de Max Verstappen y Red Bull durante el Gran Premio de São Paulo 2026](/verstappen-interlagos-redbull-noviembre-2026.png)
 
-*Fotografía de referencia: Steffen Prößdorf (Stepro) / Wikimedia Commons · [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Imagen ilustrativa generada mediante IA: Dagger Racing News (DRN). [Fotografía de referencia](https://commons.wikimedia.org/wiki/File:2024-08-25_Motorsport,_Formel_1,_Gro%C3%9Fer_Preis_der_Niederlande_2024_STP_3804_by_Stepro.jpg).*
+<figcaption class="drn-photo-credit">
+<strong>Fotografía de referencia:</strong> Steffen Prößdorf (Stepro) / Wikimedia Commons · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>.
+<br />
+<strong>Imagen ilustrativa generada mediante IA:</strong> Dagger Racing News (DRN).
+<br />
+<a href="https://commons.wikimedia.org/wiki/File:2024-08-25_Motorsport,_Formel_1,_Gro%C3%9Fer_Preis_der_Niederlande_2024_STP_3804_by_Stepro.jpg" target="_blank" rel="noopener noreferrer">Fotografía de referencia</a>
+</figcaption>
 
 ## La victoria se escapó, el podio no
 
