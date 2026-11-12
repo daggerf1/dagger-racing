@@ -626,3 +626,39 @@
     }
 }
 </style>
+
+<style is:global>
+/* DRN-MENU-UNA-FILA-MOVIL-2026 */
+@media screen and (max-width: 850px) {
+  header[data-drn-nav-compacta] nav[data-drn-enlaces] {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    grid-template-rows: auto !important;
+    gap: 0 !important;
+    width: 100% !important;
+    padding: 6px 4px !important;
+    background: #b80000 !important;
+    box-sizing: border-box !important;
+  }
+
+  header[data-drn-nav-compacta] nav[data-drn-enlaces] > a[data-drn-link] {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 0 !important;
+    min-height: 44px !important;
+    margin: 0 !important;
+    padding: 5px 2px !important;
+    text-align: center !important;
+    font-size: clamp(8px, 2.4vw, 12px) !important;
+    line-height: 1.2 !important;
+    white-space: normal !important;
+    color: white !important;
+    box-sizing: border-box !important;
+  }
+
+  header[data-drn-nav-compacta] nav[data-drn-enlaces] > span {
+    display: none !important;
+  }
+}
+</style>
