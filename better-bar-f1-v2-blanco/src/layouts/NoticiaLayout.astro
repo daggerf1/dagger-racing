@@ -240,6 +240,27 @@ const canonicalURL = Astro.site
                                 alt={imageAlt || title}
                                 loading="eager"
                             />
+                            {imageSrc.includes("retrato-piastri-interlagos-2026.png") && (
+                                <figcaption class="drn-photo-credit">
+                                    Fotografía: Yu Chu Chin / Wikimedia Commons · CC BY-SA 4.0 · Edición gráfica: DRN Racing News.{" "}
+                                    Original:{" "}
+                                    <a
+                                        href="https://commons.wikimedia.org/wiki/File:Oscar_Piastri_at_the_Melbourne_Walk_during_the_2026_Australian_Grand_Prix_(028A8603).jpg"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        Wikimedia Commons
+                                    </a>
+                                    {" "}· Licencia:{" "}
+                                    <a
+                                        href="https://creativecommons.org/licenses/by-sa/4.0/"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        CC BY-SA 4.0
+                                    </a>
+                                </figcaption>
+                            )}
                         </figure>
                     )
                 }
@@ -493,6 +514,21 @@ const canonicalURL = Astro.site
         margin: 0 0 28px;
     }
 
+
+    /* DRN-CREDITOS-FOTOGRAFICOS */
+    .drn-photo-credit {
+        margin-top: 8px;
+        font-size: 0.75rem;
+        line-height: 1.5;
+        color: #777777;
+        text-align: left;
+    }
+
+    .drn-photo-credit a {
+        color: inherit;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+    }
     .article-image img {
         display: block;
 
