@@ -167,6 +167,48 @@ const related = await getArticlesByTeam(teamArticleSlug);
 }
 </style>
 
+
+<!-- DRN-FERRARI-ESPACIO-COMO-PIASTRI -->
+{team.slug === "ferrari" && (
+    <style is:global>
+        @media (min-width: 651px) {
+            .profile {
+                max-width: 1100px !important;
+            }
+
+            .team-news {
+                margin-top: 45px !important;
+            }
+
+            .team-news-grid {
+                gap: 24px !important;
+            }
+
+            .team-news-info {
+                padding: 22px !important;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .profile {
+                padding: 0 16px !important;
+            }
+
+            .team-news {
+                margin-top: 35px !important;
+            }
+
+            .team-news-grid {
+                gap: 12px !important;
+            }
+
+            .team-news-info {
+                padding: 12px !important;
+            }
+        }
+    </style>
+)}
+
 </head><body><MenuNav/><main class="profile"><header class="hero-p"><span class="label">EQUIPO</span><h1>{team.name}</h1>{standing&&<p class="stat">P{standing.position} · {standing.points} puntos</p>}</header><section class="team-news">
     <h2>Noticias relacionadas</h2>
 
