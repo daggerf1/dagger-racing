@@ -588,3 +588,25 @@
 
 
 
+
+
+<style is:global>
+/* DRN-RECUPERAR-MENU-ROJO-MOVIL-2026 */
+@media screen and (max-width: 850px) {
+    header[data-drn-nav-compacta] nav[data-drn-enlaces] {
+        background: #b80000 !important;
+        background-color: #b80000 !important;
+        background-image: none !important;
+        width: 100% !important;
+    }
+
+    header[data-drn-nav-compacta] nav[data-drn-enlaces] a[data-drn-link] {
+        color: #ffffff !important;
+    }
+
+    header[data-drn-nav-compacta] nav[data-drn-enlaces]::before {
+        display: none !important;
+        content: none !important;
+    }
+}
+</style>
