@@ -357,6 +357,32 @@ const newsSchema = {
                                 alt={imageAlt || title}
                                 loading="eager"
                             />
+                            <!-- DRN-VERSTAPPEN-CREDITOS-PORTADA -->
+                            {imageSrc.includes("verstappen-interlagos-noviembre-2026.png") && (
+                                <figcaption class="drn-photo-credit">
+                                    <strong>Fotografía de referencia:</strong>{" "}
+                                    Steffen Prößdorf (Stepro) / Wikimedia Commons ·{" "}
+                                    <a
+                                        href="https://creativecommons.org/licenses/by-sa/4.0/"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        CC BY-SA 4.0
+                                    </a>.
+                                    <br />
+                                    <strong>Imagen ilustrativa recreada mediante IA:</strong>{" "}
+                                    Dagger Racing News (DRN).
+                                    <br />
+                                    <a
+                                        href="https://commons.wikimedia.org/wiki/File:2024-08-25_Motorsport,_Formel_1,_Gro%C3%9Fer_Preis_der_Niederlande_2024_STP_3973_by_Stepro_(portrait_cropped).jpg"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        Fotografía original de Max Verstappen
+                                    </a>
+                                </figcaption>
+                            )}
+
                             {imageSrc.includes("norris-interlagos-2026.png") && (
                                 <figcaption class="drn-photo-credit">
                                     Fotografía original: Steffen Prößdorf (Stepro) / Wikimedia Commons · CC BY-SA 4.0 · Edición gráfica mediante IA: Dagger Racing News. Imagen modificada respecto al original.{" "}
