@@ -248,7 +248,7 @@ function obtenerFoto(driver: (typeof drivers)[number]): string {
                 PILOTOS
             </h1>
 
-            <p>
+            <p data-drn-subtitulo-pilotos>
                 Consulta los perfiles de los pilotos y
                 todas las noticias relacionadas con cada uno.
             </p>
@@ -614,4 +614,18 @@ function obtenerFoto(driver: (typeof drivers)[number]): string {
 
     }
 
+</style>
+
+
+<style is:global>
+/* DRN-SUBTITULO-PILOTOS-CENTRADO-2026 */
+[data-drn-subtitulo-pilotos] {
+    display: block !important;
+    width: 100% !important;
+    max-width: 720px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+    text-align-last: center !important;
+}
 </style>
