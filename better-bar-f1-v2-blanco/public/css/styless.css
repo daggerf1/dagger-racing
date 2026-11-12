@@ -983,27 +983,17 @@ h4 a:hover {
     transition: color 0.2s ease;
 }
 
-/* DRN-INICIO-TITULARES-ROJOS */
-.title-main:hover,
-a:hover .title-main,
-article:hover .title-main {
-    color: #e00000 !important;
-}
 
-/* DRN-HOVER-TITULARES-INICIO-V2 */
+/* DRN-TITULARES-HOVER-DEFINITIVO */
 @media (hover: hover) {
-  .news-card:hover h2,
+  .news-feed :is(article, a, .card):hover :is(h2, h3, h4),
+  .news-feed :is(article, a, .card):hover :is(h2, h3, h4) a,
+  .headline-article:hover .title-main,
+  .headline-article:hover .title-main a,
   .news-card:hover h3,
-  .news-card:hover h4,
-  .article-card:hover h2,
-  .article-card:hover h3,
-  .article-card:hover h4,
-  .noticia-card:hover h2,
-  .noticia-card:hover h3,
-  .noticia-card:hover h4,
-  .card:hover h2,
-  .card:hover h3,
-  .card:hover h4 {
+  .team-news-card:hover h3 {
     color: #e00000 !important;
+    text-decoration: underline !important;
+    text-underline-offset: 2px;
   }
 }
