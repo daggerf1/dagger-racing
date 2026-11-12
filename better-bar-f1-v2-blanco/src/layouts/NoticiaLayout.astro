@@ -380,7 +380,8 @@ const canonicalURL = Astro.site
        ========================= */
 
     .article-header {
-        max-width: 900px;
+        width: 100%;
+        max-width: 850px;
         margin-bottom: 32px;
     }
 
@@ -459,7 +460,7 @@ const canonicalURL = Astro.site
     .article-meta {
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
 
         gap: 8px;
@@ -736,6 +737,7 @@ const canonicalURL = Astro.site
 
         .article-meta {
             align-items: center;
+            justify-content: flex-start;
         }
 
         .article-content {
