@@ -147,6 +147,15 @@ const canonicalURL = Astro.site
                 <header class="article-header">
 
                     <div class="article-kicker">
+                    {drivers.includes("lewis-hamilton") ? (
+                        <>
+                            <a href="/">INICIO</a>
+                            <span>/</span>
+                            <a href="/piloto/lewis-hamilton/">HAMILTON</a>
+                        </>
+                    ) : (
+                        <>
+
                     {drivers.includes("rafael-camara") ? (
                         <>
                             <a href="/">INICIO</a>
@@ -198,6 +207,9 @@ const canonicalURL = Astro.site
                         }
 
                     
+                        </>
+                    )}
+                
                         </>
                     )}
                 </div>
@@ -309,6 +321,23 @@ const canonicalURL = Astro.site
                                     Ilustración editorial generada mediante inteligencia artificial por Dagger Racing News (DRN).
                                     <br />
                                     <em>Imagen representativa. No corresponde a una fotografía real ni documenta una escena ocurrida.</em>
+                                </figcaption>
+                            )}
+
+                            {imageSrc.includes("hamilton-ferrari-interlagos-2026.png") && (
+                                <figcaption class="drn-photo-credit">
+                                    📸 <strong>Créditos:</strong>{" "}
+                                    Beto Issa/F1 GP São Paulo · Wikimedia Commons ·{" "}
+                                    <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener noreferrer">
+                                        CC BY 2.0
+                                    </a>.
+                                    <br />
+                                    <strong>Imagen ilustrativa editada mediante IA:</strong>{" "}
+                                    Dagger Racing News (DRN).
+                                    <br />
+                                    <a href="https://commons.wikimedia.org/wiki/File:Grande_Pr%C3%AAmio_S%C3%A3o_Paulo_de_F%C3%B3rmula_1_(52498120773).jpg" target="_blank" rel="noopener noreferrer">
+                                        Fotografía original
+                                    </a>
                                 </figcaption>
                             )}
 </figure>
