@@ -147,6 +147,15 @@ const canonicalURL = Astro.site
                 <header class="article-header">
 
                     <div class="article-kicker">
+                    {title === "Ferrari toca fondo en Brasil: Leclerc califica el rendimiento como un desastre" ? (
+                        <>
+                            <a href="/">INICIO</a>
+                            <span>/</span>
+                            <a href="/equipo/ferrari/">FERRARI</a>
+                        </>
+                    ) : (
+                        <>
+
                     {drivers.includes("lewis-hamilton") ? (
                         <>
                             <a href="/">INICIO</a>
@@ -207,6 +216,9 @@ const canonicalURL = Astro.site
                         }
 
                     
+                        </>
+                    )}
+                
                         </>
                     )}
                 
@@ -336,6 +348,23 @@ const canonicalURL = Astro.site
                                     Dagger Racing News (DRN).
                                     <br />
                                     <a href="https://commons.wikimedia.org/wiki/File:Grande_Pr%C3%AAmio_S%C3%A3o_Paulo_de_F%C3%B3rmula_1_(52498120773).jpg" target="_blank" rel="noopener noreferrer">
+                                        Fotografía original
+                                    </a>
+                                </figcaption>
+                            )}
+
+                            {imageSrc.includes("ferrari-leclerc-nota-interlagos-2026.png") && (
+                                <figcaption class="drn-photo-credit">
+                                    📸 <strong>Créditos:</strong>{" "}
+                                    Jen Ross / Wikimedia Commons ·{" "}
+                                    <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">
+                                        CC BY 4.0
+                                    </a>.
+                                    <br />
+                                    <strong>Edición y adaptación mediante IA:</strong>{" "}
+                                    Dagger Racing News (DRN).
+                                    <br />
+                                    <a href="https://commons.wikimedia.org/wiki/File:FIA_F1_Imola_2025_No._16_Leclerc.jpg" target="_blank" rel="noopener noreferrer">
                                         Fotografía original
                                     </a>
                                 </figcaption>
