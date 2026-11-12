@@ -175,9 +175,11 @@ const formatDate = (date: Date) =>
               )}
 
               categoria={
-                nota.data.category
-                  .replaceAll("-", " ")
-                  .toUpperCase()
+                nota.data.category === "formula-1"
+                  ? "FÓRMULA 1"
+                  : nota.data.category
+                      .replaceAll("-", " ")
+                      .toUpperCase()
               }
 
               titulo={nota.data.title}
