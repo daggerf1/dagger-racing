@@ -207,6 +207,27 @@ const newsSchema = {
                 <header class="article-header">
 
                     <div class="article-kicker">
+                    <!-- DRN-BREADCRUMBS-HADJAR-LAWSON-FERRARI-2026 -->
+                    {imageSrc?.includes("hamilton-y-leclerc-interlagos-noviembre-2026.png") ? (
+                        <>
+                            <a href="/">INICIO</a>
+                            <span>/</span>
+                            <a href="/equipo/ferrari/">FERRARI</a>
+                        </>
+                    ) : imageSrc?.includes("retrato-lawson-interlagos-noviembre-2026.png") ? (
+                        <>
+                            <a href="/">INICIO</a>
+                            <span>/</span>
+                            <a href="/piloto/liam-lawson/">LAWSON</a>
+                        </>
+                    ) : imageSrc?.includes("retrato-hadjar-interlagos-noviembre-2026.png") ? (
+                        <>
+                            <a href="/">INICIO</a>
+                            <span>/</span>
+                            <a href="/piloto/isack-hadjar/">HADJAR</a>
+                        </>
+                    ) : (
+                        <>
                     <!-- DRN-BIANCA-LIFESTYLE -->
                     {imageSrc.includes("bianca-leclerc-charles-leclerc-alexandra-leclerc-ferrari.png") ? (
                         <>
@@ -297,7 +318,10 @@ const newsSchema = {
                 
                         </>
                     )}
-                </div>
+                
+                        </>
+                    )}
+                    </div>
 
                     <h1>{title}</h1>
 
