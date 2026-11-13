@@ -7,7 +7,8 @@ const {team}=Astro.props; const standing=standings.find(s=>s.teamId===team.id);
 const teamArticleSlug = team.slug === "haas-f1-team" ? "haas" : team.slug;
 const related = await getArticlesByTeam(teamArticleSlug);
 ---
-<!doctype html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><title>{team.name} | Dagger Racing News</title><link rel="stylesheet" href="/css/styless.css">
+<!doctype html><html lang="es"><head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6167283917185567" crossorigin="anonymous"></script><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><title>{team.name} | Dagger Racing News</title><link rel="stylesheet" href="/css/styless.css">
 <style>.profile{max-width:900px;margin:45px auto 90px;padding:0 20px}.hero-p{border-bottom:2px solid #e10600;padding:25px 0}.label{color:#e10600;font-weight:900}.hero-p h1{font-size:clamp(2.4rem,8vw,5rem);margin:8px 0;text-transform:uppercase}.stat{font-size:1.1rem;color:#bbb}.cards{display:grid;gap:15px;margin-top:30px}.card{padding:20px;background:#111;border:1px solid #333;color:white;text-decoration:none}.card:hover{border-color:#e10600}</style>
 <style>
 .team-news {
