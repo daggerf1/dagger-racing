@@ -208,6 +208,7 @@ const newsSchema = {
                 <header class="article-header">
 
                     <div class="article-kicker">
+
                     <!-- DRN-BREADCRUMBS-HADJAR-LAWSON-FERRARI-2026 -->
                     {imageSrc?.includes("hamilton-y-leclerc-interlagos-noviembre-2026.png") ? (
                         <>
@@ -248,7 +249,13 @@ const newsSchema = {
                     ) : (
                         <>
 
-                    {drivers.includes("lewis-hamilton") ? (
+                    {imageSrc?.includes("fia-retira-acreditacion-a-periodista-nota-leclerc-imag-1-horizontal.png") ? (
+                          <>
+                              <a href="/">INICIO</a>
+                              <span>/</span>
+                              <a href="/piloto/charles-leclerc/">LECLERC</a>
+                          </>
+                      ) : drivers.includes("lewis-hamilton") ? (
                         <>
                             <a href="/">INICIO</a>
                             <span>/</span>
@@ -265,7 +272,7 @@ const newsSchema = {
                         </>
                     ) : (
                         <>
-                            
+
 
                         <a href={category === "formula-1" || (category === "lifestyle" && subcategory === "pilotos" && drivers.includes("charles-leclerc")) ? "/" : `/categoria/${category}/`}>
                             {category === "formula-1" || (category === "lifestyle" && subcategory === "pilotos" && drivers.includes("charles-leclerc")) ? "INICIO" : formatName(category)}
@@ -307,22 +314,24 @@ const newsSchema = {
                             )
                         }
 
-                    
+
                         </>
                     )}
-                
+
                         </>
                     )}
-                
+
                         </>
                     )}
-                
+
                         </>
                     )}
-                
+
                         </>
                     )}
-                    </div>
+
+
+</div>
 
                     <h1>{title}</h1>
 
@@ -491,7 +500,7 @@ const newsSchema = {
                                     </a>
                                 </figcaption>
                             )}
-                        
+
                             {imageSrc.includes("rafael-camara-haas-interlagos-2026.png") && (
                                 <figcaption class="drn-photo-credit">
                                     <strong>Créditos de imagen:</strong>{" "}
@@ -637,7 +646,7 @@ const newsSchema = {
         </main>
 
         <Footer />
-    
+
 /* DRN-CREDITOS-VERSTAPPEN-UNIFORMES-INICIO */
 <style is:global>
   .article-page:has(img[src*="verstappen-interlagos-noviembre-2026.png"])
