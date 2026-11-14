@@ -8,16 +8,11 @@ import Footer from "../components/Footer.astro";
 
 import {
   getPublishedArticles,
-  getFeaturedArticles,
 } from "../lib/content/articles";
 
 const todasLasNoticias = await getPublishedArticles();
 
-const noticiasDestacadas = await getFeaturedArticles();
-
-const noticiaPrincipal =
-  noticiasDestacadas[0] ??
-  todasLasNoticias[0];
+const noticiaPrincipal = todasLasNoticias[0];
 
 const notasSecundarias = todasLasNoticias.filter(
   (nota) => nota.id !== noticiaPrincipal?.id
