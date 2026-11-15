@@ -3,6 +3,7 @@ slug: "hadjar-doble-podio-red-bull-interlagos-2026"
 title: "Hadjar completa el doble podio de Red Bull: Interlagos premia la consistencia"
 description: "Isack Hadjar consigue el tercer puesto en São Paulo 2026 y completa un doble podio de Red Bull junto a Max Verstappen."
 publishedAt: 2026-11-08
+showPublicationTime: false
 author: "redaccion"
 category: "formula-1"
 subcategory: "deportivo"

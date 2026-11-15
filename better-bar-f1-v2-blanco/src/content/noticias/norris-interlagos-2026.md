@@ -5,6 +5,7 @@ slug: "norris-interlagos-2026"
 description: "El desafío de Interlagos pone a prueba la velocidad, la gestión de neumáticos y las decisiones estratégicas de Lando Norris y McLaren."
 
 publishedAt: 2026-11-08T14:00:00-06:00
+showPublicationTime: true
 updatedAt: 2026-11-08T14:00:00-06:00
 
 author: "redaccion"
@@ -68,5 +69,3 @@ Interlagos ocupa un lugar especial en la historia del automovilismo. Su configur
 Para los aficionados, el Gran Premio de São Paulo representa una de las citas más atractivas del calendario.
 
 Para Norris y McLaren, es otra oportunidad de demostrar su capacidad de competir en un escenario que exige concentración, precisión y decisiones inteligentes.
-
-**Dagger Racing News seguirá la evolución del Gran Premio de São Paulo 2026 y actualizará esta cobertura con los resultados oficiales verificados.**

@@ -2,7 +2,8 @@
 title: "La FIA retira la acreditación a un periodista por sus críticas a Leclerc: el Daily Mail responde con un boicot"
 slug: "fia-retira-acreditacion-periodista-leclerc-daily-mail-2026"
 description: "La retirada de las credenciales de Jonathan McEvoy para las últimas tres carreras de 2026 abre un debate sobre la libertad de prensa y los estándares profesionales en la Fórmula 1."
-publishedAt: 2026-11-14
+publishedAt: 2026-11-14T16:42:25-06:00
+showPublicationTime: true
 author: "Redacción Dagger Racing News"
 category: "formula-1"
 subcategory: "paddock"

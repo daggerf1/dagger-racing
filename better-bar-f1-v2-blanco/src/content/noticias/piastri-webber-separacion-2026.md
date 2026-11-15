@@ -5,6 +5,7 @@ slug: "piastri-webber-separacion-2026"
 description: "Oscar Piastri y Mark Webber ponen fin a su relación profesional tras el Gran Premio de São Paulo 2026. El piloto de McLaren prepara una nueva etapa en su representación."
 
 publishedAt: 2026-11-09T12:00:00-06:00
+showPublicationTime: true
 updatedAt: 2026-11-09T12:00:00-06:00
 
 author: "redaccion"
@@ -72,5 +73,3 @@ El siguiente paso será conocer si Oscar Piastri designa una nueva figura princi
 Hasta que exista información adicional, conviene separar lo confirmado de las interpretaciones que circulan en el paddock.
 
 **La relación profesional con Mark y Ann Webber terminó, pero eso no implica por sí mismo una modificación del futuro contractual de Piastri con McLaren.**
-
-**Dagger Racing News seguirá la evolución de esta nueva etapa profesional de Oscar Piastri y actualizará la información cuando existan novedades verificadas.**

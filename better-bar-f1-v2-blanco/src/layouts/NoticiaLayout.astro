@@ -7,6 +7,7 @@ interface Props {
     description?: string;
     publishedAt: Date;
     updatedAt?: Date;
+    showPublicationTime?: boolean;
     author?: string;
     category: string;
     subcategory?: string;
@@ -22,6 +23,7 @@ const {
     description,
     publishedAt,
     updatedAt,
+    showPublicationTime = false,
     author = "redaccion",
     category,
     subcategory,
@@ -37,7 +39,11 @@ const formatDate = (date: Date) =>
         day: "numeric",
         month: "long",
         year: "numeric",
-    }).format(date);
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+        timeZone: "America/Mexico_City",
+    }).format(date) + " h";
 
 const formatName = (value: string) =>
     value
@@ -354,7 +360,14 @@ const newsSchema = {
                         </span>
 
                         <time datetime={publishedAt.toISOString()}>
-                            {formatDate(publishedAt)}
+                            {showPublicationTime
+                                ? formatDate(publishedAt)
+                                : new Intl.DateTimeFormat("es-MX", {
+                                    day: "numeric",
+                                    month: "long",
+                                    year: "numeric",
+                                    timeZone: "UTC",
+                                }).format(publishedAt)}
                         </time>
 
                         {

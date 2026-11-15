@@ -3,6 +3,7 @@ slug: "hamilton-400-grandes-premios-interlagos-2026"
 title: "Hamilton alcanza los 400 Grandes Premios en un fin de semana complicado para Ferrari"
 description: "Lewis Hamilton alcanza los 400 Grandes Premios en São Paulo y termina noveno tras una carrera complicada para Ferrari."
 publishedAt: 2026-11-09T12:00:00-06:00
+showPublicationTime: true
 author: "Dagger Racing News"
 category: "formula-1"
 subcategory: "historia"

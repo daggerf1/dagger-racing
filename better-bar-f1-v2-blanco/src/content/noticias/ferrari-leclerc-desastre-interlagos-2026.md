@@ -3,6 +3,7 @@ slug: "ferrari-leclerc-desastre-interlagos-2026"
 title: "Ferrari toca fondo en Brasil: Leclerc califica el rendimiento como un desastre"
 description: "Charles Leclerc cuestiona el rendimiento de Ferrari en São Paulo tras una carrera complicada, una sanción y la falta de ritmo frente a Mercedes."
 publishedAt: 2026-11-09T13:00:00-06:00
+showPublicationTime: true
 author: "Dagger Racing News"
 category: "formula-1"
 subcategory: "ferrari"

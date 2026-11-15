@@ -3,6 +3,7 @@ slug: "verstappen-remontada-interlagos-2026"
 title: "Verstappen convierte el puesto 21 de salida en un podio: remontada de alto impacto"
 description: "Max Verstappen remonta desde el puesto 21 hasta el segundo lugar en São Paulo 2026, en una carrera marcada por la lluvia y la estrategia de Red Bull."
 publishedAt: 2026-11-08
+showPublicationTime: false
 author: "redaccion"
 category: "formula-1"
 subcategory: "cronica"

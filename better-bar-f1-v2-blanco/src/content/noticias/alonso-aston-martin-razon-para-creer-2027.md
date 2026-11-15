@@ -2,7 +2,8 @@
 title: "Alonso no sigue por nostalgia: Aston Martin todavía tiene que darle una razón para creer"
 slug: "alonso-aston-martin-razon-para-creer-2027"
 description: "Fernando Alonso continuará con Aston Martin en 2027 junto a Lance Stroll, mientras el equipo busca recuperar competitividad tras una difícil temporada 2026."
-publishedAt: 2026-11-14
+publishedAt: 2026-11-14T21:07:46-06:00
+showPublicationTime: true
 author: "Redacción Dagger Racing News"
 category: "formula-1"
 subcategory: "paddock"

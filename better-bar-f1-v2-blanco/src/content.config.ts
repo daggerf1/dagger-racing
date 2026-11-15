@@ -17,6 +17,7 @@ const noticias = defineCollection({
         publishedAt: z.coerce.date(),
 
         updatedAt: z.coerce.date().optional(),
+        showPublicationTime: z.boolean().default(false),
 
         author: z.string().default("redaccion"),
 

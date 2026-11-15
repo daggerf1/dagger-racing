@@ -5,6 +5,7 @@ slug: "mercedes-campeon-constructores-2026"
 description: "Mercedes asegura su noveno campeonato de constructores en el Gran Premio de São Paulo 2026 gracias a los puntos de George Russell y Kimi Antonelli."
 
 publishedAt: 2026-11-08T14:00:00-06:00
+showPublicationTime: true
 updatedAt: 2026-11-08T14:00:00-06:00
 
 author: "redaccion"

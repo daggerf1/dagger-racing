@@ -3,6 +3,7 @@ slug: "bianca-leclerc-familia-ferrari-2026"
 title: "Bianca Leclerc: la nueva integrante de la familia Ferrari llega antes de Interlagos"
 description: "Charles Leclerc y Alexandra anuncian la llegada de Bianca antes del Gran Premio de São Paulo."
 publishedAt: 2026-11-04T12:00:00-06:00
+showPublicationTime: true
 author: "Dagger Racing News"
 category: "lifestyle"
 subcategory: "pilotos"

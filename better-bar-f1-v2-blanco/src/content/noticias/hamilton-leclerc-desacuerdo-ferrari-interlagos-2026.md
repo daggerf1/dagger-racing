@@ -3,6 +3,7 @@ slug: "hamilton-leclerc-desacuerdo-ferrari-interlagos-2026"
 title: "Tensión en Ferrari: Hamilton y Leclerc dan por cerrado su desacuerdo"
 description: "Lewis Hamilton y Charles Leclerc dan por superadas sus diferencias tras el Gran Premio de México y buscan concentrarse en el cierre de temporada."
 publishedAt: 2026-11-09
+showPublicationTime: false
 author: "redaccion"
 category: "paddock"
 subcategory: "relaciones-internas"

@@ -3,6 +3,7 @@ slug: "rafael-camara-haas-interlagos-2026"
 title: "Rafael Câmara debuta en Fórmula 1 ante su público: Haas apuesta por el brasileño"
 description: "Rafael Câmara debuta con Haas en el Gran Premio de São Paulo de 2026, sustituyendo a Esteban Ocon y dando un nuevo impulso a la representación brasileña en Fórmula 1."
 publishedAt: 2026-11-08T12:00:00-06:00
+showPublicationTime: true
 author: "Dagger Racing News"
 category: "formula-1"
 subcategory: "Câmara"

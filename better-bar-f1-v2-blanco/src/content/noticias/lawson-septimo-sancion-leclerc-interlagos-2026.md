@@ -3,6 +3,7 @@ slug: "lawson-septimo-sancion-leclerc-interlagos-2026"
 title: "Lawson asciende al séptimo lugar tras sanción a Leclerc: la FIA cambia el resultado"
 description: "Una sanción de cinco segundos a Charles Leclerc modifica la clasificación de São Paulo 2026 y permite a Liam Lawson ascender al séptimo puesto."
 publishedAt: 2026-11-09
+showPublicationTime: false
 author: "redaccion"
 category: "formula-1"
 subcategory: "deportivo"
