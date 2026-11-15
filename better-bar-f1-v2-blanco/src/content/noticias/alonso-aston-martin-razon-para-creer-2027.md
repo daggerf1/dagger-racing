@@ -34,7 +34,10 @@ Fernando Alonso continuará en la Fórmula 1 durante 2027. Aston Martin confirm�
 
 El anuncio llega después de un 2026 especialmente difícil para el equipo de Silverstone. Aston Martin ocupa la décima posición del campeonato de constructores y tuvo que introducir una evolución de especificación B en Hungría para mejorar el rendimiento. Los problemas de fiabilidad y las limitaciones de la unidad de potencia Honda también condicionaron su temporada. La estructura, ahora encabezada por Adrian Newey como jefe de equipo, enfrenta el desafío de traducir sus recursos y experiencia en competitividad.
 
-![Aston Martin afronta el desafío de recuperar rendimiento y competitividad de cara a 2027](/alonso-aston-martin-nota-1-imag-2.png)
+<figure class="drn-alonso-photo">
+  <img src="/alonso-aston-martin-nota-1-imag-2.png" alt="Aston Martin afronta el desafío de recuperar rendimiento y competitividad de cara a 2027" loading="lazy" decoding="async" />
+  <figcaption>Imagen ilustrativa. Imagen representativa creada mediante inteligencia artificial por Dagger Racing News (DRN).</figcaption>
+</figure>
 
 ## La continuidad también se juega en el desarrollo
 
@@ -42,7 +45,10 @@ Jenson Button, campeón mundial de 2009 y embajador de Aston Martin, explicó en
 
 Button también subrayó el valor de conservar a ambos titulares. En una etapa de desarrollo complejo, la información aportada por Alonso y Stroll permite contrastar sensaciones y orientar las modificaciones del monoplaza. La continuidad reduce las variables dentro de un equipo que necesita identificar con precisión dónde está perdiendo rendimiento frente a sus competidores.
 
-![Fernando Alonso afronta una nueva etapa con Aston Martin y mantiene su ambición competitiva](/alonso-aston-martin-nota-1-imag-3.png)
+<figure class="drn-alonso-photo">
+  <img src="/alonso-aston-martin-nota-1-imag-3.png" alt="Fernando Alonso afronta una nueva etapa con Aston Martin y mantiene su ambición competitiva" loading="lazy" decoding="async" />
+  <figcaption>Imagen ilustrativa. Imagen representativa creada mediante inteligencia artificial por Dagger Racing News (DRN).</figcaption>
+</figure>
 
 ## El verdadero examen llegará en la pista
 
