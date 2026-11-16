@@ -359,7 +359,7 @@ const newsSchema = {
                             •
                         </span>
 
-                        <time datetime={publishedAt.toISOString()}>
+                        Publicado: <time datetime={publishedAt.toISOString()}>
                             {showPublicationTime
                                 ? formatDate(publishedAt)
                                 : new Intl.DateTimeFormat("es-MX", {

@@ -2,8 +2,8 @@
 title: "Mercedes cambia de objetivo: Russell podría recibir prioridad tras la coronación de Antonelli"
 slug: "mercedes-russell-prioridad-antonelli-campeon-2026"
 description: "Mercedes contempla respaldar a George Russell en la lucha por el subcampeonato de Fórmula 1 de 2026, después de que Kimi Antonelli conquistara el título mundial."
-publishedAt: 2026-11-16
-showPublicationTime: false
+publishedAt: 2026-11-16T15:36:26-06:00
+showPublicationTime: true
 author: "Redacción Dagger Racing News"
 category: "formula-1"
 subcategory: "paddock"
