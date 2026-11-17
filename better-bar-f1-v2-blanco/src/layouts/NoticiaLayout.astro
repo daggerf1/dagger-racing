@@ -404,6 +404,13 @@ const newsSchema = {
                                 alt={imageAlt || title}
                                 loading="eager"
                             />
+                    <!-- DRN-CADILLAC-VIATRIS-CREDITOS -->
+                    {imageSrc === "/cadillac-sergio-bottas-viatris.png" && (
+                        <figcaption style="font-size: 0.78rem; color: #777; line-height: 1.5; margin-top: 8px;">
+                            <strong>Créditos:</strong> Imágenes de referencia: Morio y Yu Chu Chin / Wikimedia Commons · CC BY-SA 4.0. Composición y edición con IA: Dagger Racing News. Imagen ilustrativa.
+                        </figcaption>
+                    )}
+
                             <!-- DRN-VERSTAPPEN-CREDITOS-PORTADA -->
                             {imageSrc.includes("verstappen-interlagos-noviembre-2026.png") && (
                                 <figcaption class="drn-photo-credit">
