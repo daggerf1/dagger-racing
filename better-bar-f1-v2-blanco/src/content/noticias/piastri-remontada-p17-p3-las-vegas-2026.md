@@ -20,7 +20,7 @@ tags:
   - "mclaren"
   - "las-vegas"
   - "remontada"
-image: "/piastri-podio-en-las-vegas-2026.png"
+image: "/oscar-piastri-podio-las-vegas.png"
 imageAlt: "Imagen ilustrativa generada con inteligencia artificial por Dagger Racing News"
 featured: false
 breaking: false
