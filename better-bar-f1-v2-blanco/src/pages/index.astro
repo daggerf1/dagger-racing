@@ -155,7 +155,8 @@ const formatDate = (date: Date) =>
 
       <!-- CRÓNICA DESTACADA -->
 
-      <div class="section-header">
+      <div class="drn-cronica-destacada-desktop">
+<div class="section-header">
         <h2>Crónica Destacada</h2>
       </div>
 
@@ -232,6 +233,8 @@ const formatDate = (date: Date) =>
         )
       }
 
+
+      </div>
 
       <!-- =========================
            CRÓNICAS ANTERIORES
@@ -505,6 +508,16 @@ const formatDate = (date: Date) =>
 
     .drn-carousel-photo-dots .drn-carousel-indicator.is-active {
       background: #e02020;
+    }
+  }
+</style>
+
+
+<style>
+  /* DRN-OCULTAR-CRONICA-DUPLICADA-MOVIL-2026 */
+  @media screen and (max-width: 850px) {
+    .drn-cronica-destacada-desktop {
+      display: none !important;
     }
   }
 </style>
