@@ -20,7 +20,7 @@ tags:
   - "las-vegas"
   - "gran-premio"
   - "2026"
-image: "/max-verstappen-conquista-las-vegas-2026.png"
+image: "/verstappen-conquista-las-vegas-2026.png"
 imageAlt: "Imagen ilustrativa generada con inteligencia artificial por Dagger Racing News"
 featured: false
 breaking: false
