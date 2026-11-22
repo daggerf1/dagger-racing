@@ -584,3 +584,187 @@ display:none;
         background-repeat: no-repeat;
     }
 }
+
+/* DRN-REDISENO-MOVIL-INICIO */
+@media screen and (max-width: 760px) {
+
+  /* Contenido de portada */
+  main.drn-home-mobile {
+    width: 100%;
+    max-width: 100%;
+    padding: 20px 14px 36px;
+    margin: 0 auto;
+  }
+
+  /* Encabezados de secciones */
+  main.drn-home-mobile .section-header {
+    margin: 10px 0 18px;
+    padding: 0 0 10px 12px;
+    border-left: 4px solid #e10600;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  main.drn-home-mobile .section-header h2 {
+    margin: 0;
+    font-size: clamp(1.05rem, 4.5vw, 1.4rem);
+    line-height: 1.25;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.025em;
+  }
+
+  /* Noticia principal */
+  main.drn-home-mobile .headline-article {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+    overflow: hidden;
+    background: #17191d;
+    border: 0;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.12);
+    margin-bottom: 28px;
+  }
+
+  /* Fotografía principal: conservar la imagen completa */
+  main.drn-home-mobile .headline-article .headline-image-area {
+    display: block;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+    background-size: contain !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-color: #111317 !important;
+    border: 0;
+    border-radius: 0;
+  }
+
+  /* Bloque editorial */
+  main.drn-home-mobile .headline-content {
+    width: 100%;
+    padding: 20px 18px 24px;
+    background: #17191d;
+    color: #ffffff;
+    border: 0;
+  }
+
+  main.drn-home-mobile .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  main.drn-home-mobile .badge-date,
+  main.drn-home-mobile .category-text {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .045em;
+  }
+
+  main.drn-home-mobile .category-text {
+    color: #ff5757;
+  }
+
+  main.drn-home-mobile .title-main {
+    margin: 0 0 12px;
+    color: #ffffff !important;
+    font-size: clamp(1.35rem, 5.7vw, 1.9rem);
+    font-weight: 900;
+    line-height: 1.17;
+    letter-spacing: -.035em;
+  }
+
+  main.drn-home-mobile .title-main a,
+  main.drn-home-mobile .title-main a:visited {
+    color: #ffffff !important;
+    text-decoration: none !important;
+  }
+
+  main.drn-home-mobile .title-main a:hover,
+  main.drn-home-mobile .title-main a:focus-visible {
+    color: #ff5757 !important;
+  }
+
+  main.drn-home-mobile .excerpt {
+    color: #d0d0d0;
+    font-size: .91rem;
+    line-height: 1.6;
+    margin-bottom: 18px;
+  }
+
+  main.drn-home-mobile .btn-read-more {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    min-height: 42px;
+    padding: 11px 16px;
+    background: #e10600;
+    color: #ffffff !important;
+    border-radius: 5px;
+    font-size: .76rem;
+    font-weight: 900;
+    letter-spacing: .04em;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  /* Crónicas anteriores */
+  main.drn-home-mobile .news-feed {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+    width: 100%;
+  }
+
+  main.drn-home-mobile .news-feed .news-card {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    overflow: hidden;
+    border: 1px solid #e7e7e7;
+    border-left: 3px solid #e10600;
+    border-radius: 8px;
+    background: #ffffff;
+    box-shadow: 0 3px 12px rgba(0,0,0,.045);
+    transform: none;
+  }
+
+  main.drn-home-mobile .news-feed .news-card:hover {
+    transform: none;
+  }
+
+  main.drn-home-mobile .news-feed .card-image-area {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+
+  main.drn-home-mobile .news-feed .news-content {
+    padding: 14px 15px 17px;
+  }
+
+  main.drn-home-mobile .news-feed .title-secondary {
+    font-size: clamp(.96rem, 4vw, 1.13rem);
+    font-weight: 850;
+    line-height: 1.3;
+    letter-spacing: -.01em;
+    overflow-wrap: anywhere;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  main.drn-home-mobile {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  main.drn-home-mobile .headline-content {
+    padding: 17px 14px 21px;
+  }
+}
+/* DRN-REDISENO-MOVIL-FIN */
