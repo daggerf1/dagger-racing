@@ -5,7 +5,7 @@ description: "Un contacto con Rafael Câmara en la curva 14 dejó a Sergio Pére
 publishedAt: 2026-11-22T02:40:00-06:00
 showPublicationTime: false
 author: "redaccion"
-category: "Formula 1"
+category: "Fórmula 1"
 drivers:
   - "sergio-perez"
   - "rafael-camara"
