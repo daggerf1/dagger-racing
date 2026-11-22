@@ -14,6 +14,10 @@ const todasLasNoticias = await getPublishedArticles();
 
 const noticiaPrincipal = todasLasNoticias[0];
 
+// DRN-CARRUSEL-NOTICIAS-MOVIL-2026
+const noticiasCarrusel = todasLasNoticias.slice(0, 5);
+
+
 const notasSecundarias = todasLasNoticias.filter(
   (nota) => nota.id !== noticiaPrincipal?.id
 );
@@ -78,6 +82,76 @@ const formatDate = (date: Date) =>
     ========================= -->
 
     <main class="container drn-home-mobile">
+
+      <!-- DRN-CARRUSEL-NOTICIAS-MOVIL-2026 -->
+      {
+        noticiasCarrusel.length > 0 && (
+          <section
+            class="drn-mobile-news-carousel drn-carousel-photo-dots"
+            aria-label="Noticias destacadas"
+            data-drn-carousel
+          >
+            <div class="drn-carousel-viewport" data-drn-carousel-viewport>
+              {
+                noticiasCarrusel.map((nota, index) => {
+                  const imagen = nota.data.image
+                    ? nota.data.image.startsWith("/")
+                      ? nota.data.image
+                      : `/images/${nota.data.image}`
+                    : "";
+
+                  return (
+                    <article
+                      class="drn-carousel-slide"
+                      data-drn-carousel-slide
+                      aria-label={`Noticia ${index + 1} de ${noticiasCarrusel.length}`}
+                    >
+                      <a
+                        class="drn-carousel-link"
+                        href={`/noticias/${nota.data.slug}/`}
+                      >
+                        {imagen && (
+                          <img
+                            src={imagen}
+                            alt={nota.data.title}
+                            loading={index === 0 ? "eager" : "lazy"}
+                          />
+                        )}
+                        <div class="drn-carousel-caption">
+                          <span class="drn-carousel-label">ÚLTIMA HORA · FÓRMULA 1</span>
+                          <h2>{nota.data.title}</h2>
+                        </div>
+                      </a>
+                    </article>
+                  );
+                })
+              }
+            </div>
+
+            <div
+              class="drn-carousel-indicators"
+              aria-label="Seleccionar noticia destacada"
+            >
+              {
+                noticiasCarrusel.map((_, index) => (
+                  <button
+                    type="button"
+                    class:list={[
+                      "drn-carousel-indicator",
+                      { "is-active": index === 0 },
+                    ]}
+                    data-drn-carousel-indicator
+                    data-index={index}
+                    aria-label={`Mostrar noticia ${index + 1}`}
+                    aria-current={index === 0 ? "true" : undefined}
+                  ></button>
+                ))
+              }
+            </div>
+          </section>
+        )
+      }
+
 
       <!-- CRÓNICA DESTACADA -->
 
@@ -219,6 +293,222 @@ const formatDate = (date: Date) =>
 
     <Footer />
 
-  </body>
+  
+<style>
+  /* DRN-CARRUSEL-NOTICIAS-MOVIL-2026 */
+  .drn-mobile-news-carousel {
+    display: none;
+  }
+
+  @media screen and (max-width: 850px) {
+    .drn-mobile-news-carousel {
+      display: block;
+      width: 100%;
+      margin: 0 0 26px;
+      overflow: hidden;
+      background: #101014;
+    }
+
+    .drn-carousel-viewport {
+      display: flex;
+      width: 100%;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-x: contain;
+    }
+
+    .drn-carousel-viewport::-webkit-scrollbar {
+      display: none;
+    }
+
+    .drn-carousel-slide {
+      flex: 0 0 100%;
+      min-width: 0;
+      scroll-snap-align: start;
+      position: relative;
+      background: #101014;
+    }
+
+    .drn-carousel-link {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .drn-carousel-link img {
+      display: block;
+      width: 100%;
+      height: 215px;
+      object-fit: cover;
+    }
+
+    .drn-carousel-caption {
+      padding: 15px 17px 18px;
+      background: #101014;
+      color: #fff;
+    }
+
+    .drn-carousel-label {
+      display: block;
+      margin-bottom: 8px;
+      color: #ff3737;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .drn-carousel-caption h2 {
+      margin: 0;
+      color: #fff;
+      font-size: clamp(17px, 4.5vw, 22px);
+      font-weight: 800;
+      line-height: 1.3;
+    }
+
+    .drn-carousel-indicators {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 7px;
+      padding: 12px;
+      background: #101014;
+    }
+
+    .drn-carousel-indicator {
+      appearance: none;
+      -webkit-appearance: none;
+      display: block;
+      flex: 0 0 auto;
+      width: 25px;
+      height: 4px;
+      padding: 0;
+      border: 0;
+      border-radius: 4px;
+      background: #777780;
+      cursor: pointer;
+      transition: width .2s ease, background .2s ease;
+    }
+
+    .drn-carousel-indicator.is-active {
+      width: 44px;
+      background: #e02020;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .drn-carousel-viewport {
+      scroll-behavior: auto;
+    }
+
+    .drn-carousel-indicator {
+      transition: none;
+    }
+  }
+</style>
+
+
+<script is:inline>
+  // DRN-CARRUSEL-NOTICIAS-MOVIL-2026
+  (() => {
+    const carousel = document.querySelector("[data-drn-carousel]");
+    if (!carousel) return;
+
+    const viewport = carousel.querySelector("[data-drn-carousel-viewport]");
+    const slides = Array.from(
+      carousel.querySelectorAll("[data-drn-carousel-slide]")
+    );
+    const indicators = Array.from(
+      carousel.querySelectorAll("[data-drn-carousel-indicator]")
+    );
+
+    if (!viewport || !slides.length) return;
+
+    const activate = (index) => {
+      indicators.forEach((button, i) => {
+        const active = i === index;
+        button.classList.toggle("is-active", active);
+
+        if (active) {
+          button.setAttribute("aria-current", "true");
+        } else {
+          button.removeAttribute("aria-current");
+        }
+      });
+    };
+
+    indicators.forEach((button, index) => {
+      button.addEventListener("click", () => {
+        viewport.scrollTo({
+          left: slides[index].offsetLeft - slides[0].offsetLeft,
+          behavior: window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+          ).matches ? "auto" : "smooth",
+        });
+        activate(index);
+      });
+    });
+
+    let ticking = false;
+
+    viewport.addEventListener("scroll", () => {
+      if (ticking) return;
+      ticking = true;
+
+      requestAnimationFrame(() => {
+        const width = viewport.clientWidth;
+        if (width > 0) {
+          const index = Math.max(
+            0,
+            Math.min(slides.length - 1, Math.round(viewport.scrollLeft / width))
+          );
+          activate(index);
+        }
+        ticking = false;
+      });
+    }, { passive: true });
+  })();
+</script>
+
+
+<style>
+  /* DRN-INDICADORES-SOBRE-FOTOGRAFIA-2026 */
+  @media screen and (max-width: 850px) {
+    .drn-carousel-photo-dots {
+      position: relative;
+    }
+
+    .drn-carousel-photo-dots .drn-carousel-indicators {
+      position: absolute;
+      top: 191px;
+      left: 0;
+      right: 0;
+      z-index: 5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px 12px;
+      margin: 0;
+      background: transparent;
+    }
+
+    .drn-carousel-photo-dots .drn-carousel-indicator {
+      background: rgba(255, 255, 255, .7);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, .55);
+    }
+
+    .drn-carousel-photo-dots .drn-carousel-indicator.is-active {
+      background: #e02020;
+    }
+  }
+</style>
+
+</body>
 
 </html>
