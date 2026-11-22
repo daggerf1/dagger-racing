@@ -117,11 +117,7 @@ const formatDate = (date: Date) =>
                             loading={index === 0 ? "eager" : "lazy"}
                           />
                         )}
-                        <div class="drn-carousel-caption">
-                          <span class="drn-carousel-label">ÚLTIMA HORA · FÓRMULA 1</span>
-                          <h2>{nota.data.title}</h2>
-                        </div>
-                      </a>
+</a>
                     </article>
                   );
                 })
@@ -148,6 +144,30 @@ const formatDate = (date: Date) =>
                 ))
               }
             </div>
+          
+            <!-- DRN-TITULAR-FIJO-CARRUSEL-2026 -->
+            <div class="drn-carousel-static-caption">
+              {
+                noticiasCarrusel.map((nota, index) => (
+                  <a
+                    class:list={[
+                      "drn-carousel-static-title",
+                      { "is-active": index === 0 },
+                    ]}
+                    href={`/noticias/${nota.data.slug}/`}
+                    data-drn-carousel-title
+                    aria-hidden={index === 0 ? "false" : "true"}
+                    tabindex={index === 0 ? 0 : -1}
+                  >
+                    <span class="drn-carousel-label">
+                      FÓRMULA 1
+                    </span>
+                    <h2>{nota.data.title}</h2>
+                  </a>
+                ))
+              }
+            </div>
+
           </section>
         )
       }
@@ -433,7 +453,18 @@ const formatDate = (date: Date) =>
 
     if (!viewport || !slides.length) return;
 
+    const titles = Array.from(
+      carousel.querySelectorAll("[data-drn-carousel-title]")
+    );
+
     const activate = (index) => {
+      titles.forEach((title, i) => {
+        const active = i === index;
+        title.classList.toggle("is-active", active);
+        title.setAttribute("aria-hidden", String(!active));
+        title.tabIndex = active ? 0 : -1;
+      });
+
       indicators.forEach((button, i) => {
         const active = i === index;
         button.classList.toggle("is-active", active);
@@ -518,6 +549,38 @@ const formatDate = (date: Date) =>
   @media screen and (max-width: 850px) {
     .drn-cronica-destacada-desktop {
       display: none !important;
+    }
+  }
+</style>
+
+
+<style>
+  /* DRN-TITULAR-FIJO-CARRUSEL-2026 */
+  @media screen and (max-width: 850px) {
+    .drn-carousel-static-caption {
+      position: relative;
+      width: 100%;
+      background: #101014;
+      padding: 15px 17px 18px;
+      box-sizing: border-box;
+    }
+
+    .drn-carousel-static-title {
+      display: none;
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .drn-carousel-static-title.is-active {
+      display: block;
+    }
+
+    .drn-carousel-static-title h2 {
+      margin: 0;
+      color: #ffffff;
+      font-size: clamp(17px, 4.5vw, 22px);
+      font-weight: 800;
+      line-height: 1.3;
     }
   }
 </style>
