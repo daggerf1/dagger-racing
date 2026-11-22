@@ -17,7 +17,7 @@ tags:
   - "hamilton"
   - "leclerc"
   - "las-vegas"
-image: "/tension-ferrari-hamilton-leclerc.png"
+image: "/tension-ferrari-las-vegas-2026.png"
 imageAlt: "Imagen ilustrativa generada con inteligencia artificial por Dagger Racing News"
 featured: false
 breaking: false
