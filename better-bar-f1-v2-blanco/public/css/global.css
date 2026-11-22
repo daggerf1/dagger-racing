@@ -768,3 +768,51 @@ display:none;
   }
 }
 /* DRN-REDISENO-MOVIL-FIN */
+
+
+/* DRN-BARRA-FIJA-IMAGEN-DESLIZABLE-2026 */
+
+@media screen and (max-width: 850px) {
+
+  /* El contenedor general ya no se pega a la pantalla */
+  body:has(.drn-home-mobile) .top-header,
+  body:has(.drn-home-mobile) .top-nav,
+  body:has(.drn-home-mobile) header[data-drn-nav-compacta] {
+    position: static !important;
+    top: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+  }
+
+  /* SOLO la barra negra permanece fija arriba */
+  body:has(.drn-home-mobile)
+  header[data-drn-nav-compacta] .drn-mobile-toolbar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    height: 54px !important;
+    z-index: 9999 !important;
+    background: #08090c !important;
+  }
+
+  /* Espacio para que la barra no tape el encabezado */
+  body:has(.drn-home-mobile) .top-header {
+    padding-top: 54px !important;
+  }
+
+  /* La imagen se desplaza con las noticias */
+  body:has(.drn-home-mobile)
+  header[data-drn-nav-compacta] .drn-mobile-banner {
+    position: static !important;
+    top: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+  }
+
+  /* Las noticias siguen el flujo normal */
+  body:has(.drn-home-mobile) .drn-home-mobile {
+    position: relative !important;
+  }
+}
