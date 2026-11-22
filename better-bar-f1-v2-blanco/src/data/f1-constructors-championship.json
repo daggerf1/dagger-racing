@@ -3,37 +3,37 @@
     "position": 1,
     "teamId": "mercedes",
     "team": "Mercedes",
-    "points": 652
+    "points": 666
   },
   {
     "position": 2,
     "teamId": "ferrari",
     "team": "Ferrari",
-    "points": 512
+    "points": 517
   },
   {
     "position": 3,
     "teamId": "red-bull-racing",
     "team": "Red Bull Racing",
-    "points": 415
+    "points": 440
   },
   {
     "position": 4,
     "teamId": "mclaren",
     "team": "McLaren",
-    "points": 398
+    "points": 431
   },
   {
     "position": 5,
     "teamId": "racing-bulls",
     "team": "Racing Bulls",
-    "points": 112
+    "points": 114
   },
   {
     "position": 6,
     "teamId": "alpine",
     "team": "Alpine",
-    "points": 69
+    "points": 87
   },
   {
     "position": 7,
@@ -51,7 +51,7 @@
     "position": 9,
     "teamId": "williams",
     "team": "Williams",
-    "points": 12
+    "points": 16
   },
   {
     "position": 10,
