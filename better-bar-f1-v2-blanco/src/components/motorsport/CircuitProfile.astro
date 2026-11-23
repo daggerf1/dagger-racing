@@ -1,0 +1,441 @@
+---
+import races from "../../data/f1-data.json";
+---
+
+<section
+  class="drn-circuit-profile"
+  data-drn-circuit-profile
+  hidden
+>
+  <header class="drn-circuit-header">
+    <span>DRN / CIRCUIT PROFILE</span>
+    <span>QATAR 2026</span>
+  </header>
+
+  <div class="drn-circuit-body">
+
+    <div class="drn-circuit-heading">
+
+      <span
+        class="drn-circuit-flag"
+        aria-label="Qatar"
+      >🇶🇦</span>
+
+      <div>
+        <div class="drn-circuit-kicker">
+          PRÓXIMO GRAN PREMIO
+        </div>
+
+        <h2>Lusail International Circuit</h2>
+
+        <p>Lusail, Qatar</p>
+      </div>
+
+    </div>
+
+    <figure class="drn-circuit-map">
+
+      <img
+        src="/circuitos/lusail-trazado.svg"
+        alt="Trazado técnico del circuito internacional de Lusail"
+        width="1201"
+        height="893"
+        loading="lazy"
+        decoding="async"
+      />
+
+      <figcaption>
+        Trazado:
+        <a
+          href="https://commons.wikimedia.org/wiki/File:Lusail_International_Circuit_2023.svg"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Will Pittenger / Gpmat</a>
+        ·
+        <a
+          href="https://creativecommons.org/licenses/by-sa/3.0/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >CC BY-SA 3.0</a>
+      </figcaption>
+
+    </figure>
+
+    <div class="drn-circuit-metrics">
+
+      <div class="drn-circuit-metric">
+        <strong>5.419</strong>
+        <span>KM DE LONGITUD</span>
+      </div>
+
+      <div class="drn-circuit-metric">
+        <strong>16</strong>
+        <span>CURVAS</span>
+      </div>
+
+      <div class="drn-circuit-metric">
+        <strong>57</strong>
+        <span>VUELTAS</span>
+      </div>
+
+    </div>
+
+    <div class="drn-circuit-distance">
+
+      <svg
+        viewBox="0 0 24 24"
+        width="24"
+        height="24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        aria-hidden="true"
+      >
+        <path d="M5 21V3"/>
+        <path d="M5 4h14l-3 5 3 5H5"/>
+      </svg>
+
+      <div>
+        <span>DISTANCIA DE CARRERA</span>
+        <strong>308.611 KM</strong>
+      </div>
+
+    </div>
+
+    <div class="drn-circuit-record">
+      <div>
+        <span>RÉCORD DE VUELTA</span>
+        <strong>1:22.384</strong>
+      </div>
+
+      <div class="drn-circuit-record-driver">
+        <strong>Lando Norris</strong>
+        <span>McLaren · 2024</span>
+      </div>
+    </div>
+
+    <figure class="drn-circuit-photo">
+
+      <img
+        src="/circuito-de-lusail.png"
+        alt="Recreación digital panorámica del circuito de Lusail"
+        loading="lazy"
+        decoding="async"
+      />
+
+      <figcaption>
+        Lusail International Circuit · Recreación digital DRN
+      </figcaption>
+
+    </figure>
+
+    <div class="drn-circuit-source">
+      Datos técnicos:
+      <a
+        href="https://www.formula1.com/en/racing/2026/qatar"
+        target="_blank"
+        rel="noopener noreferrer"
+      >Formula1.com</a>
+    </div>
+
+  </div>
+</section>
+
+<script define:vars={{races}}>
+  (() => {
+
+    const profile = document.querySelector(
+      "[data-drn-circuit-profile]"
+    );
+
+    if (!profile) return;
+
+    function updateProfile() {
+
+      const next = [...races]
+        .sort((a,b) =>
+          Date.parse(a.raceEndUTC) -
+          Date.parse(b.raceEndUTC)
+        )
+        .find(race =>
+          Date.parse(race.raceEndUTC) >= Date.now()
+        );
+
+      const text = next
+        ? `${next.gp} ${next.circuit} ${next.country}`
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g,"")
+            .toLowerCase()
+        : "";
+
+      const isQatar =
+        /qatar|catar|lusail|losail/.test(text);
+
+      profile.hidden = !isQatar;
+
+      document.documentElement.classList.toggle(
+        "drn-circuit-profile-visible",
+        isQatar
+      );
+    }
+
+    updateProfile();
+
+    setInterval(updateProfile,60000);
+
+  })();
+</script>
+
+<style is:global>
+
+  [data-drn-circuit-profile][hidden] {
+    display: none !important;
+  }
+
+  .drn-circuit-profile {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    margin: 26px 0;
+    background: #101114;
+    color: #ffffff;
+    border: 1px solid #393c44;
+    overflow: hidden;
+  }
+
+  .drn-circuit-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background: #ff0000;
+    color: #ffffff;
+    padding: 12px 18px;
+    font-size: 11px;
+    font-weight: 900;
+    font-style: italic;
+    letter-spacing: .04em;
+  }
+
+  .drn-circuit-body {
+    padding: 22px;
+  }
+
+  .drn-circuit-heading {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .drn-circuit-flag {
+    font-size: 36px;
+    flex-shrink: 0;
+  }
+
+  .drn-circuit-kicker {
+    color: #ff4545;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .07em;
+  }
+
+  .drn-circuit-heading h2 {
+    color: #ffffff !important;
+    font-size: clamp(20px,3vw,32px);
+    font-weight: 900;
+    font-style: italic;
+    text-transform: uppercase;
+    line-height: 1.15;
+    margin: 5px 0;
+  }
+
+  .drn-circuit-heading p {
+    color: #bfc2c9 !important;
+    font-size: 13px;
+    margin: 0;
+  }
+
+  .drn-circuit-map {
+    margin: 0 0 15px;
+    padding: 16px;
+    background: #191b21;
+  }
+
+  .drn-circuit-map img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 420px;
+    object-fit: contain;
+    background: #ffffff;
+    border-radius: 0;
+  }
+
+  .drn-circuit-map figcaption,
+  .drn-circuit-photo figcaption,
+  .drn-circuit-source {
+    color: #bfc2c9;
+    font-size: 11px;
+    line-height: 1.5;
+    margin-top: 8px;
+  }
+
+  .drn-circuit-profile a {
+    color: #bfc2c9 !important;
+    text-decoration: underline;
+  }
+
+  .drn-circuit-metrics {
+    display: grid;
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    gap: 8px;
+  }
+
+  .drn-circuit-metric {
+    background: #252830;
+    padding: 18px 14px;
+    border-top: 3px solid #ff0000;
+  }
+
+  .drn-circuit-metric strong {
+    display: block;
+    color: #ffffff;
+    font-size: clamp(22px,4vw,38px);
+    font-style: italic;
+    font-weight: 900;
+    line-height: 1.1;
+  }
+
+  .drn-circuit-metric span,
+  .drn-circuit-distance span,
+  .drn-circuit-record span {
+    display: block;
+    color: #bfc2c9;
+    font-size: 10px;
+    font-weight: 800;
+    margin-top: 6px;
+    letter-spacing: .04em;
+  }
+
+  .drn-circuit-distance {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 0;
+  }
+
+  .drn-circuit-distance svg {
+    color: #ff0000;
+    flex-shrink: 0;
+  }
+
+  .drn-circuit-distance strong {
+    display: block;
+    color: #ffffff;
+    font-size: 21px;
+    font-weight: 900;
+    font-style: italic;
+    margin-top: 4px;
+  }
+
+  .drn-circuit-record {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    background: #252830;
+    border-left: 4px solid #ff8000;
+    padding: 14px;
+    margin-bottom: 20px;
+  }
+
+  .drn-circuit-record strong {
+    display: block;
+    color: #ffffff;
+    font-weight: 900;
+    font-size: 21px;
+    font-style: italic;
+  }
+
+  .drn-circuit-record-driver {
+    text-align: right;
+  }
+
+  .drn-circuit-record-driver strong {
+    font-size: 15px;
+  }
+
+  .drn-circuit-photo {
+    margin: 0;
+    padding-top: 18px;
+    border-top: 1px solid #393c44;
+  }
+
+  .drn-circuit-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+  }
+
+  .drn-circuit-source {
+    margin-top: 16px;
+  }
+
+  /* Evitar duplicar la imagen en el panel superior */
+
+  html.drn-circuit-profile-visible
+  .f1-next-panel figure:has(
+    img[src="/circuito-de-lusail.png"]
+  ) {
+    display: none !important;
+  }
+
+  html.drn-circuit-profile-visible
+  .f1-next-panel.drn-con-circuito {
+    grid-template-columns: minmax(0,1fr) !important;
+  }
+
+  @media(max-width:600px) {
+
+    .drn-circuit-body {
+      padding: 14px;
+    }
+
+    .drn-circuit-heading {
+      gap: 10px;
+    }
+
+    .drn-circuit-flag {
+      font-size: 28px;
+    }
+
+    .drn-circuit-map {
+      padding: 8px;
+    }
+
+    .drn-circuit-metrics {
+      gap: 5px;
+    }
+
+    .drn-circuit-metric {
+      padding: 12px 8px;
+    }
+
+    .drn-circuit-metric span {
+      font-size: 9px;
+    }
+
+    .drn-circuit-record {
+      padding: 12px;
+    }
+
+    .drn-circuit-record-driver strong {
+      font-size: 13px;
+    }
+
+  }
+
+</style>

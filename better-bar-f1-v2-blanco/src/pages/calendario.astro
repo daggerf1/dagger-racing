@@ -10,6 +10,8 @@ const initialNextRace =
         (race) =>
             new Date(race.raceEndUTC).getTime() >= now.getTime()
     ) ?? races[races.length - 1];
+import CircuitProfile from "../components/motorsport/CircuitProfile.astro";
+import "../../public/css/drn-motorsport-pro.css";
 ---
 
 <!doctype html>
@@ -1408,7 +1410,12 @@ const initialNextRace =
     ====================================================== -->
 
 
-    <section class="f1-calendar-section">
+    
+<!-- DRN-MOTORSPORT-PRO-INICIO -->
+<CircuitProfile />
+
+<!-- DRN-MOTORSPORT-PRO-FIN -->
+<section class="f1-calendar-section">
 
 
         <header class="f1-calendar-header">
