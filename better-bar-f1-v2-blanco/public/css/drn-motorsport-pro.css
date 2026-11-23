@@ -1,0 +1,302 @@
+/* DRN MOTORSPORT PRO — ESTILOS INDEPENDIENTES */
+
+.drn-mp {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  margin: 26px 0;
+  background: #101114;
+  color: #fff;
+  border: 1px solid #393c44;
+  font-family: inherit;
+  overflow: hidden;
+}
+
+.drn-mp *,
+.drn-mp *::before,
+.drn-mp *::after {
+  box-sizing: border-box;
+}
+
+.drn-mp [hidden],
+.drn-mp[hidden] {
+  display: none !important;
+}
+
+.drn-mp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 17px;
+  background: #ff0000;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  font-style: italic;
+}
+
+.drn-mp-body {
+  padding: 24px;
+}
+
+.drn-mp-kicker {
+  color: #ff4545;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.drn-mp h2 {
+  margin: 8px 0 15px !important;
+  color: #fff !important;
+  font-size: clamp(21px, 3vw, 34px) !important;
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.drn-mp h3 {
+  margin: 0 !important;
+  color: #fff !important;
+  font-size: 16px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.drn-mp p,
+.drn-mp small {
+  color: #bfc2c9 !important;
+}
+
+.drn-mp p {
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 10px 0 18px;
+}
+
+.drn-mp-metrics {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 8px;
+}
+
+.drn-mp-metrics > div {
+  padding: 16px;
+  background: #252830;
+  border-top: 3px solid #ff0000;
+}
+
+.drn-mp-metrics small {
+  display: block;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.drn-mp-metrics strong {
+  display: block;
+  margin: 8px 0;
+  color: #fff;
+  font-size: clamp(24px,4vw,42px);
+  font-weight: 900;
+  font-style: italic;
+}
+
+.drn-mp-chart {
+  background: #14161b;
+  padding: 8px;
+}
+
+.drn-mp-chart svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.drn-mp-legend {
+  display: grid;
+  gap: 6px;
+  margin-top: 15px;
+}
+
+.drn-mp-legend > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #252830;
+  border-left: 4px solid var(--mp-team);
+  padding: 12px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.drn-mp-details summary {
+  cursor: pointer;
+  padding: 14px;
+  background: #252830;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 900;
+  border-left: 4px solid #ff0000;
+}
+
+.drn-mp-starting-grid {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 12px;
+  padding: 15px 0 40px;
+}
+
+.drn-mp-grid-card {
+  min-width: 0;
+  background: #252830;
+  border-bottom: 4px solid var(--mp-team);
+  padding: 12px;
+}
+
+.drn-mp-grid-card:nth-child(even) {
+  transform: translateY(28px);
+}
+
+.drn-mp-grid-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.drn-mp-grid-top strong {
+  font-size: 34px;
+  font-style: italic;
+  font-weight: 900;
+}
+
+.drn-mp-grid-top span {
+  color: var(--mp-team);
+  font-weight: 900;
+}
+
+.drn-mp-grid-card img,
+.drn-mp-result img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  margin: 10px 0;
+}
+
+.drn-mp-podium-grid {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 10px;
+}
+
+.drn-mp-result {
+  min-width: 0;
+  background: #252830;
+  border-bottom: 4px solid var(--mp-team);
+  overflow: hidden;
+}
+
+.drn-mp-result-1 {
+  grid-column: 1/-1;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  align-items: center;
+}
+
+.drn-mp-result img {
+  margin: 0;
+}
+
+.drn-mp-result-info {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 15px;
+}
+
+.drn-mp-position {
+  font-size: 36px;
+  font-weight: 900;
+  font-style: italic;
+}
+
+.drn-mp-result-1 .drn-mp-position {
+  color: #e8c66c;
+}
+
+.drn-mp-result-2 .drn-mp-position {
+  color: #c5c8ce;
+}
+
+.drn-mp-result-3 .drn-mp-position {
+  color: #c28b62;
+}
+
+.drn-mp-points {
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.drn-mp-result-time {
+  grid-column: 1/-1;
+  padding: 0 15px 14px;
+  color: #bfc2c9;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.drn-mp-link {
+  display: block;
+  margin: 20px 0 10px;
+  color: #ff4545 !important;
+  font-size: 12px;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.drn-mp-source {
+  display: block;
+  margin-top: 15px;
+  font-size: 10px;
+}
+
+@media(max-width: 600px) {
+  .drn-mp-body {
+    padding: 15px;
+  }
+
+  .drn-mp-metrics > div {
+    padding: 10px;
+  }
+
+  .drn-mp-metrics small {
+    font-size: 9px;
+  }
+
+  .drn-mp-result-1 {
+    display: block;
+  }
+
+  .drn-mp-result-info {
+    padding: 10px;
+    gap: 8px;
+  }
+
+  .drn-mp h3 {
+    font-size: 13px;
+  }
+
+  .drn-mp-grid-card {
+    padding: 9px;
+  }
+
+  .drn-mp-position {
+    font-size: 28px;
+  }
+}

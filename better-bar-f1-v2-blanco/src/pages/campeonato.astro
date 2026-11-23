@@ -8,6 +8,8 @@ import { slugifyTeam } from "../lib/f1";
 const driverMap=Object.fromEntries(drivers.map(d=>[d.id,d]));
 const flags={"alexander-albon":"🇹🇭","fernando-alonso":"🇪🇸","kimi-antonelli":"🇮🇹","oliver-bearman":"🇬🇧","gabriel-bortoleto":"🇧🇷","valtteri-bottas":"🇫🇮","franco-colapinto":"🇦🇷","pierre-gasly":"🇫🇷","isack-hadjar":"🇫🇷","lewis-hamilton":"🇬🇧","nico-hulkenberg":"🇩🇪","liam-lawson":"🇳🇿","charles-leclerc":"🇲🇨","arvid-lindblad":"🇬🇧","lando-norris":"🇬🇧","esteban-ocon":"🇫🇷","sergio-perez":"🇲🇽","oscar-piastri":"🇦🇺","george-russell":"🇬🇧","carlos-sainz":"🇪🇸","lance-stroll":"🇨🇦","max-verstappen":"🇳🇱"};
 const pilotos=standings.map(s=>({...s,nombre:driverMap[s.driverId]?.name??s.driverId,bandera:flags[s.driverId]??"🏁",teamSlug:slugifyTeam(s.team)}));
+import ChampionshipChart from "../components/motorsport/ChampionshipChart.astro";
+import "../../public/css/drn-motorsport-pro.css";
 ---
 <!doctype html><html lang="es"><head>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6167283917185567" crossorigin="anonymous"></script><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -46,4 +48,8 @@ body{background:#fff!important;color:#111!important;margin:0}.wrap{max-width:104
 {pilotos.map((p,i)=><div class={`row ${i<3?"top3":""}`}><span class="pos">{p.position}</span><span class="name">{p.bandera} <a href={`/piloto/${p.driverId}`}><strong>{p.nombre}</strong></a></span><span class="team"><a href={`/equipo/${p.teamSlug}`}>{p.team}</a></span><span class="pts">{p.points}</span></div>)}</div></section>
 <section class="panel constructors" id="teams" hidden><div class="table"><div class="row head"><span>POS</span><span>EQUIPO</span><span class="pts">PTS</span></div>
 {constructors.map((t,i)=><div class={`row ${i<3?"top3":""}`}><span class="pos">{t.position}</span><span class="name"><a href={`/equipo/${t.teamId}`}><strong>{t.team}</strong></a></span><span class="pts">{t.points}</span></div>)}</div></section>
+
+<!-- DRN-MOTORSPORT-PRO-INICIO -->
+<ChampionshipChart />
+<!-- DRN-MOTORSPORT-PRO-FIN -->
 </main><Footer/><script is:inline>document.querySelectorAll("[data-tab]").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll("[data-tab]").forEach(x=>x.classList.toggle("active",x===b));document.querySelectorAll(".panel").forEach(p=>p.hidden=p.id!==b.dataset.tab)}))</script></body></html>

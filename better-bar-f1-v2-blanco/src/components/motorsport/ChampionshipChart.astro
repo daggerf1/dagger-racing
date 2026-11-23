@@ -1,0 +1,1362 @@
+---
+import season from "../../data/motorsport/season.json";
+import races from "../../data/f1-data.json";
+import { teamColor } from "./assets";
+
+const history = [...season.history]
+  .sort((a,b) => a.round - b.round);
+
+const latest = history.at(-1);
+
+const allDrivers = new Map();
+
+for (const round of history) {
+  for (const driver of round.drivers) {
+    allDrivers.set(driver.id, driver);
+  }
+}
+
+const currentDrivers = new Map(
+  (latest?.drivers ?? []).map(d => [d.id, d])
+);
+
+const drivers = [...allDrivers.values()]
+  .map(d => currentDrivers.get(d.id) ?? d)
+  .sort((a,b) =>
+    (currentDrivers.get(a.id)?.position ?? 999) -
+    (currentDrivers.get(b.id)?.position ?? 999)
+  );
+
+const teamCounts = new Map();
+
+const series = drivers.map((driver,index) => {
+  const count = teamCounts.get(driver.teamId) ?? 0;
+
+  teamCounts.set(driver.teamId,count + 1);
+
+  return {
+    ...driver,
+    rank: currentDrivers.get(driver.id)?.position ?? null,
+    order: index + 1,
+    color: teamColor(driver.teamId),
+    dash: ["","7 4","2 4","10 4 2 4"][count % 4],
+    values: history.map(round => {
+      const row = round.drivers.find(
+        d => d.id === driver.id
+      );
+
+      return {
+        round: round.round,
+        points: row?.points ?? null,
+        position: row?.position ?? null
+      };
+    })
+  };
+});
+
+const rounds = history.map(round => {
+  const race = races.find(
+    r => Number(r.round) === round.round
+  );
+
+  const name = race?.gp ?? `Gran Premio ${round.round}`;
+
+  const normalized = name
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g,"")
+    .toLowerCase();
+
+  const codes = [
+    ["australia","AUS"],
+    ["china","CHN"],
+    ["japon","JPN"],
+    ["bahrein","BHR"],
+    ["arabia","SAU"],
+    ["miami","MIA"],
+    ["canada","CAN"],
+    ["monaco","MON"],
+    ["barcelona","BCN"],
+    ["austria","AUT"],
+    ["gran bretana","GBR"],
+    ["silverstone","GBR"],
+    ["belgica","BEL"],
+    ["hungria","HUN"],
+    ["paises bajos","NED"],
+    ["italia","ITA"],
+    ["madrid","MAD"],
+    ["azerbaiyan","AZE"],
+    ["singapur","SGP"],
+    ["estados unidos","USA"],
+    ["mexico","MEX"],
+    ["brasil","BRA"],
+    ["sao paulo","BRA"],
+    ["las vegas","LAS"],
+    ["qatar","QAT"],
+    ["catar","QAT"],
+    ["abu dhabi","ABU"]
+  ];
+
+  const short = codes.find(
+    ([key]) => normalized.includes(key)
+  )?.[1] ?? name.slice(0,3).toUpperCase();
+
+  return {
+    round: round.round,
+    name,
+    short
+  };
+});
+
+const groups = [];
+
+const labels = [
+  "Líderes del campeonato",
+  "Zona alta",
+  "Media parrilla",
+  "Zona baja",
+  "Resto de pilotos"
+];
+
+for (let i = 0; i < series.length; i += 5) {
+  const members = series.slice(i,i + 5);
+
+  groups.push({
+    id: `group-${i}`,
+    category: "Por posición en el campeonato",
+    label: `${labels[i / 5] ?? "Otros pilotos"} · P${i + 1}–P${i + members.length}`,
+    ids: members.map(d => d.id)
+  });
+}
+
+const teams = new Map();
+
+for (const driver of series) {
+  if (!driver.teamId) continue;
+
+  const members = teams.get(driver.teamId) ?? [];
+
+  members.push(driver);
+
+  teams.set(driver.teamId,members);
+}
+
+for (const [teamId,members] of teams) {
+  if (members.length < 2) continue;
+
+  const pair = members.slice(0,2);
+
+  groups.push({
+    id: `team-${teamId}`,
+    category: "Duelos por escudería",
+    label: `${pair[0].team} · ${pair[0].surname} vs ${pair[1].surname}`,
+    ids: pair.map(d => d.id)
+  });
+}
+
+const battles = [];
+
+for (let i = 0; i < series.length - 1; i++) {
+  const a = series[i];
+  const b = series[i + 1];
+
+  if (a.rank === null || b.rank === null) continue;
+
+  battles.push({
+    a,
+    b,
+    difference: Math.abs(a.points - b.points)
+  });
+}
+
+battles.sort((a,b) =>
+  a.difference - b.difference ||
+  a.a.order - b.a.order
+);
+
+for (const battle of battles.slice(0,6)) {
+  const {a,b,difference} = battle;
+
+  groups.push({
+    id: `battle-${a.id}-${b.id}`,
+    category: "Batallas más ajustadas",
+    label: `${a.surname} vs ${b.surname} · ${difference} pts`,
+    ids: [a.id,b.id]
+  });
+}
+
+const categories = [
+  ...new Set(groups.map(g => g.category))
+];
+---
+
+<section class="drn-mp" data-mp-comparison>
+
+  <header class="drn-mp-header">
+    <span>DRN / TELEMETRÍA</span>
+    <span>2026</span>
+  </header>
+
+  <div class="drn-mp-body">
+
+    <div class="drn-mp-kicker">
+      CHAMPIONSHIP BATTLE
+    </div>
+
+    <h2>Evolución del campeonato</h2>
+
+    <p>
+      Puntos acumulados después de cada Gran Premio.
+    </p>
+
+    <!-- DRN-NAVEGACION-HORIZONTAL -->
+
+    <nav class="mp-horizontal-navigation"
+         aria-label="Comparativas del campeonato">
+
+      <div class="mp-navigation-modes">
+
+        <button type="button"
+                data-mp-mode="positions"
+                aria-pressed="true">
+          CAMPEONATO
+        </button>
+
+        <button type="button"
+                data-mp-mode="teams"
+                aria-pressed="false">
+          DUELOS
+        </button>
+
+        <button type="button"
+                data-mp-mode="battles"
+                aria-pressed="false">
+          BATALLAS
+        </button>
+
+      </div>
+
+      <div class="mp-navigation-tabs"
+           data-mp-navigation-tabs>
+      </div>
+
+    </nav>
+
+    <div class="mp-comparison-control" hidden>
+      <label for="mp-comparison-select">
+        COMPARATIVA
+      </label>
+
+      <select id="mp-comparison-select">
+        {categories.map(category => (
+          <optgroup label={category}>
+            {groups
+              .filter(g => g.category === category)
+              .map(group => (
+                <option value={group.id}>
+                  {group.label}
+                </option>
+              ))}
+          </optgroup>
+        ))}
+      </select>
+    </div>
+
+    <div class="drn-mp-chart mp-comparison-chart">
+
+      <svg
+        viewBox="0 0 760 310"
+        role="img"
+        aria-label="Comparativa histórica del campeonato"
+        tabindex="0"
+      >
+        <g data-mp-axes></g>
+        <g data-mp-lines></g>
+
+        <line
+          data-mp-crosshair
+          y1="20"
+          y2="270"
+          stroke="#ffffff"
+          stroke-opacity=".6"
+          stroke-dasharray="4 4"
+          visibility="hidden"
+          pointer-events="none"
+        />
+
+        <circle
+          data-mp-dot
+          r="5"
+          stroke="#ffffff"
+          stroke-width="1.5"
+          visibility="hidden"
+          pointer-events="none"
+        />
+
+        <rect
+          data-mp-hit
+          x="48"
+          y="20"
+          width="667"
+          height="250"
+          fill="transparent"
+        />
+      </svg>
+
+      <div class="mp-comparison-tooltip" hidden>
+        <small data-mp-gp></small>
+        <strong data-mp-name></strong>
+        <div data-mp-points></div>
+        <small data-mp-position></small>
+      </div>
+
+    </div>
+
+    <div
+      class="drn-mp-legend"
+      data-mp-legend
+    ></div>
+
+    <small class="drn-mp-source">
+      Datos: Jolpica F1 · Temporada 2026
+    </small>
+
+  </div>
+</section>
+
+<script define:vars={{series,rounds,groups}}>
+  (() => {
+
+    const root = document.querySelector(
+      "[data-mp-comparison]"
+    );
+
+    if (!root || !rounds.length || !groups.length) return;
+
+    const select = root.querySelector("select");
+
+    const navigation = root.querySelector(
+      "[data-mp-navigation-tabs]"
+    );
+
+    const modeButtons = [
+      ...root.querySelectorAll("[data-mp-mode]")
+    ];
+
+    let navigationMode = "positions";
+
+    const navigationCategories = {
+      positions: "Por posición en el campeonato",
+      teams: "Duelos por escudería",
+      battles: "Batallas más ajustadas"
+    };
+
+    const rememberedGroups = {};
+    const chart = root.querySelector(".mp-comparison-chart");
+    const svg = chart.querySelector("svg");
+    const axes = svg.querySelector("[data-mp-axes]");
+    const lines = svg.querySelector("[data-mp-lines]");
+    const hit = svg.querySelector("[data-mp-hit]");
+    const crosshair = svg.querySelector("[data-mp-crosshair]");
+    const dot = svg.querySelector("[data-mp-dot]");
+    const legend = root.querySelector("[data-mp-legend]");
+    const tooltip = root.querySelector(".mp-comparison-tooltip");
+
+    const NS = "http://www.w3.org/2000/svg";
+
+    const left = 48;
+    const right = 715;
+    const top = 20;
+    const bottom = 270;
+
+    let members = [];
+    let scale = 500;
+    let focused = null;
+    let locked = null;
+    let currentRound = rounds.length - 1;
+
+    function x(round) {
+      return left +
+        round / Math.max(rounds.at(-1).round,1) *
+        (right-left);
+    }
+
+    function y(points) {
+      return bottom -
+        points / scale * (bottom-top);
+    }
+
+    function element(tag,attrs={},content=null) {
+      const node = document.createElementNS(NS,tag);
+
+      for (const [key,value] of Object.entries(attrs)) {
+        node.setAttribute(key,String(value));
+      }
+
+      if (content !== null) {
+        node.textContent = content;
+      }
+
+      return node;
+    }
+
+    function getScale() {
+      const maximum = Math.max(
+        1,
+        ...members.flatMap(
+          d => d.values.map(v => v.points ?? 0)
+        )
+      );
+
+      const target = maximum / 4;
+      const magnitude = Math.pow(
+        10,Math.floor(Math.log10(target))
+      );
+
+      const step = [1,2,2.5,5,10]
+        .map(n => n*magnitude)
+        .find(n => n >= target) ?? magnitude*10;
+
+      return Math.max(4,step*4);
+    }
+
+    function drawAxes() {
+      axes.replaceChildren();
+
+      for (let i=0;i<=4;i++) {
+        const value = scale*i/4;
+
+        axes.append(
+          element("line",{
+            x1:left,
+            x2:right,
+            y1:y(value),
+            y2:y(value),
+            stroke:"#383b43"
+          }),
+          element("text",{
+            x:left-9,
+            y:y(value)+4,
+            fill:"#bfc2c9",
+            "font-size":13,
+            "text-anchor":"end"
+          },Number(value.toFixed(2)))
+        );
+      }
+
+      const interval = Math.max(
+        1,Math.ceil(rounds.length/6)
+      );
+
+      rounds.forEach((round,i) => {
+        axes.append(
+          element("line",{
+            x1:x(round.round),
+            x2:x(round.round),
+            y1:top,
+            y2:bottom,
+            stroke:"#252830"
+          })
+        );
+
+        if (
+          i===0 ||
+          (i%interval===0 && i<rounds.length-2) ||
+          i===rounds.length-1
+        ) {
+          axes.append(
+            element("text",{
+              x:x(round.round),
+              y:bottom+22,
+              fill:"#bfc2c9",
+              "font-size":12,
+              "text-anchor":"middle"
+            },round.short)
+          );
+        }
+      });
+    }
+
+    function drawLines() {
+      lines.replaceChildren();
+
+      for (const driver of members) {
+        const group = element("g",{
+          "data-driver-line":driver.id
+        });
+
+        let segment = [];
+
+        function flush() {
+          if (!segment.length) return;
+
+          if (segment.length === 1) {
+            group.append(
+              element("circle",{
+                cx:x(segment[0].round),
+                cy:y(segment[0].points),
+                r:3,
+                fill:driver.color
+              })
+            );
+          } else {
+            group.append(
+              element("polyline",{
+                points:segment.map(v =>
+                  `${x(v.round)},${y(v.points)}`
+                ).join(" "),
+                fill:"none",
+                stroke:driver.color,
+                "stroke-width":3,
+                "stroke-dasharray":driver.dash,
+                "stroke-linejoin":"round",
+                "stroke-linecap":"round"
+              })
+            );
+          }
+
+          segment = [];
+        }
+
+        for (const value of driver.values) {
+          if (value.points === null) {
+            flush();
+          } else {
+            segment.push(value);
+          }
+        }
+
+        flush();
+
+        const last = driver.values
+          .filter(v => v.points !== null)
+          .at(-1);
+
+        if (last) {
+          group.append(
+            element("circle",{
+              cx:x(last.round),
+              cy:y(last.points),
+              r:3.5,
+              fill:driver.color
+            })
+          );
+        }
+
+        lines.append(group);
+      }
+    }
+
+    function highlight(id) {
+      focused = id;
+
+      lines.querySelectorAll("[data-driver-line]")
+        .forEach(line => {
+          const selected =
+            line.dataset.driverLine === id;
+
+          line.style.opacity =
+            !id || selected ? "1" : ".16";
+        });
+
+      legend.querySelectorAll("button")
+        .forEach(button => {
+          const selected =
+            button.dataset.driver === id;
+
+          button.classList.toggle(
+            "mp-driver-active",selected
+          );
+
+          button.setAttribute(
+            "aria-pressed",
+            String(button.dataset.driver === locked)
+          );
+        });
+    }
+
+    function hide() {
+      tooltip.hidden = true;
+
+      crosshair.setAttribute(
+        "visibility","hidden"
+      );
+
+      dot.setAttribute(
+        "visibility","hidden"
+      );
+
+      highlight(locked);
+    }
+
+    function show(driver,index) {
+      const round = rounds[index];
+
+      if (!round) return;
+
+      const value = driver.values.find(
+        v => v.round === round.round
+      );
+
+      if (!value || value.points === null) {
+        hide();
+        return;
+      }
+
+      currentRound = index;
+
+      highlight(driver.id);
+
+      const px = x(round.round);
+      const py = y(value.points);
+
+      crosshair.setAttribute("x1",px);
+      crosshair.setAttribute("x2",px);
+
+      crosshair.setAttribute(
+        "visibility","visible"
+      );
+
+      dot.setAttribute("cx",px);
+      dot.setAttribute("cy",py);
+      dot.setAttribute("fill",driver.color);
+
+      dot.setAttribute(
+        "visibility","visible"
+      );
+
+      tooltip.querySelector(
+        "[data-mp-gp]"
+      ).textContent = round.name;
+
+      const name = tooltip.querySelector(
+        "[data-mp-name]"
+      );
+
+      name.textContent = driver.name;
+      name.style.color = driver.color;
+
+      tooltip.querySelector(
+        "[data-mp-points]"
+      ).textContent = `${value.points} PTS`;
+
+      tooltip.querySelector(
+        "[data-mp-position]"
+      ).textContent = value.position === null
+        ? "Posición no disponible"
+        : `P${value.position} del campeonato`;
+
+      tooltip.hidden = false;
+
+      const matrix = svg.getScreenCTM();
+
+      if (!matrix) return;
+
+      const point = svg.createSVGPoint();
+
+      point.x = px;
+      point.y = py;
+
+      const screen = point.matrixTransform(matrix);
+      const bounds = chart.getBoundingClientRect();
+
+      let offset = screen.x-bounds.left+14;
+
+      if (offset+tooltip.offsetWidth > bounds.width) {
+        offset = screen.x-bounds.left
+          -tooltip.offsetWidth-14;
+      }
+
+      tooltip.style.left = Math.max(
+        4,
+        Math.min(
+          offset,
+          bounds.width-tooltip.offsetWidth-4
+        )
+      )+"px";
+
+      tooltip.style.top = Math.max(
+        4,
+        Math.min(
+          screen.y-bounds.top-35,
+          bounds.height-tooltip.offsetHeight-4
+        )
+      )+"px";
+    }
+
+    function drawLegend() {
+      legend.replaceChildren();
+
+      for (const driver of members) {
+        const button = document.createElement("button");
+
+        button.type = "button";
+        button.className = "mp-comparison-driver";
+        button.dataset.driver = driver.id;
+
+        button.style.setProperty(
+          "--mp-team",driver.color
+        );
+
+        button.setAttribute("aria-pressed","false");
+
+        const name = document.createElement("span");
+
+        name.textContent =
+          `${driver.rank !== null ? driver.rank+". " : ""}${driver.surname}`;
+
+        const points = document.createElement("strong");
+
+        points.textContent = `${driver.points} PTS`;
+
+        button.append(name,points);
+
+        button.addEventListener("pointerenter",event => {
+          if (event.pointerType === "mouse") {
+            highlight(driver.id);
+          }
+        });
+
+        button.addEventListener("pointerleave",() => {
+          highlight(locked);
+        });
+
+        button.addEventListener("click",() => {
+          locked = locked === driver.id
+            ? null
+            : driver.id;
+
+          hide();
+          highlight(locked);
+        });
+
+        legend.append(button);
+      }
+    }
+
+    function navigationLabel(group) {
+      if (group.id.startsWith("group-")) {
+        const first = Number(
+          group.id.replace("group-","")
+        ) + 1;
+
+        const last = first + group.ids.length - 1;
+
+        return first === 1
+          ? "TOP 5"
+          : `P${first}–P${last}`;
+      }
+
+      if (group.id.startsWith("team-")) {
+        return group.label.split(" · ")[0];
+      }
+
+      return group.label;
+    }
+
+    function syncNavigation() {
+      navigation.querySelectorAll("button")
+        .forEach(button => {
+          const active =
+            button.dataset.group === select.value;
+
+          button.setAttribute(
+            "aria-pressed", String(active)
+          );
+        });
+
+      rememberedGroups[navigationMode] =
+        select.value;
+    }
+
+    function drawNavigation() {
+      navigation.replaceChildren();
+
+      const available = groups.filter(group =>
+        group.category ===
+        navigationCategories[navigationMode]
+      );
+
+      for (const group of available) {
+        const button = document.createElement("button");
+
+        button.type = "button";
+        button.className = "mp-navigation-tab";
+        button.dataset.group = group.id;
+
+        button.textContent = navigationLabel(group);
+        button.title = group.label;
+
+        button.setAttribute(
+          "aria-pressed",
+          String(group.id === select.value)
+        );
+
+        button.addEventListener("click", () => {
+          select.value = group.id;
+
+          renderGroup();
+          syncNavigation();
+        });
+
+        navigation.append(button);
+      }
+
+      if (!available.length) {
+        const message = document.createElement("span");
+
+        message.className = "mp-navigation-empty";
+        message.textContent =
+          "No hay comparativas disponibles.";
+
+        navigation.append(message);
+      }
+    }
+
+    function changeNavigationMode(mode) {
+      navigationMode = mode;
+
+      modeButtons.forEach(button => {
+        button.setAttribute(
+          "aria-pressed",
+          String(button.dataset.mpMode === mode)
+        );
+      });
+
+      const available = groups.filter(group =>
+        group.category === navigationCategories[mode]
+      );
+
+      if (!available.length) {
+        drawNavigation();
+
+        members = [];
+        locked = null;
+        focused = null;
+
+        lines.replaceChildren();
+        axes.replaceChildren();
+        legend.replaceChildren();
+
+        hide();
+        return;
+      }
+
+      const previous = available.find(group =>
+        group.id === rememberedGroups[mode]
+      );
+
+      select.value =
+        previous?.id ?? available[0].id;
+
+      drawNavigation();
+      renderGroup();
+      syncNavigation();
+    }
+
+    modeButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        changeNavigationMode(button.dataset.mpMode);
+      });
+    });
+
+    function renderGroup() {
+      const group = groups.find(
+        g => g.id === select.value
+      ) ?? groups[0];
+
+      members = group.ids
+        .map(id => series.find(d => d.id === id))
+        .filter(Boolean);
+
+      locked = null;
+      focused = null;
+
+      scale = getScale();
+
+      drawAxes();
+      drawLines();
+      drawLegend();
+      hide();
+    }
+
+    function track(event) {
+      const matrix = svg.getScreenCTM();
+
+      if (!matrix) return;
+
+      const point = svg.createSVGPoint();
+
+      point.x = event.clientX;
+      point.y = event.clientY;
+
+      const local = point.matrixTransform(
+        matrix.inverse()
+      );
+
+      let index = 0;
+
+      rounds.forEach((round,i) => {
+        if (
+          Math.abs(x(round.round)-local.x) <
+          Math.abs(x(rounds[index].round)-local.x)
+        ) {
+          index = i;
+        }
+      });
+
+      const round = rounds[index];
+
+      const candidates = members
+        .filter(d => !locked || d.id === locked)
+        .map(driver => {
+          const value = driver.values.find(
+            v => v.round === round.round
+          );
+
+          return {
+            driver,
+            value,
+            distance: value?.points == null
+              ? Infinity
+              : Math.abs(y(value.points)-local.y)
+          };
+        })
+        .filter(c => Number.isFinite(c.distance))
+        .sort((a,b) => a.distance-b.distance);
+
+      if (!candidates.length) {
+        hide();
+        return;
+      }
+
+      show(candidates[0].driver,index);
+    }
+
+    select.addEventListener(
+      "change",renderGroup
+    );
+
+    hit.addEventListener(
+      "pointermove",track
+    );
+
+    hit.addEventListener(
+      "pointerdown",track
+    );
+
+    chart.addEventListener("pointerleave",event => {
+      if (event.pointerType === "mouse") hide();
+    });
+
+    document.addEventListener("pointerdown",event => {
+      if (!root.contains(event.target)) hide();
+    });
+
+    svg.addEventListener("keydown",event => {
+      if (event.key === "Escape") {
+        locked = null;
+        hide();
+        return;
+      }
+
+      if (
+        event.key !== "ArrowLeft" &&
+        event.key !== "ArrowRight"
+      ) return;
+
+      event.preventDefault();
+
+      const index = Math.max(
+        0,
+        Math.min(
+          rounds.length-1,
+          currentRound +
+          (event.key === "ArrowRight" ? 1 : -1)
+        )
+      );
+
+      const driver = members.find(
+        d => d.id === (locked ?? focused)
+      ) ?? members[0];
+
+      if (driver) show(driver,index);
+    });
+
+    changeNavigationMode("positions");
+
+  })();
+</script>
+
+<style>
+  .mp-comparison-control {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 16px 0;
+  }
+
+  .mp-comparison-control label {
+    color: #bfc2c9;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .06em;
+  }
+
+  .mp-comparison-control select {
+    flex: 1;
+    min-width: 0;
+    width: 100%;
+    background: #252830;
+    color: #fff;
+    border: 1px solid #393c44;
+    border-left: 3px solid #ff0000;
+    border-radius: 0;
+    padding: 11px;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    color-scheme: dark;
+  }
+
+  .mp-comparison-chart {
+    position: relative;
+  }
+
+  .mp-comparison-chart svg {
+    cursor: crosshair;
+    touch-action: pan-y;
+  }
+
+  .mp-comparison-tooltip {
+    position: absolute;
+    z-index: 5;
+    width: max-content;
+    max-width: 85%;
+    background: #101114;
+    border: 1px solid #555963;
+    border-top: 2px solid #ff0000;
+    padding: 12px;
+    pointer-events: none;
+    color: #fff;
+  }
+
+  .mp-comparison-tooltip small {
+    display: block;
+    font-size: 10px;
+  }
+
+  .mp-comparison-tooltip strong {
+    display: block;
+    font-size: 13px;
+    margin: 7px 0;
+  }
+
+  [data-mp-points] {
+    font-size: 23px;
+    font-weight: 900;
+    font-style: italic;
+    margin: 4px 0;
+  }
+
+  .drn-mp-legend .mp-comparison-driver {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 12px;
+    background: #252830;
+    color: #fff;
+    border: 0;
+    border-left: 4px solid var(--mp-team);
+    padding: 12px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 800;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .drn-mp-legend .mp-driver-active {
+    background: #393c44;
+  }
+
+  .mp-comparison-driver strong {
+    white-space: nowrap;
+  }
+
+  .mp-comparison-driver:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+  }
+
+  @media(max-width:600px) {
+    .mp-comparison-control {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 6px;
+    }
+
+    .mp-comparison-tooltip {
+      padding: 8px;
+    }
+
+    [data-mp-points] {
+      font-size: 19px;
+    }
+  }
+</style>
+
+
+<style is:global>
+
+  [data-mp-comparison] .mp-horizontal-navigation {
+    margin: 18px 0;
+    min-width: 0;
+  }
+
+  [data-mp-comparison] .mp-navigation-modes {
+    display: flex;
+    gap: 14px;
+    border-bottom: 1px solid #393c44;
+    margin-bottom: 12px;
+  }
+
+  [data-mp-comparison] .mp-navigation-modes button {
+    flex: 1;
+    appearance: none;
+    background: transparent;
+    border: 0;
+    border-bottom: 3px solid transparent;
+    border-radius: 0;
+    color: #bfc2c9;
+    padding: 12px 4px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 900;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color .15s, border-color .15s;
+  }
+
+  [data-mp-comparison]
+  .mp-navigation-modes button[aria-pressed="true"] {
+    color: #ffffff;
+    border-bottom-color: #ff0000;
+  }
+
+  [data-mp-comparison] .mp-navigation-tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 5px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+    scrollbar-width: thin;
+    scrollbar-color: #393c44 transparent;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  [data-mp-comparison] .mp-navigation-tab {
+    flex: 1 0 auto;
+    appearance: none;
+    background: #252830;
+    color: #ffffff;
+    border: 0;
+    border-radius: 0;
+    padding: 12px 16px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 900;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background .15s;
+  }
+
+  [data-mp-comparison]
+  .mp-navigation-tab[aria-pressed="true"] {
+    background: #ff0000;
+    color: #ffffff;
+  }
+
+  [data-mp-comparison]
+  .mp-navigation-tab:hover:not([aria-pressed="true"]) {
+    background: #393c44;
+  }
+
+  [data-mp-comparison]
+  .mp-navigation-tab:focus-visible,
+  [data-mp-comparison]
+  .mp-navigation-modes button:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: -2px;
+  }
+
+  [data-mp-comparison] .mp-navigation-empty {
+    color: #bfc2c9;
+    font-size: 12px;
+    padding: 10px;
+  }
+
+  /* Panel inferior: estilo aprobado por DRN */
+
+  [data-mp-comparison] .drn-mp-legend {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  [data-mp-comparison]
+  .drn-mp-legend .mp-comparison-driver {
+    appearance: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 36px;
+    background: #252830;
+    color: #ffffff;
+    border: 0;
+    border-left: 4px solid var(--mp-team, #ffffff);
+    border-radius: 0;
+    padding: 9px 13px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: .025em;
+    text-align: left;
+    cursor: pointer;
+    transition: background .15s;
+  }
+
+  [data-mp-comparison]
+  .mp-comparison-driver span {
+    color: #ffffff;
+    font-weight: 800;
+  }
+
+  [data-mp-comparison]
+  .mp-comparison-driver strong {
+    color: #ffffff;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  [data-mp-comparison]
+  .drn-mp-legend .mp-comparison-driver:hover,
+  [data-mp-comparison]
+  .drn-mp-legend .mp-driver-active {
+    background: #393c44;
+  }
+
+  [data-mp-comparison]
+  .mp-comparison-control[hidden] {
+    display: none !important;
+  }
+
+  @media(max-width: 600px) {
+
+    [data-mp-comparison] .mp-navigation-modes {
+      gap: 7px;
+    }
+
+    [data-mp-comparison]
+    .mp-navigation-modes button {
+      font-size: 11px;
+    }
+
+    [data-mp-comparison] .mp-navigation-tab {
+      padding: 11px 13px;
+      font-size: 11px;
+    }
+
+    [data-mp-comparison]
+    .drn-mp-legend .mp-comparison-driver {
+      font-size: 13px;
+      padding: 9px 10px;
+    }
+
+    [data-mp-comparison] .drn-mp-legend {
+      gap: 8px;
+    }
+
+  }
+
+</style>
+
+<style is:global>
+
+/* DRN - Corrección de contraste en navegación */
+
+[data-mp-comparison] nav.mp-horizontal-navigation {
+  display: block !important;
+  position: static !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  background: #101114 !important;
+  color: #ffffff !important;
+  padding: 0 !important;
+  margin: 18px 0 !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  box-sizing: border-box !important;
+}
+
+[data-mp-comparison] .mp-navigation-modes {
+  display: flex !important;
+  width: 100% !important;
+  background: #101114 !important;
+  margin: 0 0 12px !important;
+  padding: 0 !important;
+  border-bottom: 1px solid #393c44 !important;
+}
+
+[data-mp-comparison] .mp-navigation-modes button {
+  flex: 1 !important;
+  background: #101114 !important;
+  color: #bfc2c9 !important;
+  border: 0 !important;
+  border-bottom: 3px solid transparent !important;
+  box-shadow: none !important;
+  padding: 12px 5px !important;
+  font-weight: 900 !important;
+}
+
+[data-mp-comparison]
+.mp-navigation-modes button[aria-pressed="true"] {
+  color: #ffffff !important;
+  border-bottom-color: #ff0000 !important;
+}
+
+[data-mp-comparison] .mp-navigation-tabs {
+  display: flex !important;
+  width: 100% !important;
+  background: #101114 !important;
+  overflow-x: auto !important;
+  gap: 5px !important;
+  padding: 0 0 5px !important;
+  margin: 0 !important;
+}
+
+[data-mp-comparison] .mp-navigation-tab {
+  background: #252830 !important;
+  color: #ffffff !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+[data-mp-comparison]
+.mp-navigation-tab[aria-pressed="true"] {
+  background: #ff0000 !important;
+  color: #ffffff !important;
+}
+
+[data-mp-comparison]
+.mp-navigation-tab:hover:not([aria-pressed="true"]) {
+  background: #393c44 !important;
+}
+
+</style>
