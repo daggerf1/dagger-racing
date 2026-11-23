@@ -220,7 +220,13 @@ const newsSchema = {
                     <div class="article-kicker">
 
                     <!-- DRN-BREADCRUMBS-HADJAR-LAWSON-FERRARI-2026 -->
-                    {imageSrc?.includes("hamilton-y-leclerc-interlagos-noviembre-2026.png") ? (
+                    {Astro.url.pathname.replace(/\/+$/, "") === "/noticias/verstappen-conquista-las-vegas-2026" ? (
+                        <>
+                            <a href="/">INICIO</a>
+                            <span>/</span>
+                            <a href="/piloto/max-verstappen/">MAX VERSTAPPEN</a>
+                        </>
+                    ) : imageSrc?.includes("hamilton-y-leclerc-interlagos-noviembre-2026.png") ? (
                         <>
                             <a href="/">INICIO</a>
                             <span>/</span>
