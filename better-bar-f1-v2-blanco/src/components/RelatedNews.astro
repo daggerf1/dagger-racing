@@ -1,0 +1,295 @@
+---
+import { getCollection } from "astro:content";
+
+interface Props {
+    tags?: string[];
+    drivers?: string[];
+    teams?: string[];
+}
+
+const {
+    tags = [],
+    drivers = [],
+    teams = []
+} = Astro.props;
+
+const normalizar = (valor: string) =>
+    valor.normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .trim();
+
+const coincidencias = (
+    actuales: string[],
+    candidatos: string[] = []
+) => {
+    const conjunto = new Set(actuales.map(normalizar));
+
+    return [...new Set(candidatos.map(normalizar))]
+        .filter(valor => conjunto.has(valor))
+        .length;
+};
+
+const rutaActual = Astro.url.pathname
+    .replace(/\/+$/, "");
+
+const noticias = await getCollection("noticias");
+
+const relacionadas = noticias
+    .filter(noticia => {
+        const datos = noticia.data;
+        const slug = datos.slug ?? noticia.id.replace(/\.mdx?$/, "");
+
+        return (
+            datos.status === "published" &&
+            new Date(datos.publishedAt).getTime() <= Date.now() &&
+            `/noticias/${slug}` !== rutaActual
+        );
+    })
+    .map(noticia => {
+        const datos = noticia.data;
+
+        const etiquetas = coincidencias(
+            tags,
+            datos.tags ?? []
+        );
+
+        const pilotos = coincidencias(
+            drivers,
+            datos.drivers ?? []
+        );
+
+        const equipos = coincidencias(
+            teams,
+            datos.teams ?? []
+        );
+
+        return {
+            noticia,
+            relevancia:
+                etiquetas * 5 +
+                pilotos * 3 +
+                equipos * 2
+        };
+    })
+    .sort((a, b) =>
+        b.relevancia - a.relevancia ||
+        new Date(b.noticia.data.publishedAt).getTime() -
+        new Date(a.noticia.data.publishedAt).getTime()
+    )
+    .slice(0, 3);
+---
+
+{
+    relacionadas.length > 0 && (
+        <div class="drn-related-grid">
+            {relacionadas.map(({ noticia }) => {
+                const datos = noticia.data;
+                const slug = datos.slug ??
+                    noticia.id.replace(/\.mdx?$/, "");
+
+                return (
+                    <a
+                        class="drn-related-card"
+                        href={`/noticias/${slug}/`}
+                    >
+                        {typeof datos.image === "string" &&
+                            datos.image && (
+                            <img
+                                src={datos.image}
+                                alt={datos.imageAlt || datos.title}
+                                loading="lazy"
+                                decoding="async"
+                                width="640"
+                                height="360"
+                            />
+                        )}
+
+                        <div class="drn-related-info">
+
+                            <time
+                                datetime={new Date(
+                                    datos.publishedAt
+                                ).toISOString()}
+                            >
+                                {new Intl.DateTimeFormat(
+                                    "es-MX",
+                                    {
+                                        day: "numeric",
+                                        month: "long",
+                                        year: "numeric",
+                                        timeZone: "America/Mexico_City"
+                                    }
+                                ).format(new Date(datos.publishedAt))}
+                            </time>
+
+                            <h3>{datos.title}</h3>
+
+                            <span class="drn-related-read">
+                                LEER NOTICIA →
+                            </span>
+
+                        </div>
+                    </a>
+                );
+            })}
+        </div>
+    )
+}
+
+<style>
+
+    .drn-related-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        width: 100%;
+    }
+
+    .drn-related-card {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        overflow: hidden;
+        background: #141519 !important;
+        border: 1px solid #713033;
+        border-radius: 4px;
+        text-decoration: none !important;
+        box-shadow:
+            0 0 9px rgba(255, 0, 0, .13);
+        transition:
+            border-color .2s ease,
+            box-shadow .2s ease;
+    }
+
+    .drn-related-card img {
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        margin: 0;
+        border-bottom: 2px solid #ff0000;
+    }
+
+    .drn-related-info {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        gap: 9px;
+        padding: 12px;
+    }
+
+    .drn-related-info time {
+        color: #bfc2c9 !important;
+        font-size: 10px;
+    }
+
+    .drn-related-info h3 {
+        color: #ff0000 !important;
+        -webkit-text-fill-color: #ff0000 !important;
+        font-family: "Inter", sans-serif;
+        font-size: 15px;
+        font-weight: 800;
+        line-height: 1.4;
+        margin: 0;
+        transition: color .2s ease;
+    }
+
+    .drn-related-read {
+        color: #ff0000 !important;
+        -webkit-text-fill-color: #ff0000 !important;
+        font-size: 10px;
+        font-weight: 800;
+        margin-top: auto;
+        padding-top: 5px;
+    }
+
+    .drn-related-card:hover,
+    .drn-related-card:focus-visible {
+        border-color: #ff0000;
+        box-shadow:
+            0 0 14px rgba(255, 0, 0, .30);
+    }
+
+    .drn-related-card:hover h3,
+    .drn-related-card:hover .drn-related-read,
+    .drn-related-card:focus-visible h3,
+    .drn-related-card:focus-visible .drn-related-read {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+    }
+
+    @media (max-width: 700px) {
+
+        .drn-related-grid {
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .drn-related-card {
+            display: grid;
+            grid-template-columns: 40% minmax(0, 1fr);
+            align-items: center;
+        }
+
+        .drn-related-card img {
+            border-bottom: 0;
+            height: auto;
+        }
+
+        .drn-related-info {
+            padding: 10px;
+            gap: 5px;
+        }
+
+        .drn-related-info h3 {
+            font-size: 12px;
+        }
+
+        .drn-related-read {
+            font-size: 9px;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .drn-related-card,
+        .drn-related-info h3 {
+            transition: none;
+        }
+    }
+
+</style>
+
+
+<style is:global>
+
+/* DRN-RELACIONADAS-BLANCO-INICIO */
+
+html body main .drn-related-card h3 {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    transition: color .2s ease,
+                -webkit-text-fill-color .2s ease;
+}
+
+html body main .drn-related-card:hover h3,
+html body main .drn-related-card:focus-visible h3 {
+    color: #ff0000 !important;
+    -webkit-text-fill-color: #ff0000 !important;
+}
+
+html body main .drn-related-card .drn-related-read {
+    color: #ff0000 !important;
+    -webkit-text-fill-color: #ff0000 !important;
+}
+
+html body main .drn-related-card:hover .drn-related-read,
+html body main .drn-related-card:focus-visible .drn-related-read {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
+
+/* DRN-RELACIONADAS-BLANCO-FIN */
+
+</style>

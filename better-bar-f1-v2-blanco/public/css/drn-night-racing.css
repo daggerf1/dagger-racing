@@ -509,3 +509,22 @@ html body main.profile .hero-p .stat {
 
 /* DRN-PERFIL-COMPACTO-FIN */
 
+
+/* DRN — TITULARES BLANCOS EN NOTICIAS RELACIONADAS */
+
+html body .related-content .drn-related-grid
+a.drn-related-card .drn-related-info h3 {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+}
+
+html body .related-content .drn-related-grid
+a.drn-related-card:hover .drn-related-info h3,
+html body .related-content .drn-related-grid
+a.drn-related-card:focus-visible .drn-related-info h3 {
+    color: #ff0000 !important;
+    -webkit-text-fill-color: #ff0000 !important;
+}
+
