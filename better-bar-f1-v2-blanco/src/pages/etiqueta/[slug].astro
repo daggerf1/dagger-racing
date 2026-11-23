@@ -82,7 +82,7 @@ const formatDate = (date: Date) =>
     <link rel="stylesheet" href="/css/drn-night-racing.css" />
 </head>
 
-  <body>
+  <body class="drn-tag-night">
     <header class="top-header">
       <div class="top-red-line"></div>
       <div class="top-nav">
@@ -281,4 +281,69 @@ const formatDate = (date: Date) =>
       gap: 14px;
     }
   }
+</style>
+
+
+<style is:global>
+
+/* DRN-TAG-RESULTADOS-INICIO */
+
+/* Titulares de las noticias */
+
+html body.drn-tag-night main :is(h2, h3),
+html body.drn-tag-night main :is(h2, h3) a,
+html body.drn-tag-night main a :is(h2, h3) {
+    color: #ff0000 !important;
+    -webkit-text-fill-color: #ff0000 !important;
+    transition: color .20s ease,
+                -webkit-text-fill-color .20s ease;
+}
+
+/* Titulares blancos al colocar el mouse */
+
+html body.drn-tag-night main :is(h2, h3):hover,
+html body.drn-tag-night main :is(h2, h3) a:hover,
+html body.drn-tag-night main a:hover :is(h2, h3),
+html body.drn-tag-night main a:focus-visible :is(h2, h3),
+html body.drn-tag-night main :is(h2, h3) a:focus-visible {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Descripciones legibles */
+
+html body.drn-tag-night main p {
+    color: #bfc2c9 !important;
+    -webkit-text-fill-color: #bfc2c9 !important;
+}
+
+/* Enlaces hacia las noticias */
+
+html body.drn-tag-night main a[href*="/noticias/"] {
+    color: #ff0000 !important;
+    transition: color .20s ease;
+}
+
+html body.drn-tag-night main a[href*="/noticias/"]:hover,
+html body.drn-tag-night main a[href*="/noticias/"]:focus-visible {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Separadores */
+
+html body.drn-tag-night main hr {
+    border-color: #393c44 !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html body.drn-tag-night main a,
+    html body.drn-tag-night main h2,
+    html body.drn-tag-night main h3 {
+        transition: none !important;
+    }
+}
+
+/* DRN-TAG-RESULTADOS-FIN */
+
 </style>
