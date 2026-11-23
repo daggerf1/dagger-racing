@@ -400,3 +400,112 @@ html body main :is(
 
 /* DRN-ETIQUETAS-ROJAS-FIN */
 
+
+
+/* DRN-PERFILES-NIGHT-INICIO */
+
+/* Fichas individuales de pilotos y escuderias */
+
+html body main.profile header.hero-p {
+    background: #141519 !important;
+    color: #ffffff !important;
+    border: 1px solid #a52b30 !important;
+    border-bottom: 3px solid #ff0000 !important;
+    box-shadow:
+        0 0 12px rgba(255,0,0,.24),
+        0 0 24px rgba(255,0,0,.08)
+        !important;
+}
+
+html body main.profile .hero-p h1 {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    text-shadow:
+        0 0 10px rgba(255,255,255,.12);
+}
+
+html body main.profile .hero-p .label {
+    color: #ff4545 !important;
+    -webkit-text-fill-color: #ff4545 !important;
+    text-shadow:
+        0 0 6px rgba(255,0,0,.30);
+}
+
+html body main.profile .hero-p .stat {
+    color: #d5d8df !important;
+    -webkit-text-fill-color: #d5d8df !important;
+}
+
+html body main.profile .hero-p .stat a {
+    color: #ff5555 !important;
+    -webkit-text-fill-color: #ff5555 !important;
+}
+
+html body main.profile .hero-p .stat a:hover {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
+
+/* DRN-PERFILES-NIGHT-FIN */
+
+
+
+/* DRN-PERFIL-COMPACTO-INICIO */
+
+html body main.profile header.hero-p {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 5px !important;
+    padding: 12px 15px !important;
+    margin-top: 14px !important;
+    margin-bottom: 22px !important;
+    min-height: 0 !important;
+    height: auto !important;
+    box-sizing: border-box !important;
+    text-align: center !important;
+}
+
+html body main.profile .hero-p h1 {
+    font-size: 28px !important;
+    line-height: 1.15 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+html body main.profile .hero-p .label {
+    font-size: 10px !important;
+    line-height: 1.2 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+html body main.profile .hero-p .stat {
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+    letter-spacing: 1px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+@media (max-width: 760px) {
+
+    html body main.profile header.hero-p {
+        padding: 10px 8px !important;
+        gap: 4px !important;
+        margin-top: 10px !important;
+        margin-bottom: 16px !important;
+    }
+
+    html body main.profile .hero-p h1 {
+        font-size: 21px !important;
+    }
+
+    html body main.profile .hero-p .stat {
+        font-size: 10px !important;
+    }
+}
+
+/* DRN-PERFIL-COMPACTO-FIN */
+
