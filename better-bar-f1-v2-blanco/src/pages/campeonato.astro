@@ -817,4 +817,58 @@ body.drn-paddock-campeonato {
 
 }
 
+
+/* DRN-TABS-FIX-INICIO */
+
+body.drn-paddock-campeonato
+main.drn-world nav.dw-tabs {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+body.drn-paddock-campeonato
+main.drn-world nav.dw-tabs button[data-dw-tab] {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    background: #191b21 !important;
+    background-color: #191b21 !important;
+    background-image: none !important;
+    color: #bfc2c9 !important;
+    -webkit-text-fill-color: #bfc2c9 !important;
+    border: 0 !important;
+    border-bottom: 3px solid #454851 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    opacity: 1 !important;
+    font-weight: 900 !important;
+    padding: 14px 8px !important;
+}
+
+body.drn-paddock-campeonato
+main.drn-world nav.dw-tabs
+button[data-dw-tab][aria-selected="true"] {
+    background: #101114 !important;
+    background-color: #101114 !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    border-bottom: 3px solid #ff0000 !important;
+}
+
+body.drn-paddock-campeonato
+main.drn-world nav.dw-tabs
+button[data-dw-tab]:hover {
+    background: #292c34 !important;
+}
+
+body.drn-paddock-campeonato
+main.drn-world nav.dw-tabs button::before,
+body.drn-paddock-campeonato
+main.drn-world nav.dw-tabs button::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* DRN-TABS-FIX-FIN */
+
 </style>
