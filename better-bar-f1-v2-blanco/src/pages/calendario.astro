@@ -1233,10 +1233,11 @@ const initialNextRace =
 
     </style>
 
+<link rel="stylesheet" href="/css/drn-paddock-premium.css" />
 </head>
 
 
-<body>
+<body class="drn-paddock drn-paddock-calendario">
 
 
 <MenuNav />
@@ -1251,6 +1252,19 @@ const initialNextRace =
 
 
     <section class="f1-next-panel">
+    <figure id="drn-circuit-photo" hidden>
+        <img
+            src="/circuito-de-lusail.png"
+            alt="Recreación digital del circuito de Lusail"
+            width="1200"
+            height="675"
+            decoding="async"
+        />
+        <figcaption>
+            Recreación digital · DRN
+        </figcaption>
+    </figure>
+
 
 
         <span class="f1-next-badge">
@@ -2025,6 +2039,47 @@ const initialNextRace =
 
 </script>
 
+
+
+<!-- DRN-CIRCUITOS-INICIO -->
+<script is:inline>
+(() => {
+    const panel = document.querySelector(".f1-next-panel");
+    const foto = document.getElementById("drn-circuit-photo");
+
+    if (!panel || !foto) return;
+
+    function actualizarCircuito() {
+        const titulo = panel.querySelector(".f1-next-title");
+
+        const texto = (
+            titulo ? titulo.textContent : panel.textContent
+        ).toLowerCase();
+
+        const esQatar = /qatar|catar|lusail/.test(texto);
+
+        if (foto.hidden === esQatar) {
+            foto.hidden = !esQatar;
+        }
+
+        panel.classList.toggle(
+            "drn-con-circuito",
+            esQatar
+        );
+    }
+
+    actualizarCircuito();
+
+    const observer = new MutationObserver(actualizarCircuito);
+
+    observer.observe(panel, {
+        childList: true,
+        subtree: true,
+        characterData: true
+    });
+})();
+</script>
+<!-- DRN-CIRCUITOS-FIN -->
 
 </body>
 

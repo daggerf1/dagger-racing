@@ -83,6 +83,8 @@ const formatDate = (date: Date) =>
 
     <main class="container drn-home-mobile">
 
+      <div class="drn-editorial-grid">
+
       <!-- DRN-CARRUSEL-NOTICIAS-MOVIL-2026 -->
       {
         noticiasCarrusel.length > 0 && (
@@ -173,7 +175,37 @@ const formatDate = (date: Date) =>
       }
 
 
-      <!-- CRÓNICA DESTACADA -->
+      
+      <aside class="drn-desktop-latest" aria-label="Últimas noticias">
+        <h2>Últimas noticias</h2>
+
+        {todasLasNoticias.slice(5, 9).map((nota) => (
+          <a
+            class="drn-desktop-latest-card"
+            href={`/noticias/${nota.data.slug}/`}
+          >
+            {nota.data.image && (
+              <img
+                src={nota.data.image.startsWith("/")
+                  ? nota.data.image
+                  : `/images/${nota.data.image}`}
+                alt={nota.data.title}
+                loading="lazy"
+              />
+            )}
+            <div>
+              <time datetime={nota.data.publishedAt.toISOString()}>
+                {formatDate(nota.data.publishedAt)}
+              </time>
+              <h3>{nota.data.title}</h3>
+            </div>
+          </a>
+        ))}
+      </aside>
+
+      </div>
+
+<!-- CRÓNICA DESTACADA -->
 
       <div class="drn-cronica-destacada-desktop">
 <div class="section-header">
@@ -267,7 +299,11 @@ const formatDate = (date: Date) =>
       <section class="news-feed">
 
         {
-          notasSecundarias.map((nota) => (
+          notasSecundarias.map((nota, index) => (
+            <div class:list={[
+              "drn-editorial-feed-item",
+              { "drn-editorial-repeated": index < 8 }
+            ]}>
 
             <NewsCard
               fecha={formatDate(
@@ -301,6 +337,7 @@ const formatDate = (date: Date) =>
                   : ""
               }
             />
+            </div>
 
           ))
         }
@@ -585,6 +622,247 @@ const formatDate = (date: Date) =>
   }
 </style>
 
+
+<style>
+/* DRN-EDITORIAL-DESKTOP-2026 */
+
+.drn-desktop-latest {
+  display: none;
+}
+
+.drn-editorial-grid,
+.drn-editorial-feed-item {
+  display: contents;
+}
+
+@media screen and (min-width: 851px) {
+
+  main.drn-home-mobile {
+    width: min(1200px, calc(100% - 48px));
+    margin: 30px auto 0;
+  }
+
+  .drn-editorial-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 2.25fr) minmax(0, 1fr);
+    gap: 26px;
+    align-items: start;
+  }
+
+  .drn-cronica-destacada-desktop {
+    display: none !important;
+  }
+
+  .drn-mobile-news-carousel {
+    --drn-photo-height: clamp(280px, 33vw, 450px);
+    display: block !important;
+    position: relative;
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    background: #101014;
+    border-radius: 6px;
+  }
+
+  .drn-carousel-viewport {
+    display: flex;
+    width: 100%;
+    height: var(--drn-photo-height);
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+  }
+
+  .drn-carousel-viewport::-webkit-scrollbar {
+    display: none;
+  }
+
+  .drn-carousel-slide {
+    flex: 0 0 100%;
+    min-width: 0;
+    position: relative;
+    scroll-snap-align: start;
+  }
+
+  .drn-carousel-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .drn-carousel-link img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Indicadores sobre la fotografía */
+
+  .drn-carousel-indicators {
+    position: absolute;
+    top: calc(var(--drn-photo-height) - 36px);
+    left: 0;
+    right: 0;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    height: 36px;
+    background: transparent;
+  }
+
+  .drn-carousel-indicator {
+    position: relative;
+    appearance: none;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .drn-carousel-indicator::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 13px;
+    height: 4px;
+    border-radius: 4px;
+    background: rgba(255,255,255,.75);
+    box-shadow: 0 1px 4px #000;
+  }
+
+  .drn-carousel-indicator.is-active {
+    width: 48px;
+  }
+
+  .drn-carousel-indicator.is-active::after {
+    background: #e10600;
+  }
+
+  /* Panel negro independiente */
+
+  .drn-carousel-static-caption {
+    display: grid;
+    padding: 22px 25px 26px;
+    background: #101014;
+    color: #fff;
+  }
+
+  .drn-carousel-static-title {
+    grid-area: 1 / 1;
+    visibility: hidden;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .drn-carousel-static-title.is-active {
+    visibility: visible;
+  }
+
+  .drn-carousel-label {
+    display: block;
+    color: #ff4545;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 1.2px;
+    margin-bottom: 10px;
+  }
+
+  .drn-carousel-static-title h2 {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(22px, 2.3vw, 32px);
+    font-weight: 900;
+    line-height: 1.2;
+  }
+
+  .drn-carousel-static-title:hover h2 {
+    color: #ff4545;
+  }
+
+  /* Columna lateral */
+
+  .drn-desktop-latest {
+    display: block;
+    min-width: 0;
+  }
+
+  .drn-desktop-latest > h2 {
+    margin: 0 0 12px;
+    padding: 0 0 12px;
+    border-bottom: 3px solid #e10600;
+    font-size: 21px;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+
+  .drn-desktop-latest-card {
+    display: grid;
+    grid-template-columns: 110px minmax(0, 1fr);
+    align-items: start;
+    gap: 12px;
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd;
+    color: #151515;
+    text-decoration: none;
+  }
+
+  .drn-desktop-latest-card img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 3px;
+  }
+
+  .drn-desktop-latest-card time {
+    display: block;
+    margin-bottom: 5px;
+    color: #777;
+    font-size: 10px;
+  }
+
+  .drn-desktop-latest-card h3 {
+    font-size: 14px;
+    line-height: 1.35;
+    font-weight: 800;
+  }
+
+  .drn-desktop-latest-card:hover h3 {
+    color: #e10600;
+  }
+
+  /* Evitar repetir las noticias de arriba */
+
+  .drn-editorial-repeated {
+    display: none !important;
+  }
+}
+
+@media screen and (min-width: 851px)
+and (prefers-reduced-motion: reduce) {
+  .drn-carousel-viewport {
+    scroll-behavior: auto;
+  }
+}
+</style>
+
 </body>
 
 </html>
+
+<style>
+/* DRN-ENCABEZADO-COMPACTO-DESKTOP-2026 */
+
+@media screen and (min-width: 851px) {
+  main.drn-home-mobile {
+    margin-top: 20px !important;
+  }
+}
+</style>

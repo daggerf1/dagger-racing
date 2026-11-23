@@ -14,9 +14,35 @@ const pilotos=standings.map(s=>({...s,nombre:driverMap[s.driverId]?.name??s.driv
 <title>Campeonato F1 2026 | Dagger Racing News</title><link rel="stylesheet" href="/css/styless.css">
 <style>
 body{background:#fff!important;color:#111!important;margin:0}.wrap{max-width:1040px;margin:42px auto 90px;padding:0 22px}.kicker{color:#e10600;font-weight:900;letter-spacing:.12em;text-transform:uppercase;font-size:.78rem}h1{font-size:clamp(1.8rem,4vw,3rem);margin:.35rem 0 26px;text-transform:uppercase}.tabs{display:flex;gap:8px;margin-bottom:18px}.tabs button{border:1px solid #ddd;background:#fff;padding:10px 16px;font-weight:800;cursor:pointer}.tabs button.active{background:#e10600;color:#fff;border-color:#e10600}.panel[hidden]{display:none}.table{border-top:4px solid #e10600}.row{display:grid;grid-template-columns:60px minmax(160px,1.4fr) minmax(120px,1fr) 90px;align-items:center;gap:12px;padding:14px 12px;border-bottom:1px solid #e8e8e8}.head{font-size:.72rem;font-weight:900;color:#666;background:#f7f7f7}.pos{font-weight:900;font-size:1.2rem}.pts{text-align:right;font-weight:900}.name a,.team a{color:#111;text-decoration:none}.name a:hover,.team a:hover{color:#e10600}.top3{background:linear-gradient(90deg,#fff7f7,#fff)}.constructors .row{grid-template-columns:60px 1fr 90px}@media(max-width:620px){.row{grid-template-columns:42px 1fr 62px}.team{grid-column:2;color:#777;font-size:.82rem}.head .team{display:none}.constructors .row{grid-template-columns:42px 1fr 62px}}
-</style></head><body><MenuNav/><main class="wrap"><div class="kicker">Temporada 2026</div><h1>Tabla de campeonato</h1>
+</style><link rel="stylesheet" href="/css/drn-paddock-premium.css" />
+</head><body class="drn-paddock drn-paddock-campeonato"><MenuNav/><main class="wrap"><header class="drn-champ-heading">
+<div class="kicker">Temporada 2026</div>
+<h1>Tabla de campeonato</h1>
+</header>
 <div class="tabs"><button class="active" data-tab="drivers">Pilotos</button><button data-tab="teams">Constructores</button></div>
-<section class="panel" id="drivers"><div class="table"><div class="row head"><span>POS</span><span>PILOTO</span><span class="team">EQUIPO</span><span class="pts">PTS</span></div>
+<section class="panel" id="drivers">
+<div class="drn-podium" aria-label="Líderes del campeonato">
+{pilotos.slice(0,3).map(p => (
+    <article class="drn-podium-card"
+        style={`--team-color:${
+            p.team.toLowerCase().includes("mercedes") ? "#00d2be" :
+            p.team.toLowerCase().includes("ferrari") ? "#e10600" :
+            p.team.toLowerCase().includes("red bull") ? "#5478ff" :
+            p.team.toLowerCase().includes("mclaren") ? "#ff8000" :
+            "#aeb4bf"
+        }`}>
+        <span class="drn-podium-position">P{p.position}</span>
+        <a class="drn-podium-name" href={`/piloto/${p.driverId}/`}>
+            {p.bandera} {p.nombre}
+        </a>
+        <span class="drn-podium-team">{p.team}</span>
+        <strong class="drn-podium-points">
+            {p.points} <small>PTS</small>
+        </strong>
+    </article>
+))}
+</div>
+<div class="table"><div class="row head"><span>POS</span><span>PILOTO</span><span class="team">EQUIPO</span><span class="pts">PTS</span></div>
 {pilotos.map((p,i)=><div class={`row ${i<3?"top3":""}`}><span class="pos">{p.position}</span><span class="name">{p.bandera} <a href={`/piloto/${p.driverId}`}><strong>{p.nombre}</strong></a></span><span class="team"><a href={`/equipo/${p.teamSlug}`}>{p.team}</a></span><span class="pts">{p.points}</span></div>)}</div></section>
 <section class="panel constructors" id="teams" hidden><div class="table"><div class="row head"><span>POS</span><span>EQUIPO</span><span class="pts">PTS</span></div>
 {constructors.map((t,i)=><div class={`row ${i<3?"top3":""}`}><span class="pos">{t.position}</span><span class="name"><a href={`/equipo/${t.teamId}`}><strong>{t.team}</strong></a></span><span class="pts">{t.points}</span></div>)}</div></section>

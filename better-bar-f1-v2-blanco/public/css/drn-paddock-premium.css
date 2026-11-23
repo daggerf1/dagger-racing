@@ -1,0 +1,765 @@
+
+/* DAGGER RACING NEWS — PADDOCK PREMIUM */
+
+html:has(body.drn-paddock) {
+    background: #e5e7ea !important;
+}
+
+body.drn-paddock {
+    background:
+        linear-gradient(135deg, #f5f6f7, #dfe2e6)
+        !important;
+    min-height: 100vh;
+}
+
+/* PILOTOS */
+
+body.drn-paddock-pilotos .drivers-header {
+    background:
+        linear-gradient(125deg,
+        #101116 0%, #202228 75%,
+        #e10600 75.2%, #e10600 76%,
+        #101116 76.2%) !important;
+    padding: 38px 24px !important;
+    border: 0 !important;
+    border-bottom: 4px solid #e10600 !important;
+    border-radius: 6px;
+    text-align: center;
+}
+
+body.drn-paddock-pilotos .drivers-header h1 {
+    color: #fff !important;
+}
+
+body.drn-paddock-pilotos .drivers-header p {
+    color: #d0d2d6 !important;
+}
+
+body.drn-paddock-pilotos .eyebrow {
+    color: #ff4545 !important;
+}
+
+body.drn-paddock-pilotos .drivers-header::after {
+    display: none !important;
+}
+
+body.drn-paddock-pilotos .driver-card {
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.12);
+}
+
+/* CALENDARIO */
+
+body.drn-paddock-calendario .f1-next-panel {
+    background:
+        linear-gradient(125deg,
+        #101116, #24262d) !important;
+    border-color: #333 !important;
+    border-top: 5px solid #e10600 !important;
+    box-shadow: 0 12px 30px rgba(0,0,0,.15) !important;
+}
+
+body.drn-paddock-calendario .f1-next-title,
+body.drn-paddock-calendario .f1-session-hour,
+body.drn-paddock-calendario .f1-timezone-text strong {
+    color: #fff !important;
+}
+
+body.drn-paddock-calendario .f1-next-circuit,
+body.drn-paddock-calendario .f1-session-date,
+body.drn-paddock-calendario .f1-timezone-text {
+    color: #c4c6cb !important;
+}
+
+body.drn-paddock-calendario .f1-next-date,
+body.drn-paddock-calendario .f1-session-label {
+    color: #ff5555 !important;
+}
+
+body.drn-paddock-calendario
+#f1-session-grid .f1-session-card {
+    background: #292c33 !important;
+    border: 1px solid #454851 !important;
+}
+
+body.drn-paddock-calendario
+#f1-session-grid .f1-race-session {
+    border-color: #e10600 !important;
+    background: #381c20 !important;
+}
+
+body.drn-paddock-calendario .f1-timezone-bar {
+    border-color: #454851 !important;
+}
+
+body.drn-paddock-calendario .f1-calendar-header {
+    background: #14151a !important;
+    border-bottom: 4px solid #e10600 !important;
+}
+
+body.drn-paddock-calendario .f1-race-row {
+    box-shadow: 0 2px 5px rgba(0,0,0,.04) !important;
+}
+
+/* CAMPEONATO */
+
+body.drn-paddock-campeonato .drn-champ-heading {
+    background:
+        linear-gradient(125deg,
+        #101116 0%, #202228 85%,
+        #e10600 85.2%, #e10600 86%,
+        #101116 86.2%);
+    border-bottom: 4px solid #e10600;
+    border-radius: 6px;
+    padding: 30px;
+    margin-bottom: 24px;
+}
+
+body.drn-paddock-campeonato .drn-champ-heading h1 {
+    color: #fff !important;
+    margin-bottom: 0 !important;
+}
+
+body.drn-paddock-campeonato .kicker {
+    color: #ff5555 !important;
+}
+
+body.drn-paddock-campeonato .table {
+    background: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0,0,0,.07);
+}
+
+body.drn-paddock-campeonato .table .head {
+    background: #17191e !important;
+    color: #fff !important;
+}
+
+body.drn-paddock-campeonato .drn-podium {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    gap: 12px;
+    margin: 0 0 25px;
+}
+
+body.drn-paddock-campeonato .drn-podium-card {
+    background: linear-gradient(145deg,#15161b,#292c33);
+    border-top: 4px solid var(--team-color,#e10600);
+    border-radius: 6px;
+    padding: 20px;
+    color: #fff;
+    min-width: 0;
+}
+
+.drn-podium-position {
+    color: #c5c7cd;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.drn-podium-name {
+    display: block;
+    color: #fff !important;
+    font-size: 18px;
+    font-weight: 900;
+    margin: 12px 0 6px;
+}
+
+.drn-podium-team {
+    color: #c5c7cd;
+    font-size: 12px;
+}
+
+.drn-podium-points {
+    display: block;
+    font-size: 30px;
+    font-weight: 900;
+    margin-top: 16px;
+}
+
+.drn-podium-points small {
+    font-size: 11px;
+    color: #c5c7cd;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 600px) {
+    body.drn-paddock-pilotos .drivers-header,
+    body.drn-paddock-campeonato .drn-champ-heading {
+        padding: 25px 16px !important;
+    }
+
+    body.drn-paddock-campeonato .drn-podium {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    body.drn-paddock-campeonato .drn-podium-card {
+        padding: 14px 16px;
+    }
+
+    .drn-podium-name {
+        margin-top: 6px;
+    }
+
+    .drn-podium-points {
+        margin-top: 8px;
+    }
+}
+
+
+/* DRN-NOCTURNO-INICIO */
+
+body.drn-paddock {
+    --drn-red: #ff0808;
+    --drn-dark: #101115;
+    --drn-panel: #191b21;
+    --drn-border: #393c44;
+    --drn-text: #f5f5f7;
+}
+
+/* FONDO GENERAL */
+
+html:has(body.drn-paddock) {
+    background: #252830 !important;
+}
+
+body.drn-paddock {
+    background:
+        radial-gradient(
+            ellipse at top center,
+            #343840 0%,
+            #252830 45%,
+            #1b1d23 100%
+        ) !important;
+
+    background-attachment: fixed !important;
+    color: #f5f5f7 !important;
+    min-height: 100vh;
+}
+
+/* ENCABEZADOS DEPORTIVOS */
+
+body.drn-paddock-pilotos .drivers-header,
+body.drn-paddock-campeonato .drn-champ-heading {
+    background:
+        linear-gradient(
+            125deg,
+            transparent 0%,
+            transparent 76%,
+            #ff0808 76%,
+            #ff0808 77.5%,
+            transparent 77.5%,
+            transparent 79%,
+            #a80000 79%,
+            #a80000 79.5%,
+            transparent 79.5%
+        ),
+        linear-gradient(
+            110deg,
+            #0b0c0f,
+            #20232a
+        ) !important;
+
+    border-bottom: 4px solid #ff0808 !important;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.28) !important;
+}
+
+body.drn-paddock .drivers-header h1,
+body.drn-paddock .drn-champ-heading h1 {
+    color: #ffffff !important;
+}
+
+body.drn-paddock .eyebrow,
+body.drn-paddock .kicker {
+    color: #ff3030 !important;
+    font-weight: 900 !important;
+}
+
+/* PILOTOS */
+
+body.drn-paddock-pilotos .drivers-header p {
+    color: #d5d7dc !important;
+}
+
+body.drn-paddock-pilotos .driver-card {
+    box-shadow:
+        0 5px 18px rgba(0,0,0,.35) !important;
+
+    outline: 1px solid rgba(255,255,255,.10);
+    transition:
+        outline-color .2s ease,
+        box-shadow .2s ease;
+}
+
+body.drn-paddock-pilotos .driver-card:hover {
+    outline-color: #ff0808;
+
+    box-shadow:
+        0 5px 20px rgba(255,8,8,.20) !important;
+}
+
+/* CALENDARIO */
+
+body.drn-paddock-calendario .f1-next-panel {
+    background:
+        linear-gradient(
+            135deg,
+            #101115,
+            #20232b
+        ) !important;
+
+    border: 1px solid #393c44 !important;
+    border-top: 5px solid #ff0808 !important;
+}
+
+body.drn-paddock-calendario .f1-next-title,
+body.drn-paddock-calendario .f1-session-hour {
+    color: #ffffff !important;
+}
+
+body.drn-paddock-calendario .f1-next-date,
+body.drn-paddock-calendario .f1-session-label {
+    color: #ff4545 !important;
+}
+
+body.drn-paddock-calendario
+#f1-session-grid .f1-session-card {
+    background: #292c34 !important;
+    border-color: #454851 !important;
+}
+
+body.drn-paddock-calendario
+#f1-session-grid .f1-race-session {
+    background: #42191e !important;
+    border-color: #ff0808 !important;
+}
+
+body.drn-paddock-calendario .f1-calendar-header {
+    background:
+        linear-gradient(
+            110deg,
+            #a90000,
+            #ff0808
+        ) !important;
+
+    color: #ffffff !important;
+    border-bottom: 3px solid #ff4545 !important;
+}
+
+body.drn-paddock-calendario .f1-race-row,
+body.drn-paddock-calendario .f1-race-row summary {
+    background: #191b21 !important;
+    color: #f5f5f7 !important;
+    border-color: #393c44 !important;
+}
+
+body.drn-paddock-calendario .f1-race-row:hover {
+    border-color: #ff0808 !important;
+}
+
+body.drn-paddock-calendario .f1-race-row summary span {
+    color: #d5d7dc !important;
+}
+
+body.drn-paddock-calendario select {
+    background: #292c34 !important;
+    color: #ffffff !important;
+    border: 1px solid #454851 !important;
+}
+
+/* CAMPEONATO */
+
+body.drn-paddock-campeonato .drn-podium-card {
+    background:
+        linear-gradient(
+            145deg,
+            #101115,
+            #20232b
+        ) !important;
+
+    box-shadow:
+        0 5px 18px rgba(0,0,0,.25);
+}
+
+body.drn-paddock-campeonato .drn-podium-name {
+    text-decoration: none !important;
+    color: #ffffff !important;
+}
+
+body.drn-paddock-campeonato .drn-podium-name:hover {
+    color: #ff4545 !important;
+}
+
+body.drn-paddock-campeonato .drn-podium-points {
+    color: #ffffff !important;
+}
+
+body.drn-paddock-campeonato .table {
+    background: #191b21 !important;
+    color: #f5f5f7 !important;
+    border-top: 4px solid #ff0808 !important;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.25);
+}
+
+body.drn-paddock-campeonato .table .head,
+body.drn-paddock-campeonato .table thead {
+    background: #0d0e12 !important;
+    color: #ffffff !important;
+}
+
+body.drn-paddock-campeonato .table .row,
+body.drn-paddock-campeonato .table tr {
+    background: #191b21 !important;
+    color: #f5f5f7 !important;
+    border-color: #393c44 !important;
+}
+
+body.drn-paddock-campeonato .table .row:nth-child(even),
+body.drn-paddock-campeonato .table tbody tr:nth-child(even) {
+    background: #22252c !important;
+}
+
+body.drn-paddock-campeonato .table .row:hover,
+body.drn-paddock-campeonato .table tbody tr:hover {
+    background: #30333c !important;
+}
+
+body.drn-paddock-campeonato .table .row > *,
+body.drn-paddock-campeonato .table td,
+body.drn-paddock-campeonato .table th,
+body.drn-paddock-campeonato .table a {
+    color: #f5f5f7 !important;
+    border-color: #393c44 !important;
+}
+
+body.drn-paddock-campeonato .table a {
+    text-decoration: none !important;
+}
+
+body.drn-paddock-campeonato .tabs button {
+    background: #191b21 !important;
+    color: #ffffff !important;
+    border-color: #454851 !important;
+}
+
+body.drn-paddock-campeonato .tabs button.active,
+body.drn-paddock-campeonato .tabs button.is-active,
+body.drn-paddock-campeonato .tabs button[aria-selected="true"] {
+    background: #ff0808 !important;
+    border-color: #ff0808 !important;
+    color: #ffffff !important;
+}
+
+/* DRN-NOCTURNO-FIN */
+
+
+
+/* DRN-CALENDARIO-CIRCUITOS-INICIO */
+
+/* PANEL PRINCIPAL */
+
+body.drn-paddock-calendario .f1-next-panel {
+    position: relative !important;
+    overflow: hidden !important;
+    background: #14161b !important;
+    border-top: 5px solid #ff0808 !important;
+}
+
+/* IMAGEN DEL CIRCUITO */
+
+#drn-circuit-photo[hidden] {
+    display: none !important;
+}
+
+#drn-circuit-photo {
+    float: right;
+    position: relative;
+    width: 46%;
+    margin: 0 0 24px 24px;
+    overflow: hidden;
+    border-radius: 5px;
+    background: #090a0d;
+    border: 1px solid #383b43;
+}
+
+#drn-circuit-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+
+#drn-circuit-photo figcaption {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    padding: 4px 7px;
+    background: rgba(0,0,0,.75);
+    color: #ffffff;
+    font-size: 10px;
+    border-radius: 3px;
+}
+
+/* HORARIOS */
+
+body.drn-paddock-calendario #f1-session-grid {
+    clear: both !important;
+    width: 100% !important;
+    margin-top: 24px !important;
+}
+
+body.drn-paddock-calendario
+#f1-session-grid .f1-session-card {
+    background: #292c34 !important;
+    border: 1px solid #454851 !important;
+}
+
+body.drn-paddock-calendario
+#f1-session-grid .f1-session-card * {
+    color: #ffffff !important;
+}
+
+body.drn-paddock-calendario
+#f1-session-grid .f1-session-card > :first-child {
+    color: #ff4545 !important;
+}
+
+body.drn-paddock-calendario
+#f1-session-grid .f1-race-session {
+    background: #40171c !important;
+    border-color: #ff0808 !important;
+}
+
+body.drn-paddock-calendario .f1-next-title {
+    color: #ffffff !important;
+}
+
+body.drn-paddock-calendario .f1-next-date {
+    color: #ff4545 !important;
+}
+
+body.drn-paddock-calendario .f1-next-circuit {
+    color: #d2d4da !important;
+}
+
+/* CALENDARIO COMPLETO */
+
+body.drn-paddock-calendario .f1-calendar-header {
+    background: linear-gradient(
+        115deg,
+        #bd0000,
+        #ff0808
+    ) !important;
+    color: #ffffff !important;
+}
+
+body.drn-paddock-calendario .f1-calendar-header * {
+    color: #ffffff !important;
+}
+
+body.drn-paddock-calendario .f1-race-row,
+body.drn-paddock-calendario .f1-race-row summary,
+body.drn-paddock-calendario .f1-race-row button {
+    background: #191b21 !important;
+    color: #ffffff !important;
+    border-color: #393c44 !important;
+}
+
+body.drn-paddock-calendario .f1-race-row span,
+body.drn-paddock-calendario .f1-race-row strong {
+    color: #e5e6ea !important;
+}
+
+body.drn-paddock-calendario .f1-race-row:hover {
+    border-color: #ff0808 !important;
+}
+
+body.drn-paddock-calendario .f1-next-panel select {
+    background: #292c34 !important;
+    color: #ffffff !important;
+    border: 1px solid #454851 !important;
+    border-radius: 4px;
+}
+
+/* CELULAR */
+
+@media (max-width: 850px) {
+
+    body.drn-paddock-calendario .f1-next-panel {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    body.drn-paddock-calendario .f1-next-panel > * {
+        order: 0;
+    }
+
+    #drn-circuit-photo {
+        float: none !important;
+        width: 100% !important;
+        margin: 18px 0 0 !important;
+        order: 1 !important;
+    }
+
+    body.drn-paddock-calendario #f1-session-grid {
+        order: 2 !important;
+        margin-top: 18px !important;
+    }
+
+    body.drn-paddock-calendario .f1-timezone-bar {
+        order: 3 !important;
+    }
+
+}
+
+/* DRN-CALENDARIO-CIRCUITOS-FIN */
+
+
+
+/* DRN-CALENDARIO-PALETA-INICIO */
+
+body.drn-paddock-calendario {
+    background: #252830 !important;
+    --f1-red: #ff0000 !important;
+}
+
+/* PANEL PRINCIPAL */
+
+body.drn-paddock-calendario .f1-next-panel {
+    background: #14161b !important;
+    border-top: 5px solid #ff0000 !important;
+}
+
+/* TITULO LIMPIO */
+
+body.drn-paddock-calendario .f1-calendar-header {
+    background: #ff0000 !important;
+    border: none !important;
+    border-radius: 5px !important;
+    padding: 16px 18px !important;
+    box-shadow: none !important;
+    text-align: center !important;
+}
+
+body.drn-paddock-calendario
+.f1-calendar-header .f1-calendar-kicker,
+body.drn-paddock-calendario
+.f1-calendar-header .f1-calendar-description {
+    display: none !important;
+}
+
+body.drn-paddock-calendario
+.f1-calendar-header .f1-calendar-title {
+    color: #ffffff !important;
+    font-style: italic !important;
+    font-weight: 900 !important;
+    margin: 0 !important;
+}
+
+/* FILAS OSCURAS */
+
+body.drn-paddock-calendario
+#f1-race-list .f1-race-row {
+    background: #191b21 !important;
+    border: 1px solid #393c44 !important;
+    color: #ffffff !important;
+    box-shadow: none !important;
+}
+
+body.drn-paddock-calendario
+#f1-race-list .f1-race-row span {
+    color: #ffffff !important;
+}
+
+body.drn-paddock-calendario
+#f1-race-list .f1-race-row .f1-race-round {
+    color: #ff4545 !important;
+}
+
+body.drn-paddock-calendario
+#f1-race-list .f1-race-row .f1-race-circuit {
+    color: #bfc2c9 !important;
+}
+
+body.drn-paddock-calendario
+#f1-race-list .f1-race-row:hover {
+    background: #292c34 !important;
+    border-color: #ff0000 !important;
+    transform: none !important;
+}
+
+body.drn-paddock-calendario
+#f1-race-list .f1-race-row.f1-current-race {
+    background: #40171c !important;
+    border-color: #ff0000 !important;
+}
+
+/* SESIONES */
+
+body.drn-paddock-calendario
+#f1-session-grid .f1-session-card {
+    background: #292c34 !important;
+    border-color: #393c44 !important;
+}
+
+body.drn-paddock-calendario
+#f1-session-grid .f1-session-card * {
+    color: #ffffff !important;
+}
+
+body.drn-paddock-calendario
+#f1-session-grid .f1-session-card.f1-race-session,
+body.drn-paddock-calendario
+#f1-session-grid .f1-session-card.f1-race-session:hover {
+    background: #40171c !important;
+    border-color: #ff0000 !important;
+}
+
+body.drn-paddock-calendario
+#f1-session-grid .f1-session-card > :first-child,
+body.drn-paddock-calendario
+#f1-session-grid .f1-session-card.f1-race-session > :first-child {
+    color: #ff4545 !important;
+}
+
+/* DRN-CALENDARIO-PALETA-FIN */
+
+
+
+/* DRN-TITULO-COMPACTO-INICIO */
+
+body.drn-paddock-calendario .f1-calendar-header {
+    padding: 12px 16px !important;
+}
+
+body.drn-paddock-calendario
+.f1-calendar-header .f1-calendar-title {
+    font-size: 22px !important;
+    line-height: 1.2 !important;
+    font-weight: 800 !important;
+    font-style: italic !important;
+    margin: 0 !important;
+}
+
+@media (max-width: 850px) {
+
+    body.drn-paddock-calendario
+    .f1-calendar-header .f1-calendar-title {
+        font-size: 17px !important;
+    }
+
+    body.drn-paddock-calendario .f1-calendar-header {
+        padding: 10px 12px !important;
+    }
+}
+
+/* DRN-TITULO-COMPACTO-FIN */
+
