@@ -10,46 +10,811 @@ const flags={"alexander-albon":"🇹🇭","fernando-alonso":"🇪🇸","kimi-ant
 const pilotos=standings.map(s=>({...s,nombre:driverMap[s.driverId]?.name??s.driverId,bandera:flags[s.driverId]??"🏁",teamSlug:slugifyTeam(s.team)}));
 import ChampionshipChart from "../components/motorsport/ChampionshipChart.astro";
 import "../../public/css/drn-motorsport-pro.css";
+
+import fs from "node:fs";
+import path from "node:path";
+import races from "../data/f1-data.json";
+
+const colores: Record<string, string> = {
+    "mercedes": "#00d2be",
+    "ferrari": "#ff3535",
+    "red-bull-racing": "#5478ff",
+    "mclaren": "#ff8000",
+    "racing-bulls": "#819aff",
+    "alpine": "#ff87bc",
+    "haas-f1-team": "#d5d5d5",
+    "audi": "#d94343",
+    "williams": "#64a4ff",
+    "aston-martin": "#229971",
+    "cadillac": "#c4bbaa"
+};
+
+function colorEquipo(team: string) {
+    return colores[slugifyTeam(team)] ?? "#aeb4bf";
+}
+
+function nombrePiloto(id: string, nombre: string) {
+    if (nombre !== id) return nombre;
+    return id.split("-")
+        .map(p => p.charAt(0).toUpperCase() + p.slice(1))
+        .join(" ");
+}
+
+function imagenMonoplaza(id: string) {
+    const apellido = id.split("-").pop() ?? "";
+    const nombre = `monoplaza_${apellido}_drn_daggerracingnews.png`;
+
+    return fs.existsSync(
+        path.join(process.cwd(), "public", nombre)
+    ) ? `/${nombre}` : "";
+}
+
+const listaPilotos = [...pilotos]
+    .sort((a,b) => a.position - b.position);
+
+const listaEquipos = [...constructors]
+    .sort((a,b) => a.position - b.position);
+
+const liderPilotos = listaPilotos[0];
+const liderEquipos = listaEquipos[0];
+
+const grupos = [
+    {
+        id: "drivers",
+        label: "PILOTO",
+        nombre: nombrePiloto(
+            liderPilotos.driverId,
+            liderPilotos.nombre
+        ),
+        equipo: liderPilotos.team,
+        puntos: liderPilotos.points,
+        ventaja: liderPilotos.points -
+            (listaPilotos[1]?.points ?? liderPilotos.points),
+        color: colorEquipo(liderPilotos.team),
+        imagen: imagenMonoplaza(liderPilotos.driverId),
+        href: `/piloto/${liderPilotos.driverId}/`,
+        filas: listaPilotos.map(p => ({
+            posicion: p.position,
+            nombre: nombrePiloto(p.driverId, p.nombre),
+            equipo: p.team,
+            bandera: p.bandera,
+            puntos: p.points,
+            color: colorEquipo(p.team),
+            href: driverMap[p.driverId]
+                ? `/piloto/${p.driverId}/` : "",
+            equipoHref: `/equipo/${p.teamSlug}/`
+        }))
+    },
+    {
+        id: "teams",
+        label: "ESCUDERÍA",
+        nombre: liderEquipos.team,
+        equipo: "",
+        puntos: liderEquipos.points,
+        ventaja: liderEquipos.points -
+            (listaEquipos[1]?.points ?? liderEquipos.points),
+        color: colorEquipo(liderEquipos.team),
+        imagen: imagenMonoplaza(
+            listaPilotos.find(
+                p => slugifyTeam(p.team) === liderEquipos.teamId
+            )?.driverId ?? ""
+        ),
+        href: `/equipo/${liderEquipos.teamId}/`,
+        filas: listaEquipos.map(t => ({
+            posicion: t.position,
+            nombre: t.team,
+            equipo: "",
+            bandera: "",
+            puntos: t.points,
+            color: colorEquipo(t.team),
+            href: `/equipo/${t.teamId}/`,
+            equipoHref: ""
+        }))
+    }
+];
+
+const totalCarreras = races.length;
+
+const carrerasDisputadas = races.filter(
+    r => new Date(r.raceEndUTC).getTime() <= Date.now()
+).length;
+
+const progreso = totalCarreras
+    ? carrerasDisputadas / totalCarreras * 100
+    : 0;
+
+
 ---
 <!doctype html><html lang="es"><head>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6167283917185567" crossorigin="anonymous"></script><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Campeonato F1 2026 | Dagger Racing News</title><link rel="stylesheet" href="/css/styless.css">
-<style>
-body{background:#fff!important;color:#111!important;margin:0}.wrap{max-width:1040px;margin:42px auto 90px;padding:0 22px}.kicker{color:#e10600;font-weight:900;letter-spacing:.12em;text-transform:uppercase;font-size:.78rem}h1{font-size:clamp(1.8rem,4vw,3rem);margin:.35rem 0 26px;text-transform:uppercase}.tabs{display:flex;gap:8px;margin-bottom:18px}.tabs button{border:1px solid #ddd;background:#fff;padding:10px 16px;font-weight:800;cursor:pointer}.tabs button.active{background:#e10600;color:#fff;border-color:#e10600}.panel[hidden]{display:none}.table{border-top:4px solid #e10600}.row{display:grid;grid-template-columns:60px minmax(160px,1.4fr) minmax(120px,1fr) 90px;align-items:center;gap:12px;padding:14px 12px;border-bottom:1px solid #e8e8e8}.head{font-size:.72rem;font-weight:900;color:#666;background:#f7f7f7}.pos{font-weight:900;font-size:1.2rem}.pts{text-align:right;font-weight:900}.name a,.team a{color:#111;text-decoration:none}.name a:hover,.team a:hover{color:#e10600}.top3{background:linear-gradient(90deg,#fff7f7,#fff)}.constructors .row{grid-template-columns:60px 1fr 90px}@media(max-width:620px){.row{grid-template-columns:42px 1fr 62px}.team{grid-column:2;color:#777;font-size:.82rem}.head .team{display:none}.constructors .row{grid-template-columns:42px 1fr 62px}}
-</style><link rel="stylesheet" href="/css/drn-paddock-premium.css" />
-</head><body class="drn-paddock drn-paddock-campeonato"><MenuNav/><main class="wrap"><header class="drn-champ-heading">
-<div class="kicker">Temporada 2026</div>
-<h1>Tabla de campeonato</h1>
-</header>
-<div class="tabs"><button class="active" data-tab="drivers">Pilotos</button><button data-tab="teams">Constructores</button></div>
-<section class="panel" id="drivers">
-<div class="drn-podium" aria-label="Líderes del campeonato">
-{pilotos.slice(0,3).map(p => (
-    <article class="drn-podium-card"
-        style={`--team-color:${
-            p.team.toLowerCase().includes("mercedes") ? "#00d2be" :
-            p.team.toLowerCase().includes("ferrari") ? "#e10600" :
-            p.team.toLowerCase().includes("red bull") ? "#5478ff" :
-            p.team.toLowerCase().includes("mclaren") ? "#ff8000" :
-            "#aeb4bf"
-        }`}>
-        <span class="drn-podium-position">P{p.position}</span>
-        <a class="drn-podium-name" href={`/piloto/${p.driverId}/`}>
-            {p.bandera} {p.nombre}
-        </a>
-        <span class="drn-podium-team">{p.team}</span>
-        <strong class="drn-podium-points">
-            {p.points} <small>PTS</small>
-        </strong>
-    </article>
-))}
-</div>
-<div class="table"><div class="row head"><span>POS</span><span>PILOTO</span><span class="team">EQUIPO</span><span class="pts">PTS</span></div>
-{pilotos.map((p,i)=><div class={`row ${i<3?"top3":""}`}><span class="pos">{p.position}</span><span class="name">{p.bandera} <a href={`/piloto/${p.driverId}`}><strong>{p.nombre}</strong></a></span><span class="team"><a href={`/equipo/${p.teamSlug}`}>{p.team}</a></span><span class="pts">{p.points}</span></div>)}</div></section>
-<section class="panel constructors" id="teams" hidden><div class="table"><div class="row head"><span>POS</span><span>EQUIPO</span><span class="pts">PTS</span></div>
-{constructors.map((t,i)=><div class={`row ${i<3?"top3":""}`}><span class="pos">{t.position}</span><span class="name"><a href={`/equipo/${t.teamId}`}><strong>{t.team}</strong></a></span><span class="pts">{t.points}</span></div>)}</div></section>
+<link rel="stylesheet" href="/css/drn-paddock-premium.css" />
+</head>
 
-<!-- DRN-MOTORSPORT-PRO-INICIO -->
-<ChampionshipChart />
-<!-- DRN-MOTORSPORT-PRO-FIN -->
-</main><Footer/><script is:inline>document.querySelectorAll("[data-tab]").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll("[data-tab]").forEach(x=>x.classList.toggle("active",x===b));document.querySelectorAll(".panel").forEach(p=>p.hidden=p.id!==b.dataset.tab)}))</script></body></html>
+<body class="drn-paddock drn-paddock-campeonato">
+
+<MenuNav />
+
+<main class="drn-world">
+
+    <header class="dw-header">
+
+        <div class="dw-brand">
+            <span>DRN / CHAMPIONSHIP</span>
+            <span>TEMPORADA 2026</span>
+        </div>
+
+        <h1>CAMPEONATO MUNDIAL</h1>
+
+    </header>
+
+    <section class="dw-progress">
+
+        <span class="dw-muted">
+            PROGRESO DE LA TEMPORADA
+        </span>
+
+        <div class="dw-progress-info">
+            <strong>
+                {carrerasDisputadas} / {totalCarreras}
+            </strong>
+            <span>GRANDES PREMIOS</span>
+        </div>
+
+        <div class="dw-progress-track"
+             role="progressbar"
+             aria-label="Progreso de temporada"
+             aria-valuenow={carrerasDisputadas}
+             aria-valuemin="0"
+             aria-valuemax={totalCarreras}>
+
+            <div style={`width:${progreso}%`}></div>
+
+        </div>
+
+    </section>
+
+    <nav class="dw-tabs"
+         role="tablist"
+         aria-label="Clasificaciones">
+
+        <button type="button"
+                id="dw-tab-drivers"
+                role="tab"
+                aria-selected="true"
+                aria-controls="dw-drivers"
+                data-dw-tab="drivers">
+
+            PILOTOS
+
+        </button>
+
+        <button type="button"
+                id="dw-tab-teams"
+                role="tab"
+                aria-selected="false"
+                aria-controls="dw-teams"
+                tabindex="-1"
+                data-dw-tab="teams">
+
+            CONSTRUCTORES
+
+        </button>
+
+    </nav>
+
+    {grupos.map(grupo => (
+
+        <section class="dw-panel"
+                 id={`dw-${grupo.id}`}
+                 role="tabpanel"
+                 aria-labelledby={`dw-tab-${grupo.id}`}
+                 hidden={grupo.id !== "drivers"}>
+
+            <article class="dw-leader"
+                     style={`--dw-team:${grupo.color}`}>
+
+                <div class="dw-leader-info">
+
+                    <span class="dw-leader-label">
+                        01 / LÍDER DEL MUNDIAL
+                    </span>
+
+                    <h2>
+                        <a href={grupo.href}>
+                            {grupo.nombre}
+                        </a>
+                    </h2>
+
+                    {grupo.equipo && (
+                        <span class="dw-muted">
+                            {grupo.equipo}
+                        </span>
+                    )}
+
+                    <div class="dw-leader-points">
+                        {grupo.puntos}
+                        <small>PTS</small>
+                    </div>
+
+                    <span class="dw-advantage">
+                        {grupo.ventaja > 0
+                            ? `+${grupo.ventaja} puntos de ventaja`
+                            : "Empate en puntos"}
+                    </span>
+
+                </div>
+
+                {grupo.imagen && (
+                    <div class="dw-leader-image">
+                        <img src={grupo.imagen}
+                             alt={`Monoplaza de ${grupo.nombre}`}
+                             decoding="async" />
+                    </div>
+                )}
+
+            </article>
+
+            <div class="dw-table">
+
+                <div class="dw-table-head">
+                    <span>POS</span>
+                    <span>{grupo.label}</span>
+                    <span>BRECHA</span>
+                    <span>PTS</span>
+                </div>
+
+                {grupo.filas.map(fila => (
+
+                    <article class="dw-row"
+                             style={`--dw-team:${fila.color}`}>
+
+                        <div class="dw-row-info">
+
+                            <strong class="dw-position">
+                                {String(fila.posicion).padStart(2,"0")}
+                            </strong>
+
+                            <div class="dw-identity">
+
+                                <span class="dw-name">
+
+                                    {fila.bandera && (
+                                        <span class="dw-flag">
+                                            {fila.bandera}
+                                        </span>
+                                    )}
+
+                                    {fila.href ? (
+                                        <a href={fila.href}>
+                                            {fila.nombre}
+                                        </a>
+                                    ) : fila.nombre}
+
+                                </span>
+
+                                {fila.equipo && (
+                                    <a class="dw-team-name"
+                                       href={fila.equipoHref}>
+                                        {fila.equipo}
+                                    </a>
+                                )}
+
+                            </div>
+
+                            <span class="dw-gap">
+
+                                {fila.posicion === 1
+                                    ? "—"
+                                    : grupo.puntos === fila.puntos
+                                    ? "0"
+                                    : `−${grupo.puntos - fila.puntos}`}
+
+                            </span>
+
+                            <strong class="dw-points">
+                                {fila.puntos}
+                            </strong>
+
+                        </div>
+
+                        <div class="dw-points-track"
+                             aria-hidden="true">
+
+                            <div style={`width:${
+                                grupo.puntos > 0
+                                    ? fila.puntos / grupo.puntos * 100
+                                    : 0
+                            }%`}></div>
+
+                        </div>
+
+                    </article>
+
+                ))}
+
+            </div>
+
+            <p class="dw-note">
+                Brecha de puntos respecto al líder del campeonato.
+            </p>
+
+        </section>
+
+    ))}
+
+    <!-- DRN-MOTORSPORT-PRO-INICIO -->
+    <ChampionshipChart />
+    <!-- DRN-MOTORSPORT-PRO-FIN -->
+
+</main>
+
+<Footer />
+
+<script is:inline>
+    (() => {
+
+        const tabs = Array.from(
+            document.querySelectorAll("[data-dw-tab]")
+        );
+
+        const panels = document.querySelectorAll(
+            ".dw-panel"
+        );
+
+        function seleccionar(tab) {
+
+            tabs.forEach(button => {
+                const activo = button === tab;
+
+                button.setAttribute(
+                    "aria-selected",
+                    String(activo)
+                );
+
+                button.tabIndex = activo ? 0 : -1;
+            });
+
+            panels.forEach(panel => {
+                panel.hidden =
+                    panel.id !== `dw-${tab.dataset.dwTab}`;
+            });
+        }
+
+        tabs.forEach((tab, index) => {
+
+            tab.addEventListener("click", () => {
+                seleccionar(tab);
+            });
+
+            tab.addEventListener("keydown", event => {
+
+                let destino;
+
+                if (event.key === "ArrowRight") {
+                    destino = (index + 1) % tabs.length;
+                } else if (event.key === "ArrowLeft") {
+                    destino = (index - 1 + tabs.length) % tabs.length;
+                } else if (event.key === "Home") {
+                    destino = 0;
+                } else if (event.key === "End") {
+                    destino = tabs.length - 1;
+                } else {
+                    return;
+                }
+
+                event.preventDefault();
+
+                seleccionar(tabs[destino]);
+                tabs[destino].focus();
+            });
+
+        });
+
+    })();
+</script>
+
+</body>
+</html>
+
+<style is:global>
+
+body.drn-paddock-campeonato {
+    background: #252830 !important;
+}
+
+.drn-world {
+    max-width: 1040px;
+    width: 100%;
+    margin: 30px auto 70px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    color: #fff;
+}
+
+.drn-world [hidden] {
+    display: none !important;
+}
+
+.drn-world .dw-header {
+    background: #101114;
+    border-top: 4px solid #ff0000;
+    padding: 24px;
+    margin-bottom: 12px;
+}
+
+.drn-world .dw-brand {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    font-size: 10px;
+    font-weight: 900;
+}
+
+.drn-world .dw-brand span:first-child {
+    color: #ff4545;
+}
+
+.drn-world .dw-header h1 {
+    color: #fff !important;
+    font-size: clamp(23px, 4vw, 38px);
+    line-height: 1.1;
+    font-weight: 900;
+    font-style: italic;
+    letter-spacing: -.025em;
+    margin: 18px 0 0;
+}
+
+.drn-world .dw-progress {
+    background: #191b21;
+    border: 1px solid #393c44;
+    padding: 18px;
+    margin-bottom: 22px;
+}
+
+.drn-world .dw-muted {
+    color: #bfc2c9;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.drn-world .dw-progress-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 8px 0 12px;
+}
+
+.drn-world .dw-progress-info strong {
+    font-size: 25px;
+    font-weight: 900;
+    font-style: italic;
+}
+
+.drn-world .dw-progress-info span {
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.drn-world .dw-progress-track {
+    height: 5px;
+    background: #393c44;
+}
+
+.drn-world .dw-progress-track > div {
+    height: 100%;
+    background: #ff0000;
+}
+
+.drn-world .dw-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.drn-world .dw-tabs button {
+    background: transparent !important;
+    color: #bfc2c9 !important;
+    border: 0 !important;
+    border-bottom: 3px solid #454851 !important;
+    border-radius: 0 !important;
+    padding: 12px 5px;
+    font-size: 13px;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.drn-world .dw-tabs button[aria-selected="true"] {
+    color: #fff !important;
+    border-bottom-color: #ff0000 !important;
+}
+
+.drn-world .dw-leader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #191b21;
+    border: 1px solid #393c44;
+    border-top: 4px solid var(--dw-team);
+    margin-bottom: 18px;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.drn-world .dw-leader-info {
+    flex: 1;
+    min-width: 0;
+    padding: 22px;
+}
+
+.drn-world .dw-leader-label {
+    display: block;
+    color: var(--dw-team);
+    font-size: 11px;
+    font-weight: 900;
+    margin-bottom: 12px;
+}
+
+.drn-world .dw-leader h2 {
+    font-size: clamp(21px, 4vw, 34px);
+    font-style: italic;
+    font-weight: 900;
+    line-height: 1.05;
+    text-transform: uppercase;
+    margin: 0 0 5px;
+}
+
+.drn-world .dw-leader h2 a {
+    color: #fff !important;
+    text-decoration: none;
+}
+
+.drn-world .dw-leader-points {
+    font-size: clamp(32px, 5vw, 48px);
+    line-height: 1;
+    font-weight: 900;
+    font-style: italic;
+    margin: 14px 0 8px;
+}
+
+.drn-world .dw-leader-points small {
+    font-size: 13px;
+    font-style: normal;
+}
+
+.drn-world .dw-advantage {
+    font-size: 12px;
+    color: #bfc2c9;
+}
+
+.drn-world .dw-leader-image {
+    width: 48%;
+    flex-shrink: 0;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.drn-world .dw-leader-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 220px;
+    object-fit: contain;
+}
+
+.drn-world .dw-table {
+    display: grid;
+    gap: 4px;
+}
+
+.drn-world .dw-table-head,
+.drn-world .dw-row-info {
+    display: grid;
+    grid-template-columns:
+        42px minmax(0,1fr) 76px 65px;
+    align-items: center;
+    gap: 12px;
+}
+
+.drn-world .dw-table-head {
+    padding: 8px 12px;
+    font-size: 10px;
+    font-weight: 900;
+    color: #bfc2c9;
+}
+
+.drn-world .dw-table-head span:nth-last-child(-n+2) {
+    text-align: right;
+}
+
+.drn-world .dw-row {
+    background: #191b21;
+    padding: 10px 12px 8px;
+    min-width: 0;
+    border: 1px solid #393c44;
+}
+
+.drn-world .dw-row:nth-child(odd) {
+    background: #22252c;
+}
+
+.drn-world .dw-row:hover {
+    background: #30333c;
+}
+
+.drn-world .dw-position {
+    font-size: 20px;
+    font-weight: 900;
+    font-style: italic;
+}
+
+.drn-world .dw-identity {
+    min-width: 0;
+    border-left: 3px solid var(--dw-team);
+    padding-left: 10px;
+}
+
+.drn-world .dw-name {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+.drn-world .dw-name a {
+    color: #fff !important;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+}
+
+.drn-world .dw-flag {
+    flex-shrink: 0;
+    font-size: 14px;
+}
+
+.drn-world .dw-team-name {
+    display: block;
+    color: #bfc2c9 !important;
+    text-decoration: none;
+    font-size: 11px;
+    line-height: 1.3;
+    margin-top: 3px;
+}
+
+.drn-world .dw-gap {
+    color: #bfc2c9;
+    font-size: 12px;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.drn-world .dw-points {
+    color: #fff;
+    font-size: 21px;
+    font-weight: 900;
+    font-style: italic;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.drn-world .dw-points-track {
+    height: 3px;
+    margin-top: 8px;
+    background: #393c44;
+}
+
+.drn-world .dw-points-track > div {
+    height: 100%;
+    background: var(--dw-team);
+}
+
+.drn-world .dw-note {
+    color: #bfc2c9 !important;
+    font-size: 11px;
+    margin: 12px 0 28px;
+}
+
+.drn-world .dw-tabs button:focus-visible,
+.drn-world .dw-panel a:focus-visible {
+    outline: 2px solid #ff4545;
+    outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+
+    .drn-world {
+        padding: 0 10px;
+        margin-top: 16px;
+    }
+
+    .drn-world .dw-header {
+        padding: 16px 12px;
+    }
+
+    .drn-world .dw-brand {
+        font-size: 9px;
+    }
+
+    .drn-world .dw-progress {
+        padding: 12px;
+    }
+
+    .drn-world .dw-leader-info {
+        padding: 14px 10px;
+    }
+
+    .drn-world .dw-leader-label {
+        font-size: 9px;
+    }
+
+    .drn-world .dw-leader-image {
+        width: 39%;
+        padding: 4px;
+    }
+
+    .drn-world .dw-leader h2 {
+        font-size: 21px;
+        overflow-wrap: anywhere;
+    }
+
+    .drn-world .dw-advantage {
+        font-size: 10px;
+    }
+
+    .drn-world .dw-table-head,
+    .drn-world .dw-row-info {
+        grid-template-columns:
+            26px minmax(0,1fr) 44px 42px;
+        gap: 7px;
+    }
+
+    .drn-world .dw-table-head {
+        padding: 7px 8px;
+        font-size: 9px;
+    }
+
+    .drn-world .dw-row {
+        padding: 8px 7px 6px;
+    }
+
+    .drn-world .dw-position {
+        font-size: 17px;
+    }
+
+    .drn-world .dw-identity {
+        padding-left: 6px;
+    }
+
+    .drn-world .dw-name {
+        font-size: 12px;
+        gap: 4px;
+    }
+
+    .drn-world .dw-flag {
+        font-size: 12px;
+    }
+
+    .drn-world .dw-team-name {
+        font-size: 10px;
+    }
+
+    .drn-world .dw-gap {
+        font-size: 10px;
+    }
+
+    .drn-world .dw-points {
+        font-size: 18px;
+    }
+
+    .drn-world .dw-points-track {
+        height: 3px;
+        margin-top: 6px;
+    }
+
+}
+
+</style>
