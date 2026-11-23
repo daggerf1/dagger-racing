@@ -1,0 +1,53 @@
+name: Actualizar clasificación F1
+
+on:
+  schedule:
+    - cron: "7,22,37,52 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: actualizar-campeonato-f1
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    defaults:
+      run:
+        working-directory: better-bar-f1-v2-blanco
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Consultar clasificaciones F1
+        run: npm run update:f1
+
+      - name: Guardar y publicar puntos
+        run: |
+          git add -- src/data/f1-drivers-champions.json
+          git add -- src/data/f1-constructors-championship.json
+
+          if git diff --cached --quiet; then
+            echo "Los puntos ya estan actualizados."
+            exit 0
+          fi
+
+          npm ci
+          npm run build
+
+          git config user.name "dagger-f1-bot"
+          git config user.email "actions@users.noreply.github.com"
+
+          git commit -m "Actualizacion automatica de puntos F1"
+          git push origin main
