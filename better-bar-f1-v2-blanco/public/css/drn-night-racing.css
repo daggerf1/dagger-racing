@@ -211,7 +211,7 @@ html body.drn-paddock-calendario
 
 html body.drn-paddock-pilotos
 .driver-card {
-    background: #141519 !important;
+    background-color: #141519 !important;
     border-color: #393c44;
     box-shadow:
         0 0 9px rgba(255,255,255,.07)
