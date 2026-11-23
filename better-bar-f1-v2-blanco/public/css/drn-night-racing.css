@@ -1,0 +1,402 @@
+
+/* DAGGER RACING NEWS — NIGHT RACING 2026 */
+
+:root {
+    --drn-night: #090a0c;
+    --drn-card: #141519;
+    --drn-panel: #191b21;
+    --drn-border: #393c44;
+    --drn-red: #ff0000;
+    --drn-white: #ffffff;
+    --drn-muted: #bfc2c9;
+}
+
+/* FONDO GENERAL */
+
+html,
+html:has(body.drn-paddock),
+html body,
+html body.drn-paddock,
+html body.drn-paddock-campeonato,
+html body.drn-paddock-calendario,
+html body.drn-paddock-pilotos {
+    background: #090a0c !important;
+    background-image: none !important;
+    color: #ffffff !important;
+    min-height: 100vh;
+}
+
+html body main,
+html body main.container,
+html body .drn-editorial-grid {
+    background-color: transparent !important;
+    color: #ffffff !important;
+}
+
+/* TITULARES Y TEXTOS */
+
+html body main h1,
+html body main h2,
+html body main h3,
+html body main h4 {
+    color: #ffffff !important;
+}
+
+html body main p,
+html body main li {
+    color: #e0e2e6;
+}
+
+html body main a {
+    color: #ffffff;
+}
+
+html body main a:hover {
+    color: #ff5555;
+}
+
+html body main time,
+html body main figcaption,
+html body main .dw-note,
+html body main .dw-table-head,
+html body .drn-identity-route,
+html body .drn-identity-route a,
+html body .drn-identity-signature {
+    color: #bfc2c9 !important;
+}
+
+/* TARJETAS EDITORIALES */
+
+html body main :is(
+    .news-card,
+    .article-card,
+    .noticia-card,
+    .cronica-card,
+    .card,
+    .drn-latest-item,
+    .drn-sidebar-item
+) {
+    background: #141519 !important;
+    color: #ffffff !important;
+    border: 1px solid #393c44 !important;
+    box-shadow:
+        0 0 7px rgba(255,0,0,.09),
+        inset 0 0 1px rgba(255,255,255,.12)
+        !important;
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease;
+}
+
+html body main :is(
+    .news-card,
+    .article-card,
+    .noticia-card,
+    .cronica-card,
+    .card
+) :is(h2,h3,h4,strong,a) {
+    color: #ffffff !important;
+}
+
+/* CARRUSEL PRINCIPAL */
+
+html body .drn-mobile-news-carousel {
+    background: #101114 !important;
+    outline: 1px solid #a52b30;
+    box-shadow:
+        0 0 12px rgba(255,0,0,.17)
+        !important;
+}
+
+html body .drn-carousel-static-caption {
+    background: #101114 !important;
+}
+
+html body .drn-carousel-static-title {
+    color: #ffffff !important;
+}
+
+/* SECCIONES EDITORIALES */
+
+html body main .section-header {
+    background: transparent !important;
+    border-bottom: 2px solid #ff0000;
+}
+
+html body main .section-header h2 {
+    color: #ffffff !important;
+}
+
+/* CAMPEONATO */
+
+html body.drn-paddock-campeonato
+.drn-world .dw-header,
+html body.drn-paddock-campeonato
+.drn-world .dw-progress {
+    box-shadow:
+        0 0 12px rgba(255,0,0,.12)
+        !important;
+}
+
+html body.drn-paddock-campeonato
+.drn-world .dw-leader {
+    border-color: var(--dw-team,#393c44) !important;
+    box-shadow:
+        0 0 12px color-mix(
+            in srgb,
+            var(--dw-team,#ff0000) 18%,
+            transparent
+        ) !important;
+}
+
+html body.drn-paddock-campeonato
+.drn-world .dw-row {
+    border-color: #393c44 !important;
+    box-shadow:
+        inset 2px 0 0 var(--dw-team,#393c44),
+        0 0 6px color-mix(
+            in srgb,
+            var(--dw-team,#ff0000) 9%,
+            transparent
+        ) !important;
+}
+
+html body.drn-paddock-campeonato
+.drn-world .dw-tabs button {
+    background: #191b21 !important;
+    color: #bfc2c9 !important;
+    -webkit-text-fill-color: #bfc2c9 !important;
+}
+
+html body.drn-paddock-campeonato
+.drn-world .dw-tabs button[aria-selected="true"] {
+    background: #101114 !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    border-bottom: 3px solid #ff0000 !important;
+    box-shadow: 0 0 9px rgba(255,0,0,.14);
+}
+
+/* CALENDARIO */
+
+html body.drn-paddock-calendario
+.f1-next-panel {
+    box-shadow:
+        0 0 15px rgba(255,0,0,.17)
+        !important;
+}
+
+html body.drn-paddock-calendario
+.f1-session-card {
+    border-color: #454851 !important;
+    box-shadow:
+        0 0 5px rgba(255,255,255,.06)
+        !important;
+}
+
+html body.drn-paddock-calendario
+.f1-race-session {
+    border-color: #a52b30 !important;
+    box-shadow:
+        0 0 10px rgba(255,0,0,.18)
+        !important;
+}
+
+html body.drn-paddock-calendario
+.f1-calendar-section > h2 {
+    color: #ffffff !important;
+}
+
+/* PILOTOS */
+
+html body.drn-paddock-pilotos
+.driver-card {
+    background: #141519 !important;
+    border-color: #393c44;
+    box-shadow:
+        0 0 9px rgba(255,255,255,.07)
+        !important;
+}
+
+/* MODULOS MOTORSPORT */
+
+html body .drn-mp,
+html body .drn-circuit-profile {
+    box-shadow:
+        0 0 12px rgba(255,0,0,.12)
+        !important;
+}
+
+/* LECTURA DE NOTICIAS */
+
+html body main :is(
+    .article-header,
+    .article-content,
+    .article-body,
+    .article-container,
+    .article-wrapper,
+    .news-article,
+    .profile
+) {
+    background-color: transparent !important;
+    color: #e0e2e6 !important;
+}
+
+html body main :is(
+    .article-content,
+    .article-body
+) :is(p,li,blockquote) {
+    color: #e0e2e6 !important;
+}
+
+html body main :is(
+    .article-content,
+    .article-body
+) a {
+    color: #ff6666 !important;
+}
+
+html body main :is(
+    .article-content,
+    .article-body
+) blockquote {
+    background: #191b21 !important;
+    border-left-color: #ff0000 !important;
+}
+
+/* TABLAS Y PAGINAS INFORMATIVAS */
+
+html body main table {
+    background: #141519 !important;
+    color: #ffffff !important;
+}
+
+html body main :is(td,th) {
+    background-color: #191b21 !important;
+    color: #ffffff !important;
+    border-color: #393c44 !important;
+}
+
+/* PIE DE PAGINA */
+
+html body footer {
+    background: #101114 !important;
+    color: #bfc2c9 !important;
+    border-top: 1px solid #393c44;
+}
+
+html body footer a {
+    color: #e0e2e6 !important;
+}
+
+/* ILUMINACION AL PASAR EL CURSOR */
+
+@media (hover: hover) {
+
+    html body main :is(
+        .news-card,
+        .article-card,
+        .noticia-card,
+        .cronica-card,
+        .card,
+        .driver-card
+    ):hover {
+        border-color: #ff4545 !important;
+        box-shadow:
+            0 0 15px rgba(255,0,0,.22)
+            !important;
+    }
+
+    html body .dw-row:hover {
+        border-color: var(--dw-team,#ff0000) !important;
+        box-shadow:
+            0 0 12px color-mix(
+                in srgb,
+                var(--dw-team,#ff0000) 22%,
+                transparent
+            ) !important;
+    }
+}
+
+/* ILUMINACION DISCRETA EN MOVIL */
+
+@media (max-width: 760px) {
+
+    html body main :is(
+        .news-card,
+        .article-card,
+        .noticia-card,
+        .cronica-card,
+        .driver-card
+    ) {
+        box-shadow:
+            0 0 5px rgba(255,0,0,.08)
+            !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    html body main :is(
+        .news-card,
+        .article-card,
+        .driver-card,
+        .card
+    ) {
+        transition: none !important;
+    }
+}
+
+
+
+/* DRN-ETIQUETAS-ROJAS-INICIO */
+
+html body main :is(
+    .tags a,
+    .tags .tag,
+    .article-tags a,
+    .article-tags .tag,
+    .news-tags a,
+    .noticia-tags a,
+    .tag-list a,
+    .tag-container a,
+    .tag,
+    .hashtag,
+    a[href*="/tags/"],
+    a[href*="/tag/"],
+    a[href*="/etiquetas/"]
+) {
+    background: #d90000 !important;
+    background-image: none !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    border: 1px solid #ff3030 !important;
+    box-shadow:
+        0 0 6px rgba(255,0,0,.30),
+        inset 0 0 4px rgba(255,255,255,.06)
+        !important;
+    text-decoration: none !important;
+}
+
+html body main :is(
+    .tags a,
+    .article-tags a,
+    .news-tags a,
+    .noticia-tags a,
+    .tag-list a,
+    .tag-container a,
+    .tag,
+    .hashtag,
+    a[href*="/tags/"],
+    a[href*="/tag/"],
+    a[href*="/etiquetas/"]
+):hover {
+    background: #ff0000 !important;
+    color: #ffffff !important;
+    box-shadow:
+        0 0 12px rgba(255,0,0,.55)
+        !important;
+}
+
+/* DRN-ETIQUETAS-ROJAS-FIN */
+

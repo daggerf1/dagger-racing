@@ -28,6 +28,8 @@ const formatDate = (date: Date) =>
     month: "long",
     year: "numeric",
   }).format(date);
+import RacePodium from "../components/motorsport/RacePodium.astro";
+import "../../public/css/drn-motorsport-pro.css";
 ---
 
 <!DOCTYPE html>
@@ -58,7 +60,10 @@ const formatDate = (date: Date) =>
       rel="stylesheet"
       href="/css/global.css"
     />
-  </head>
+  
+    <!-- DRN-NIGHT-RACING -->
+    <link rel="stylesheet" href="/css/drn-night-racing.css" />
+</head>
 
   <body>
 
@@ -83,7 +88,10 @@ const formatDate = (date: Date) =>
 
     <main class="container drn-home-mobile">
 
-      <div class="drn-editorial-grid">
+      
+<RacePodium />
+
+<div class="drn-editorial-grid">
 
       <!-- DRN-CARRUSEL-NOTICIAS-MOVIL-2026 -->
       {
@@ -292,7 +300,11 @@ const formatDate = (date: Date) =>
            CRÓNICAS ANTERIORES
       ========================= -->
 
-      <div class="section-header">
+      
+<!-- DRN-MOTORSPORT-PRO-INICIO -->
+
+<!-- DRN-MOTORSPORT-PRO-FIN -->
+<div class="section-header">
         <h2>Crónicas Anteriores</h2>
       </div>
 

@@ -439,3 +439,268 @@ import races from "../../data/f1-data.json";
   }
 
 </style>
+
+
+<style is:global>
+
+/* DRN-LUSAIL-NIGHT-INICIO */
+
+/* Ficha técnica compacta */
+
+.drn-circuit-profile {
+    background: #101114 !important;
+    border: 1px solid #633035 !important;
+    box-shadow:
+        0 0 15px rgba(255,0,0,.13)
+        !important;
+}
+
+.drn-circuit-profile .drn-lusail-technical {
+    display: grid !important;
+    grid-template-columns:
+        minmax(0,1fr) minmax(0,1fr);
+    align-items: stretch;
+    gap: 14px;
+    margin: 14px 0 !important;
+}
+
+/* Trazado técnico */
+
+.drn-circuit-profile .drn-lusail-map {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+    margin: 0 !important;
+    padding: 14px !important;
+    box-sizing: border-box;
+    background: #090a0c !important;
+    border: 1px solid #393c44 !important;
+    box-shadow: 0 0 8px rgba(255,255,255,.05);
+}
+
+.drn-circuit-profile .drn-lusail-map img {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: 270px !important;
+    object-fit: contain !important;
+    background: #ffffff !important;
+
+    /* Convertir el fondo blanco en negro
+       y las líneas oscuras en claras. */
+
+    filter: invert(1) grayscale(1);
+    mix-blend-mode: screen;
+}
+
+.drn-circuit-profile .drn-lusail-map figcaption {
+    margin-top: 8px !important;
+    color: #aeb1ba !important;
+    font-size: 9px !important;
+    line-height: 1.4;
+}
+
+/* Datos técnicos */
+
+.drn-circuit-profile .drn-lusail-data {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+    min-width: 0;
+}
+
+.drn-circuit-profile .drn-lusail-data > * {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    min-width: 0;
+}
+
+/* Fotografía protagonista */
+
+.drn-circuit-profile .drn-lusail-photo {
+    margin: 12px 0 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    background: #090a0c !important;
+    border: 1px solid #913038 !important;
+    box-shadow:
+        0 0 14px rgba(255,0,0,.17)
+        !important;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.drn-circuit-profile .drn-lusail-photo img {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    object-fit: contain !important;
+    margin: 0 !important;
+    filter: none !important;
+}
+
+.drn-circuit-profile .drn-lusail-photo figcaption {
+    padding: 8px 12px !important;
+    color: #bfc2c9 !important;
+    font-size: 10px !important;
+}
+
+/* Pantallas pequeñas */
+
+@media (max-width: 600px) {
+
+    .drn-circuit-profile .drn-lusail-technical {
+        grid-template-columns:
+            minmax(0,1fr);
+        gap: 8px;
+        margin: 8px 0 !important;
+    }
+
+    .drn-circuit-profile .drn-lusail-map {
+        padding: 10px !important;
+    }
+
+    .drn-circuit-profile .drn-lusail-map img {
+        max-height: 180px !important;
+    }
+
+    .drn-circuit-profile .drn-lusail-data {
+        gap: 6px;
+    }
+
+    .drn-circuit-profile .drn-lusail-photo {
+        margin-top: 8px !important;
+    }
+}
+
+/* DRN-LUSAIL-NIGHT-FIN */
+
+</style>
+
+<!-- DRN-LUSAIL-SCRIPT-INICIO -->
+
+<script is:inline>
+(() => {
+    function organizarFicha() {
+        const ficha = document.querySelector(
+            ".drn-circuit-profile"
+        );
+
+        if (!ficha) return;
+
+        if (ficha.querySelector(
+            ".drn-lusail-technical"
+        )) return;
+
+        const mapa = ficha.querySelector(
+            'img[src*="lusail-trazado.svg"]'
+        );
+
+        const foto = ficha.querySelector(
+            'img[src*="circuito-de-lusail.png"]'
+        );
+
+        if (!mapa || !foto) return;
+
+        const bloqueMapa =
+            mapa.closest("figure") ||
+            mapa.parentElement;
+
+        const bloqueFoto =
+            foto.closest("figure") ||
+            foto.parentElement;
+
+        // Encontrar el contenedor compartido
+        // del mapa, los datos y la fotografía.
+
+        let contenedor = bloqueMapa.parentElement;
+
+        while (
+            contenedor &&
+            contenedor !== ficha &&
+            !contenedor.contains(bloqueFoto)
+        ) {
+            contenedor = contenedor.parentElement;
+        }
+
+        if (!contenedor) return;
+
+        function hijoDirecto(elemento) {
+            let nodo = elemento;
+
+            while (
+                nodo &&
+                nodo.parentElement !== contenedor
+            ) {
+                nodo = nodo.parentElement;
+            }
+
+            return nodo;
+        }
+
+        const inicio = hijoDirecto(bloqueMapa);
+        const final = hijoDirecto(bloqueFoto);
+
+        if (!inicio || !final || inicio === final) {
+            console.warn(
+                "DRN: estructura de ficha no compatible."
+            );
+            return;
+        }
+
+        const datos = [];
+        let siguiente = inicio.nextElementSibling;
+
+        while (siguiente && siguiente !== final) {
+            datos.push(siguiente);
+            siguiente = siguiente.nextElementSibling;
+        }
+
+        if (siguiente !== final || !datos.length) {
+            console.warn(
+                "DRN: no se localizaron los datos técnicos."
+            );
+            return;
+        }
+
+        const tecnico = document.createElement("div");
+        tecnico.className = "drn-lusail-technical";
+
+        const columnaDatos = document.createElement("div");
+        columnaDatos.className = "drn-lusail-data";
+
+        inicio.classList.add("drn-lusail-map");
+        final.classList.add("drn-lusail-photo");
+
+        contenedor.insertBefore(tecnico, inicio);
+
+        tecnico.appendChild(inicio);
+
+        datos.forEach(nodo => {
+            columnaDatos.appendChild(nodo);
+        });
+
+        tecnico.appendChild(columnaDatos);
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener(
+            "DOMContentLoaded",
+            organizarFicha,
+            { once: true }
+        );
+    } else {
+        organizarFicha();
+    }
+
+    document.addEventListener(
+        "astro:page-load",
+        organizarFicha
+    );
+})();
+</script>
+
+<!-- DRN-LUSAIL-SCRIPT-FIN -->

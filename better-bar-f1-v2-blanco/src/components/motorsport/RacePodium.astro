@@ -1,0 +1,521 @@
+---
+import season from "../../data/motorsport/season.json";
+import { carImage, teamColor } from "./assets";
+
+const race = season.latestRace;
+const podium = race.podium;
+---
+
+<section class="drn-mp drn-mp-podium">
+  <header class="drn-mp-header">
+    <span>DRN / RACE RESULTS</span>
+    <span>R{race.round}</span>
+  </header>
+
+  <div class="drn-mp-body">
+    <div class="drn-mp-kicker">{race.name}</div>
+
+    <h2>Último Gran Premio</h2>
+
+    <div class="drn-mp-podium-grid">
+      {podium.map(driver => {
+        const image = carImage(driver.surname);
+
+        return (
+          <article
+            class={`drn-mp-result drn-mp-result-${driver.position}`}
+            style={`--mp-team:${teamColor(driver.teamId)}`}
+          >
+            {image && (
+              <img
+                src={image}
+                alt={`Monoplaza ilustrativo de ${driver.name}`}
+                loading="lazy"
+                decoding="async"
+              />
+            )}
+
+            <div class="drn-mp-result-info">
+              <strong class="drn-mp-position">
+                {String(driver.position).padStart(2,"0")}
+              </strong>
+
+              <div>
+                <h3>{driver.name}</h3>
+                <small>{driver.team}</small>
+              </div>
+
+              <strong class="drn-mp-points">
+                {driver.points} PTS
+              </strong>
+            </div>
+
+            <div class="drn-mp-result-time">
+              {driver.time}
+            </div>
+          </article>
+        );
+      })}
+    </div>
+
+    <a class="drn-mp-link" href="/campeonato/">
+      VER CAMPEONATO COMPLETO →
+    </a>
+
+    <small class="drn-mp-source">
+      Datos: Jolpica F1 · Imágenes ilustrativas DRN
+    </small>
+  </div>
+</section>
+
+
+<style is:global>
+
+/* DRN-PODIO-COMPACTO-INICIO */
+
+html body main .drn-mp-podium {
+    margin: 0 0 18px !important;
+    padding: 0 !important;
+    background: #101114 !important;
+    border: 1px solid #393c44 !important;
+    box-shadow: 0 0 10px rgba(255,0,0,.10) !important;
+    box-sizing: border-box;
+}
+
+html body .drn-mp-podium .drn-mp-header {
+    padding: 6px 12px !important;
+    font-size: 10px !important;
+    min-height: 0 !important;
+}
+
+html body .drn-mp-podium .drn-mp-body {
+    padding: 10px 12px !important;
+}
+
+html body .drn-mp-podium h2 {
+    font-size: 16px !important;
+    line-height: 1.2 !important;
+    margin: 4px 0 10px !important;
+    font-style: italic;
+    text-transform: uppercase;
+}
+
+html body .drn-mp-podium .drn-mp-kicker {
+    font-size: 10px !important;
+    margin: 0 0 4px !important;
+}
+
+html body .drn-mp-podium .drn-compact-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3,minmax(0,1fr)) !important;
+    gap: 10px !important;
+    align-items: stretch !important;
+}
+
+html body .drn-mp-podium .drn-compact-card {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-column: auto !important;
+    grid-row: auto !important;
+    grid-template-columns: none !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: #141519 !important;
+    border: 1px solid var(--drn-medal) !important;
+    border-radius: 3px !important;
+    box-shadow: 0 0 8px var(--drn-medal-glow) !important;
+    overflow: hidden;
+}
+
+html body .drn-mp-podium .drn-compact-card:nth-child(1) {
+    --drn-medal: #d4af37;
+    --drn-medal-glow: rgba(212,175,55,.22);
+}
+
+html body .drn-mp-podium .drn-compact-card:nth-child(2) {
+    --drn-medal: #aeb4be;
+    --drn-medal-glow: rgba(174,180,190,.15);
+}
+
+html body .drn-mp-podium .drn-compact-card:nth-child(3) {
+    --drn-medal: #b77e50;
+    --drn-medal-glow: rgba(183,126,80,.18);
+}
+
+/* Monoplazas pequeños, sin deformar la imagen. */
+
+html body .drn-mp-podium .drn-compact-card img {
+    display: block !important;
+    width: 100% !important;
+    height: 90px !important;
+    max-height: 90px !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    background: #101114 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+html body .drn-mp-podium .drn-compact-card > * {
+    min-width: 0 !important;
+    max-width: 100% !important;
+}
+
+html body .drn-mp-podium .drn-compact-card strong {
+    font-size: 12px !important;
+    line-height: 1.2 !important;
+    color: #fff !important;
+}
+
+html body .drn-mp-podium .drn-compact-card small {
+    font-size: 10px !important;
+    color: #bfc2c9 !important;
+}
+
+html body .drn-mp-podium .drn-compact-card p {
+    font-size: 10px !important;
+    margin: 3px 8px !important;
+}
+
+html body .drn-mp-podium .drn-compact-card
+.drn-compact-info {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 5px !important;
+    padding: 6px !important;
+    margin: 0 !important;
+    text-align: center !important;
+    min-height: 0 !important;
+}
+
+html body .drn-mp-podium .drn-compact-card
+.drn-compact-position {
+    font-size: 22px !important;
+    font-weight: 900 !important;
+    font-style: italic;
+    color: var(--drn-medal) !important;
+}
+
+html body .drn-mp-podium .drn-compact-card
+.drn-compact-time {
+    font-size: 10px !important;
+    text-align: center !important;
+    padding: 3px 5px !important;
+    margin: 0 !important;
+    color: #bfc2c9 !important;
+}
+
+@media (max-width: 760px) {
+
+    html body .drn-mp-podium {
+        margin-bottom: 12px !important;
+    }
+
+    html body .drn-mp-podium .drn-mp-body {
+        padding: 7px !important;
+    }
+
+    html body .drn-mp-podium .drn-compact-grid {
+        grid-template-columns: repeat(3,minmax(0,1fr)) !important;
+        gap: 5px !important;
+    }
+
+    html body .drn-mp-podium .drn-compact-card img {
+        height: 65px !important;
+        max-height: 65px !important;
+    }
+
+    html body .drn-mp-podium .drn-compact-card strong {
+        font-size: 10px !important;
+        overflow-wrap: anywhere;
+    }
+
+    html body .drn-mp-podium .drn-compact-card small {
+        font-size: 9px !important;
+    }
+
+    html body .drn-mp-podium .drn-compact-card
+    .drn-compact-info {
+        padding: 4px !important;
+        gap: 3px !important;
+    }
+
+    html body .drn-mp-podium .drn-compact-card
+    .drn-compact-position {
+        font-size: 17px !important;
+    }
+
+    html body .drn-mp-podium .drn-compact-card
+    .drn-compact-time {
+        font-size: 9px !important;
+    }
+}
+
+/* DRN-PODIO-COMPACTO-FIN */
+
+</style>
+
+
+<!-- DRN-PODIO-SCRIPT-INICIO -->
+
+<script is:inline>
+(() => {
+    function compactarPodio() {
+
+        document.querySelectorAll(
+            ".drn-mp-podium"
+        ).forEach(podio => {
+
+            const imagenes = Array.from(
+                podio.querySelectorAll(
+                    'img[src*="monoplaza_"]'
+                )
+            );
+
+            if (imagenes.length !== 3) return;
+
+            let tarjetas = imagenes.map(
+                img => img.closest("article")
+            );
+
+            if (
+                tarjetas.some(t => !t) ||
+                new Set(tarjetas).size !== 3 ||
+                !tarjetas.every(
+                    t => t.parentElement === tarjetas[0].parentElement
+                )
+            ) {
+                // Localizar las tres tarjetas aunque
+                // utilicen div en lugar de article.
+
+                let padre = imagenes[0].parentElement;
+
+                while (
+                    padre &&
+                    padre !== podio &&
+                    !imagenes.every(img => padre.contains(img))
+                ) {
+                    padre = padre.parentElement;
+                }
+
+                if (!padre) return;
+
+                tarjetas = imagenes.map(img => {
+                    let nodo = img;
+
+                    while (
+                        nodo &&
+                        nodo.parentElement !== padre
+                    ) {
+                        nodo = nodo.parentElement;
+                    }
+
+                    return nodo;
+                });
+            }
+
+            if (
+                tarjetas.some(t => !t) ||
+                new Set(tarjetas).size !== 3
+            ) return;
+
+            const grid = tarjetas[0].parentElement;
+
+            if (!tarjetas.every(
+                t => t.parentElement === grid
+            )) return;
+
+            grid.classList.add("drn-compact-grid");
+
+            tarjetas.forEach(tarjeta => {
+
+                tarjeta.classList.add(
+                    "drn-compact-card"
+                );
+
+                Array.from(
+                    tarjeta.children
+                ).forEach(hijo => {
+
+                    if (hijo.matches("img")) return;
+
+                    if (hijo.querySelector("img")) return;
+
+                    const texto = hijo.textContent.trim();
+
+                    if (
+                        /^\+?[\d:.]+$/.test(texto)
+                    ) {
+                        hijo.classList.add(
+                            "drn-compact-time"
+                        );
+                    } else {
+                        hijo.classList.add(
+                            "drn-compact-info"
+                        );
+                    }
+                });
+
+                tarjeta.querySelectorAll(
+                    "span, strong, b"
+                ).forEach(elemento => {
+
+                    if (
+                        /^(01|02|03)$/.test(
+                            elemento.textContent.trim()
+                        )
+                    ) {
+                        elemento.classList.add(
+                            "drn-compact-position"
+                        );
+                    }
+                });
+            });
+        });
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener(
+            "DOMContentLoaded",
+            compactarPodio,
+            { once: true }
+        );
+    } else {
+        compactarPodio();
+    }
+
+    document.addEventListener(
+        "astro:page-load",
+        compactarPodio
+    );
+})();
+</script>
+
+<!-- DRN-PODIO-SCRIPT-FIN -->
+
+<style is:global>
+
+/* DRN-PODIO-LUZ-INICIO */
+
+/* Contorno luminoso del módulo */
+
+html body main .drn-mp.drn-mp-podium {
+    border: 1px solid #b90000 !important;
+    border-radius: 5px !important;
+    box-shadow:
+        0 0 12px rgba(255,0,0,.28),
+        0 0 24px rgba(255,0,0,.09)
+        !important;
+    background: #101114 !important;
+}
+
+/* Imágenes a todo el ancho */
+
+html body .drn-mp-podium .drn-compact-card img {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    aspect-ratio: 16 / 9 !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    filter: brightness(1.06) contrast(1.03);
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Contornos metálicos */
+
+html body .drn-mp-podium .drn-compact-card {
+    border-radius: 5px !important;
+    background: #141519 !important;
+    border: 1px solid var(--drn-medal) !important;
+    box-shadow:
+        0 0 9px var(--drn-medal-glow),
+        0 0 16px var(--drn-medal-glow)
+        !important;
+    overflow: hidden;
+}
+
+/* Oro */
+
+html body .drn-mp-podium
+.drn-compact-card:nth-child(1) {
+    --drn-medal: #ffda54;
+    --drn-medal-glow: rgba(255,218,84,.36);
+}
+
+/* Plata */
+
+html body .drn-mp-podium
+.drn-compact-card:nth-child(2) {
+    --drn-medal: #dce1eb;
+    --drn-medal-glow: rgba(220,225,235,.25);
+}
+
+/* Bronce */
+
+html body .drn-mp-podium
+.drn-compact-card:nth-child(3) {
+    --drn-medal: #e69a59;
+    --drn-medal-glow: rgba(230,154,89,.32);
+}
+
+/* Datos compactos */
+
+html body .drn-mp-podium
+.drn-compact-card .drn-compact-info {
+    background: #101114 !important;
+    padding: 7px 5px !important;
+    gap: 5px !important;
+}
+
+html body .drn-mp-podium
+.drn-compact-card .drn-compact-position {
+    text-shadow: 0 0 8px var(--drn-medal-glow);
+}
+
+html body .drn-mp-podium
+.drn-compact-card .drn-compact-time {
+    padding: 2px 5px 5px !important;
+}
+
+/* Separación para que respire la iluminación */
+
+html body .drn-mp-podium .drn-compact-grid {
+    gap: 12px !important;
+    padding: 3px !important;
+}
+
+/* Celular */
+
+@media (max-width: 760px) {
+
+    html body .drn-mp-podium .drn-compact-grid {
+        gap: 6px !important;
+        padding: 2px !important;
+    }
+
+    html body .drn-mp-podium .drn-compact-card img {
+        width: 100% !important;
+        height: auto !important;
+        max-height: none !important;
+        aspect-ratio: 16 / 9 !important;
+        object-fit: cover !important;
+    }
+
+    html body .drn-mp-podium .drn-compact-card {
+        box-shadow:
+            0 0 6px var(--drn-medal-glow)
+            !important;
+    }
+}
+
+/* DRN-PODIO-LUZ-FIN */
+
+</style>
